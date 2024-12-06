@@ -9,3 +9,41 @@
     at Function.Module._load (node:internal/modules/cjs/loader:1024:12)
     at Module.require (node:internal/modules/cjs/loader:1233:19)
     at require (node:internal/modules/helpers:179:18)
+2024-12-06 14:52:19 [[31merror[39m]: TypeError: app.use() requires a middleware function
+    at Function.use (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\express\lib\application.js:217:11)
+    at Object.<anonymous> (F:\study_material\codes\__Mega_Project\02BackEnd\src\app.ts:28:5)
+    at Module._compile (node:internal/modules/cjs/loader:1358:14)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1618:23)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1416:10)
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1208:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:1024:12)
+    at Module.require (node:internal/modules/cjs/loader:1233:19)
+    at require (node:internal/modules/helpers:179:18)
+2024-12-06 14:52:50 [[31merror[39m]: TypeError: app.use() requires a middleware function
+    at Function.use (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\express\lib\application.js:217:11)
+    at Object.<anonymous> (F:\study_material\codes\__Mega_Project\02BackEnd\src\app.ts:28:5)
+    at Module._compile (node:internal/modules/cjs/loader:1358:14)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1618:23)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1416:10)
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1208:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:1024:12)
+    at Module.require (node:internal/modules/cjs/loader:1233:19)
+    at require (node:internal/modules/helpers:179:18)
+2024-12-06 14:57:43 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/db/index.ts[0m:[93m8[0m:[93m104[0m - [91merror[0m[90m TS2339: [0mProperty 'hostName' does not exist on type 'Connection'.
+
+[7m8[0m   console.log(`Connected to the mongodb, HOST: ${connection.connection.host}://${connection.connection.hostName}:${connection.connection.port}`);
+[7m [0m [91m                                                                                                       ~~~~~~~~[0m
+
+    at createTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1416:10)
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1208:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:1024:12)
+    at Module.require (node:internal/modules/cjs/loader:1233:19)

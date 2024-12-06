@@ -1,21 +1,7 @@
-import mongoose, {Document, Schema} from "mongoose";
+import mongoose, {Schema} from "mongoose";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
-
-interface IUser extends Document {
-    urn: number;
-    email: string;
-    fullName: string;
-
-    password: string;
-    refreshToken?: string;
-
-    isPasswordCorrect(password: string): Promise<boolean>;
-
-    generateAccessToken(): string;
-
-    generateRefreshToken(): string;
-}
+import { IUser } from "../../types/databaseSchema.types.ts";
 
 const userSchema = new Schema<IUser>(
     {
@@ -33,14 +19,17 @@ const userSchema = new Schema<IUser>(
             unique: true,
             lowercase: true,
             trim: true,
+            index: true,
         },
         fullName: {
             type: String,
             required: true,
             trim: true,
-            index: true,
         },
-
+        role: {
+            type: String,
+            required: true,
+        },
         password: {
             type: String,
             required: [true, "Password is required"],
