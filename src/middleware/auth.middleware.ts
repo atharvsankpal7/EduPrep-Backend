@@ -2,7 +2,7 @@ import asyncHandler from "../utils/asyncHandler.ts";
 import express from "express";
 import {ApiError} from "../utils/ApiError.ts";
 import jwt from "jsonwebtoken";
-import {User} from "../models/user/student.model.ts";
+import {User} from "../models/user/user.model.ts";
 
 
 // Extend express.Request to include user
