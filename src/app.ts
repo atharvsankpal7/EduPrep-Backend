@@ -25,7 +25,7 @@ import {ApiError} from "./utils/ApiError.ts";
 
 // route declarations
 app.use("/api/v1/student", userRouter)
-app.use("/api/v1/test")
+// app.use("/api/v1/test")
 
 // global error handler
 app.use((err: ApiError , req: express.Request, res: express.Response, next: express.NextFunction) => {
