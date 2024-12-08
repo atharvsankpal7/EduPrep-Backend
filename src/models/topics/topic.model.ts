@@ -7,6 +7,6 @@ const TopicSchema = new Schema<ITopic>(
     subjectId: { type: Schema.Types.ObjectId, ref: "Subject", required: true },
     description: { type: String },
   },
-  { timestamps: true }
+  { timestamps: true } 
 );
 export const Topic = mongoose.model<ITopic>("Topic", TopicSchema);

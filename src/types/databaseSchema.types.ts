@@ -62,14 +62,10 @@ export interface ITest extends mongoose.Document {
   testDuration: number;
   totalQuestions: number;
   expiryTime: Date;
+  testQuestions: Schema.Types.ObjectId[]; // questionId
   createdBy: Schema.Types.ObjectId; // userId
 }
 
-export interface ITestQuestion extends mongoose.Document {
-  testId: Schema.Types.ObjectId;
-  questionId: Schema.Types.ObjectId;
-  order: number;
-}
 
 export interface ITestResult extends mongoose.Document {
   testId: Schema.Types.ObjectId;
@@ -79,7 +75,7 @@ export interface ITestResult extends mongoose.Document {
   selectedAnswers: {
     questionId: Schema.Types.ObjectId;
     selectedOption: number;
-  };
+  }[];
   autoSubmission: {
     isAutoSubmitted: boolean;
     tabSwitches: number;

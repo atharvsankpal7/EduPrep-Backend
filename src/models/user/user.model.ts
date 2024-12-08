@@ -1,7 +1,7 @@
 import mongoose, {Schema} from "mongoose";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
-import { IUser } from "../../types/databaseSchema.types.ts";
+import {IUser} from "../../types/databaseSchema.types.ts";
 
 const userSchema = new Schema<IUser>(
     {
