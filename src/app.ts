@@ -26,6 +26,7 @@ app.use(cookieParser());
 
 // route declarations
 app.use("/api/v1/student", userRouter)
+app.use("/api/v1/test", testRouter)
 
 // global error handler
 app.use((err: ApiError, req: express.Request, res: express.Response, next: express.NextFunction) => {
