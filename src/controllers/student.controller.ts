@@ -2,46 +2,29 @@ import express from "express";
 import asyncHandler from "../utils/asyncHandler";
 import {ApiError} from "../utils/ApiError";
 import {User} from "../models/user/user.model";
-import {z} from "zod";
 import ApiResponse from "../utils/ApiResponse";
 import logger from "../utils/logger";
+import {userRegistrationSchema} from "../ZodSchema/userSchema.ts";
 
-// Zod schema for student registration
-const studentSchema = z.object({
-    fullName: z.string().min(1, "Full name is required"),
-    urn: z.number().min(8, "Enter valid URN"),
-    email: z.string().email("Invalid email format"),
-    password: z.string()
-        .min(8, "Password must be at least 8 characters long")
-        .max(64, "Password length should be less than 64"),
-});
 
 const generateAccessAndRefreshToken = async (userId: unknown) => {
-    try {
-        let user = await User.findById(userId).select("-password -refreshToken");
-        if (!user) {
-            throw new ApiError(404, "Invalid user id!");
-        }
 
-        const accessToken = user.generateAccessToken();
-        const refreshToken = user.generateRefreshToken();
-        if (!accessToken || !refreshToken) {
-            throw new ApiError(500, "Error generating tokens");
-        }
-
-        user.refreshToken = refreshToken;
-        user = await user.save({validateBeforeSave: false});
-
-        return {user, accessToken};
-    } catch (err: unknown) {
-        if (err instanceof ApiError) {
-            throw err;
-        }
-        if (err instanceof Error) {
-            logger.error(`Error generating tokens: ${err.message}`, {stack: err.stack, userId});
-        }
-        throw new ApiError(500, "Internal server error");
+    let user = await User.findById(userId).select("-password -refreshToken");
+    if (!user) {
+        throw new ApiError(404, "Invalid user id!");
     }
+
+    const accessToken = user.generateAccessToken();
+    const refreshToken = user.generateRefreshToken();
+    if (!accessToken || !refreshToken) {
+        throw new ApiError(500, "Error generating tokens");
+    }
+
+    user.refreshToken = refreshToken;
+    user = await user.save({validateBeforeSave: false});
+
+    return {user, accessToken};
+
 };
 
 
@@ -56,7 +39,7 @@ const cookieOptions = {
  * Register a new student
  */
 const registerStudent = asyncHandler(async (req: express.Request, res: express.Response) => {
-    const parsed = studentSchema.safeParse(req.body);
+    const parsed = userRegistrationSchema.safeParse(req.body);
 
     if (!parsed.success) {
         const errors = parsed.error.errors.map((err) => err.message);
