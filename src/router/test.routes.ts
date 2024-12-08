@@ -27,79 +27,26 @@
     4.user will ask for access of test/get/testid then we have to give the test with that id
     5.after user submits the test then give the result to the user, save the result for that user in the database
 */
+
 import express from 'express';
+import { verifyToken } from '../middleware/auth.middleware';
+import {
+  createGateTest,
+  createCompanyTest,
+  createCETTest,
+  createCustomTest
+} from '../controllers/test.controller';
 
 const router = express.Router();
 
-// Import any necessary models or helper functions
-// For example: import { createCustomTest, getTopicsForTest } from './helpers';
+// Protect all test routes with authentication
+router.use(verifyToken);
 
-// Placeholder function for creating custom tests
-function createCustomTest(testDetails: any) {
-  // Implementation should create and save the test, returning its ID
-  return 'testIdPlaceholder';
-}
-
-// Middleware to extract and validate request body for custom tests
-function validateCustomTestRequest(req: express.Request, res: express.Response, next: express.NextFunction) {
-  const { time, numberOfQuestions, topicList } = req.body;
-  if (typeof time === 'number' && typeof numberOfQuestions === 'number' && Array.isArray(topicList)) {
-    next();
-  } else {
-    res.status(400).send('Invalid request body');
-  }
-}
-
-// Route for creating GATE test for undergraduate level
-router.post('/undergraduate/gate', (req, res) => {
-  const topics = getTopicsForTest('GATE');
-  const testId = createCustomTest({ level: 'undergraduate', type: 'GATE', topics });
-  res.json({ testId });
-});
-
-// Route for creating company specific test
-router.post('/undergraduate/companySpecific', (req, res) => {
-  const { company } = req.body;
-  const topics = getTopicsForTest('company', company);
-  const testId = createCustomTest({ level: 'undergraduate', type: 'companySpecific', topics });
-  res.json({ testId });
-});
-
-// Route for creating CET test for junior college level
-router.post('/juniorcollege/cet', (req, res) => {
-  const topics = getTopicsForTest('CET');
-  const testId = createCustomTest({ level: 'juniorcollege', type: 'CET', topics });
-  res.json({ testId });
-});
-
-// Route for creating custom test for undergraduate level
-router.post('/undergraduate/custom', validateCustomTestRequest, (req, res) => {
-  const { time, numberOfQuestions, topicList } = req.body;
-  const testId = createCustomTest({ level: 'undergraduate', time, numberOfQuestions, topicList });
-  res.json({ testId });
-});
-
-// Route for creating custom test for junior college level
-router.post('/juniorcollege/custom', validateCustomTestRequest, (req, res) => {
-  const { time, numberOfQuestions, topicList } = req.body;
-  const testId = createCustomTest({ level: 'juniorcollege', time, numberOfQuestions, topicList });
-  res.json({ testId });
-});
-
-// Example function to retrieve topics
-function getTopicsForTest(testType: string, company?: string) {
-  // Mock implementation, should be replaced with real logic
-  if (testType === 'GATE') {
-    return ['Topic1', 'Topic2', 'Topic3'];
-  } else if (testType === 'company') {
-    return ['CompanyTopic1', 'CompanyTopic2'];
-  } else if (testType === 'CET') {
-    return ['CETTopic1', 'CETTopic2'];
-  }
-  return [];
-}
+// Test creation routes
+router.post('/undergraduate/gate', createGateTest);
+router.post('/undergraduate/companySpecific', createCompanyTest);
+router.post('/juniorcollege/cet', createCETTest);
+router.post('/undergraduate/custom', createCustomTest);
+router.post('/juniorcollege/custom', createCustomTest);
 
 export default router;
-
-
-
