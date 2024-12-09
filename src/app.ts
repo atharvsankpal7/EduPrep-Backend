@@ -5,6 +5,7 @@ import cookieParser from "cookie-parser";
 import userRouter from "./router/student.routes"
 import testRouter from "./router/test.routes"
 import {ApiError} from "./utils/ApiError";
+import rateLimiter from "./utils/raterLimiter.ts";
 
 const app = express();
 
@@ -25,7 +26,7 @@ app.use(express.static("public")); // public folder is available via URL without
 app.use(cookieParser()); // parses cookies automatically and puts them in req.cookies
 
 // route declarations
-app.use("/api/v1/student", userRouter)
+app.use("/api/v1/student", rateLimiter, userRouter)
 app.use("/api/v1/test", testRouter)
 
 // global error handler

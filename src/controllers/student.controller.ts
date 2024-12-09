@@ -82,12 +82,18 @@ const registerStudent = asyncHandler(async (req: express.Request, res: express.R
  * Log in a student
  */
 const loginStudent = asyncHandler(async (req: express.Request, res: express.Response) => {
-    const {email, urn, password} = req.body;
+    const parsed = userRegistrationSchema.safeParse(req.body);
+    if(!parsed.success){
+        const errors = parsed.error.errors.map((err) => err.message);
+        logger.warn("Validation errors during login", {errors});
+        throw new ApiError(400, "Invalid input", errors);
+    }
+    const {urn, email, password} = parsed.data;
 
     const existingUser = await User.findOne({$or: [{email}, {urn}]});
 
     if (!existingUser) {
-        logger.warn("User not found during login", {email, urn});
+        logger.warn(`User not found during login email : ${email} or urn : ${urn}`);
         throw new ApiError(404, "User not found");
     }
 

@@ -1,2 +1,2 @@
-add rate limiting
 use helmet library to add various HTTP headers for security
+add persistent state management
