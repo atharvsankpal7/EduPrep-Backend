@@ -29,24 +29,19 @@
 */
 
 import express from 'express';
-import { verifyToken } from '../middleware/auth.middleware';
-import {
-  createGateTest,
-  createCompanyTest,
-  createCETTest,
-  createCustomTest
-} from '../controllers/test.controller';
+import {authMiddleware} from '../middleware/auth.middleware';
+import {getCompanySpecificTest, getCustomTest} from '../controllers/test.controller';
 
 const router = express.Router();
 
 // Protect all test routes with authentication
-router.use(verifyToken);
+router.use(authMiddleware);
 
 // Test creation routes
-router.post('/undergraduate/gate', createGateTest);
-router.post('/undergraduate/companySpecific', createCompanyTest);
-router.post('/juniorcollege/cet', createCETTest);
-router.post('/undergraduate/custom', createCustomTest);
-router.post('/juniorcollege/custom', createCustomTest);
+// router.post('/undergraduate/gate', createGateTest);
+router.post('/undergraduate/companySpecific', authMiddleware, getCompanySpecificTest);
+// router.post('/juniorcollege/cet', createCETTest);
+router.post('/undergraduate/custom', authMiddleware, getCustomTest);
+router.post('/juniorcollege/custom', authMiddleware, getCustomTest);
 
 export default router;

@@ -28,7 +28,7 @@ const userSchema = new Schema<IUser>(
         },
         role: {
             type: String,
-            required: true,
+            default: "student",
         },
         password: {
             type: String,

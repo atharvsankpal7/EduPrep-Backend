@@ -10,7 +10,6 @@ const QuestionSchema = new Schema<IQuestion>(
     difficultyLevel: {
       type: Number,
       enum: Object.values(DifficultyLevel),
-      required: true,
     },
     explanation: { type: String },
   },

@@ -1,3 +1,5 @@
+import {ITest} from "./databaseSchema.types.ts";
+
 interface Subject {
     subjectName: string; // Name of the subject
     topics: string[]; // Topics for this subject
@@ -30,13 +32,13 @@ export enum TUnderGraduateTestCategories {
     COMPANY_SPECIFIC = "Company Specific",
     CUSTOM = "Custom",
 }
+
 export type TCreateTestResponse = {
-    testId: string;
+    test: ITest;
     questions: Array<{
-        id: string;
         question: string;
         options: string[];
-        correctAnswer: string;
+        correctOption: number;
     }>;
 };
 
@@ -55,3 +57,4 @@ export type TCreateCustomTestRequest = {
     topicList: TopicList;
     educationLevel: EducationLevel;
 };
+

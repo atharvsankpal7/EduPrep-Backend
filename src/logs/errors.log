@@ -1,0 +1,824 @@
+2024-12-28 20:16:22 [[31merror[39m]: Unknown error processing Excel file named Junior.csv + Error: [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "option_2"
+    ],
+    "message": "Required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "option_3"
+    ],
+    "message": "Required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "topics"
+    ],
+    "message": "Required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "standard"
+    ],
+    "message": "Expected string, received number"
+  }
+]
+2024-12-28 20:16:30 [[31merror[39m]: Unknown error processing Excel file named Junior.csv + Error: [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "option_2"
+    ],
+    "message": "Required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "option_3"
+    ],
+    "message": "Required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "topics"
+    ],
+    "message": "Required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "standard"
+    ],
+    "message": "Expected string, received number"
+  }
+]
+2024-12-28 20:16:44 [[31merror[39m]: Unknown error processing Excel file named Junior.csv + Error: [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "option_2"
+    ],
+    "message": "Required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "option_3"
+    ],
+    "message": "Required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "topics"
+    ],
+    "message": "Required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "standard"
+    ],
+    "message": "Expected string, received number"
+  }
+]
+2024-12-28 20:18:54 [[31merror[39m]: Unknown error processing Excel file named Junior.csv + Error: [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "option_2"
+    ],
+    "message": "Required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "option_3"
+    ],
+    "message": "Required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "topics"
+    ],
+    "message": "Required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "standard"
+    ],
+    "message": "Expected string, received number"
+  }
+]
+2024-12-28 20:19:25 [[31merror[39m]: Unknown error processing Excel file named Junior.xlsx + Error: [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "option_2"
+    ],
+    "message": "Required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "option_3"
+    ],
+    "message": "Required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "topics"
+    ],
+    "message": "Required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "standard"
+    ],
+    "message": "Expected string, received number"
+  }
+]
+2024-12-28 20:21:55 [[31merror[39m]: Unknown error processing Excel file named Junior.xlsx + Error: [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "option_2"
+    ],
+    "message": "Required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "option_3"
+    ],
+    "message": "Required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "topics"
+    ],
+    "message": "Required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "standard"
+    ],
+    "message": "Expected string, received number"
+  }
+]
+2024-12-28 20:22:16 [[31merror[39m]: Unknown error processing Excel file named Junior.xlsx + Error: [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "option_2"
+    ],
+    "message": "Required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "option_3"
+    ],
+    "message": "Required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "topics"
+    ],
+    "message": "Required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "standard"
+    ],
+    "message": "Expected string, received number"
+  }
+]
+2024-12-28 20:22:39 [[31merror[39m]: Unknown error processing Excel file named Junior.xlsx + Error: [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "option_2"
+    ],
+    "message": "Required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "option_3"
+    ],
+    "message": "Required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "topics"
+    ],
+    "message": "Required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "standard"
+    ],
+    "message": "Expected string, received number"
+  }
+]
+2024-12-28 20:23:26 [[31merror[39m]: Unknown error processing Excel file named modified_file.xlsx + Error: [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "option_2"
+    ],
+    "message": "Required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "option_3"
+    ],
+    "message": "Required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "answer"
+    ],
+    "message": "Expected string, received number"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "topics"
+    ],
+    "message": "Required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "standard"
+    ],
+    "message": "Expected string, received number"
+  }
+]
+2024-12-28 20:23:35 [[31merror[39m]: Unknown error processing Excel file named modified_file.xlsx + Error: [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "option_2"
+    ],
+    "message": "Required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "option_3"
+    ],
+    "message": "Required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "answer"
+    ],
+    "message": "Expected string, received number"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "topics"
+    ],
+    "message": "Required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "standard"
+    ],
+    "message": "Expected string, received number"
+  }
+]
+2024-12-28 20:24:43 [[31merror[39m]: Unknown error processing Excel file named modified_file.xlsx + Error: [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "option_2"
+    ],
+    "message": "Required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "option_3"
+    ],
+    "message": "Required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "answer"
+    ],
+    "message": "Expected string, received number"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "topics"
+    ],
+    "message": "Required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "standard"
+    ],
+    "message": "Expected string, received number"
+  }
+]
+2024-12-28 20:27:34 [[31merror[39m]: Unknown error processing Excel file named modified_file.xlsx + Error: [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "answer"
+    ],
+    "message": "Expected string, received number"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "topics"
+    ],
+    "message": "Required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "standard"
+    ],
+    "message": "Expected string, received number"
+  }
+]
+2024-12-28 20:28:37 [[31merror[39m]: Unknown error processing Excel file named modified_file.xlsx + Error: [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "topics"
+    ],
+    "message": "Required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "standard"
+    ],
+    "message": "Expected string, received number"
+  }
+]
+2024-12-28 20:38:15 [[31merror[39m]: Unknown error processing Excel file named modified_file.xlsx + Error: [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "answer"
+    ],
+    "message": "Expected string, received number"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "topics"
+    ],
+    "message": "Required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "standard"
+    ],
+    "message": "Expected string, received number"
+  }
+]
+2024-12-28 20:39:25 [[31merror[39m]: Unknown error processing Excel file named 1735398495523-modified_file.xlsx + Error: [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "answer"
+    ],
+    "message": "Expected string, received number"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "topics"
+    ],
+    "message": "Required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "standard"
+    ],
+    "message": "Expected string, received number"
+  }
+]
+2024-12-28 20:41:42 [[31merror[39m]: Unknown error processing Excel file named 1735398495523-modified_file.xlsx + Error: [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "answer"
+    ],
+    "message": "Expected string, received number"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "topics"
+    ],
+    "message": "Required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "standard"
+    ],
+    "message": "Expected string, received number"
+  }
+]
+2024-12-28 20:43:02 [[31merror[39m]: Unknown error processing Excel file named 1735398495523-modified_file.xlsx + Error: [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "answer"
+    ],
+    "message": "Expected string, received number"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "topics"
+    ],
+    "message": "Required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "standard"
+    ],
+    "message": "Expected string, received number"
+  }
+]
+2024-12-28 20:44:17 [[31merror[39m]: Unknown error processing Excel file named 1735398495523-modified_file.xlsx + Error: [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "answer"
+    ],
+    "message": "Expected string, received number"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "topics"
+    ],
+    "message": "Required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "standard"
+    ],
+    "message": "Expected string, received number"
+  }
+]
+2024-12-28 20:44:54 [[31merror[39m]: Unknown error processing Excel file named 1735398495523-modified_file.xlsx + Error: [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "answer"
+    ],
+    "message": "Expected string, received number"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "topics"
+    ],
+    "message": "Required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "standard"
+    ],
+    "message": "Expected string, received number"
+  }
+]
+2024-12-28 20:45:50 [[31merror[39m]: Unknown error processing Excel file named 1735398495523-modified_file.xlsx + Error: [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "answer"
+    ],
+    "message": "Expected string, received number"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "topics"
+    ],
+    "message": "Required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "standard"
+    ],
+    "message": "Expected string, received number"
+  }
+]
+2024-12-28 20:47:44 [[31merror[39m]: Unknown error processing Excel file named 1735398495523-modified_file.xlsx + Error: [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "topics"
+    ],
+    "message": "Required"
+  }
+]
+2024-12-28 21:27:43 [[31merror[39m]: Unknown error processing Excel file named 1735398495523-modified_file.xlsx + Error: [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "answer"
+    ],
+    "message": "Expected string, received number"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "topics"
+    ],
+    "message": "Required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "standard"
+    ],
+    "message": "Expected string, received number"
+  }
+]
+2024-12-28 21:28:54 [[31merror[39m]: Unknown error processing Excel file named 1735398495523-modified_file.xlsx + Error: [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "answer"
+    ],
+    "message": "Expected string, received number"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "topics"
+    ],
+    "message": "Required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "standard"
+    ],
+    "message": "Expected string, received number"
+  }
+]
+2024-12-28 21:38:52 [[31merror[39m]: Unknown error processing Excel file named 1735398495523-modified_file.xlsx + Error: [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "answer"
+    ],
+    "message": "Expected string, received number"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "topics"
+    ],
+    "message": "Required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "standard"
+    ],
+    "message": "Expected string, received number"
+  }
+]
+2024-12-28 21:43:15 [[31merror[39m]: Unknown error processing Excel file named 1735398495523-modified_file.xlsx + Error: [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "answer"
+    ],
+    "message": "Expected string, received number"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "topics"
+    ],
+    "message": "Required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "standard"
+    ],
+    "message": "Expected string, received number"
+  }
+]

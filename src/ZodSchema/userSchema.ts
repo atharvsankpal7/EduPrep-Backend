@@ -12,7 +12,7 @@ export const userRegistrationSchema = z.object({
 export const userLoginSchema = z.object({
     email: z.string().email("Invalid email format").optional(),
     password: z.string().min(8, "Password must be at least 8 characters long"),
-    urn: z.number().min(8, "Enter valid URN").optional(),
+    urn: z.string().min(8, "Enter valid URN").optional(),
 }).refine(data => !!(data.email || data.urn) && !(data.email && data.urn), {
     message: "Either email or URN must be provided, but not both"
 });
