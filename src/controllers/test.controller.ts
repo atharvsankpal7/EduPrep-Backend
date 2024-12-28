@@ -1,83 +1,170 @@
-import { Request, Response } from 'express';
-import asyncHandler from '../utils/asyncHandler';
-import { testService } from '../services/test.service';
-import { ApiError } from '../utils/ApiError';
-import ApiResponse from '../utils/ApiResponse';
-import { z } from 'zod';
-import logger from '../utils/logger';
+import {Request as ExpressRequest, Response} from "express";
+import {ApiError} from "../utils/ApiError";
+import {customTestSchema} from "../ZodSchema/testSchema";
+import asyncHandler from "../utils/asyncHandler";
+import {Question} from "../models/questions/questions.model";
+import {Test} from "../models/tests/test.model";
+import {TCreateTestResponse} from "../types/sharedTypes";
+import ApiResponse from "../utils/ApiResponse";
+import logger from "../utils/logger";
+import {CompanySpecificTestDetails} from "../models/topics/company-specific-topics.model";
+import {IQuestion, IUser} from "../types/databaseSchema.types.ts";
 
-// Validation schemas
-const customTestSchema = z.object({
-  time: z.number().positive('Test duration must be positive'),
-  numberOfQuestions: z.number().positive('Number of questions must be positive'),
-  topicList: z.object({
-    subjects: z.array(z.object({
-      subjectName: z.string(),
-      topics: z.array(z.string())
-    })).min(1, 'At least one subject is required')
-  }),
-  educationLevel: z.enum(['undergraduate', 'juniorCollege'])
+// Custom Request interface to include user
+interface Request extends ExpressRequest {
+    user?: IUser;
+}
+
+
+
+
+const createCustomTest = async (user: IUser, body: any) => {
+    const { time, numberOfQuestions, topicList, educationLevel } = body;
+
+    const validationResult = customTestSchema.safeParse({
+        time,
+        numberOfQuestions,
+        topicList,
+        educationLevel,
+    });
+
+    if (!validationResult.success) {
+        const errorMessages = validationResult.error.errors.map((error) => error.message);
+        throw new ApiError(400, errorMessages.join(", "));
+    }
+
+    const {
+        time: validatedTime,
+        numberOfQuestions: totalQuestions,
+        topicList: validatedTopicList,
+    } = validationResult.data;
+
+    const allTopics = validatedTopicList.subjects
+        .flatMap((subject) => subject.topics)
+        .map((topicName: string) => topicName);
+
+    if (allTopics.length === 0) {
+        throw new ApiError(400, "At least one topic is required.");
+    }
+
+    const questionsPerTopic = Math.floor(totalQuestions / allTopics.length);
+    const remainingQuestions = totalQuestions % allTopics.length;
+
+    if (questionsPerTopic === 0) {
+        throw new ApiError(400, "Number of questions is too small for the number of topics.");
+    }
+
+    const pipeline = [
+        {
+            $facet: allTopics.reduce<Record<string, any[]>>((facets, topic) => {
+                facets[topic] = [
+                    { $match: { topicName: topic } },
+                    { $sample: { size: questionsPerTopic } },
+                    {
+                        $project: {
+                            _id: 1,
+                            questionText: 1,
+                            options: 1,
+                            correctOption: 1,
+                        },
+                    },
+                ];
+                return facets;
+            }, {}),
+        },
+    ];
+
+    const aggregatedData: Record<string, IQuestion[]>[] = await Question.aggregate(pipeline) as Record<string, IQuestion[]>[];
+    const aggregatedQuestions: IQuestion[] = Object.values(aggregatedData[0]).flat();
+
+    if (aggregatedQuestions.length < totalQuestions) {
+        const errorMessage = `Not enough questions available for the selected topics. Requested: ${totalQuestions}, Found: ${aggregatedQuestions.length}`;
+        logger.error(errorMessage);
+        throw new ApiError(400, errorMessage);
+    }
+
+    let additionalQuestions: IQuestion[] = [];
+    if (remainingQuestions > 0) {
+        additionalQuestions = await Question.aggregate([
+            {
+                $match: { topicName: { $in: allTopics } },
+            },
+            { $sample: { size: remainingQuestions } },
+            {
+                $project: {
+                    _id: 1,
+                    questionText: 1,
+                    options: 1,
+                    correctOption: 1,
+                },
+            },
+        ]);
+    }
+
+    aggregatedQuestions.push(...additionalQuestions);
+
+    const userId = user._id;
+    const test = await Test.create({
+        testName: `Test - ${new Date().toISOString()}`,
+        testDuration: validatedTime,
+        totalQuestions: aggregatedQuestions.length,
+        testQuestions: aggregatedQuestions.map((q) => q._id),
+        createdBy: userId,
+    });
+
+    if (!test) {
+        logger.error("Failed to create test by user ", userId);
+        throw new ApiError(500, "Failed to create test");
+    }
+
+    const testDetails: TCreateTestResponse = {
+        test,
+        questions: aggregatedQuestions.map((q) => ({
+            question: q.questionText,
+            options: q.options,
+            correctOption: q.correctOption,
+        })),
+    };
+
+    return { testDetails };
+};
+// Controller for creating a custom test
+const getCustomTest = asyncHandler(async (req: Request, res: Response) => {
+    if (!req.user) {
+        throw new ApiError(401, "Unauthorized");
+    }
+    const {testDetails} = await createCustomTest(req.user, req.body);
+    res.status(201).send(
+        new ApiResponse(201, {testDetails}, "Test Creation successful")
+    );
 });
 
-const companyTestSchema = z.object({
-  company: z.string().min(1, 'Company name is required'),
-  educationLevel: z.enum(['undergraduate', 'juniorCollege'])
+// Controller for creating a company-specific test
+const getCompanySpecificTest = asyncHandler(async (req: Request, res: Response) => {
+    if (!req.user) {
+        throw new ApiError(401, "Unauthorized");
+    }
+    const {companyName} = req.params;
+    const testDetails = await CompanySpecificTestDetails.findOne({companyName});
+
+    if (!testDetails) {
+        logger.error("Request for company ", companyName, " not found by user ", req.user._id);
+        throw new ApiError(404, "Company-specific test details not found");
+    }
+
+
+    logger.info("Test created for company ", companyName, " by user ", req.user._id);
+
+    const {testDetails: customTestDetails} = await createCustomTest(req.user, {
+        time: testDetails.time,
+        numberOfQuestions: testDetails.numberOfQuestions,
+        topicList: testDetails.topicList,
+        educationLevel: "undergraduate",
+    });
+
+    res.status(201).send(
+        new ApiResponse(201, {testDetails: customTestDetails}, "Company-specific test created")
+    );
 });
 
-export const createGateTest = asyncHandler(async (req: Request, res: Response) => {
-  const { educationLevel } = req.params;
-  
-  if (educationLevel !== 'undergraduate') {
-    throw new ApiError(400, 'GATE tests are only available for undergraduate level');
-  }
-
-  const result = await testService.createGateTest(educationLevel);
-  
-  res.status(201).json(
-    new ApiResponse(201, result, 'GATE test created successfully')
-  );
-});
-
-export const createCompanyTest = asyncHandler(async (req: Request, res: Response) => {
-  const parsed = companyTestSchema.safeParse(req.body);
-  
-  if (!parsed.success) {
-    logger.warn('Validation failed for company test creation', parsed.error);
-    throw new ApiError(400, 'Invalid input', parsed.error.errors);
-  }
-
-  const result = await testService.createCompanyTest(parsed.data);
-  
-  res.status(201).json(
-    new ApiResponse(201, result, 'Company specific test created successfully')
-  );
-});
-
-export const createCETTest = asyncHandler(async (req: Request, res: Response) => {
-  const { educationLevel } = req.params;
-  
-  if (educationLevel !== 'juniorCollege') {
-    throw new ApiError(400, 'CET tests are only available for junior college level');
-  }
-
-  const result = await testService.createCETTest(educationLevel);
-  
-  res.status(201).json(
-    new ApiResponse(201, result, 'CET test created successfully')
-  );
-});
-
-export const createCustomTest = asyncHandler(async (req: Request, res: Response) => {
-  const parsed = customTestSchema.safeParse(req.body);
-  
-  if (!parsed.success) {
-    logger.warn('Validation failed for custom test creation', parsed.error);
-    throw new ApiError(400, 'Invalid input', parsed.error.errors);
-  }
-
-  const result = await testService.createCustomTest(parsed.data);
-  
-  res.status(201).json(
-    new ApiResponse(201, result, 'Custom test created successfully')
-  );
-});
+export {getCustomTest, getCompanySpecificTest};

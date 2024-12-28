@@ -5,27 +5,7 @@ import {User} from "../models/user/user.model";
 import ApiResponse from "../utils/ApiResponse";
 import logger from "../utils/logger";
 import {userRegistrationSchema} from "../ZodSchema/userSchema.ts";
-
-
-const generateAccessAndRefreshToken = async (userId: unknown) => {
-
-    let user = await User.findById(userId).select("-password -refreshToken");
-    if (!user) {
-        throw new ApiError(404, "Invalid user id!");
-    }
-
-    const accessToken = user.generateAccessToken();
-    const refreshToken = user.generateRefreshToken();
-    if (!accessToken || !refreshToken) {
-        throw new ApiError(500, "Error generating tokens");
-    }
-
-    user.refreshToken = refreshToken;
-    user = await user.save({validateBeforeSave: false});
-
-    return {user, accessToken};
-
-};
+import generateAccessAndRefreshToken from "../utils/tokenGenerator.ts";
 
 
 // Cookie options
@@ -39,6 +19,11 @@ const cookieOptions = {
  * Register a new student
  */
 const registerStudent = asyncHandler(async (req: express.Request, res: express.Response) => {
+    // Convert urn to number before validation
+    if (req.body.urn) {
+        req.body.urn = Number(req.body.urn);
+    }
+
     const parsed = userRegistrationSchema.safeParse(req.body);
 
     if (!parsed.success) {
@@ -81,9 +66,14 @@ const registerStudent = asyncHandler(async (req: express.Request, res: express.R
 /**
  * Log in a student
  */
-const loginStudent = asyncHandler(async (req: express.Request, res: express.Response) => {
+const loginUser = asyncHandler(async (req: express.Request, res: express.Response) => {
+    // Convert urn to number before validation
+    if (req.body.urn) {
+        req.body.urn = Number(req.body.urn);
+    }
+
     const parsed = userRegistrationSchema.safeParse(req.body);
-    if(!parsed.success){
+    if (!parsed.success) {
         const errors = parsed.error.errors.map((err) => err.message);
         logger.warn("Validation errors during login", {errors});
         throw new ApiError(400, "Invalid input", errors);
@@ -138,4 +128,5 @@ const logoutUser = asyncHandler(async (req: express.Request, res: express.Respon
         .json(new ApiResponse(200, {}, "User logged out successfully"));
 });
 
-export {registerStudent, loginStudent, logoutUser};
+
+export {registerStudent, loginUser, logoutUser};

@@ -2,18 +2,17 @@ import asyncHandler from "../utils/asyncHandler.ts";
 import express from "express";
 import {ApiError} from "../utils/ApiError.ts";
 import jwt from "jsonwebtoken";
-import {User} from "../models/user/user.model.ts";
+import {User} from "../models/user/user.model";
+import {Document} from "mongoose";
+import {IUser} from "../types/databaseSchema.types.ts";
 
-
-// Extend express.Request to include user
-interface Request extends express.Request {
-    user?: any;
+// Extend express.Request to include user with User type
+export interface AuthenticatedRequest extends express.Request {
+    user?: Document<unknown, {}, IUser> & IUser;
 }
 
-
-
-export const verifyToken = asyncHandler(
-    async (req: Request, _: express.Response, next: express.NextFunction) => {
+export const authMiddleware = asyncHandler(
+    async (req: AuthenticatedRequest, _: express.Response, next: express.NextFunction) => {
         try {
             const token =
                 req.cookies?.accessToken || req.header("Authorization")?.replace("Bearer ", "");

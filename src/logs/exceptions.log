@@ -1,41 +1,13 @@
-2024-11-29 00:50:46 [[31merror[39m]: TypeError: app.use() requires a middleware function
-    at Function.use (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\express\lib\application.js:217:11)
-    at Object.<anonymous> (F:\study_material\codes\__Mega_Project\02BackEnd\src\app.ts:28:5)
-    at Module._compile (node:internal/modules/cjs/loader:1358:14)
-    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1618:23)
-    at Module._extensions..js (node:internal/modules/cjs/loader:1416:10)
-    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1621:12)
-    at Module.load (node:internal/modules/cjs/loader:1208:32)
-    at Function.Module._load (node:internal/modules/cjs/loader:1024:12)
-    at Module.require (node:internal/modules/cjs/loader:1233:19)
-    at require (node:internal/modules/helpers:179:18)
-2024-12-06 14:52:19 [[31merror[39m]: TypeError: app.use() requires a middleware function
-    at Function.use (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\express\lib\application.js:217:11)
-    at Object.<anonymous> (F:\study_material\codes\__Mega_Project\02BackEnd\src\app.ts:28:5)
-    at Module._compile (node:internal/modules/cjs/loader:1358:14)
-    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1618:23)
-    at Module._extensions..js (node:internal/modules/cjs/loader:1416:10)
-    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1621:12)
-    at Module.load (node:internal/modules/cjs/loader:1208:32)
-    at Function.Module._load (node:internal/modules/cjs/loader:1024:12)
-    at Module.require (node:internal/modules/cjs/loader:1233:19)
-    at require (node:internal/modules/helpers:179:18)
-2024-12-06 14:52:50 [[31merror[39m]: TypeError: app.use() requires a middleware function
-    at Function.use (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\express\lib\application.js:217:11)
-    at Object.<anonymous> (F:\study_material\codes\__Mega_Project\02BackEnd\src\app.ts:28:5)
-    at Module._compile (node:internal/modules/cjs/loader:1358:14)
-    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1618:23)
-    at Module._extensions..js (node:internal/modules/cjs/loader:1416:10)
-    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1621:12)
-    at Module.load (node:internal/modules/cjs/loader:1208:32)
-    at Function.Module._load (node:internal/modules/cjs/loader:1024:12)
-    at Module.require (node:internal/modules/cjs/loader:1233:19)
-    at require (node:internal/modules/helpers:179:18)
-2024-12-06 14:57:43 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
-[96msrc/db/index.ts[0m:[93m8[0m:[93m104[0m - [91merror[0m[90m TS2339: [0mProperty 'hostName' does not exist on type 'Connection'.
+2024-12-28 20:11:41 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/router/question.routes.ts[0m:[93m3[0m:[93m9[0m - [91merror[0m[90m TS2459: [0mModule '"../middleware/multer.middleware.ts"' declares 'uploadMiddleware' locally, but it is not exported.
 
-[7m8[0m   console.log(`Connected to the mongodb, HOST: ${connection.connection.host}://${connection.connection.hostName}:${connection.connection.port}`);
-[7m [0m [91m                                                                                                       ~~~~~~~~[0m
+[7m3[0m import {uploadMiddleware} from "../middleware/multer.middleware.ts";
+[7m [0m [91m        ~~~~~~~~~~~~~~~~[0m
+
+  [96msrc/middleware/multer.middleware.ts[0m:[93m51[0m:[93m7[0m
+    [7m51[0m const uploadMiddleware = multer({
+    [7m  [0m [96m      ~~~~~~~~~~~~~~~~[0m
+    'uploadMiddleware' is declared here.
 
     at createTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:859:12)
     at reportTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:863:19)
@@ -47,31 +19,118 @@
     at Module.load (node:internal/modules/cjs/loader:1208:32)
     at Function.Module._load (node:internal/modules/cjs/loader:1024:12)
     at Module.require (node:internal/modules/cjs/loader:1233:19)
-2024-12-07 03:30:31 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
-[96msrc/services/test.service.ts[0m:[93m42[0m:[93m17[0m - [91merror[0m[90m TS18046: [0m'test._id' is of type 'unknown'.
+2024-12-28 20:13:41 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/router/question.routes.ts[0m:[93m3[0m:[93m9[0m - [91merror[0m[90m TS2459: [0mModule '"../middleware/multer.middleware.ts"' declares 'uploadMiddleware' locally, but it is not exported.
 
-[7m42[0m         testId: test._id.toString(),
-[7m  [0m [91m                ~~~~~~~~[0m
-[96msrc/services/test.service.ts[0m:[93m64[0m:[93m17[0m - [91merror[0m[90m TS18046: [0m'test._id' is of type 'unknown'.
+[7m3[0m import {uploadMiddleware} from "../middleware/multer.middleware.ts";
+[7m [0m [91m        ~~~~~~~~~~~~~~~~[0m
 
-[7m64[0m         testId: test._id.toString(),
-[7m  [0m [91m                ~~~~~~~~[0m
-[96msrc/services/test.service.ts[0m:[93m86[0m:[93m17[0m - [91merror[0m[90m TS18046: [0m'test._id' is of type 'unknown'.
+  [96msrc/middleware/multer.middleware.ts[0m:[93m51[0m:[93m7[0m
+    [7m51[0m const uploadMiddleware = multer({
+    [7m  [0m [96m      ~~~~~~~~~~~~~~~~[0m
+    'uploadMiddleware' is declared here.
 
-[7m86[0m         testId: test._id.toString(),
-[7m  [0m [91m                ~~~~~~~~[0m
-[96msrc/services/test.service.ts[0m:[93m109[0m:[93m17[0m - [91merror[0m[90m TS18046: [0m'test._id' is of type 'unknown'.
+    at createTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1416:10)
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1208:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:1024:12)
+    at Module.require (node:internal/modules/cjs/loader:1233:19)
+2024-12-28 20:25:22 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/question.controller.ts[0m:[93m97[0m:[93m41[0m - [91merror[0m[90m TS2349: [0mThis expression is not callable.
+  Type 'never' has no call signatures.
 
-[7m109[0m         testId: test._id.toString(),
-[7m   [0m [91m                ~~~~~~~~[0m
+[7m97[0m                 const {topicId} = await getTopicId(topicName);
+[7m  [0m [91m                                        ~~~~~~~~~~[0m
+[96msrc/controllers/question.controller.ts[0m:[93m99[0m:[93m30[0m - [91merror[0m[90m TS2339: [0mProperty 'push' does not exist on type 'never'.
 
-    at createTSError (/home/project/node_modules/ts-node/src/index.ts:859:12)
-    at reportTSError (/home/project/node_modules/ts-node/src/index.ts:863:19)
-    at getOutput (/home/project/node_modules/ts-node/src/index.ts:1077:36)
-    at Object.compile (/home/project/node_modules/ts-node/src/index.ts:1433:41)
-    at Module.m._compile (/home/project/node_modules/ts-node/src/index.ts:1617:30)
-    at Module._extensions..js (node:internal/modules/cjs/loader:144:14855)
-    at Object.require.extensions.<computed> [as .ts] (/home/project/node_modules/ts-node/src/index.ts:1621:12)
-    at Module.load (node:internal/modules/cjs/loader:144:12820)
-    at Function.Module._load (node:internal/modules/cjs/loader:144:10273)
-    at Module.require (node:internal/modules/cjs/loader:144:13097)
+[7m99[0m                     topicIds.push(topicId)
+[7m  [0m [91m                             ~~~~[0m
+[96msrc/controllers/question.controller.ts[0m:[93m101[0m:[93m28[0m - [91merror[0m[90m TS2339: [0mProperty 'warn' does not exist on type 'never'.
+
+[7m101[0m                     logger.warn(`Topic not found: ${topicName}`, {userId: req.user?.id});
+[7m   [0m [91m                           ~~~~[0m
+[96msrc/controllers/question.controller.ts[0m:[93m101[0m:[93m79[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'never'.
+
+[7m101[0m                     logger.warn(`Topic not found: ${topicName}`, {userId: req.user?.id});
+[7m   [0m [91m                                                                              ~~~~[0m
+[96msrc/controllers/question.controller.ts[0m:[93m102[0m:[93m31[0m - [91merror[0m[90m TS2351: [0mThis expression is not constructable.
+  Type 'never' has no construct signatures.
+
+[7m102[0m                     throw new ApiError(404, `Topic not found: ${topicName}`);
+[7m   [0m [91m                              ~~~~~~~~[0m
+[96msrc/controllers/question.controller.ts[0m:[93m107[0m:[93m44[0m - [91merror[0m[90m TS2339: [0mProperty 'question' does not exist on type 'never'.
+
+[7m107[0m                 questionText: validatedRow.question,
+[7m   [0m [91m                                           ~~~~~~~~[0m
+[96msrc/controllers/question.controller.ts[0m:[93m109[0m:[93m34[0m - [91merror[0m[90m TS2339: [0mProperty 'option_1' does not exist on type 'never'.
+
+[7m109[0m                     validatedRow.option_1,
+[7m   [0m [91m                                 ~~~~~~~~[0m
+[96msrc/controllers/question.controller.ts[0m:[93m110[0m:[93m34[0m - [91merror[0m[90m TS2339: [0mProperty 'option_2' does not exist on type 'never'.
+
+[7m110[0m                     validatedRow.option_2,
+[7m   [0m [91m                                 ~~~~~~~~[0m
+[96msrc/controllers/question.controller.ts[0m:[93m111[0m:[93m34[0m - [91merror[0m[90m TS2339: [0mProperty 'option_3' does not exist on type 'never'.
+
+[7m111[0m                     validatedRow.option_3,
+[7m   [0m [91m                                 ~~~~~~~~[0m
+[96msrc/controllers/question.controller.ts[0m:[93m112[0m:[93m34[0m - [91merror[0m[90m TS2339: [0mProperty 'option_4' does not exist on type 'never'.
+
+[7m112[0m                     validatedRow.option_4,
+[7m   [0m [91m                                 ~~~~~~~~[0m
+[96msrc/controllers/question.controller.ts[0m:[93m114[0m:[93m45[0m - [91merror[0m[90m TS2339: [0mProperty 'answer' does not exist on type 'never'.
+
+[7m114[0m                 correctOption: validatedRow.answer,
+[7m   [0m [91m                                            ~~~~~~[0m
+[96msrc/controllers/question.controller.ts[0m:[93m116[0m:[93m47[0m - [91merror[0m[90m TS2339: [0mProperty 'standard' does not exist on type 'never'.
+
+[7m116[0m                 difficultyLevel: validatedRow.standard,
+[7m   [0m [91m                                              ~~~~~~~~[0m
+[96msrc/controllers/question.controller.ts[0m:[93m117[0m:[93m43[0m - [91merror[0m[90m TS2339: [0mProperty 'explanation' does not exist on type 'never'.
+
+[7m117[0m                 explanation: validatedRow.explanation,
+[7m   [0m [91m                                          ~~~~~~~~~~~[0m
+
+    at createTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1416:10)
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1208:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:1024:12)
+    at Module.require (node:internal/modules/cjs/loader:1233:19)
+2024-12-28 21:26:02 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::5000
+    at Server.setupListenHandle [as _listen2] (node:net:1898:16)
+    at listenInCluster (node:net:1946:12)
+    at Server.listen (node:net:2044:7)
+    at Function.listen (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\express\lib\application.js:635:24)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\index.ts:10:9
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+2024-12-28 21:26:17 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::5000
+    at Server.setupListenHandle [as _listen2] (node:net:1898:16)
+    at listenInCluster (node:net:1946:12)
+    at Server.listen (node:net:2044:7)
+    at Function.listen (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\express\lib\application.js:635:24)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\index.ts:10:9
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+2024-12-28 21:26:36 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::5000
+    at Server.setupListenHandle [as _listen2] (node:net:1898:16)
+    at listenInCluster (node:net:1946:12)
+    at Server.listen (node:net:2044:7)
+    at Function.listen (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\express\lib\application.js:635:24)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\index.ts:10:9
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+2024-12-28 21:28:33 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::5000
+    at Server.setupListenHandle [as _listen2] (node:net:1898:16)
+    at listenInCluster (node:net:1946:12)
+    at Server.listen (node:net:2044:7)
+    at Function.listen (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\express\lib\application.js:635:24)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\index.ts:10:9
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)

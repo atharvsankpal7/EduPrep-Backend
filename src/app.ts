@@ -2,10 +2,11 @@ import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 // route import
-import userRouter from "./router/student.routes"
+import userRouter from "./router/user.routes.ts"
 import testRouter from "./router/test.routes"
 import {ApiError} from "./utils/ApiError";
 import rateLimiter from "./utils/raterLimiter.ts";
+import questionRouter from "./router/question.routes.ts";
 
 const app = express();
 
@@ -26,8 +27,9 @@ app.use(express.static("public")); // public folder is available via URL without
 app.use(cookieParser()); // parses cookies automatically and puts them in req.cookies
 
 // route declarations
-app.use("/api/v1/student", rateLimiter, userRouter)
+app.use("/api/v1/user", rateLimiter, userRouter)
 app.use("/api/v1/test", testRouter)
+app.use("/api/v1/question", questionRouter)
 
 // global error handler
 app.use((err: ApiError, req: express.Request, res: express.Response) => {
@@ -39,7 +41,6 @@ app.use((err: ApiError, req: express.Request, res: express.Response) => {
         message,
         ...(process.env.NODE_ENV !== "production" && {stack: err.stack}), // Include stack trace in development
     });
-
 });
 
 export {app};
