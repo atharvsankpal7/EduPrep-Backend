@@ -5,7 +5,6 @@ const TopicSchema = new Schema<ITopic>(
   {
     topicName: { type: String, required: true },
     subjectId: { type: Schema.Types.ObjectId, ref: "Subject", required: true },
-    description: { type: String },
   },
   { timestamps: true } 
 );

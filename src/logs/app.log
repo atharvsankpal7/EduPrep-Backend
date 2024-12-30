@@ -865,3 +865,454 @@
 2024-12-28 22:42:22 [[32minfo[39m]: User logged in successfully
 2024-12-28 22:42:23 [[32minfo[39m]: User logged in successfully
 2024-12-28 22:42:24 [[32minfo[39m]: User logged in successfully
+2024-12-28 22:49:27 [[31merror[39m]: Unknown error processing Excel file named modified_file.xlsx + Error: [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "answer"
+    ],
+    "message": "Expected string, received number"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "topics"
+    ],
+    "message": "Required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "standard"
+    ],
+    "message": "Expected string, received number"
+  }
+]
+2024-12-28 22:50:01 [[31merror[39m]: Unknown error processing Excel file named modified_file.xlsx + Error: [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "answer"
+    ],
+    "message": "Expected string, received number"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "topics"
+    ],
+    "message": "Required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "standard"
+    ],
+    "message": "Expected string, received number"
+  }
+]
+2024-12-28 22:50:58 [[31merror[39m]: Unknown error processing Excel file named modified_file.xlsx + Error: [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "answer"
+    ],
+    "message": "Expected string, received number"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "topics"
+    ],
+    "message": "Required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "standard"
+    ],
+    "message": "Expected string, received number"
+  }
+]
+2024-12-30 15:21:50 [[32minfo[39m]: User logged in successfully
+2024-12-30 15:21:54 [[31merror[39m]: Unknown error processing Excel file named 1735406458810-modified_file.xlsx + Error: [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "answer"
+    ],
+    "message": "Expected string, received number"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "topics"
+    ],
+    "message": "Required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "standard"
+    ],
+    "message": "Expected string, received number"
+  }
+]
+2024-12-30 15:23:44 [[31merror[39m]: Unknown error processing Excel file named 1735406458810-modified_file.xlsx + Error: [
+  {
+    "code": "too_small",
+    "minimum": 1,
+    "type": "string",
+    "inclusive": true,
+    "exact": false,
+    "message": "Topics are required",
+    "path": [
+      "topics"
+    ]
+  }
+]
+2024-12-30 15:51:47 [[32minfo[39m]: User logged in successfully
+2024-12-30 15:51:51 [[31merror[39m]: Unknown error processing Excel file named 1735406458810-modified_file.xlsx + Error: ValidationError: difficultyLevel: MEDIUM
+2024-12-30 15:54:19 [[32minfo[39m]: 1 questions saved successfully, firstId : 677274d34718e86a2d87ed4c, lastId : 677274d34718e86a2d87ed4c
+2024-12-30 16:12:43 [[32minfo[39m]: User logged in successfully
+2024-12-30 16:12:47 [[31merror[39m]: Unknown error processing Excel file named Junior College.xlsx + Error: [
+  {
+    "code": "too_small",
+    "minimum": 1,
+    "type": "string",
+    "inclusive": true,
+    "exact": false,
+    "message": "Topics are required",
+    "path": [
+      "topics"
+    ]
+  }
+]
+2024-12-30 16:14:06 [[31merror[39m]: Unknown error processing Excel file named Junior College.xlsx + Error: [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "option_1"
+    ],
+    "message": "Expected string, received number"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "option_2"
+    ],
+    "message": "Expected string, received number"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "option_3"
+    ],
+    "message": "Expected string, received number"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "option_4"
+    ],
+    "message": "Expected string, received number"
+  }
+]
+2024-12-30 16:16:13 [[31merror[39m]: Unknown error processing Excel file named Junior College.xlsx + Error: [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "option_1"
+    ],
+    "message": "Expected string, received number"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "option_2"
+    ],
+    "message": "Expected string, received number"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "option_3"
+    ],
+    "message": "Expected string, received number"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "option_4"
+    ],
+    "message": "Expected string, received number"
+  }
+]
+2024-12-30 16:24:21 [[32minfo[39m]: User logged in successfully
+2024-12-30 16:24:24 [[31merror[39m]: Unknown error processing Excel file named Junior College.xlsx + Error: [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "answer"
+    ],
+    "message": "Expected string, received number"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "standard"
+    ],
+    "message": "Expected string, received number"
+  }
+]
+2024-12-30 16:25:35 [[31merror[39m]: Unknown error processing Excel file named Junior College.xlsx + Error: [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "standard"
+    ],
+    "message": "Expected string, received number"
+  }
+]
+2024-12-30 16:26:33 [[31merror[39m]: Unknown error processing Excel file named Junior College.xlsx + Error: [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "option_1"
+    ],
+    "message": "Expected string, received number"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "option_2"
+    ],
+    "message": "Expected string, received number"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "option_3"
+    ],
+    "message": "Expected string, received number"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "option_4"
+    ],
+    "message": "Expected string, received number"
+  }
+]
+2024-12-30 16:42:07 [[32minfo[39m]: User logged in successfully
+2024-12-30 16:42:11 [[31merror[39m]: Unknown error processing Excel file named Junior College.xlsx + Error: [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "answer"
+    ],
+    "message": "Expected string, received number"
+  }
+]
+2024-12-30 16:43:43 [[31merror[39m]: Unknown error processing Excel file named Junior College.xlsx + Error: [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "option_1"
+    ],
+    "message": "Expected string, received number"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "option_2"
+    ],
+    "message": "Expected string, received number"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "option_3"
+    ],
+    "message": "Expected string, received number"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "option_4"
+    ],
+    "message": "Expected string, received number"
+  }
+]
+2024-12-30 16:55:27 [[32minfo[39m]: User logged in successfully
+2024-12-30 16:55:31 [[32minfo[39m]: 103 questions saved successfully, firstId : 6772832b44a49a3728b3a3f1, lastId : 6772832b44a49a3728b3a457
+2024-12-30 16:56:56 [[32minfo[39m]: 103 questions saved successfully, firstId : 6772838044a49a3728b3a727, lastId : 6772838044a49a3728b3a78d
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Solid State
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Solid State
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Solid State
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Solid State
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Solid State
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Solid State
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Solutions and Colligative Properties
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Solutions and Colligative Properties
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Solutions and Colligative Properties
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Solid State
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Solid State
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Solutions and Colligative Properties
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Solutions and Colligative Properties
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Solutions and Colligative Properties
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Solutions and Colligative Properties
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Solutions and Colligative Properties
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Solutions and Colligative Properties
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Solutions and Colligative Properties
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Solutions and Colligative Properties
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Solutions and Colligative Properties
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Solutions and Colligative Properties
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Solutions and Colligative Properties
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Solutions and Colligative Properties
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Solutions and Colligative Properties
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Solutions and Colligative Properties
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Solutions and Colligative Properties
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Solutions and Colligative Properties
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Solutions and Colligative Properties
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Osmotic Pressure
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Osmotic Pressure
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Osmotic Pressure
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Colligative Properties
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Colligative Properties
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Colligative Properties
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Colligative Properties
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Solutions and Colligative Properties
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Colligative Properties
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Colligative Properties
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Colligative Properties
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Osmotic Pressure
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Solubility
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Solubility
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Solubility
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Freezing Point Depression
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Freezing Point Depression
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Solutions
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Solubility
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: solutions
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Solutions
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Types of Solutions
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Types of Solutions
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Types of Solutions
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Types of Solutions
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Solubility
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Solubility
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Solubility
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Solubility
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Henry's Law
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Raoult’s Law
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Raoult’s Law
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Raoult’s Law
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Colligative Properties
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Colligative Properties
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Vapor Pressure
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Vapor Pressure
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Vapor Pressure
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Boiling Point Elevation
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Boiling Point Elevation
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Boiling Point Elevation
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Boiling Point Elevation
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Boiling Point Elevation
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Freezing Point Depression
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Solid State
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Freezing Point Depression
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Freezing Point Depression
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Freezing Point Depression
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Osmotic Pressure
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Osmotic Pressure
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Osmotic Pressure
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Osmotic Pressure
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Osmotic Pressure
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Osmotic Pressure
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Osmotic Pressure
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Osmotic Pressure
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Osmotic Pressure
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Osmotic Pressure
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Colligative Properties
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Raoult’s Law
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Colligative Properties
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Colligative Properties
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Colligative Properties
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Miscellaneous
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Miscellaneous
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Miscellaneous
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Miscellaneous
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Miscellaneous
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Boiling Point Elevation
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Osmotic Pressure
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Solid State
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Freezing Point Depression
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Freezing Point Depression
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Boiling Point Elevation
+2024-12-30 17:02:21 [[33mwarn[39m]: Topic not found: Boiling Point Elevation
+2024-12-30 17:27:37 [[32minfo[39m]: User logged in successfully
+2024-12-30 17:27:40 [[32minfo[39m]: 103 questions saved successfully, firstId : 67728ab4903c899b0349cdd4, lastId : 67728ab4903c899b0349ce3a

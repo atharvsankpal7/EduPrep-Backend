@@ -30,7 +30,6 @@ export interface ISubject extends mongoose.Document {
 export interface ITopic extends mongoose.Document {
     topicName: string;
     subjectId: Schema.Types.ObjectId;
-    description?: string;
 }
 
 export interface IQuestion extends mongoose.Document {
