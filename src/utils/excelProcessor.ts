@@ -9,7 +9,7 @@ import { z } from "zod";
 interface ProcessedRow {
     questionText: string;
     options: string[];
-    correctOption: number;
+    answer: number;
     topicIds: string[];
     explanation?: string;
 }
@@ -83,7 +83,7 @@ export async function processExcelData(rows: any[]): Promise<ProcessedRow[]> {
                     validatedRow.option_3,
                     validatedRow.option_4,
                 ],
-                correctOption: validatedRow.answer,
+                answer: validatedRow.answer,
                 topicIds,
                 explanation: validatedRow.explanation
             });

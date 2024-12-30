@@ -9,6 +9,7 @@ import ApiResponse from "../utils/ApiResponse";
 import logger from "../utils/logger";
 import {CompanySpecificTestDetails} from "../models/topics/company-specific-topics.model";
 import {IQuestion, IUser} from "../types/databaseSchema.types.ts";
+import {AuthenticatedRequest} from "../middleware/auth.middleware.ts";
 
 // Custom Request interface to include user
 interface Request extends ExpressRequest {
@@ -16,10 +17,8 @@ interface Request extends ExpressRequest {
 }
 
 
-
-
 const createCustomTest = async (user: IUser, body: any) => {
-    const { time, numberOfQuestions, topicList, educationLevel } = body;
+    const {time, numberOfQuestions, topicList, educationLevel} = body;
 
     const validationResult = customTestSchema.safeParse({
         time,
@@ -58,14 +57,14 @@ const createCustomTest = async (user: IUser, body: any) => {
         {
             $facet: allTopics.reduce<Record<string, any[]>>((facets, topic) => {
                 facets[topic] = [
-                    { $match: { topicName: topic } },
-                    { $sample: { size: questionsPerTopic } },
+                    {$match: {topicName: topic}},
+                    {$sample: {size: questionsPerTopic}},
                     {
                         $project: {
                             _id: 1,
                             questionText: 1,
                             options: 1,
-                            correctOption: 1,
+                            answer: 1,
                         },
                     },
                 ];
@@ -87,15 +86,15 @@ const createCustomTest = async (user: IUser, body: any) => {
     if (remainingQuestions > 0) {
         additionalQuestions = await Question.aggregate([
             {
-                $match: { topicName: { $in: allTopics } },
+                $match: {topicName: {$in: allTopics}},
             },
-            { $sample: { size: remainingQuestions } },
+            {$sample: {size: remainingQuestions}},
             {
                 $project: {
                     _id: 1,
                     questionText: 1,
                     options: 1,
-                    correctOption: 1,
+                    answer: 1,
                 },
             },
         ]);
@@ -122,11 +121,11 @@ const createCustomTest = async (user: IUser, body: any) => {
         questions: aggregatedQuestions.map((q) => ({
             question: q.questionText,
             options: q.options,
-            correctOption: q.correctOption,
+            answer: q.answer,
         })),
     };
 
-    return { testDetails };
+    return {testDetails};
 };
 // Controller for creating a custom test
 const getCustomTest = asyncHandler(async (req: Request, res: Response) => {
@@ -167,4 +166,79 @@ const getCompanySpecificTest = asyncHandler(async (req: Request, res: Response) 
     );
 });
 
-export {getCustomTest, getCompanySpecificTest};
+const createCETTest = asyncHandler(async (req: AuthenticatedRequest, res) => {
+    if (!req.user) {
+        throw new ApiError(401, "Unauthorized");
+    }
+
+    const user = req.user;
+    const duration = 180; // Duration in minutes
+
+    // Subjects and question weightage
+    const subjects = ["Physics", "Chemistry", "Mathematics"];
+    const weightage = {
+        XI: {total: 30, perSubject: 10},
+        XII: {total: 120, perSubject: 40},
+    };
+
+    const aggregatedQuestions = [];
+
+    for (const subject of subjects) {
+        for (const [standard, {perSubject}] of Object.entries(weightage)) {
+            const questions = await Question.aggregate([
+                {
+                    $match: {
+                        subjectName: subject,
+                        standard: standard
+                    },
+                },
+                {$sample: {size: perSubject}},
+                {
+                    $project: {
+                        _id: 1,
+                        questionText: 1,
+                        options: 1,
+                        answer: 1,
+                    },
+                },
+            ]);
+
+            if (questions.length < perSubject) {
+                const errorMessage = `Not enough questions for ${subject} (${standard}). Required: ${perSubject}, Found: ${questions.length}`;
+                logger.error(errorMessage);
+                throw new ApiError(400, errorMessage);
+            }
+
+            aggregatedQuestions.push(...questions);
+        }
+    }
+
+    const test = await Test.create({
+        testName: `CET Test - ${new Date().toISOString()}`,
+        testDuration: duration,
+        totalQuestions: aggregatedQuestions.length,
+        testQuestions: aggregatedQuestions.map((q) => q._id),
+        createdBy: user._id,
+    });
+
+    if (!test) {
+        logger.error("Failed to create CET test for user", user._id);
+        throw new ApiError(500, "CET test creation failed");
+    }
+
+    const testDetails = {
+        test,
+        questions: aggregatedQuestions.map((q) => ({
+            question: q.questionText,
+            options: q.options,
+            answer: q.answer,
+        })),
+    };
+
+    res.status(201).send(
+        new ApiResponse(201, {testDetails}, "CET Test created successfully")
+    );
+});
+
+
+export {getCustomTest, getCompanySpecificTest, createCETTest};

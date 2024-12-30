@@ -36,9 +36,10 @@ export interface IQuestion extends mongoose.Document {
     topicIds: Schema.Types.ObjectId[];
     questionText: string;
     options: string[];
-    correctOption: number;
+    answer: number;
     difficultyLevel?: number;
     explanation?: string;
+    standard:number;
 
 }
 

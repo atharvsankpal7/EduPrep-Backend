@@ -7,7 +7,7 @@ import {ApiError} from "../utils/ApiError";
 import * as XLSX from "xlsx";
 import {Question} from "../models/questions/questions.model.ts";
 import fs from "fs";
-import { processExcelData } from "../utils/excelProcessor";
+import {processExcelData} from "../utils/excelProcessor";
 
 export const saveExcel = asyncHandler(async (req: AuthenticatedRequest, res: express.Response) => {
     if (!req.file) {

@@ -38,7 +38,7 @@ export type TCreateTestResponse = {
     questions: Array<{
         question: string;
         options: string[];
-        correctOption: number;
+        answer: number;
     }>;
 };
 
