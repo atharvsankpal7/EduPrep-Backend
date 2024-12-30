@@ -134,3 +134,570 @@
     at Function.listen (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\express\lib\application.js:635:24)
     at F:\study_material\codes\__Mega_Project\02BackEnd\src\index.ts:10:9
     at processTicksAndRejections (node:internal/process/task_queues:95:5)
+2024-12-30 15:31:03 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/question.controller.ts[0m:[93m98[0m:[93m41[0m - [91merror[0m[90m TS2554: [0mExpected 3-4 arguments, but got 1.
+
+[7m98[0m                 const {topicId} = await getOrCreateTopicId(topicName);
+[7m  [0m [91m                                        ~~~~~~~~~~~~~~~~~~[0m
+
+  [96msrc/controllers/question.controller.ts[0m:[93m32[0m:[93m5[0m
+    [7m32[0m     topicName: string,
+    [7m  [0m [96m    ~~~~~~~~~~~~~~~~~[0m
+    An argument for 'topicName' was not provided.
+
+    at createTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1416:10)
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1208:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:1024:12)
+    at Module.require (node:internal/modules/cjs/loader:1233:19)
+2024-12-30 15:38:20 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/question.controller.ts[0m:[93m56[0m:[93m32[0m - [91merror[0m[90m TS2339: [0mProperty 'idsw' does not exist on type 'Document<unknown, {}, ISubject> & ISubject & Required<{ _id: unknown; }> & { __v?: number | undefined; }'.
+
+[7m56[0m             subjectId: subject.idsw
+[7m  [0m [91m                               ~~~~[0m
+
+    at createTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1416:10)
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1208:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:1024:12)
+    at Module.require (node:internal/modules/cjs/loader:1233:19)
+2024-12-30 16:05:13 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::5000
+    at Server.setupListenHandle [as _listen2] (node:net:1898:16)
+    at listenInCluster (node:net:1946:12)
+    at Server.listen (node:net:2044:7)
+    at Function.listen (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\express\lib\application.js:635:24)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\index.ts:10:9
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+2024-12-30 16:06:16 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/question.controller.ts[0m:[93m140[0m:[93m9[0m - [91merror[0m[90m TS2304: [0mCannot find name 'fs'.
+
+[7m140[0m         fs.unlinkSync(req.file.path);
+[7m   [0m [91m        ~~[0m
+
+    at createTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1416:10)
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1208:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:1024:12)
+    at Module.require (node:internal/modules/cjs/loader:1233:19)
+2024-12-30 16:06:16 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/question.controller.ts[0m:[93m140[0m:[93m9[0m - [91merror[0m[90m TS2304: [0mCannot find name 'fs'.
+
+[7m140[0m         fs.unlinkSync(req.file.path);
+[7m   [0m [91m        ~~[0m
+
+    at createTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1416:10)
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1208:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:1024:12)
+    at Module.require (node:internal/modules/cjs/loader:1233:19)
+2024-12-30 16:06:57 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/question.controller.ts[0m:[93m139[0m:[93m9[0m - [91merror[0m[90m TS2304: [0mCannot find name 'fs'.
+
+[7m139[0m         fs.unlinkSync(req.file.path);
+[7m   [0m [91m        ~~[0m
+
+    at createTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1416:10)
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1208:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:1024:12)
+    at Module.require (node:internal/modules/cjs/loader:1233:19)
+2024-12-30 16:06:57 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/question.controller.ts[0m:[93m139[0m:[93m9[0m - [91merror[0m[90m TS2304: [0mCannot find name 'fs'.
+
+[7m139[0m         fs.unlinkSync(req.file.path);
+[7m   [0m [91m        ~~[0m
+
+    at createTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1416:10)
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1208:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:1024:12)
+    at Module.require (node:internal/modules/cjs/loader:1233:19)
+2024-12-30 16:07:20 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::5000
+    at Server.setupListenHandle [as _listen2] (node:net:1898:16)
+    at listenInCluster (node:net:1946:12)
+    at Server.listen (node:net:2044:7)
+    at Function.listen (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\express\lib\application.js:635:24)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\index.ts:10:9
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+2024-12-30 16:08:06 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::5000
+    at Server.setupListenHandle [as _listen2] (node:net:1898:16)
+    at listenInCluster (node:net:1946:12)
+    at Server.listen (node:net:2044:7)
+    at Function.listen (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\express\lib\application.js:635:24)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\index.ts:10:9
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+2024-12-30 16:08:21 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::5000
+    at Server.setupListenHandle [as _listen2] (node:net:1898:16)
+    at listenInCluster (node:net:1946:12)
+    at Server.listen (node:net:2044:7)
+    at Function.listen (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\express\lib\application.js:635:24)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\index.ts:10:9
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+2024-12-30 16:08:51 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::5000
+    at Server.setupListenHandle [as _listen2] (node:net:1898:16)
+    at listenInCluster (node:net:1946:12)
+    at Server.listen (node:net:2044:7)
+    at Function.listen (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\express\lib\application.js:635:24)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\index.ts:10:9
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+2024-12-30 16:09:00 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::5000
+    at Server.setupListenHandle [as _listen2] (node:net:1898:16)
+    at listenInCluster (node:net:1946:12)
+    at Server.listen (node:net:2044:7)
+    at Function.listen (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\express\lib\application.js:635:24)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\index.ts:10:9
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+2024-12-30 16:09:27 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::5000
+    at Server.setupListenHandle [as _listen2] (node:net:1898:16)
+    at listenInCluster (node:net:1946:12)
+    at Server.listen (node:net:2044:7)
+    at Function.listen (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\express\lib\application.js:635:24)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\index.ts:10:9
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+2024-12-30 16:09:27 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::5000
+    at Server.setupListenHandle [as _listen2] (node:net:1898:16)
+    at listenInCluster (node:net:1946:12)
+    at Server.listen (node:net:2044:7)
+    at Function.listen (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\express\lib\application.js:635:24)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\index.ts:10:9
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+2024-12-30 16:09:47 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::5000
+    at Server.setupListenHandle [as _listen2] (node:net:1898:16)
+    at listenInCluster (node:net:1946:12)
+    at Server.listen (node:net:2044:7)
+    at Function.listen (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\express\lib\application.js:635:24)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\index.ts:10:9
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+2024-12-30 16:09:47 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::5000
+    at Server.setupListenHandle [as _listen2] (node:net:1898:16)
+    at listenInCluster (node:net:1946:12)
+    at Server.listen (node:net:2044:7)
+    at Function.listen (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\express\lib\application.js:635:24)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\index.ts:10:9
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+2024-12-30 16:12:46 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::5000
+    at Server.setupListenHandle [as _listen2] (node:net:1898:16)
+    at listenInCluster (node:net:1946:12)
+    at Server.listen (node:net:2044:7)
+    at Function.listen (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\express\lib\application.js:635:24)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\index.ts:10:9
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+2024-12-30 16:18:00 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/question.controller.ts[0m:[93m103[0m:[93m32[0m - [91merror[0m[90m TS18046: [0m'validatedRow.topics' is of type 'unknown'.
+
+[7m103[0m             const topicsList = validatedRow.topics.split(',').map(topic => topic.trim()); // Split comma separated topics
+[7m   [0m [91m                               ~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/question.controller.ts[0m:[93m103[0m:[93m67[0m - [91merror[0m[90m TS7006: [0mParameter 'topic' implicitly has an 'any' type.
+
+[7m103[0m             const topicsList = validatedRow.topics.split(',').map(topic => topic.trim()); // Split comma separated topics
+[7m   [0m [91m                                                                  ~~~~~[0m
+[96msrc/controllers/question.controller.ts[0m:[93m106[0m:[93m71[0m - [91merror[0m[90m TS2345: [0mArgument of type 'unknown' is not assignable to parameter of type 'string'.
+
+[7m106[0m                 const {topicId} = await getOrCreateTopicId(topicName, validatedRow.subject,"juniorCollege");
+[7m   [0m [91m                                                                      ~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/question.controller.ts[0m:[93m130[0m:[93m45[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ questionText: unknown; options: unknown[]; correctOption: unknown; topicIds: any[]; explanation: unknown; }[]' is not assignable to parameter of type '{ questionText: string; options: string[]; correctOption: number; topicIds: ObjectId[]; explanation: string | undefined; }[]'.
+  Type '{ questionText: unknown; options: unknown[]; correctOption: unknown; topicIds: any[]; explanation: unknown; }' is not assignable to type '{ questionText: string; options: string[]; correctOption: number; topicIds: ObjectId[]; explanation: string | undefined; }'.
+    Types of property 'questionText' are incompatible.
+      Type 'unknown' is not assignable to type 'string'.
+
+[7m130[0m         await createQuestionsUpdateDatabase(questions);
+[7m   [0m [91m                                            ~~~~~~~~~[0m
+
+    at createTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1416:10)
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1208:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:1024:12)
+    at Module.require (node:internal/modules/cjs/loader:1233:19)
+2024-12-30 16:18:00 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/question.controller.ts[0m:[93m103[0m:[93m32[0m - [91merror[0m[90m TS18046: [0m'validatedRow.topics' is of type 'unknown'.
+
+[7m103[0m             const topicsList = validatedRow.topics.split(',').map(topic => topic.trim()); // Split comma separated topics
+[7m   [0m [91m                               ~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/question.controller.ts[0m:[93m103[0m:[93m67[0m - [91merror[0m[90m TS7006: [0mParameter 'topic' implicitly has an 'any' type.
+
+[7m103[0m             const topicsList = validatedRow.topics.split(',').map(topic => topic.trim()); // Split comma separated topics
+[7m   [0m [91m                                                                  ~~~~~[0m
+[96msrc/controllers/question.controller.ts[0m:[93m106[0m:[93m71[0m - [91merror[0m[90m TS2345: [0mArgument of type 'unknown' is not assignable to parameter of type 'string'.
+
+[7m106[0m                 const {topicId} = await getOrCreateTopicId(topicName, validatedRow.subject,"juniorCollege");
+[7m   [0m [91m                                                                      ~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/question.controller.ts[0m:[93m130[0m:[93m45[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ questionText: unknown; options: unknown[]; correctOption: unknown; topicIds: any[]; explanation: unknown; }[]' is not assignable to parameter of type '{ questionText: string; options: string[]; correctOption: number; topicIds: ObjectId[]; explanation: string | undefined; }[]'.
+  Type '{ questionText: unknown; options: unknown[]; correctOption: unknown; topicIds: any[]; explanation: unknown; }' is not assignable to type '{ questionText: string; options: string[]; correctOption: number; topicIds: ObjectId[]; explanation: string | undefined; }'.
+    Types of property 'questionText' are incompatible.
+      Type 'unknown' is not assignable to type 'string'.
+
+[7m130[0m         await createQuestionsUpdateDatabase(questions);
+[7m   [0m [91m                                            ~~~~~~~~~[0m
+
+    at createTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1416:10)
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1208:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:1024:12)
+    at Module.require (node:internal/modules/cjs/loader:1233:19)
+2024-12-30 16:18:21 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/question.controller.ts[0m:[93m103[0m:[93m32[0m - [91merror[0m[90m TS18046: [0m'validatedRow.topics' is of type 'unknown'.
+
+[7m103[0m             const topicsList = validatedRow.topics.split(',').map(topic => topic.trim()); // Split comma separated topics
+[7m   [0m [91m                               ~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/question.controller.ts[0m:[93m103[0m:[93m67[0m - [91merror[0m[90m TS7006: [0mParameter 'topic' implicitly has an 'any' type.
+
+[7m103[0m             const topicsList = validatedRow.topics.split(',').map(topic => topic.trim()); // Split comma separated topics
+[7m   [0m [91m                                                                  ~~~~~[0m
+[96msrc/controllers/question.controller.ts[0m:[93m106[0m:[93m71[0m - [91merror[0m[90m TS2345: [0mArgument of type 'unknown' is not assignable to parameter of type 'string'.
+
+[7m106[0m                 const {topicId} = await getOrCreateTopicId(topicName, validatedRow.subject,"juniorCollege");
+[7m   [0m [91m                                                                      ~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/question.controller.ts[0m:[93m130[0m:[93m45[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ questionText: unknown; options: unknown[]; correctOption: unknown; topicIds: any[]; explanation: unknown; }[]' is not assignable to parameter of type '{ questionText: string; options: string[]; correctOption: number; topicIds: ObjectId[]; explanation: string | undefined; }[]'.
+  Type '{ questionText: unknown; options: unknown[]; correctOption: unknown; topicIds: any[]; explanation: unknown; }' is not assignable to type '{ questionText: string; options: string[]; correctOption: number; topicIds: ObjectId[]; explanation: string | undefined; }'.
+    Types of property 'questionText' are incompatible.
+      Type 'unknown' is not assignable to type 'string'.
+
+[7m130[0m         await createQuestionsUpdateDatabase(questions);
+[7m   [0m [91m                                            ~~~~~~~~~[0m
+
+    at createTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1416:10)
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1208:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:1024:12)
+    at Module.require (node:internal/modules/cjs/loader:1233:19)
+2024-12-30 16:18:21 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/question.controller.ts[0m:[93m103[0m:[93m32[0m - [91merror[0m[90m TS18046: [0m'validatedRow.topics' is of type 'unknown'.
+
+[7m103[0m             const topicsList = validatedRow.topics.split(',').map(topic => topic.trim()); // Split comma separated topics
+[7m   [0m [91m                               ~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/question.controller.ts[0m:[93m103[0m:[93m67[0m - [91merror[0m[90m TS7006: [0mParameter 'topic' implicitly has an 'any' type.
+
+[7m103[0m             const topicsList = validatedRow.topics.split(',').map(topic => topic.trim()); // Split comma separated topics
+[7m   [0m [91m                                                                  ~~~~~[0m
+[96msrc/controllers/question.controller.ts[0m:[93m106[0m:[93m71[0m - [91merror[0m[90m TS2345: [0mArgument of type 'unknown' is not assignable to parameter of type 'string'.
+
+[7m106[0m                 const {topicId} = await getOrCreateTopicId(topicName, validatedRow.subject,"juniorCollege");
+[7m   [0m [91m                                                                      ~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/question.controller.ts[0m:[93m130[0m:[93m45[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ questionText: unknown; options: unknown[]; correctOption: unknown; topicIds: any[]; explanation: unknown; }[]' is not assignable to parameter of type '{ questionText: string; options: string[]; correctOption: number; topicIds: ObjectId[]; explanation: string | undefined; }[]'.
+  Type '{ questionText: unknown; options: unknown[]; correctOption: unknown; topicIds: any[]; explanation: unknown; }' is not assignable to type '{ questionText: string; options: string[]; correctOption: number; topicIds: ObjectId[]; explanation: string | undefined; }'.
+    Types of property 'questionText' are incompatible.
+      Type 'unknown' is not assignable to type 'string'.
+
+[7m130[0m         await createQuestionsUpdateDatabase(questions);
+[7m   [0m [91m                                            ~~~~~~~~~[0m
+
+    at createTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1416:10)
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1208:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:1024:12)
+    at Module.require (node:internal/modules/cjs/loader:1233:19)
+2024-12-30 16:18:49 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/question.controller.ts[0m:[93m103[0m:[93m32[0m - [91merror[0m[90m TS18046: [0m'validatedRow.topics' is of type 'unknown'.
+
+[7m103[0m             const topicsList = validatedRow.topics.split(',').map(topic => topic.trim()); // Split comma separated topics
+[7m   [0m [91m                               ~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/question.controller.ts[0m:[93m103[0m:[93m67[0m - [91merror[0m[90m TS7006: [0mParameter 'topic' implicitly has an 'any' type.
+
+[7m103[0m             const topicsList = validatedRow.topics.split(',').map(topic => topic.trim()); // Split comma separated topics
+[7m   [0m [91m                                                                  ~~~~~[0m
+[96msrc/controllers/question.controller.ts[0m:[93m106[0m:[93m71[0m - [91merror[0m[90m TS2345: [0mArgument of type 'unknown' is not assignable to parameter of type 'string'.
+
+[7m106[0m                 const {topicId} = await getOrCreateTopicId(topicName, validatedRow.subject,"juniorCollege");
+[7m   [0m [91m                                                                      ~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/question.controller.ts[0m:[93m130[0m:[93m45[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ questionText: unknown; options: unknown[]; correctOption: unknown; topicIds: any[]; explanation: unknown; }[]' is not assignable to parameter of type '{ questionText: string; options: string[]; correctOption: number; topicIds: ObjectId[]; explanation: string | undefined; }[]'.
+  Type '{ questionText: unknown; options: unknown[]; correctOption: unknown; topicIds: any[]; explanation: unknown; }' is not assignable to type '{ questionText: string; options: string[]; correctOption: number; topicIds: ObjectId[]; explanation: string | undefined; }'.
+    Types of property 'questionText' are incompatible.
+      Type 'unknown' is not assignable to type 'string'.
+
+[7m130[0m         await createQuestionsUpdateDatabase(questions);
+[7m   [0m [91m                                            ~~~~~~~~~[0m
+
+    at createTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1416:10)
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1208:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:1024:12)
+    at Module.require (node:internal/modules/cjs/loader:1233:19)
+2024-12-30 16:20:34 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/question.controller.ts[0m:[93m103[0m:[93m32[0m - [91merror[0m[90m TS18046: [0m'validatedRow.topics' is of type 'unknown'.
+
+[7m103[0m             const topicsList = validatedRow.topics.split(',').map(topic => topic.trim()); // Split comma separated topics
+[7m   [0m [91m                               ~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/question.controller.ts[0m:[93m103[0m:[93m67[0m - [91merror[0m[90m TS7006: [0mParameter 'topic' implicitly has an 'any' type.
+
+[7m103[0m             const topicsList = validatedRow.topics.split(',').map(topic => topic.trim()); // Split comma separated topics
+[7m   [0m [91m                                                                  ~~~~~[0m
+[96msrc/controllers/question.controller.ts[0m:[93m106[0m:[93m71[0m - [91merror[0m[90m TS2345: [0mArgument of type 'unknown' is not assignable to parameter of type 'string'.
+
+[7m106[0m                 const {topicId} = await getOrCreateTopicId(topicName, validatedRow.subject, "juniorCollege");
+[7m   [0m [91m                                                                      ~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/question.controller.ts[0m:[93m130[0m:[93m45[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ questionText: unknown; options: unknown[]; correctOption: unknown; topicIds: any[]; explanation: unknown; }[]' is not assignable to parameter of type '{ questionText: string; options: string[]; correctOption: number; topicIds: ObjectId[]; explanation: string | undefined; }[]'.
+  Type '{ questionText: unknown; options: unknown[]; correctOption: unknown; topicIds: any[]; explanation: unknown; }' is not assignable to type '{ questionText: string; options: string[]; correctOption: number; topicIds: ObjectId[]; explanation: string | undefined; }'.
+    Types of property 'questionText' are incompatible.
+      Type 'unknown' is not assignable to type 'string'.
+
+[7m130[0m         await createQuestionsUpdateDatabase(questions);
+[7m   [0m [91m                                            ~~~~~~~~~[0m
+
+    at createTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1416:10)
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1208:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:1024:12)
+    at Module.require (node:internal/modules/cjs/loader:1233:19)
+2024-12-30 16:20:34 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/question.controller.ts[0m:[93m103[0m:[93m32[0m - [91merror[0m[90m TS18046: [0m'validatedRow.topics' is of type 'unknown'.
+
+[7m103[0m             const topicsList = validatedRow.topics.split(',').map(topic => topic.trim()); // Split comma separated topics
+[7m   [0m [91m                               ~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/question.controller.ts[0m:[93m103[0m:[93m67[0m - [91merror[0m[90m TS7006: [0mParameter 'topic' implicitly has an 'any' type.
+
+[7m103[0m             const topicsList = validatedRow.topics.split(',').map(topic => topic.trim()); // Split comma separated topics
+[7m   [0m [91m                                                                  ~~~~~[0m
+[96msrc/controllers/question.controller.ts[0m:[93m106[0m:[93m71[0m - [91merror[0m[90m TS2345: [0mArgument of type 'unknown' is not assignable to parameter of type 'string'.
+
+[7m106[0m                 const {topicId} = await getOrCreateTopicId(topicName, validatedRow.subject, "juniorCollege");
+[7m   [0m [91m                                                                      ~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/question.controller.ts[0m:[93m130[0m:[93m45[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ questionText: unknown; options: unknown[]; correctOption: unknown; topicIds: any[]; explanation: unknown; }[]' is not assignable to parameter of type '{ questionText: string; options: string[]; correctOption: number; topicIds: ObjectId[]; explanation: string | undefined; }[]'.
+  Type '{ questionText: unknown; options: unknown[]; correctOption: unknown; topicIds: any[]; explanation: unknown; }' is not assignable to type '{ questionText: string; options: string[]; correctOption: number; topicIds: ObjectId[]; explanation: string | undefined; }'.
+    Types of property 'questionText' are incompatible.
+      Type 'unknown' is not assignable to type 'string'.
+
+[7m130[0m         await createQuestionsUpdateDatabase(questions);
+[7m   [0m [91m                                            ~~~~~~~~~[0m
+
+    at createTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1416:10)
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1208:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:1024:12)
+    at Module.require (node:internal/modules/cjs/loader:1233:19)
+2024-12-30 16:22:48 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/question.controller.ts[0m:[93m103[0m:[93m32[0m - [91merror[0m[90m TS18046: [0m'validatedRow.topics' is of type 'unknown'.
+
+[7m103[0m             const topicsList = validatedRow.topics.split(',').map(topic => topic.trim()); // Split comma separated topics
+[7m   [0m [91m                               ~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/question.controller.ts[0m:[93m103[0m:[93m67[0m - [91merror[0m[90m TS7006: [0mParameter 'topic' implicitly has an 'any' type.
+
+[7m103[0m             const topicsList = validatedRow.topics.split(',').map(topic => topic.trim()); // Split comma separated topics
+[7m   [0m [91m                                                                  ~~~~~[0m
+[96msrc/controllers/question.controller.ts[0m:[93m106[0m:[93m71[0m - [91merror[0m[90m TS2345: [0mArgument of type 'unknown' is not assignable to parameter of type 'string'.
+
+[7m106[0m                 const {topicId} = await getOrCreateTopicId(topicName, validatedRow.subject, "juniorCollege");
+[7m   [0m [91m                                                                      ~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/question.controller.ts[0m:[93m130[0m:[93m45[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ questionText: unknown; options: unknown[]; correctOption: unknown; topicIds: any[]; explanation: unknown; }[]' is not assignable to parameter of type '{ questionText: string; options: string[]; correctOption: number; topicIds: ObjectId[]; explanation: string | undefined; }[]'.
+  Type '{ questionText: unknown; options: unknown[]; correctOption: unknown; topicIds: any[]; explanation: unknown; }' is not assignable to type '{ questionText: string; options: string[]; correctOption: number; topicIds: ObjectId[]; explanation: string | undefined; }'.
+    Types of property 'questionText' are incompatible.
+      Type 'unknown' is not assignable to type 'string'.
+
+[7m130[0m         await createQuestionsUpdateDatabase(questions);
+[7m   [0m [91m                                            ~~~~~~~~~[0m
+
+    at createTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1416:10)
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1208:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:1024:12)
+    at Module.require (node:internal/modules/cjs/loader:1233:19)
+2024-12-30 16:22:48 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/question.controller.ts[0m:[93m103[0m:[93m32[0m - [91merror[0m[90m TS18046: [0m'validatedRow.topics' is of type 'unknown'.
+
+[7m103[0m             const topicsList = validatedRow.topics.split(',').map(topic => topic.trim()); // Split comma separated topics
+[7m   [0m [91m                               ~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/question.controller.ts[0m:[93m103[0m:[93m67[0m - [91merror[0m[90m TS7006: [0mParameter 'topic' implicitly has an 'any' type.
+
+[7m103[0m             const topicsList = validatedRow.topics.split(',').map(topic => topic.trim()); // Split comma separated topics
+[7m   [0m [91m                                                                  ~~~~~[0m
+[96msrc/controllers/question.controller.ts[0m:[93m106[0m:[93m71[0m - [91merror[0m[90m TS2345: [0mArgument of type 'unknown' is not assignable to parameter of type 'string'.
+
+[7m106[0m                 const {topicId} = await getOrCreateTopicId(topicName, validatedRow.subject, "juniorCollege");
+[7m   [0m [91m                                                                      ~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/question.controller.ts[0m:[93m130[0m:[93m45[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ questionText: unknown; options: unknown[]; correctOption: unknown; topicIds: any[]; explanation: unknown; }[]' is not assignable to parameter of type '{ questionText: string; options: string[]; correctOption: number; topicIds: ObjectId[]; explanation: string | undefined; }[]'.
+  Type '{ questionText: unknown; options: unknown[]; correctOption: unknown; topicIds: any[]; explanation: unknown; }' is not assignable to type '{ questionText: string; options: string[]; correctOption: number; topicIds: ObjectId[]; explanation: string | undefined; }'.
+    Types of property 'questionText' are incompatible.
+      Type 'unknown' is not assignable to type 'string'.
+
+[7m130[0m         await createQuestionsUpdateDatabase(questions);
+[7m   [0m [91m                                            ~~~~~~~~~[0m
+
+    at createTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1416:10)
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1208:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:1024:12)
+    at Module.require (node:internal/modules/cjs/loader:1233:19)
+2024-12-30 16:24:11 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::5000
+    at Server.setupListenHandle [as _listen2] (node:net:1898:16)
+    at listenInCluster (node:net:1946:12)
+    at Server.listen (node:net:2044:7)
+    at Function.listen (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\express\lib\application.js:635:24)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\index.ts:10:9
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+2024-12-30 16:25:33 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::5000
+    at Server.setupListenHandle [as _listen2] (node:net:1898:16)
+    at listenInCluster (node:net:1946:12)
+    at Server.listen (node:net:2044:7)
+    at Function.listen (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\express\lib\application.js:635:24)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\index.ts:10:9
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+2024-12-30 16:26:25 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::5000
+    at Server.setupListenHandle [as _listen2] (node:net:1898:16)
+    at listenInCluster (node:net:1946:12)
+    at Server.listen (node:net:2044:7)
+    at Function.listen (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\express\lib\application.js:635:24)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\index.ts:10:9
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+2024-12-30 16:26:59 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::5000
+    at Server.setupListenHandle [as _listen2] (node:net:1898:16)
+    at listenInCluster (node:net:1946:12)
+    at Server.listen (node:net:2044:7)
+    at Function.listen (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\express\lib\application.js:635:24)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\index.ts:10:9
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+2024-12-30 16:34:29 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::5000
+    at Server.setupListenHandle [as _listen2] (node:net:1898:16)
+    at listenInCluster (node:net:1946:12)
+    at Server.listen (node:net:2044:7)
+    at Function.listen (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\express\lib\application.js:635:24)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\index.ts:10:9
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+2024-12-30 16:35:12 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::5000
+    at Server.setupListenHandle [as _listen2] (node:net:1898:16)
+    at listenInCluster (node:net:1946:12)
+    at Server.listen (node:net:2044:7)
+    at Function.listen (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\express\lib\application.js:635:24)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\index.ts:10:9
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+2024-12-30 16:48:17 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/ZodSchema/excelSchema.ts[0m:[93m14[0m:[93m4[0m - [91merror[0m[90m TS1128: [0mDeclaration or statement expected.
+
+[7m14[0m });});
+[7m  [0m [91m   ~[0m
+[96msrc/ZodSchema/excelSchema.ts[0m:[93m14[0m:[93m5[0m - [91merror[0m[90m TS1128: [0mDeclaration or statement expected.
+
+[7m14[0m });});
+[7m  [0m [91m    ~[0m
+
+    at createTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1416:10)
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1208:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:1024:12)
+    at Module.require (node:internal/modules/cjs/loader:1233:19)
+2024-12-30 17:00:05 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/question.controller.ts[0m:[93m48[0m:[93m22[0m - [91merror[0m[90m TS18047: [0m'domain' is possibly 'null'.
+
+[7m48[0m     const domainId = domain.id;
+[7m  [0m [91m                     ~~~~~~[0m
+[96msrc/controllers/question.controller.ts[0m:[93m55[0m:[93m15[0m - [91merror[0m[90m TS18047: [0m'subject' is possibly 'null'.
+
+[7m55[0m         await subject.save();
+[7m  [0m [91m              ~~~~~~~[0m
+[96msrc/controllers/question.controller.ts[0m:[93m62[0m:[93m24[0m - [91merror[0m[90m TS18047: [0m'subject' is possibly 'null'.
+
+[7m62[0m             subjectId: subject.id,
+[7m  [0m [91m                       ~~~~~~~[0m
+[96msrc/controllers/question.controller.ts[0m:[93m64[0m:[93m15[0m - [91merror[0m[90m TS18047: [0m'topic' is possibly 'null'.
+
+[7m64[0m         await topic.save();
+[7m  [0m [91m              ~~~~~[0m
+[96msrc/controllers/question.controller.ts[0m:[93m67[0m:[93m12[0m - [91merror[0m[90m TS18047: [0m'topic' is possibly 'null'.
+
+[7m67[0m     return topic.id;
+[7m  [0m [91m           ~~~~~[0m
+
+    at createTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1416:10)
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1208:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:1024:12)
+    at Module.require (node:internal/modules/cjs/loader:1233:19)
+2024-12-30 17:01:58 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/question.controller.ts[0m:[93m39[0m:[93m16[0m - [91merror[0m[90m TS18047: [0m'topic' is possibly 'null'.
+
+[7m39[0m         return topic.id;
+[7m  [0m [91m               ~~~~~[0m
+
+    at createTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1416:10)
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1208:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:1024:12)
+    at Module.require (node:internal/modules/cjs/loader:1233:19)

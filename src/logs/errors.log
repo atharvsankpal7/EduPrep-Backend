@@ -822,3 +822,340 @@
     "message": "Expected string, received number"
   }
 ]
+2024-12-28 22:49:27 [[31merror[39m]: Unknown error processing Excel file named modified_file.xlsx + Error: [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "answer"
+    ],
+    "message": "Expected string, received number"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "topics"
+    ],
+    "message": "Required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "standard"
+    ],
+    "message": "Expected string, received number"
+  }
+]
+2024-12-28 22:50:01 [[31merror[39m]: Unknown error processing Excel file named modified_file.xlsx + Error: [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "answer"
+    ],
+    "message": "Expected string, received number"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "topics"
+    ],
+    "message": "Required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "standard"
+    ],
+    "message": "Expected string, received number"
+  }
+]
+2024-12-28 22:50:58 [[31merror[39m]: Unknown error processing Excel file named modified_file.xlsx + Error: [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "answer"
+    ],
+    "message": "Expected string, received number"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "topics"
+    ],
+    "message": "Required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "standard"
+    ],
+    "message": "Expected string, received number"
+  }
+]
+2024-12-30 15:21:54 [[31merror[39m]: Unknown error processing Excel file named 1735406458810-modified_file.xlsx + Error: [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "answer"
+    ],
+    "message": "Expected string, received number"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "topics"
+    ],
+    "message": "Required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "standard"
+    ],
+    "message": "Expected string, received number"
+  }
+]
+2024-12-30 15:23:44 [[31merror[39m]: Unknown error processing Excel file named 1735406458810-modified_file.xlsx + Error: [
+  {
+    "code": "too_small",
+    "minimum": 1,
+    "type": "string",
+    "inclusive": true,
+    "exact": false,
+    "message": "Topics are required",
+    "path": [
+      "topics"
+    ]
+  }
+]
+2024-12-30 15:51:51 [[31merror[39m]: Unknown error processing Excel file named 1735406458810-modified_file.xlsx + Error: ValidationError: difficultyLevel: MEDIUM
+2024-12-30 16:12:47 [[31merror[39m]: Unknown error processing Excel file named Junior College.xlsx + Error: [
+  {
+    "code": "too_small",
+    "minimum": 1,
+    "type": "string",
+    "inclusive": true,
+    "exact": false,
+    "message": "Topics are required",
+    "path": [
+      "topics"
+    ]
+  }
+]
+2024-12-30 16:14:06 [[31merror[39m]: Unknown error processing Excel file named Junior College.xlsx + Error: [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "option_1"
+    ],
+    "message": "Expected string, received number"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "option_2"
+    ],
+    "message": "Expected string, received number"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "option_3"
+    ],
+    "message": "Expected string, received number"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "option_4"
+    ],
+    "message": "Expected string, received number"
+  }
+]
+2024-12-30 16:16:13 [[31merror[39m]: Unknown error processing Excel file named Junior College.xlsx + Error: [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "option_1"
+    ],
+    "message": "Expected string, received number"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "option_2"
+    ],
+    "message": "Expected string, received number"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "option_3"
+    ],
+    "message": "Expected string, received number"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "option_4"
+    ],
+    "message": "Expected string, received number"
+  }
+]
+2024-12-30 16:24:24 [[31merror[39m]: Unknown error processing Excel file named Junior College.xlsx + Error: [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "answer"
+    ],
+    "message": "Expected string, received number"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "standard"
+    ],
+    "message": "Expected string, received number"
+  }
+]
+2024-12-30 16:25:35 [[31merror[39m]: Unknown error processing Excel file named Junior College.xlsx + Error: [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "standard"
+    ],
+    "message": "Expected string, received number"
+  }
+]
+2024-12-30 16:26:33 [[31merror[39m]: Unknown error processing Excel file named Junior College.xlsx + Error: [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "option_1"
+    ],
+    "message": "Expected string, received number"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "option_2"
+    ],
+    "message": "Expected string, received number"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "option_3"
+    ],
+    "message": "Expected string, received number"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "option_4"
+    ],
+    "message": "Expected string, received number"
+  }
+]
+2024-12-30 16:42:11 [[31merror[39m]: Unknown error processing Excel file named Junior College.xlsx + Error: [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "answer"
+    ],
+    "message": "Expected string, received number"
+  }
+]
+2024-12-30 16:43:43 [[31merror[39m]: Unknown error processing Excel file named Junior College.xlsx + Error: [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "option_1"
+    ],
+    "message": "Expected string, received number"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "option_2"
+    ],
+    "message": "Expected string, received number"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "option_3"
+    ],
+    "message": "Expected string, received number"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "option_4"
+    ],
+    "message": "Expected string, received number"
+  }
+]

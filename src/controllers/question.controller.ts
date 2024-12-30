@@ -9,52 +9,62 @@ import {Question} from "../models/questions/questions.model.ts";
 import {ExcelRowSchema} from "../ZodSchema/excelSchema.ts";
 import {Topic} from "../models/topics/topic.model.ts";
 import mongoose from "mongoose";
+import {Subject} from "../models/topics/subject.model.ts";
+import {Domain} from "../models/topics/domain.model.ts";
+import fs from "fs";
 
-const getTopicId = async (topicName: string): Promise<{
-    subjectId: mongoose.Schema.Types.ObjectId,
-    topicId: mongoose.Types.ObjectId
-}> => {
-
-    const topic = await Topic.findOne({topicName});
-    if (!topic) {
-        throw new ApiError(404, "Topic not found");
-    }
-    return {
-        subjectId: topic.subjectId,
-        topicId: topic.id,
-    }
-};
-
-// TODO: update this function later
-// const getOrCreateTopicId = async (
-//     subjectName: string,
-//     topicName: string,
-//     domainId: string, // Domain must be passed explicitly for new subjects
-//     topicDescription?: string
-// ) => {
-//     // Find or create the subject
-//     let subject = await Subject.findOne({subjectName});
-//     if (!subject) {
-//         subject = new Subject({subjectName, domainId});
-//         await subject.save();
-//     }
+// const getTopicId = async (topicName: string): Promise<{
+//     subjectId: mongoose.Schema.Types.ObjectId,
+//     topicId: mongoose.Types.ObjectId
+// }> => {
 //
-//     // Find or create the topic
-//     let topic = await Topic.findOne({topicName, subjectId: subject.id});
+//     const topic = await Topic.findOne({topicName});
 //     if (!topic) {
-//         topic = new Topic({
-//             topicName,
-//             subjectId: subject.id,
-//             description: topicDescription || "",
-//         });
-//         await topic.save();
+//         throw new ApiError(404, "Topic not found");
 //     }
-//
 //     return {
-//         subjectId: subject.id,
+//         subjectId: topic.subjectId,
 //         topicId: topic.id,
-//     };
+//     }
 // };
+const getOrCreateTopicId = async (
+    topicName: string,
+    subjectName: string,
+    domainName: string,
+) => {
+    let topic = await Topic.findOne({topicName: topicName.toLowerCase().trim()});
+    if (topic) {
+        return {
+            topicId: topic.id
+        };
+    }
+    // Find the domainName
+    const domain = await Domain.findOne({domainName});
+    if (!domain) {
+        logger.error("Domain not found in question.controller.ts ", domainName);
+        throw new ApiError(404, "Domain not found");
+    }
+
+    const domainId = domain.id;
+
+    // Find or create the subject
+    let subject = await Subject.findOne({subjectName: subjectName.toLowerCase().trim()});
+    if (!subject) {
+        subject = new Subject({subjectName: subjectName.toLowerCase().trim(), domainId});
+        await subject.save();
+    }
+
+    // create the topic
+    topic = new Topic({
+        topicName: topicName.toLowerCase().trim(),
+        subjectId: subject.id,
+    });
+    await topic.save();
+
+    return {
+        topicId: topic.id
+    };
+};
 
 
 const createQuestionsUpdateDatabase = async (questions: Awaited<{
@@ -62,8 +72,7 @@ const createQuestionsUpdateDatabase = async (questions: Awaited<{
     options: string[];
     correctOption: number;
     topicIds: mongoose.Types.ObjectId[];
-    difficultyLevel: number;
-    explanation: string
+    explanation: string | undefined;
 }>[]) => {
     const savedQuestions = await Question.insertMany(questions);
     if (!savedQuestions) {
@@ -94,7 +103,8 @@ const saveExcel = asyncHandler(async (req: AuthenticatedRequest, res: express.Re
             const topicIds = [];
             const topicsList = validatedRow.topics.split(',').map(topic => topic.trim()); // Split comma separated topics
             for (const topicName of topicsList) {
-                const {topicId} = await getTopicId(topicName);
+                // TODO: for now we have only handling the juniorCollege domain, we need to handle other domains as well
+                const {topicId} = await getOrCreateTopicId(topicName, validatedRow.subject, "juniorCollege");
                 if (topicId) {
                     topicIds.push(topicId)
                 } else {
@@ -113,8 +123,7 @@ const saveExcel = asyncHandler(async (req: AuthenticatedRequest, res: express.Re
                 ],
                 correctOption: validatedRow.answer,
                 topicIds: topicIds, // Assign resolved topic IDs
-                difficultyLevel: validatedRow.standard,
-                explanation: validatedRow.explanation,
+                explanation: validatedRow?.explanation,
             };
         }));
 
@@ -128,9 +137,9 @@ const saveExcel = asyncHandler(async (req: AuthenticatedRequest, res: express.Re
             logger.error(`Unknown error processing Excel file named ${req.file.originalname} + Error: ${error}`, {userId: req.user?.id});
             throw new ApiError(500, "error processing Excel file");
         }
+    } finally { // Deleting the file after processing
+        fs.unlinkSync(req.file.path);
     }
-    // finally { // Deleting the file after processing
-    //     fs.unlinkSync(req.file.path);
-    // }
 });
 export {saveExcel}
+
