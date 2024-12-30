@@ -733,3 +733,56 @@
     at Module.load (node:internal/modules/cjs/loader:1208:32)
     at Function.Module._load (node:internal/modules/cjs/loader:1024:12)
     at Module.require (node:internal/modules/cjs/loader:1233:19)
+2024-12-30 20:21:52 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::5000
+    at Server.setupListenHandle [as _listen2] (node:net:1898:16)
+    at listenInCluster (node:net:1946:12)
+    at Server.listen (node:net:2044:7)
+    at Function.listen (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\express\lib\application.js:635:24)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\index.ts:10:9
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+2024-12-30 20:24:03 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::5000
+    at Server.setupListenHandle [as _listen2] (node:net:1898:16)
+    at listenInCluster (node:net:1946:12)
+    at Server.listen (node:net:2044:7)
+    at Function.listen (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\express\lib\application.js:635:24)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\index.ts:10:9
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+2024-12-30 21:46:53 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::5000
+    at Server.setupListenHandle [as _listen2] (node:net:1898:16)
+    at listenInCluster (node:net:1946:12)
+    at Server.listen (node:net:2044:7)
+    at Function.listen (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\express\lib\application.js:635:24)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\index.ts:10:9
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+2024-12-30 21:59:48 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/router/test.routes.ts[0m:[93m43[0m:[93m35[0m - [91merror[0m[90m TS2304: [0mCannot find name 'createCETTest'.
+
+[7m43[0m router.post('/juniorcollege/cet', createCETTest);
+[7m  [0m [91m                                  ~~~~~~~~~~~~~[0m
+
+    at createTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1416:10)
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1208:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:1024:12)
+    at Module.require (node:internal/modules/cjs/loader:1233:19)
+2024-12-30 22:16:07 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/test.controller.ts[0m:[93m123[0m:[93m30[0m - [91merror[0m[90m TS2339: [0mProperty 'correctOption' does not exist on type 'IQuestion'.
+
+[7m123[0m             correctOption: q.correctOption,
+[7m   [0m [91m                             ~~~~~~~~~~~~~[0m
+
+    at createTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1416:10)
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1208:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:1024:12)
+    at Module.require (node:internal/modules/cjs/loader:1233:19)

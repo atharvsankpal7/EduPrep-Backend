@@ -30,7 +30,7 @@
 
 import express from 'express';
 import {authMiddleware} from '../middleware/auth.middleware';
-import {getCompanySpecificTest, getCustomTest} from '../controllers/test.controller';
+import {getCompanySpecificTest, getCustomTest, createCETTest} from '../controllers/test.controller';
 
 const router = express.Router();
 
@@ -40,7 +40,7 @@ router.use(authMiddleware);
 // Test creation routes
 // router.post('/undergraduate/gate', createGateTest);
 router.post('/undergraduate/companySpecific', authMiddleware, getCompanySpecificTest);
-// router.post('/juniorcollege/cet', createCETTest);
+router.post('/juniorcollege/cet', createCETTest);
 router.post('/undergraduate/custom', authMiddleware, getCustomTest);
 router.post('/juniorcollege/custom', authMiddleware, getCustomTest);
 
