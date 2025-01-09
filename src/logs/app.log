@@ -1362,3 +1362,304 @@
 2024-12-30 17:42:46 [[32minfo[39m]: Created new subject: physics
 2024-12-30 17:42:46 [[32minfo[39m]: Created new topic: wave optics for subject: physics
 2024-12-30 17:42:46 [[32minfo[39m]: 79 questions saved successfully, firstId : 67728e3e0d65bd6e53b15ca8, lastId : 67728e3e0d65bd6e53b15cf6
+2024-12-30 22:56:38 [[32minfo[39m]: User logged in successfully
+2024-12-30 23:06:54 [[32minfo[39m]: User logged in successfully
+2024-12-30 23:07:14 [[31merror[39m]: Unknown error processing Excel file named phy1.xlsx + Error: ValidationError: standard: Path `standard` is required.
+2024-12-30 23:08:13 [[31merror[39m]: Unknown error processing Excel file named Junior College.xlsx + Error: ValidationError: standard: Path `standard` is required.
+2024-12-30 23:10:00 [[32minfo[39m]: 103 questions saved successfully, firstId : 6772daf0418301eff14e1421, lastId : 6772daf0418301eff14e1487
+2024-12-30 23:13:12 [[31merror[39m]: Not enough questions for Physics (XI). Required: 10, Found: 0
+2024-12-30 23:13:37 [[31merror[39m]: Not enough questions for Physics (XI). Required: 10, Found: 0
+2024-12-30 23:14:21 [[31merror[39m]: Not enough questions for Physics (11). Required: 10, Found: 0
+2024-12-30 23:14:42 [[31merror[39m]: Not enough questions for Physics (12). Required: 40, Found: 0
+2024-12-30 23:15:18 [[31merror[39m]: Not enough questions for Physics (12). Required: 40, Found: 0
+2024-12-30 23:20:58 [[32minfo[39m]: User logged in successfully
+2024-12-30 23:21:01 [[31merror[39m]: Not enough questions for Physics (12). Required: 40, Found: 0
+2024-12-30 23:21:39 [[31merror[39m]: Not enough questions for physics (12). Required: 40, Found: 0
+2024-12-30 23:22:13 [[31merror[39m]: Not enough questions for chemistry (12). Required: 40, Found: 0
+2024-12-30 23:31:55 [[32minfo[39m]: User logged in successfully
+2024-12-30 23:36:25 [[31merror[39m]: Not enough questions available for the selected topics. Requested: 100, Found: 0
+2024-12-30 23:43:17 [[32minfo[39m]: User logged in successfully
+2024-12-30 23:43:19 [[32minfo[39m]: 103 questions saved successfully, firstId : 6772e2bf82265178a62de5e1, lastId : 6772e2bf82265178a62de647
+2025-01-01 16:22:32 [[32minfo[39m]: User logged in successfully
+2025-01-01 16:27:54 [[31merror[39m]: Validation error:
+2025-01-01 16:29:38 [[32minfo[39m]: Created new subject: biology
+2025-01-01 16:29:38 [[32minfo[39m]: Created new topic: reproductive structures for subject: biology
+2025-01-01 16:29:38 [[32minfo[39m]: Created new topic: vegetative reproduction for subject: biology
+2025-01-01 16:29:38 [[32minfo[39m]: Created new topic: endosperm development for subject: biology
+2025-01-01 16:29:38 [[32minfo[39m]: Created new topic: reproductive biology for subject: biology
+2025-01-01 16:29:38 [[32minfo[39m]: Created new topic: ploidy and fertilization for subject: biology
+2025-01-01 16:29:38 [[32minfo[39m]: Created new topic: pollination for subject: biology
+2025-01-01 16:29:38 [[32minfo[39m]: Created new topic: embryogenesis for subject: biology
+2025-01-01 16:29:38 [[32minfo[39m]: Created new topic: parthenocarpy for subject: biology
+2025-01-01 16:29:38 [[32minfo[39m]: Created new topic: asexual reproduction for subject: biology
+2025-01-01 16:29:38 [[32minfo[39m]: Created new topic: pollination mechanisms for subject: biology
+2025-01-01 16:29:38 [[32minfo[39m]: Created new topic: anther structure for subject: biology
+2025-01-01 16:29:38 [[32minfo[39m]: Created new topic: microspore development for subject: biology
+2025-01-01 16:29:38 [[32minfo[39m]: Created new topic: seed and fruit development for subject: biology
+2025-01-01 16:29:38 [[32minfo[39m]: Created new topic: embryo sac for subject: biology
+2025-01-01 16:29:38 [[32minfo[39m]: Created new topic: sexual reproduction for subject: biology
+2025-01-01 16:29:38 [[32minfo[39m]: Created new topic: seed development for subject: biology
+2025-01-01 16:29:38 [[32minfo[39m]: Created new topic: ploidy levels for subject: biology
+2025-01-01 16:29:38 [[32minfo[39m]: Created new topic: chromosome numbers for subject: biology
+2025-01-01 16:29:38 [[32minfo[39m]: Created new topic: ovule development for subject: biology
+2025-01-01 16:29:38 [[32minfo[39m]: Created new topic: endosperm formation for subject: biology
+2025-01-01 16:29:38 [[32minfo[39m]: Created new topic: embryo development for subject: biology
+2025-01-01 16:29:38 [[32minfo[39m]: Created new topic: human physiology for subject: biology
+2025-01-01 16:29:38 [[32minfo[39m]: Created new topic: reproduction for subject: biology
+2025-01-01 16:29:38 [[32minfo[39m]: Created new topic: human reproduction for subject: biology
+2025-01-01 16:29:38 [[32minfo[39m]: Created new topic: life processes for subject: biology
+2025-01-01 16:29:38 [[32minfo[39m]: Created new topic: assisted reproduction for subject: biology
+2025-01-01 16:29:38 [[32minfo[39m]: Created new topic: reproduction in organisms for subject: biology
+2025-01-01 16:29:38 [[32minfo[39m]: Created new topic: genetics for subject: biology
+2025-01-01 16:29:38 [[32minfo[39m]: Created new topic: cell division for subject: biology
+2025-01-01 16:29:38 [[31merror[39m]: ZodError: [
+  {
+    "code": "invalid_type",
+    "expected": "number",
+    "received": "string",
+    "path": [
+      "answer"
+    ],
+    "message": "Expected number, received string"
+  }
+]
+    at Object.get error [as error] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\zod\lib\types.js:55:31)
+    at ZodObject.parse (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\zod\lib\types.js:160:22)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\excelProcessor.ts:32:49
+    at Generator.next (<anonymous>)
+    at fulfilled (F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\excelProcessor.ts:5:58)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-01-01 16:29:45 [[31merror[39m]: ZodError: [
+  {
+    "code": "invalid_type",
+    "expected": "number",
+    "received": "string",
+    "path": [
+      "answer"
+    ],
+    "message": "Expected number, received string"
+  }
+]
+    at Object.get error [as error] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\zod\lib\types.js:55:31)
+    at ZodObject.parse (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\zod\lib\types.js:160:22)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\excelProcessor.ts:32:49
+    at Generator.next (<anonymous>)
+    at fulfilled (F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\excelProcessor.ts:5:58)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-01-01 16:30:55 [[31merror[39m]: ZodError: [
+  {
+    "code": "invalid_type",
+    "expected": "number",
+    "received": "string",
+    "path": [
+      "answer"
+    ],
+    "message": "Expected number, received string"
+  }
+]
+    at Object.get error [as error] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\zod\lib\types.js:55:31)
+    at ZodObject.parse (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\zod\lib\types.js:160:22)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\excelProcessor.ts:32:49
+    at Generator.next (<anonymous>)
+    at fulfilled (F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\excelProcessor.ts:5:58)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-01-01 16:31:40 [[32minfo[39m]: Created new topic: molecular biology for subject: biology
+2025-01-01 16:31:40 [[32minfo[39m]: 181 questions saved successfully, firstId : 6775209461061b822622970b, lastId : 6775209461061b82262297bf
+2025-01-01 16:38:01 [[32minfo[39m]: User logged in successfully
+2025-01-01 16:38:04 [[31merror[39m]: ZodError: [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "question"
+    ],
+    "message": "Required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "topics"
+    ],
+    "message": "Required"
+  }
+]
+    at Object.get error [as error] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\zod\lib\types.js:55:31)
+    at ZodObject.parse (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\zod\lib\types.js:160:22)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\excelProcessor.ts:32:49
+    at Generator.next (<anonymous>)
+    at fulfilled (F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\excelProcessor.ts:5:58)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: evolution for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: paleontology for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: origin of life for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: plant physiology for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: plant nutrition for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: nitrogen cycle for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: plant growth for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: plant disorders for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: nitrogen fixation for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: plant development for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: plant morphology for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: plant hormones for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: characteristics of living organisms for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: photoperiodism for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: plant types for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: plant anatomy for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: cell development for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: characteristics of life for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: human physiology (respiratory system) for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: human physiology (circulatory system) for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: embryology (circulatory system) for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: human physiology (cardiovascular diseases) for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: human physiology (blood) for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: human anatomy (respiratory system) for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: animal physiology (respiratory system) for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: animal physiology (circulatory system) for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: medical technology for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: human anatomy (circulatory system) for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: human physiology (cardiovascular system) for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: human physiology (immune system) for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: cell biology (cytoplasm) for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: human physiology (endocrine system) for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: animal behavior for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: human anatomy (endocrine system) for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: nervous system for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: human anatomy (brain) for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: human anatomy (brain-endocrine connection) for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: endocrine system for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: sensory organs for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: immune system for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: health and disease for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: cancer biology for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: sericulture for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: industrial microbiology for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: biotechnology for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: environmental science for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: plant biotechnology for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: microbiology for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: crop science for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: plant pathology for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: animal husbandry for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: apiculture for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: fisheries for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: plant tissue culture for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: cell biology for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: biochemistry for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: microbial metabolism for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: microbial applications for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: animal breeding for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: plant breeding for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: fermentation for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: biocontrol for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: physiology for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: genetic engineering for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: ethics for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: history of biotechnology for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: ecology for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: population ecology for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: plant adaptations for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: animal adaptations for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: disease ecology for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: plant biology for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: aquatic ecosystems for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: terrestrial ecosystems for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: trophic levels for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: ecological pyramids for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: soil ecology for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: decomposition for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: ecological succession for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: nutrient cycle for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: carbon cycle for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: ecosystem services for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: photosynthesis for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: ecosystem dynamics for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: food chain for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: biodiversity for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: water pollution for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: conservation for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: pollution for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: ecosystem for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: air pollution for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: forests for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: habitat loss for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: ozone depletion for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: greenhouse effect for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: Created new topic: waste management for subject: biology
+2025-01-01 16:38:43 [[32minfo[39m]: 484 questions saved successfully, firstId : 6775223b49be3ab85f0d9d54, lastId : 6775223b49be3ab85f0d9f37
+2025-01-01 16:39:18 [[32minfo[39m]: Created new subject: physics
+2025-01-01 16:39:18 [[32minfo[39m]: Created new topic: wave optics for subject: physics
+2025-01-01 16:39:18 [[32minfo[39m]: 79 questions saved successfully, firstId : 6775225e49be3ab85f0d9f41, lastId : 6775225e49be3ab85f0d9f8f
+2025-01-06 10:56:35 [[32minfo[39m]: User logged in successfully
+2025-01-06 11:19:30 [[32minfo[39m]: User registered successfully
+2025-01-06 11:19:43 [[33mwarn[39m]: Validation errors during login
+2025-01-06 11:20:14 [[33mwarn[39m]: Validation errors during login
+2025-01-06 11:20:22 [[33mwarn[39m]: Validation errors during login
+2025-01-06 11:20:26 [[33mwarn[39m]: Validation errors during login
+2025-01-06 11:20:29 [[32minfo[39m]: User logged in successfully
+2025-01-06 11:22:18 [[33mwarn[39m]: Incorrect password during login
+2025-01-06 11:22:52 [[33mwarn[39m]: Incorrect password during login
+2025-01-06 11:22:58 [[33mwarn[39m]: Incorrect password during login
+2025-01-06 11:23:50 [[32minfo[39m]: User registered successfully
+2025-01-06 11:23:59 [[33mwarn[39m]: Incorrect password during login
+2025-01-06 21:41:51 [[33mwarn[39m]: Validation errors during login
+2025-01-06 21:45:31 [[33mwarn[39m]: Validation errors during login
+2025-01-06 22:25:19 [[33mwarn[39m]: Validation errors during login
+2025-01-06 22:26:37 [[33mwarn[39m]: Validation errors during login
+2025-01-06 22:27:02 [[33mwarn[39m]: Validation errors during login
+2025-01-06 22:27:18 [[33mwarn[39m]: Validation errors during login
+2025-01-06 22:27:33 [[33mwarn[39m]: Incorrect password during login
+2025-01-06 22:27:50 [[33mwarn[39m]: Incorrect password during login
+2025-01-06 22:28:04 [[33mwarn[39m]: Validation errors during login
+2025-01-06 22:29:22 [[33mwarn[39m]: Validation errors during login
+2025-01-06 22:30:31 [[33mwarn[39m]: Validation errors during login
+2025-01-06 22:34:30 [[32minfo[39m]: User logged in successfully
+2025-01-06 22:34:39 [[33mwarn[39m]: Validation errors during login
+2025-01-06 22:34:41 [[33mwarn[39m]: Validation errors during login
+2025-01-06 22:35:28 [[32minfo[39m]: User logged in successfully
+2025-01-06 22:35:32 [[32minfo[39m]: User logged in successfully
+2025-01-06 22:35:34 [[32minfo[39m]: User logged in successfully
+2025-01-06 22:35:39 [[33mwarn[39m]: Incorrect password during login
+2025-01-06 22:36:24 [[32minfo[39m]: User logged in successfully
+2025-01-06 22:36:33 [[33mwarn[39m]: Incorrect password during login
+2025-01-06 22:39:21 [[33mwarn[39m]: Incorrect password during login
+2025-01-06 22:40:04 [[33mwarn[39m]: Incorrect password during login
+2025-01-06 22:40:28 [[33mwarn[39m]: Incorrect password during login
+2025-01-06 22:40:35 [[32minfo[39m]: User logged in successfully
+2025-01-06 22:41:45 [[33mwarn[39m]: Incorrect password during login
+2025-01-06 22:41:52 [[33mwarn[39m]: Incorrect password during login
+2025-01-06 22:42:16 [[33mwarn[39m]: Incorrect password during login
+2025-01-06 22:43:30 [[33mwarn[39m]: Incorrect password during login
+2025-01-06 22:43:37 [[33mwarn[39m]: Incorrect password during login
+2025-01-06 22:43:42 [[33mwarn[39m]: Incorrect password during login
+2025-01-06 22:43:47 [[32minfo[39m]: User logged in successfully
+2025-01-06 22:43:52 [[33mwarn[39m]: Incorrect password during login
+2025-01-06 22:45:27 [[33mwarn[39m]: Incorrect password during login
+2025-01-06 22:45:53 [[33mwarn[39m]: Incorrect password during login
+2025-01-06 22:46:06 [[33mwarn[39m]: Incorrect password during login
+2025-01-06 22:46:08 [[33mwarn[39m]: Incorrect password during login
+2025-01-06 22:50:04 [[33mwarn[39m]: Incorrect password during login
+2025-01-06 22:50:10 [[32minfo[39m]: User logged in successfully
+2025-01-06 22:50:18 [[32minfo[39m]: User logged in successfully
+2025-01-07 22:35:16 [[33mwarn[39m]: Validation errors during login
+2025-01-07 22:35:46 [[32minfo[39m]: User logged in successfully
+2025-01-07 22:36:21 [[33mwarn[39m]: Validation errors during registration
+2025-01-07 22:37:43 [[33mwarn[39m]: Validation errors during registration
+2025-01-07 22:39:41 [[32minfo[39m]: User registered successfully
+2025-01-07 22:40:54 [[32minfo[39m]: User logged in successfully
+2025-01-07 22:57:45 [[33mwarn[39m]: User not found during login for email: 01atharvsankpal@gmail.com or urn: undefined
+2025-01-08 09:48:17 [[32minfo[39m]: User logged in successfully
+2025-01-08 09:50:48 [[31merror[39m]: Failed to log out user: User not found
+2025-01-08 09:54:56 [[32minfo[39m]: User logged in successfully
+2025-01-08 09:54:59 [[31merror[39m]: Failed to log out user: User not found
+2025-01-08 09:56:38 [[31merror[39m]: Failed to log out user: User not found
+2025-01-08 09:57:41 [[32minfo[39m]: User logged out successfully
+2025-01-08 10:13:23 [[32minfo[39m]: User logged in successfully
+2025-01-08 21:58:39 [[32minfo[39m]: User logged in successfully
+2025-01-08 21:58:45 [[32minfo[39m]: User logged out successfully
+2025-01-08 21:59:28 [[32minfo[39m]: User logged in successfully
+2025-01-09 10:33:18 [[32minfo[39m]: User registered successfully
+2025-01-09 10:33:33 [[32minfo[39m]: User logged in successfully
+2025-01-09 19:40:21 [[32minfo[39m]: User logged in successfully
