@@ -12,6 +12,7 @@ interface ProcessedRow {
     answer: number;
     topicIds: string[];
     explanation?: string;
+    standard: number;
 }
 
 export async function processExcelData(rows: any[]): Promise<ProcessedRow[]> {
@@ -85,14 +86,16 @@ export async function processExcelData(rows: any[]): Promise<ProcessedRow[]> {
                 ],
                 answer: validatedRow.answer,
                 topicIds,
-                explanation: validatedRow.explanation
+                explanation: validatedRow.explanation,
+                standard: validatedRow.standard
             });
         }
 
         return processedQuestions;
     } catch (error) {
         if (error instanceof z.ZodError) {
-            throw new ApiError(400, "Invalid data format in Excel file", error.errors);
+            logger.error("Validation error:", error);
+            throw new ApiError(400, "Invalid data format in Excel file", error.errors.map(e => e.message));
         }
         throw error;
     }

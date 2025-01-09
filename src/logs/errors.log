@@ -1159,3 +1159,95 @@
     "message": "Expected string, received number"
   }
 ]
+2024-12-30 23:07:14 [[31merror[39m]: Unknown error processing Excel file named phy1.xlsx + Error: ValidationError: standard: Path `standard` is required.
+2024-12-30 23:08:13 [[31merror[39m]: Unknown error processing Excel file named Junior College.xlsx + Error: ValidationError: standard: Path `standard` is required.
+2024-12-30 23:13:12 [[31merror[39m]: Not enough questions for Physics (XI). Required: 10, Found: 0
+2024-12-30 23:13:37 [[31merror[39m]: Not enough questions for Physics (XI). Required: 10, Found: 0
+2024-12-30 23:14:21 [[31merror[39m]: Not enough questions for Physics (11). Required: 10, Found: 0
+2024-12-30 23:14:42 [[31merror[39m]: Not enough questions for Physics (12). Required: 40, Found: 0
+2024-12-30 23:15:18 [[31merror[39m]: Not enough questions for Physics (12). Required: 40, Found: 0
+2024-12-30 23:21:01 [[31merror[39m]: Not enough questions for Physics (12). Required: 40, Found: 0
+2024-12-30 23:21:39 [[31merror[39m]: Not enough questions for physics (12). Required: 40, Found: 0
+2024-12-30 23:22:13 [[31merror[39m]: Not enough questions for chemistry (12). Required: 40, Found: 0
+2024-12-30 23:36:25 [[31merror[39m]: Not enough questions available for the selected topics. Requested: 100, Found: 0
+2025-01-01 16:27:54 [[31merror[39m]: Validation error:
+2025-01-01 16:29:38 [[31merror[39m]: ZodError: [
+  {
+    "code": "invalid_type",
+    "expected": "number",
+    "received": "string",
+    "path": [
+      "answer"
+    ],
+    "message": "Expected number, received string"
+  }
+]
+    at Object.get error [as error] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\zod\lib\types.js:55:31)
+    at ZodObject.parse (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\zod\lib\types.js:160:22)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\excelProcessor.ts:32:49
+    at Generator.next (<anonymous>)
+    at fulfilled (F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\excelProcessor.ts:5:58)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-01-01 16:29:45 [[31merror[39m]: ZodError: [
+  {
+    "code": "invalid_type",
+    "expected": "number",
+    "received": "string",
+    "path": [
+      "answer"
+    ],
+    "message": "Expected number, received string"
+  }
+]
+    at Object.get error [as error] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\zod\lib\types.js:55:31)
+    at ZodObject.parse (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\zod\lib\types.js:160:22)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\excelProcessor.ts:32:49
+    at Generator.next (<anonymous>)
+    at fulfilled (F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\excelProcessor.ts:5:58)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-01-01 16:30:55 [[31merror[39m]: ZodError: [
+  {
+    "code": "invalid_type",
+    "expected": "number",
+    "received": "string",
+    "path": [
+      "answer"
+    ],
+    "message": "Expected number, received string"
+  }
+]
+    at Object.get error [as error] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\zod\lib\types.js:55:31)
+    at ZodObject.parse (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\zod\lib\types.js:160:22)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\excelProcessor.ts:32:49
+    at Generator.next (<anonymous>)
+    at fulfilled (F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\excelProcessor.ts:5:58)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-01-01 16:38:04 [[31merror[39m]: ZodError: [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "question"
+    ],
+    "message": "Required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "topics"
+    ],
+    "message": "Required"
+  }
+]
+    at Object.get error [as error] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\zod\lib\types.js:55:31)
+    at ZodObject.parse (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\zod\lib\types.js:160:22)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\excelProcessor.ts:32:49
+    at Generator.next (<anonymous>)
+    at fulfilled (F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\excelProcessor.ts:5:58)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-01-08 09:50:48 [[31merror[39m]: Failed to log out user: User not found
+2025-01-08 09:54:59 [[31merror[39m]: Failed to log out user: User not found
+2025-01-08 09:56:38 [[31merror[39m]: Failed to log out user: User not found

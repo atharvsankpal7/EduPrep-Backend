@@ -14,7 +14,7 @@ export const ExcelRowSchema = z.object({
     option_4: z
         .union([z.string(), z.number().transform(String)])
         .pipe(z.string().min(1, "Option 4 is required")),
-    answer: z.number().min(1, "Answer is required"),
+    answer: z.union([z.string().transform(Number), z.number()]).pipe(z.number().min(1, "Answer is required")),
     subject: z.string().min(1, "Subject is required").transform(str => str.toLowerCase()),
     topics: z.string().min(1, "Topics are required").transform(str => str.toLowerCase()),
     standard: z.number().min(1, "Standard is required"),
