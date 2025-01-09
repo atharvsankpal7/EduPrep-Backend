@@ -1,0 +1,9 @@
+use helmet library to add various HTTP headers for security
+add persistent state management
+
+minimize the data sent to the frontend
+for the test make sure that we have randomized order of the questions
+
+for each of the questions the options should also be shuffled, later brainstorm on how to solve the problem of correct option when the options are randomized
+
+add zod for validation in testResult controller
