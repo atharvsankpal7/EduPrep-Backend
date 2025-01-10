@@ -10,26 +10,23 @@ import questionRouter from "./router/question.routes.ts";
 
 const app = express();
 
-// Updated CORS configuration with more permissive settings
+// middlewares before handling the router
 app.use(
     cors({
-        origin: process.env.FRONTEND_ORIGIN || "http://localhost:3000",
+        origin: "http://localhost:3000",
         credentials: true,
-        methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
-        allowedHeaders: ["Content-Type", "Authorization", "Cookie"],
-        exposedHeaders: ["set-cookie"]
+        methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
+        allowedHeaders: ["Content-Type", "Authorization"],
     })
 );
 
-// Enable pre-flight requests for all routes
-app.options('*', cors());
-
 app.use(express.json({ limit: "16kb" }));
 app.use(express.urlencoded({ extended: true, limit: "16kb" }));
-app.use(express.static("public"));
-app.use(cookieParser());
+app.use(express.static("public")); // public folder is available via URL without additional logic
+app.use(cookieParser()); // parses cookies automatically and puts them in req.cookies
 
 app.use(rateLimiter);
+// route declarations
 app.use("/api/v1/user", userRouter);
 app.use("/api/v1/test", testRouter);
 app.use("/api/v1/question", questionRouter);
@@ -41,13 +38,14 @@ app.use('/*', (req, res) => {
     });
 });
 
+// global error handler
 app.use((err: ApiError, req: express.Request, res: express.Response) => {
     const statusCode = err?.statusCode || 500;
     const message = err?.message || "Internal Server Error";
     res.status(statusCode).json({
         success: false,
         message,
-        ...(process.env.NODE_ENV !== "production" && { stack: err.stack }),
+        ...(process.env.NODE_ENV !== "production" && { stack: err.stack }), // Include stack trace in development
     });
 });
 
