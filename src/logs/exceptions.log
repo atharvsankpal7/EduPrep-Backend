@@ -2226,3 +2226,53 @@
     at Module.load (node:internal/modules/cjs/loader:1208:32)
     at Function.Module._load (node:internal/modules/cjs/loader:1024:12)
     at Module.require (node:internal/modules/cjs/loader:1233:19)
+2025-01-09 21:51:33 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/middleware/auth.middleware.ts[0m:[93m24[0m:[93m47[0m - [91merror[0m[90m TS2769: [0mNo overload matches this call.
+  Overload 1 of 3, '(token: string, options: DecodeOptions & { complete: true; }): Jwt | null', gave the following error.
+    Argument of type 'string' is not assignable to parameter of type 'DecodeOptions & { complete: true; }'.
+      Type 'string' is not assignable to type '{ complete: true; }'.
+  Overload 2 of 3, '(token: string, options: DecodeOptions & { json: true; }): JwtPayload | null', gave the following error.
+    Argument of type 'string' is not assignable to parameter of type 'DecodeOptions & { json: true; }'.
+      Type 'string' is not assignable to type '{ json: true; }'.
+  Overload 3 of 3, '(token: string, options?: DecodeOptions | undefined): string | JwtPayload | null', gave the following error.
+    Type 'string' has no properties in common with type 'DecodeOptions'.
+
+[7m24[0m             const decoded = jwt.decode(token, process.env.ACCESS_TOKEN_SECRET!);
+[7m  [0m [91m                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96msrc/middleware/auth.middleware.ts[0m:[93m29[0m:[93m46[0m - [91merror[0m[90m TS18047: [0m'decoded' is possibly 'null'.
+
+[7m29[0m             const user = await User.findById(decoded._id).select("-password -refreshToken");
+[7m  [0m [91m                                             ~~~~~~~[0m
+
+    at createTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1699:10
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1313:32)
+    at Function._load (node:internal/modules/cjs/loader:1123:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-01-09 21:51:55 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/middleware/auth.middleware.ts[0m:[93m29[0m:[93m46[0m - [91merror[0m[90m TS18047: [0m'decoded' is possibly 'null'.
+
+[7m29[0m             const user = await User.findById(decoded._id).select("-password -refreshToken");
+[7m  [0m [91m                                             ~~~~~~~[0m
+[96msrc/middleware/auth.middleware.ts[0m:[93m29[0m:[93m54[0m - [91merror[0m[90m TS2339: [0mProperty '_id' does not exist on type 'string | JwtPayload'.
+  Property '_id' does not exist on type 'string'.
+
+[7m29[0m             const user = await User.findById(decoded._id).select("-password -refreshToken");
+[7m  [0m [91m                                                     ~~~[0m
+
+    at createTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1699:10
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1313:32)
+    at Function._load (node:internal/modules/cjs/loader:1123:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
