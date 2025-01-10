@@ -7,19 +7,17 @@ import logger from "../utils/logger";
 import {userLoginSchema, userRegistrationSchema} from "../ZodSchema/userSchema.ts";
 import generateAccessAndRefreshToken from "../utils/tokenGenerator.ts";
 
-
-// Cookie options
+// Updated cookie options with more permissive settings for development
 const cookieOptions = {
     httpOnly: true,
-    secure: true, // Ensure this is true in production
-    sameSite: "strict" as const,
+    secure: false, // Set to false for development
+    // sameSite: "none" as const,
+    // domain: process.env.COOKIE_DOMAIN || undefined, // Allow configuration via env
+    // path: "/",
+    // maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
 };
 
-/**
- * Register a new student
- */
 const registerStudent = asyncHandler(async (req: express.Request, res: express.Response) => {
-    // Convert urn to number before validation
     if (req.body.urn) {
         const urn = Number(req.body.urn);
         if (isNaN(urn)) {
@@ -27,7 +25,7 @@ const registerStudent = asyncHandler(async (req: express.Request, res: express.R
             throw new ApiError(400, "Invalid URN format");
         }
         req.body.urn = urn;
-    } 
+    }
 
     const parsed = userRegistrationSchema.safeParse(req.body);
 
@@ -39,7 +37,6 @@ const registerStudent = asyncHandler(async (req: express.Request, res: express.R
 
     const {fullName, urn, email, password} = parsed.data;
 
-    // Check if user already exists
     const existingUser = await User.findOne({
         $or: [{email}, {urn}],
     });
@@ -49,7 +46,6 @@ const registerStudent = asyncHandler(async (req: express.Request, res: express.R
         throw new ApiError(409, "User with this email or URN already exists");
     }
 
-    // Create the new user
     const newUser = await User.create({
         fullName,
         urn,
@@ -68,11 +64,7 @@ const registerStudent = asyncHandler(async (req: express.Request, res: express.R
     res.status(201).json(new ApiResponse(201, registeredUser, "User registered successfully"));
 });
 
-/**
- * Log in a student
- */
 const loginUser = asyncHandler(async (req: express.Request, res: express.Response) => {
-    // Convert urn to number before validation, ensuring it's valid
     if (req.body.urn) {
         const urn = Number(req.body.urn);
         if (isNaN(urn)) {
@@ -82,9 +74,6 @@ const loginUser = asyncHandler(async (req: express.Request, res: express.Respons
         req.body.urn = urn;
     }
 
-    console.log(req.body);
-
-    // Validate request body using schema
     const parsed = userLoginSchema.safeParse(req.body);
     if (!parsed.success) {
         const errors = parsed.error.errors.map((err) => err.message);
@@ -94,7 +83,6 @@ const loginUser = asyncHandler(async (req: express.Request, res: express.Respons
 
     const {urn, email, password} = parsed.data;
 
-    // Find the existing user by either email or urn
     let existingUser;
     if (email) {
         existingUser = await User.findOne({email});
@@ -103,40 +91,43 @@ const loginUser = asyncHandler(async (req: express.Request, res: express.Respons
         existingUser = await User.findOne({urn});
     }
 
-
     if (!existingUser) {
         logger.warn(`User not found during login for email: ${email} or urn: ${urn}`);
         throw new ApiError(404, "User not found");
     }
 
-    // Check if password is correct
     const isPasswordCorrect = await existingUser.isPasswordCorrect(password);
-    console.log(existingUser);
     if (!isPasswordCorrect) {
         logger.warn("Incorrect password during login", {userId: existingUser._id});
         throw new ApiError(401, "Wrong password");
     }
 
-    // Generate access and refresh tokens
     const {accessToken, user} = await generateAccessAndRefreshToken(existingUser._id);
-
-    logger.info("User logged in successfully", {userId: existingUser._id});
-
-    // Respond with success, setting cookies for tokens
-    res.status(200)
+    res
+        .status(200)
         .cookie("accessToken", accessToken, cookieOptions)
-        .cookie("refreshToken", user.refreshToken, cookieOptions)
-        .json(new ApiResponse(200, {user, accessToken}, "User logged in successfully"));
+        .cookie("refreshToken", existingUser.refreshToken, cookieOptions)
+        .json(
+        new ApiResponse(
+            200,
+            {
+                user: {
+                    _id: user._id,
+                    email: user.email,
+                    fullName: user.fullName,
+                    urn: user.urn,
+                    role: user.role
+                },
+                accessToken
+            },
+            "User logged in successfully"
+        )
+    );
 });
 
-
-/**
- * Log out a user
- */
 const logoutUser = asyncHandler(async (req: express.Request, res: express.Response) => {
     const userId = req.body._id;
 
-    // Clear the refreshToken in the database
     const updatedUser = await User.findByIdAndUpdate(userId, {
         $unset: {refreshToken: 1},
     });
@@ -148,11 +139,18 @@ const logoutUser = asyncHandler(async (req: express.Request, res: express.Respon
 
     logger.info("User logged out successfully", {userId});
 
-    res.status(200)
-        .clearCookie("accessToken", cookieOptions)
-        .clearCookie("refreshToken", cookieOptions)
-        .json(new ApiResponse(200, {}, "User logged out successfully"));
-});
+    // Clear cookies with updated options
+    res.cookie("accessToken", "", {
+        ...cookieOptions,
+        maxAge: 0,
+    });
 
+    res.cookie("refreshToken", "", {
+        ...cookieOptions,
+        maxAge: 0,
+    });
+
+    res.status(200).json(new ApiResponse(200, {}, "User logged out successfully"));
+});
 
 export {registerStudent, loginUser, logoutUser};
