@@ -13,21 +13,26 @@ export interface AuthenticatedRequest extends express.Request {
 }
 
 export const authMiddleware = asyncHandler(
-    async (req: AuthenticatedRequest, _: express.Response, next: express.NextFunction) => {
-
+    async (req: AuthenticatedRequest, res: express.Response, next: express.NextFunction) => {
         try {
             const token =
                 req.cookies?.accessToken || req.header("Authorization")?.replace("Bearer ", "");
-            console.log("token", token);
+
             if (!token) {
+                // If no access token, try to use refresh token
+                const refreshToken = req.cookies?.refreshToken;
+                if (refreshToken) {
+                    // Redirect to refresh token endpoint
+                    return res.redirect(307, '/api/v1/user/refresh');
+                }
                 throw new ApiError(401, "Unauthorized access");
             }
-            console.log(token)
+
             const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET!);
-            console.log(decoded);
             if (typeof decoded === "string") {
                 throw new ApiError(401, "Unauthorized access");
             }
+
             const user = await User.findById(decoded._id).select("-password -refreshToken");
 
             if (!user) {
