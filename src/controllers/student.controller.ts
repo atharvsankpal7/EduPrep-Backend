@@ -6,13 +6,15 @@ import ApiResponse from "../utils/ApiResponse";
 import logger from "../utils/logger";
 import {userLoginSchema, userRegistrationSchema} from "../ZodSchema/userSchema.ts";
 import generateAccessAndRefreshToken from "../utils/tokenGenerator.ts";
-
+import {AuthenticatedRequest} from "../middleware/auth.middleware.ts";
 
 // Cookie options
 const cookieOptions = {
     httpOnly: true,
-    secure: true, // Ensure this is true in production
-    sameSite: "strict" as const,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "lax" as const,
+    maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+    path: "/"
 };
 
 /**
@@ -27,7 +29,7 @@ const registerStudent = asyncHandler(async (req: express.Request, res: express.R
             throw new ApiError(400, "Invalid URN format");
         }
         req.body.urn = urn;
-    } 
+    }
 
     const parsed = userRegistrationSchema.safeParse(req.body);
 
@@ -82,8 +84,6 @@ const loginUser = asyncHandler(async (req: express.Request, res: express.Respons
         req.body.urn = urn;
     }
 
-    console.log(req.body);
-
     // Validate request body using schema
     const parsed = userLoginSchema.safeParse(req.body);
     if (!parsed.success) {
@@ -103,7 +103,6 @@ const loginUser = asyncHandler(async (req: express.Request, res: express.Respons
         existingUser = await User.findOne({urn});
     }
 
-
     if (!existingUser) {
         logger.warn(`User not found during login for email: ${email} or urn: ${urn}`);
         throw new ApiError(404, "User not found");
@@ -111,7 +110,6 @@ const loginUser = asyncHandler(async (req: express.Request, res: express.Respons
 
     // Check if password is correct
     const isPasswordCorrect = await existingUser.isPasswordCorrect(password);
-    console.log(existingUser);
     if (!isPasswordCorrect) {
         logger.warn("Incorrect password during login", {userId: existingUser._id});
         throw new ApiError(401, "Wrong password");
@@ -129,13 +127,12 @@ const loginUser = asyncHandler(async (req: express.Request, res: express.Respons
         .json(new ApiResponse(200, {user, accessToken}, "User logged in successfully"));
 });
 
-
 /**
  * Log out a user
  */
-const logoutUser = asyncHandler(async (req: express.Request, res: express.Response) => {
-    const userId = req.body._id;
-
+let x = 1;
+const logoutUser = asyncHandler(async (req: AuthenticatedRequest, res: express.Response) => {
+    const userId = req.user?.id;
     // Clear the refreshToken in the database
     const updatedUser = await User.findByIdAndUpdate(userId, {
         $unset: {refreshToken: 1},
@@ -153,6 +150,5 @@ const logoutUser = asyncHandler(async (req: express.Request, res: express.Respon
         .clearCookie("refreshToken", cookieOptions)
         .json(new ApiResponse(200, {}, "User logged out successfully"));
 });
-
 
 export {registerStudent, loginUser, logoutUser};

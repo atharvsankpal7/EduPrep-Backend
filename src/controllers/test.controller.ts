@@ -11,8 +11,6 @@ import {CompanySpecificTestDetails} from "../models/topics/company-specific-topi
 import {IUser} from "../types/databaseSchema.types.ts";
 import {AuthenticatedRequest} from "../middleware/auth.middleware.ts";
 import {Topic} from "../models/topics/topic.model.ts";
-import {User} from "../models/user/user.model.ts";
-import {TestResult} from "../models/tests/testResult.model.ts";
 
 // Custom Request interface to include user
 interface Request extends ExpressRequest {
@@ -141,14 +139,8 @@ const getCompanySpecificTest = asyncHandler(
 // Controller for creating a CET test
 const createCETTest = asyncHandler(
     async (req: AuthenticatedRequest, res: Response) => {
-        // TODO: remove the manual user insertion and use auth middleware for this route
-        if (!req.user) {
-            const users = await User.find({})
-            req.user = users[0]
-            //   throw new ApiError(401, "Unauthorized");
-        }
 
-        const user = req.user;
+        const user = req.user!;
 
         const topicList = await Topic.find({})
         const topicListName = topicList.map((topic) => topic.topicName);
