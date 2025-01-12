@@ -7,14 +7,13 @@ import logger from "../utils/logger";
 import {userLoginSchema, userRegistrationSchema} from "../ZodSchema/userSchema.ts";
 import generateAccessAndRefreshToken from "../utils/tokenGenerator.ts";
 import {AuthenticatedRequest} from "../middleware/auth.middleware.ts";
-import jwt from "jsonwebtoken";
 
-// Cookie options with extended lifetime
+// Cookie options
 const cookieOptions = {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
     sameSite: "lax" as const,
-    maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
+    maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
     path: "/"
 };
 
@@ -75,7 +74,7 @@ const registerStudent = asyncHandler(async (req: express.Request, res: express.R
  * Log in a student
  */
 const loginUser = asyncHandler(async (req: express.Request, res: express.Response) => {
-    // Convert urn to number before validation
+    // Convert urn to number before validation, ensuring it's valid
     if (req.body.urn) {
         const urn = Number(req.body.urn);
         if (isNaN(urn)) {
@@ -131,6 +130,7 @@ const loginUser = asyncHandler(async (req: express.Request, res: express.Respons
 /**
  * Log out a user
  */
+let x = 1;
 const logoutUser = asyncHandler(async (req: AuthenticatedRequest, res: express.Response) => {
     const userId = req.user?.id;
     // Clear the refreshToken in the database
@@ -151,41 +151,4 @@ const logoutUser = asyncHandler(async (req: AuthenticatedRequest, res: express.R
         .json(new ApiResponse(200, {}, "User logged out successfully"));
 });
 
-/**
- * Refresh access token using refresh token
- */
-const refreshAccessToken = asyncHandler(async (req: express.Request, res: express.Response) => {
-    const refreshToken = req.cookies?.refreshToken;
-
-    if (!refreshToken) {
-        throw new ApiError(401, "Refresh token not found");
-    }
-
-    try {
-        // Verify refresh token
-        const decoded = jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET!) as { _id: string };
-
-        // Find user with matching refresh token
-        const user = await User.findOne({
-            _id: decoded._id,
-            refreshToken: refreshToken
-        });
-
-        if (!user) {
-            throw new ApiError(401, "Invalid refresh token");
-        }
-
-        // Generate new access token
-        const {accessToken} = await generateAccessAndRefreshToken(user._id);
-
-        // Send new access token
-        res.status(200)
-            .cookie("accessToken", accessToken, cookieOptions)
-            .json(new ApiResponse(200, { accessToken }, "Access token refreshed successfully"));
-
-    } catch (error) {
-        throw new ApiError(401, "Invalid refresh token");
-    }
-});
-
-export {registerStudent, loginUser, logoutUser, refreshAccessToken};
+export {registerStudent, loginUser, logoutUser};
