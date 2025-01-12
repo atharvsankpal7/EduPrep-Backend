@@ -31,18 +31,13 @@
 import express from 'express';
 import {createCETTest, getCompanySpecificTest, getCustomTest, getTestWithId,} from '../controllers/test.controller';
 import {getTestResult, submitTest} from "../controllers/testResult.controller.ts";
-import {AuthenticatedRequest, authMiddleware} from "../middleware/auth.middleware.ts";
-import {User} from "../models/user/user.model.ts";
+import {authMiddleware} from "../middleware/auth.middleware.ts";
 
 const router = express.Router();
 
 // Protect all test routes with authentication
-// router.use(authMiddleware);
-router.use(async(req:AuthenticatedRequest,_,next)=>{
-    const users = await User.find();
-    req.user = users[0];
-    next();
-});
+router.use(authMiddleware);
+
 // Test creation routes
 // router.post('/undergraduate/gate', createGateTest);
 router.post('/undergraduate/companySpecific', getCompanySpecificTest);
