@@ -1806,5 +1806,3 @@
     at Generator.next (<anonymous>)
     at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:8:71
     at new Promise (<anonymous>)
-2025-01-10 14:22:20 [[32minfo[39m]: User logged in successfully
-2025-01-10 14:22:34 [[32minfo[39m]: User logged out successfully
