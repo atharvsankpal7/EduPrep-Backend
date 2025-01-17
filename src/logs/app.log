@@ -1806,27 +1806,32 @@
     at Generator.next (<anonymous>)
     at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:8:71
     at new Promise (<anonymous>)
-2025-01-12 15:32:12 [[31merror[39m]: Error: Unauthorized access
-    at C:\Users\Santosh Sankpal\Downloads\project\src\middleware\auth.middleware.ts:23:23
+2025-01-10 14:22:20 [[32minfo[39m]: User logged in successfully
+2025-01-10 14:22:34 [[32minfo[39m]: User logged out successfully
+2025-01-10 14:44:38 [[32minfo[39m]: User logged in successfully
+2025-01-10 14:44:41 [[32minfo[39m]: User logged out successfully
+2025-01-10 14:44:56 [[32minfo[39m]: User logged in successfully
+2025-01-10 14:45:09 [[31merror[39m]: Error: Unauthorized access
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:28:23
     at Generator.next (<anonymous>)
-    at C:\Users\Santosh Sankpal\Downloads\project\src\middleware\auth.middleware.ts:8:71
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:8:71
     at new Promise (<anonymous>)
-    at __awaiter (C:\Users\Santosh Sankpal\Downloads\project\src\middleware\auth.middleware.ts:4:12)
-    at C:\Users\Santosh Sankpal\Downloads\project\src\middleware\auth.middleware.ts:16:90
-    at C:\Users\Santosh Sankpal\Downloads\project\src\utils\asyncHandler.ts:7:23
+    at __awaiter (F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:4:12)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:16:92
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:7:23
     at Generator.next (<anonymous>)
-    at C:\Users\Santosh Sankpal\Downloads\project\src\utils\asyncHandler.ts:8:71
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:8:71
     at new Promise (<anonymous>)
-2025-01-12 15:32:20 [[32minfo[39m]: User logged in successfully
-2025-01-12 15:33:36 [[31merror[39m]: Error: CET distribution configuration not found
-    at C:\Users\Santosh Sankpal\Downloads\project\src\utils\cetQuestionSelector.ts:16:13
+2025-01-10 14:45:09 [[31merror[39m]: Error: Unauthorized access
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:28:23
     at Generator.next (<anonymous>)
-    at fulfilled (C:\Users\Santosh Sankpal\Downloads\project\src\utils\cetQuestionSelector.ts:5:58)
-    at processTicksAndRejections (node:internal/process/task_queues:105:5)
-2025-01-12 15:33:36 [[31merror[39m]: Error: CET distribution configuration not found
-    at C:\Users\Santosh Sankpal\Downloads\project\src\utils\cetQuestionSelector.ts:16:13
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:4:12)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:16:92
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:7:23
     at Generator.next (<anonymous>)
-    at fulfilled (C:\Users\Santosh Sankpal\Downloads\project\src\utils\cetQuestionSelector.ts:5:58)
-    at processTicksAndRejections (node:internal/process/task_queues:105:5)
-2025-01-12 15:52:56 [[32minfo[39m]: Connected to MongoDB
-2025-01-12 15:52:56 [[32minfo[39m]: CET distribution setup completed successfully
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:8:71
+    at new Promise (<anonymous>)
+2025-01-10 14:54:08 [[32minfo[39m]: User logged out successfully
+2025-01-10 14:54:18 [[32minfo[39m]: User logged in successfully
