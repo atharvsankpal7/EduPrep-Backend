@@ -141,6 +141,7 @@ const createCETTest = asyncHandler(
     async (req: AuthenticatedRequest, res: Response) => {
 
         const user = req.user!;
+
         const topicList = await Topic.find({})
         const topicListName = topicList.map((topic) => topic.topicName);
         const savedTest = await createCustomTest(user, {
