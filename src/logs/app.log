@@ -1808,30 +1808,3 @@
     at new Promise (<anonymous>)
 2025-01-10 14:22:20 [[32minfo[39m]: User logged in successfully
 2025-01-10 14:22:34 [[32minfo[39m]: User logged out successfully
-2025-01-10 14:44:38 [[32minfo[39m]: User logged in successfully
-2025-01-10 14:44:41 [[32minfo[39m]: User logged out successfully
-2025-01-10 14:44:56 [[32minfo[39m]: User logged in successfully
-2025-01-10 14:45:09 [[31merror[39m]: Error: Unauthorized access
-    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:28:23
-    at Generator.next (<anonymous>)
-    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:8:71
-    at new Promise (<anonymous>)
-    at __awaiter (F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:4:12)
-    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:16:92
-    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:7:23
-    at Generator.next (<anonymous>)
-    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:8:71
-    at new Promise (<anonymous>)
-2025-01-10 14:45:09 [[31merror[39m]: Error: Unauthorized access
-    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:28:23
-    at Generator.next (<anonymous>)
-    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:8:71
-    at new Promise (<anonymous>)
-    at __awaiter (F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:4:12)
-    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:16:92
-    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:7:23
-    at Generator.next (<anonymous>)
-    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:8:71
-    at new Promise (<anonymous>)
-2025-01-10 14:54:08 [[32minfo[39m]: User logged out successfully
-2025-01-10 14:54:18 [[32minfo[39m]: User logged in successfully
