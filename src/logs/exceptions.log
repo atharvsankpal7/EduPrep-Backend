@@ -2276,3 +2276,503 @@
     at Module.load (node:internal/modules/cjs/loader:1313:32)
     at Function._load (node:internal/modules/cjs/loader:1123:12)
     at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-01-12 14:31:54 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/test.controller.ts[0m:[93m2[0m:[93m23[0m - [91merror[0m[90m TS2304: [0mCannot find name 'asyncHandler'.
+
+[7m2[0m const createCETTest = asyncHandler(
+[7m [0m [91m                      ~~~~~~~~~~~~[0m
+[96msrc/controllers/test.controller.ts[0m:[93m3[0m:[93m17[0m - [91merror[0m[90m TS2304: [0mCannot find name 'AuthenticatedRequest'.
+
+[7m3[0m     async (req: AuthenticatedRequest, res: Response) => {
+[7m [0m [91m                ~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/test.controller.ts[0m:[93m8[0m:[93m55[0m - [91merror[0m[90m TS2304: [0mCannot find name 'getCETQuestions'.
+
+[7m8[0m             const { questionIds, totalMarks } = await getCETQuestions();
+[7m [0m [91m                                                      ~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/test.controller.ts[0m:[93m11[0m:[93m32[0m - [91merror[0m[90m TS2552: [0mCannot find name 'Test'. Did you mean 'test'?
+
+[7m11[0m             const test = await Test.create({
+[7m  [0m [91m                               ~~~~[0m
+
+  [96msrc/controllers/test.controller.ts[0m:[93m11[0m:[93m19[0m
+    [7m11[0m             const test = await Test.create({
+    [7m  [0m [96m                  ~~~~[0m
+    'test' is declared here.
+[96msrc/controllers/test.controller.ts[0m:[93m28[0m:[93m17[0m - [91merror[0m[90m TS2349: [0mThis expression is not callable.
+  Type 'Number' has no call signatures.
+
+[7m28[0m             res.status(201).send(
+[7m  [0m [91m                ~~~~~~[0m
+[96msrc/controllers/test.controller.ts[0m:[93m29[0m:[93m21[0m - [91merror[0m[90m TS2552: [0mCannot find name 'ApiResponse'. Did you mean 'Response'?
+
+[7m29[0m                 new ApiResponse(201, { testDetails }, "CET Test created successfully")
+[7m  [0m [91m                    ~~~~~~~~~~~[0m
+
+  [96mnode_modules/typescript/lib/lib.dom.d.ts[0m:[93m18577[0m:[93m13[0m
+    [7m18577[0m declare var Response: {
+    [7m     [0m [96m            ~~~~~~~~[0m
+    'Response' is declared here.
+[96msrc/controllers/test.controller.ts[0m:[93m32[0m:[93m13[0m - [91merror[0m[90m TS2304: [0mCannot find name 'logger'.
+
+[7m32[0m             logger.error("Error creating CET test:", error);
+[7m  [0m [91m            ~~~~~~[0m
+
+    at createTSError (/home/project/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/project/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/project/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/project/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/project/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:144:14855)
+    at Object.require.extensions.<computed> [as .ts] (/home/project/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:144:12820)
+    at Function.Module._load (node:internal/modules/cjs/loader:144:10273)
+    at Module.require (node:internal/modules/cjs/loader:144:13097)
+2025-01-12 14:31:59 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/router/test.routes.ts[0m:[93m32[0m:[93m84[0m - [91merror[0m[90m TS2306: [0mFile '/home/project/src/controllers/test.controller.ts' is not a module.
+
+[7m32[0m import {createCETTest, getCompanySpecificTest, getCustomTest, getTestWithId,} from '../controllers/test.controller';
+[7m  [0m [91m                                                                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/home/project/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/project/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/project/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/project/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/project/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:144:14855)
+    at Object.require.extensions.<computed> [as .ts] (/home/project/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:144:12820)
+    at Function.Module._load (node:internal/modules/cjs/loader:144:10273)
+    at Module.require (node:internal/modules/cjs/loader:144:13097)
+2025-01-12 14:34:08 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/router/test.routes.ts[0m:[93m32[0m:[93m84[0m - [91merror[0m[90m TS2306: [0mFile '/home/project/src/controllers/test.controller.ts' is not a module.
+
+[7m32[0m import {createCETTest, getCompanySpecificTest, getCustomTest, getTestWithId,} from '../controllers/test.controller';
+[7m  [0m [91m                                                                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/home/project/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/project/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/project/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/project/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/project/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:144:14855)
+    at Object.require.extensions.<computed> [as .ts] (/home/project/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:144:12820)
+    at Function.Module._load (node:internal/modules/cjs/loader:144:10273)
+    at Module.require (node:internal/modules/cjs/loader:144:13097)
+2025-01-12 14:34:17 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/router/test.routes.ts[0m:[93m32[0m:[93m84[0m - [91merror[0m[90m TS2306: [0mFile '/home/project/src/controllers/test.controller.ts' is not a module.
+
+[7m32[0m import {createCETTest, getCompanySpecificTest, getCustomTest, getTestWithId,} from '../controllers/test.controller';
+[7m  [0m [91m                                                                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/home/project/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/project/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/project/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/project/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/project/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:144:14855)
+    at Object.require.extensions.<computed> [as .ts] (/home/project/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:144:12820)
+    at Function.Module._load (node:internal/modules/cjs/loader:144:10273)
+    at Module.require (node:internal/modules/cjs/loader:144:13097)
+2025-01-12 14:34:29 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/router/test.routes.ts[0m:[93m32[0m:[93m84[0m - [91merror[0m[90m TS2306: [0mFile '/home/project/src/controllers/test.controller.ts' is not a module.
+
+[7m32[0m import {createCETTest, getCompanySpecificTest, getCustomTest, getTestWithId,} from '../controllers/test.controller';
+[7m  [0m [91m                                                                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/home/project/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/project/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/project/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/project/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/project/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:144:14855)
+    at Object.require.extensions.<computed> [as .ts] (/home/project/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:144:12820)
+    at Function.Module._load (node:internal/modules/cjs/loader:144:10273)
+    at Module.require (node:internal/modules/cjs/loader:144:13097)
+2025-01-12 15:08:03 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/router/test.routes.ts[0m:[93m32[0m:[93m84[0m - [91merror[0m[90m TS2306: [0mFile '/home/project/src/controllers/test.controller.ts' is not a module.
+
+[7m32[0m import {createCETTest, getCompanySpecificTest, getCustomTest, getTestWithId,} from '../controllers/test.controller';
+[7m  [0m [91m                                                                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/home/project/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/project/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/project/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/project/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/project/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:144:14855)
+    at Object.require.extensions.<computed> [as .ts] (/home/project/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:144:12820)
+    at Function.Module._load (node:internal/modules/cjs/loader:144:10273)
+    at Module.require (node:internal/modules/cjs/loader:144:13097)
+2025-01-12 15:19:40 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/router/test.routes.ts[0m:[93m32[0m:[93m84[0m - [91merror[0m[90m TS2306: [0mFile 'C:/Users/Santosh Sankpal/Downloads/project/src/controllers/test.controller.ts' is not a module.
+
+[7m32[0m import {createCETTest, getCompanySpecificTest, getCustomTest, getTestWithId,} from '../controllers/test.controller';
+[7m  [0m [91m                                                                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (C:\Users\Santosh Sankpal\Downloads\project\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (C:\Users\Santosh Sankpal\Downloads\project\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (C:\Users\Santosh Sankpal\Downloads\project\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (C:\Users\Santosh Sankpal\Downloads\project\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (C:\Users\Santosh Sankpal\Downloads\project\node_modules\ts-node\src\index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1699:10
+    at Object.require.extensions.<computed> [as .ts] (C:\Users\Santosh Sankpal\Downloads\project\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1313:32)
+    at Function._load (node:internal/modules/cjs/loader:1123:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-01-12 15:21:31 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/router/test.routes.ts[0m:[93m32[0m:[93m9[0m - [91merror[0m[90m TS2459: [0mModule '"../controllers/test.controller"' declares 'createCETTest' locally, but it is not exported.
+
+[7m32[0m import {createCETTest, getCompanySpecificTest, getCustomTest, getTestWithId,} from '../controllers/test.controller';
+[7m  [0m [91m        ~~~~~~~~~~~~~[0m
+
+  [96msrc/controllers/test.controller.ts[0m:[93m4[0m:[93m7[0m
+    [7m4[0m const createCETTest = asyncHandler(
+    [7m [0m [96m      ~~~~~~~~~~~~~[0m
+    'createCETTest' is declared here.
+[96msrc/router/test.routes.ts[0m:[93m32[0m:[93m24[0m - [91merror[0m[90m TS2305: [0mModule '"../controllers/test.controller"' has no exported member 'getCompanySpecificTest'.
+
+[7m32[0m import {createCETTest, getCompanySpecificTest, getCustomTest, getTestWithId,} from '../controllers/test.controller';
+[7m  [0m [91m                       ~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/router/test.routes.ts[0m:[93m32[0m:[93m48[0m - [91merror[0m[90m TS2305: [0mModule '"../controllers/test.controller"' has no exported member 'getCustomTest'.
+
+[7m32[0m import {createCETTest, getCompanySpecificTest, getCustomTest, getTestWithId,} from '../controllers/test.controller';
+[7m  [0m [91m                                               ~~~~~~~~~~~~~[0m
+[96msrc/router/test.routes.ts[0m:[93m32[0m:[93m63[0m - [91merror[0m[90m TS2305: [0mModule '"../controllers/test.controller"' has no exported member 'getTestWithId'.
+
+[7m32[0m import {createCETTest, getCompanySpecificTest, getCustomTest, getTestWithId,} from '../controllers/test.controller';
+[7m  [0m [91m                                                              ~~~~~~~~~~~~~[0m
+
+    at createTSError (C:\Users\Santosh Sankpal\Downloads\project\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (C:\Users\Santosh Sankpal\Downloads\project\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (C:\Users\Santosh Sankpal\Downloads\project\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (C:\Users\Santosh Sankpal\Downloads\project\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (C:\Users\Santosh Sankpal\Downloads\project\node_modules\ts-node\src\index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1699:10
+    at Object.require.extensions.<computed> [as .ts] (C:\Users\Santosh Sankpal\Downloads\project\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1313:32)
+    at Function._load (node:internal/modules/cjs/loader:1123:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-01-12 15:21:37 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/router/test.routes.ts[0m:[93m32[0m:[93m9[0m - [91merror[0m[90m TS2459: [0mModule '"../controllers/test.controller"' declares 'createCETTest' locally, but it is not exported.
+
+[7m32[0m import {createCETTest, getCompanySpecificTest, getCustomTest, getTestWithId,} from '../controllers/test.controller';
+[7m  [0m [91m        ~~~~~~~~~~~~~[0m
+
+  [96msrc/controllers/test.controller.ts[0m:[93m5[0m:[93m7[0m
+    [7m5[0m const createCETTest = asyncHandler(
+    [7m [0m [96m      ~~~~~~~~~~~~~[0m
+    'createCETTest' is declared here.
+[96msrc/router/test.routes.ts[0m:[93m32[0m:[93m24[0m - [91merror[0m[90m TS2305: [0mModule '"../controllers/test.controller"' has no exported member 'getCompanySpecificTest'.
+
+[7m32[0m import {createCETTest, getCompanySpecificTest, getCustomTest, getTestWithId,} from '../controllers/test.controller';
+[7m  [0m [91m                       ~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/router/test.routes.ts[0m:[93m32[0m:[93m48[0m - [91merror[0m[90m TS2305: [0mModule '"../controllers/test.controller"' has no exported member 'getCustomTest'.
+
+[7m32[0m import {createCETTest, getCompanySpecificTest, getCustomTest, getTestWithId,} from '../controllers/test.controller';
+[7m  [0m [91m                                               ~~~~~~~~~~~~~[0m
+[96msrc/router/test.routes.ts[0m:[93m32[0m:[93m63[0m - [91merror[0m[90m TS2305: [0mModule '"../controllers/test.controller"' has no exported member 'getTestWithId'.
+
+[7m32[0m import {createCETTest, getCompanySpecificTest, getCustomTest, getTestWithId,} from '../controllers/test.controller';
+[7m  [0m [91m                                                              ~~~~~~~~~~~~~[0m
+
+    at createTSError (C:\Users\Santosh Sankpal\Downloads\project\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (C:\Users\Santosh Sankpal\Downloads\project\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (C:\Users\Santosh Sankpal\Downloads\project\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (C:\Users\Santosh Sankpal\Downloads\project\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (C:\Users\Santosh Sankpal\Downloads\project\node_modules\ts-node\src\index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1699:10
+    at Object.require.extensions.<computed> [as .ts] (C:\Users\Santosh Sankpal\Downloads\project\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1313:32)
+    at Function._load (node:internal/modules/cjs/loader:1123:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-01-12 15:21:49 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/router/test.routes.ts[0m:[93m32[0m:[93m9[0m - [91merror[0m[90m TS2459: [0mModule '"../controllers/test.controller"' declares 'createCETTest' locally, but it is not exported.
+
+[7m32[0m import {createCETTest, getCompanySpecificTest, getCustomTest, getTestWithId,} from '../controllers/test.controller';
+[7m  [0m [91m        ~~~~~~~~~~~~~[0m
+
+  [96msrc/controllers/test.controller.ts[0m:[93m6[0m:[93m7[0m
+    [7m6[0m const createCETTest = asyncHandler(
+    [7m [0m [96m      ~~~~~~~~~~~~~[0m
+    'createCETTest' is declared here.
+[96msrc/router/test.routes.ts[0m:[93m32[0m:[93m24[0m - [91merror[0m[90m TS2305: [0mModule '"../controllers/test.controller"' has no exported member 'getCompanySpecificTest'.
+
+[7m32[0m import {createCETTest, getCompanySpecificTest, getCustomTest, getTestWithId,} from '../controllers/test.controller';
+[7m  [0m [91m                       ~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/router/test.routes.ts[0m:[93m32[0m:[93m48[0m - [91merror[0m[90m TS2305: [0mModule '"../controllers/test.controller"' has no exported member 'getCustomTest'.
+
+[7m32[0m import {createCETTest, getCompanySpecificTest, getCustomTest, getTestWithId,} from '../controllers/test.controller';
+[7m  [0m [91m                                               ~~~~~~~~~~~~~[0m
+[96msrc/router/test.routes.ts[0m:[93m32[0m:[93m63[0m - [91merror[0m[90m TS2305: [0mModule '"../controllers/test.controller"' has no exported member 'getTestWithId'.
+
+[7m32[0m import {createCETTest, getCompanySpecificTest, getCustomTest, getTestWithId,} from '../controllers/test.controller';
+[7m  [0m [91m                                                              ~~~~~~~~~~~~~[0m
+
+    at createTSError (C:\Users\Santosh Sankpal\Downloads\project\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (C:\Users\Santosh Sankpal\Downloads\project\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (C:\Users\Santosh Sankpal\Downloads\project\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (C:\Users\Santosh Sankpal\Downloads\project\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (C:\Users\Santosh Sankpal\Downloads\project\node_modules\ts-node\src\index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1699:10
+    at Object.require.extensions.<computed> [as .ts] (C:\Users\Santosh Sankpal\Downloads\project\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1313:32)
+    at Function._load (node:internal/modules/cjs/loader:1123:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-01-12 15:22:03 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/router/test.routes.ts[0m:[93m32[0m:[93m9[0m - [91merror[0m[90m TS2459: [0mModule '"../controllers/test.controller"' declares 'createCETTest' locally, but it is not exported.
+
+[7m32[0m import {createCETTest, getCompanySpecificTest, getCustomTest, getTestWithId,} from '../controllers/test.controller';
+[7m  [0m [91m        ~~~~~~~~~~~~~[0m
+
+  [96msrc/controllers/test.controller.ts[0m:[93m8[0m:[93m7[0m
+    [7m8[0m const createCETTest = asyncHandler(
+    [7m [0m [96m      ~~~~~~~~~~~~~[0m
+    'createCETTest' is declared here.
+[96msrc/router/test.routes.ts[0m:[93m32[0m:[93m24[0m - [91merror[0m[90m TS2305: [0mModule '"../controllers/test.controller"' has no exported member 'getCompanySpecificTest'.
+
+[7m32[0m import {createCETTest, getCompanySpecificTest, getCustomTest, getTestWithId,} from '../controllers/test.controller';
+[7m  [0m [91m                       ~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/router/test.routes.ts[0m:[93m32[0m:[93m48[0m - [91merror[0m[90m TS2305: [0mModule '"../controllers/test.controller"' has no exported member 'getCustomTest'.
+
+[7m32[0m import {createCETTest, getCompanySpecificTest, getCustomTest, getTestWithId,} from '../controllers/test.controller';
+[7m  [0m [91m                                               ~~~~~~~~~~~~~[0m
+[96msrc/router/test.routes.ts[0m:[93m32[0m:[93m63[0m - [91merror[0m[90m TS2305: [0mModule '"../controllers/test.controller"' has no exported member 'getTestWithId'.
+
+[7m32[0m import {createCETTest, getCompanySpecificTest, getCustomTest, getTestWithId,} from '../controllers/test.controller';
+[7m  [0m [91m                                                              ~~~~~~~~~~~~~[0m
+
+    at createTSError (C:\Users\Santosh Sankpal\Downloads\project\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (C:\Users\Santosh Sankpal\Downloads\project\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (C:\Users\Santosh Sankpal\Downloads\project\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (C:\Users\Santosh Sankpal\Downloads\project\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (C:\Users\Santosh Sankpal\Downloads\project\node_modules\ts-node\src\index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1699:10
+    at Object.require.extensions.<computed> [as .ts] (C:\Users\Santosh Sankpal\Downloads\project\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1313:32)
+    at Function._load (node:internal/modules/cjs/loader:1123:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-01-12 15:22:18 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/router/test.routes.ts[0m:[93m32[0m:[93m9[0m - [91merror[0m[90m TS2459: [0mModule '"../controllers/test.controller"' declares 'createCETTest' locally, but it is not exported.
+
+[7m32[0m import {createCETTest, getCompanySpecificTest, getCustomTest, getTestWithId,} from '../controllers/test.controller';
+[7m  [0m [91m        ~~~~~~~~~~~~~[0m
+
+  [96msrc/controllers/test.controller.ts[0m:[93m8[0m:[93m7[0m
+    [7m8[0m const createCETTest = asyncHandler(
+    [7m [0m [96m      ~~~~~~~~~~~~~[0m
+    'createCETTest' is declared here.
+[96msrc/router/test.routes.ts[0m:[93m32[0m:[93m24[0m - [91merror[0m[90m TS2305: [0mModule '"../controllers/test.controller"' has no exported member 'getCompanySpecificTest'.
+
+[7m32[0m import {createCETTest, getCompanySpecificTest, getCustomTest, getTestWithId,} from '../controllers/test.controller';
+[7m  [0m [91m                       ~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/router/test.routes.ts[0m:[93m32[0m:[93m48[0m - [91merror[0m[90m TS2305: [0mModule '"../controllers/test.controller"' has no exported member 'getCustomTest'.
+
+[7m32[0m import {createCETTest, getCompanySpecificTest, getCustomTest, getTestWithId,} from '../controllers/test.controller';
+[7m  [0m [91m                                               ~~~~~~~~~~~~~[0m
+[96msrc/router/test.routes.ts[0m:[93m32[0m:[93m63[0m - [91merror[0m[90m TS2305: [0mModule '"../controllers/test.controller"' has no exported member 'getTestWithId'.
+
+[7m32[0m import {createCETTest, getCompanySpecificTest, getCustomTest, getTestWithId,} from '../controllers/test.controller';
+[7m  [0m [91m                                                              ~~~~~~~~~~~~~[0m
+
+    at createTSError (C:\Users\Santosh Sankpal\Downloads\project\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (C:\Users\Santosh Sankpal\Downloads\project\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (C:\Users\Santosh Sankpal\Downloads\project\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (C:\Users\Santosh Sankpal\Downloads\project\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (C:\Users\Santosh Sankpal\Downloads\project\node_modules\ts-node\src\index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1699:10
+    at Object.require.extensions.<computed> [as .ts] (C:\Users\Santosh Sankpal\Downloads\project\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1313:32)
+    at Function._load (node:internal/modules/cjs/loader:1123:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-01-12 15:22:27 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/router/test.routes.ts[0m:[93m32[0m:[93m9[0m - [91merror[0m[90m TS2459: [0mModule '"../controllers/test.controller"' declares 'createCETTest' locally, but it is not exported.
+
+[7m32[0m import {createCETTest, getCompanySpecificTest, getCustomTest, getTestWithId,} from '../controllers/test.controller';
+[7m  [0m [91m        ~~~~~~~~~~~~~[0m
+
+  [96msrc/controllers/test.controller.ts[0m:[93m10[0m:[93m7[0m
+    [7m10[0m const createCETTest = asyncHandler(
+    [7m  [0m [96m      ~~~~~~~~~~~~~[0m
+    'createCETTest' is declared here.
+[96msrc/router/test.routes.ts[0m:[93m32[0m:[93m24[0m - [91merror[0m[90m TS2305: [0mModule '"../controllers/test.controller"' has no exported member 'getCompanySpecificTest'.
+
+[7m32[0m import {createCETTest, getCompanySpecificTest, getCustomTest, getTestWithId,} from '../controllers/test.controller';
+[7m  [0m [91m                       ~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/router/test.routes.ts[0m:[93m32[0m:[93m48[0m - [91merror[0m[90m TS2305: [0mModule '"../controllers/test.controller"' has no exported member 'getCustomTest'.
+
+[7m32[0m import {createCETTest, getCompanySpecificTest, getCustomTest, getTestWithId,} from '../controllers/test.controller';
+[7m  [0m [91m                                               ~~~~~~~~~~~~~[0m
+[96msrc/router/test.routes.ts[0m:[93m32[0m:[93m63[0m - [91merror[0m[90m TS2305: [0mModule '"../controllers/test.controller"' has no exported member 'getTestWithId'.
+
+[7m32[0m import {createCETTest, getCompanySpecificTest, getCustomTest, getTestWithId,} from '../controllers/test.controller';
+[7m  [0m [91m                                                              ~~~~~~~~~~~~~[0m
+
+    at createTSError (C:\Users\Santosh Sankpal\Downloads\project\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (C:\Users\Santosh Sankpal\Downloads\project\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (C:\Users\Santosh Sankpal\Downloads\project\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (C:\Users\Santosh Sankpal\Downloads\project\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (C:\Users\Santosh Sankpal\Downloads\project\node_modules\ts-node\src\index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1699:10
+    at Object.require.extensions.<computed> [as .ts] (C:\Users\Santosh Sankpal\Downloads\project\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1313:32)
+    at Function._load (node:internal/modules/cjs/loader:1123:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-01-12 15:22:38 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/router/test.routes.ts[0m:[93m32[0m:[93m9[0m - [91merror[0m[90m TS2459: [0mModule '"../controllers/test.controller"' declares 'createCETTest' locally, but it is not exported.
+
+[7m32[0m import {createCETTest, getCompanySpecificTest, getCustomTest, getTestWithId,} from '../controllers/test.controller';
+[7m  [0m [91m        ~~~~~~~~~~~~~[0m
+
+  [96msrc/controllers/test.controller.ts[0m:[93m10[0m:[93m7[0m
+    [7m10[0m const createCETTest = asyncHandler(
+    [7m  [0m [96m      ~~~~~~~~~~~~~[0m
+    'createCETTest' is declared here.
+[96msrc/router/test.routes.ts[0m:[93m32[0m:[93m24[0m - [91merror[0m[90m TS2305: [0mModule '"../controllers/test.controller"' has no exported member 'getCompanySpecificTest'.
+
+[7m32[0m import {createCETTest, getCompanySpecificTest, getCustomTest, getTestWithId,} from '../controllers/test.controller';
+[7m  [0m [91m                       ~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/router/test.routes.ts[0m:[93m32[0m:[93m48[0m - [91merror[0m[90m TS2305: [0mModule '"../controllers/test.controller"' has no exported member 'getCustomTest'.
+
+[7m32[0m import {createCETTest, getCompanySpecificTest, getCustomTest, getTestWithId,} from '../controllers/test.controller';
+[7m  [0m [91m                                               ~~~~~~~~~~~~~[0m
+[96msrc/router/test.routes.ts[0m:[93m32[0m:[93m63[0m - [91merror[0m[90m TS2305: [0mModule '"../controllers/test.controller"' has no exported member 'getTestWithId'.
+
+[7m32[0m import {createCETTest, getCompanySpecificTest, getCustomTest, getTestWithId,} from '../controllers/test.controller';
+[7m  [0m [91m                                                              ~~~~~~~~~~~~~[0m
+
+    at createTSError (C:\Users\Santosh Sankpal\Downloads\project\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (C:\Users\Santosh Sankpal\Downloads\project\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (C:\Users\Santosh Sankpal\Downloads\project\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (C:\Users\Santosh Sankpal\Downloads\project\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (C:\Users\Santosh Sankpal\Downloads\project\node_modules\ts-node\src\index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1699:10
+    at Object.require.extensions.<computed> [as .ts] (C:\Users\Santosh Sankpal\Downloads\project\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1313:32)
+    at Function._load (node:internal/modules/cjs/loader:1123:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-01-12 15:28:58 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/router/test.routes.ts[0m:[93m32[0m:[93m9[0m - [91merror[0m[90m TS2459: [0mModule '"../controllers/test.controller"' declares 'createCETTest' locally, but it is not exported.
+
+[7m32[0m import {createCETTest, getCompanySpecificTest, getCustomTest, getTestWithId,} from '../controllers/test.controller';
+[7m  [0m [91m        ~~~~~~~~~~~~~[0m
+
+  [96msrc/controllers/test.controller.ts[0m:[93m10[0m:[93m7[0m
+    [7m10[0m const createCETTest = asyncHandler(
+    [7m  [0m [96m      ~~~~~~~~~~~~~[0m
+    'createCETTest' is declared here.
+[96msrc/router/test.routes.ts[0m:[93m32[0m:[93m24[0m - [91merror[0m[90m TS2305: [0mModule '"../controllers/test.controller"' has no exported member 'getCompanySpecificTest'.
+
+[7m32[0m import {createCETTest, getCompanySpecificTest, getCustomTest, getTestWithId,} from '../controllers/test.controller';
+[7m  [0m [91m                       ~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/router/test.routes.ts[0m:[93m32[0m:[93m48[0m - [91merror[0m[90m TS2305: [0mModule '"../controllers/test.controller"' has no exported member 'getCustomTest'.
+
+[7m32[0m import {createCETTest, getCompanySpecificTest, getCustomTest, getTestWithId,} from '../controllers/test.controller';
+[7m  [0m [91m                                               ~~~~~~~~~~~~~[0m
+[96msrc/router/test.routes.ts[0m:[93m32[0m:[93m63[0m - [91merror[0m[90m TS2305: [0mModule '"../controllers/test.controller"' has no exported member 'getTestWithId'.
+
+[7m32[0m import {createCETTest, getCompanySpecificTest, getCustomTest, getTestWithId,} from '../controllers/test.controller';
+[7m  [0m [91m                                                              ~~~~~~~~~~~~~[0m
+
+    at createTSError (C:\Users\Santosh Sankpal\Downloads\project\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (C:\Users\Santosh Sankpal\Downloads\project\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (C:\Users\Santosh Sankpal\Downloads\project\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (C:\Users\Santosh Sankpal\Downloads\project\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (C:\Users\Santosh Sankpal\Downloads\project\node_modules\ts-node\src\index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1699:10
+    at Object.require.extensions.<computed> [as .ts] (C:\Users\Santosh Sankpal\Downloads\project\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1313:32)
+    at Function._load (node:internal/modules/cjs/loader:1123:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-01-12 15:29:03 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/router/test.routes.ts[0m:[93m32[0m:[93m9[0m - [91merror[0m[90m TS2459: [0mModule '"../controllers/test.controller"' declares 'createCETTest' locally, but it is not exported.
+
+[7m32[0m import {createCETTest, getCompanySpecificTest, getCustomTest, getTestWithId,} from '../controllers/test.controller';
+[7m  [0m [91m        ~~~~~~~~~~~~~[0m
+
+  [96msrc/controllers/test.controller.ts[0m:[93m10[0m:[93m7[0m
+    [7m10[0m const createCETTest = asyncHandler(
+    [7m  [0m [96m      ~~~~~~~~~~~~~[0m
+    'createCETTest' is declared here.
+[96msrc/router/test.routes.ts[0m:[93m32[0m:[93m24[0m - [91merror[0m[90m TS2305: [0mModule '"../controllers/test.controller"' has no exported member 'getCompanySpecificTest'.
+
+[7m32[0m import {createCETTest, getCompanySpecificTest, getCustomTest, getTestWithId,} from '../controllers/test.controller';
+[7m  [0m [91m                       ~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/router/test.routes.ts[0m:[93m32[0m:[93m48[0m - [91merror[0m[90m TS2305: [0mModule '"../controllers/test.controller"' has no exported member 'getCustomTest'.
+
+[7m32[0m import {createCETTest, getCompanySpecificTest, getCustomTest, getTestWithId,} from '../controllers/test.controller';
+[7m  [0m [91m                                               ~~~~~~~~~~~~~[0m
+[96msrc/router/test.routes.ts[0m:[93m32[0m:[93m63[0m - [91merror[0m[90m TS2305: [0mModule '"../controllers/test.controller"' has no exported member 'getTestWithId'.
+
+[7m32[0m import {createCETTest, getCompanySpecificTest, getCustomTest, getTestWithId,} from '../controllers/test.controller';
+[7m  [0m [91m                                                              ~~~~~~~~~~~~~[0m
+
+    at createTSError (C:\Users\Santosh Sankpal\Downloads\project\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (C:\Users\Santosh Sankpal\Downloads\project\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (C:\Users\Santosh Sankpal\Downloads\project\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (C:\Users\Santosh Sankpal\Downloads\project\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (C:\Users\Santosh Sankpal\Downloads\project\node_modules\ts-node\src\index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1699:10
+    at Object.require.extensions.<computed> [as .ts] (C:\Users\Santosh Sankpal\Downloads\project\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1313:32)
+    at Function._load (node:internal/modules/cjs/loader:1123:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-01-12 15:29:38 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/test.controller.ts[0m:[93m140[0m:[93m7[0m - [91merror[0m[90m TS2451: [0mCannot redeclare block-scoped variable 'createCETTest'.
+
+[7m140[0m const createCETTest = asyncHandler(
+[7m   [0m [91m      ~~~~~~~~~~~~~[0m
+[96msrc/controllers/test.controller.ts[0m:[93m202[0m:[93m7[0m - [91merror[0m[90m TS2451: [0mCannot redeclare block-scoped variable 'createCETTest'.
+
+[7m202[0m const createCETTest = asyncHandler(
+[7m   [0m [91m      ~~~~~~~~~~~~~[0m
+[96msrc/controllers/test.controller.ts[0m:[93m208[0m:[93m55[0m - [91merror[0m[90m TS2304: [0mCannot find name 'getCETQuestions'.
+
+[7m208[0m             const { questionIds, totalMarks } = await getCETQuestions();
+[7m   [0m [91m                                                      ~~~~~~~~~~~~~~~[0m
+
+    at createTSError (C:\Users\Santosh Sankpal\Downloads\project\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (C:\Users\Santosh Sankpal\Downloads\project\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (C:\Users\Santosh Sankpal\Downloads\project\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (C:\Users\Santosh Sankpal\Downloads\project\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (C:\Users\Santosh Sankpal\Downloads\project\node_modules\ts-node\src\index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1699:10
+    at Object.require.extensions.<computed> [as .ts] (C:\Users\Santosh Sankpal\Downloads\project\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1313:32)
+    at Function._load (node:internal/modules/cjs/loader:1123:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-01-12 15:29:47 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/test.controller.ts[0m:[93m182[0m:[93m55[0m - [91merror[0m[90m TS2304: [0mCannot find name 'getCETQuestions'.
+
+[7m182[0m             const { questionIds, totalMarks } = await getCETQuestions();
+[7m   [0m [91m                                                      ~~~~~~~~~~~~~~~[0m
+
+    at createTSError (C:\Users\Santosh Sankpal\Downloads\project\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (C:\Users\Santosh Sankpal\Downloads\project\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (C:\Users\Santosh Sankpal\Downloads\project\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (C:\Users\Santosh Sankpal\Downloads\project\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (C:\Users\Santosh Sankpal\Downloads\project\node_modules\ts-node\src\index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1699:10
+    at Object.require.extensions.<computed> [as .ts] (C:\Users\Santosh Sankpal\Downloads\project\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1313:32)
+    at Function._load (node:internal/modules/cjs/loader:1123:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-01-12 15:30:16 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/test.controller.ts[0m:[93m176[0m:[93m49[0m - [91merror[0m[90m TS2304: [0mCannot find name 'getCETQuestions'.
+
+[7m176[0m       const { questionIds, totalMarks } = await getCETQuestions();
+[7m   [0m [91m                                                ~~~~~~~~~~~~~~~[0m
+
+    at createTSError (C:\Users\Santosh Sankpal\Downloads\project\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (C:\Users\Santosh Sankpal\Downloads\project\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (C:\Users\Santosh Sankpal\Downloads\project\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (C:\Users\Santosh Sankpal\Downloads\project\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (C:\Users\Santosh Sankpal\Downloads\project\node_modules\ts-node\src\index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1699:10
+    at Object.require.extensions.<computed> [as .ts] (C:\Users\Santosh Sankpal\Downloads\project\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1313:32)
+    at Function._load (node:internal/modules/cjs/loader:1123:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
