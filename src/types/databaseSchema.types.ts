@@ -1,4 +1,4 @@
-import mongoose, {Schema} from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
 export interface IUser extends mongoose.Document {
   urn: number;
@@ -11,7 +11,9 @@ export interface IUser extends mongoose.Document {
   updatedAt?: Date;
 
   isPasswordCorrect(password: string): Promise<boolean>;
+
   generateAccessToken(): string;
+
   generateRefreshToken(): string;
 }
 
@@ -46,20 +48,14 @@ export enum DifficultyLevel {
   HARD = 3,
 }
 
-export interface ITestSection {
-  sectionName: string;
-  sectionDuration: number; // in minutes
-  questions: Schema.Types.ObjectId[]; // questionIds for this section
-  totalQuestions: number;
-}
-
 export interface ITest extends mongoose.Document {
   testName: string;
-  sections: ITestSection[];
-  totalDuration: number; // total duration in minutes (sum of all section durations)
-  totalQuestions: number; // total questions across all sections
+  testDuration: number;
+  totalQuestions: number;
   expiryTime: Date;
-  createdBy: Schema.Types.ObjectId; // userId
+  testQuestions: Schema.Types.ObjectId[]; // questionId
+  createdBy: Schema.Types.ObjectId; // userId'
+  totalMarks: number;
 }
 
 export interface ITestResult extends mongoose.Document {
@@ -70,7 +66,6 @@ export interface ITestResult extends mongoose.Document {
   selectedAnswers: {
     questionId: Schema.Types.ObjectId;
     selectedOption: number;
-    sectionName: string; // Added to track which section the answer belongs to
   }[];
   autoSubmission: {
     isAutoSubmitted: boolean;

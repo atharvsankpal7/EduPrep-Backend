@@ -9,16 +9,9 @@ import generateAccessAndRefreshToken from "../utils/tokenGenerator.ts";
 import {AuthenticatedRequest} from "../middleware/auth.middleware.ts";
 
 // Cookie options
-const accessTokenCookieOptions = {
+const cookieOptions = {
     httpOnly: true,
-    secure: true,
-    sameSite: "lax" as const,
-    maxAge: 15 * 60 * 1000, // 15 minutes
-    path: "/"
-};
-const refreshTokenCookieOptions = {
-    httpOnly: true,
-    secure: true,
+    secure: process.env.NODE_ENV === "production",
     sameSite: "lax" as const,
     maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
     path: "/"
@@ -72,13 +65,6 @@ const registerStudent = asyncHandler(async (req: express.Request, res: express.R
         logger.error("Failed to retrieve registered user from database", {userId: newUser._id});
         throw new ApiError(500, "Something went wrong");
     }
-    // Generate tokens
-    const {accessToken, user} = await generateAccessAndRefreshToken(newUser._id);
-    
-    res.status(201)
-        .cookie("accessToken", accessToken, accessTokenCookieOptions)
-        .cookie("refreshToken", user.refreshToken, refreshTokenCookieOptions)
-        .json(new ApiResponse(201, registeredUser, "User registered successfully"));
 
     logger.info("User registered successfully", {userId: newUser._id});
     res.status(201).json(new ApiResponse(201, registeredUser, "User registered successfully"));
@@ -136,14 +122,15 @@ const loginUser = asyncHandler(async (req: express.Request, res: express.Respons
 
     // Respond with success, setting cookies for tokens
     res.status(200)
-        .cookie("accessToken", accessToken, accessTokenCookieOptions)
-        .cookie("refreshToken", user.refreshToken, refreshTokenCookieOptions)
+        .cookie("accessToken", accessToken, cookieOptions)
+        .cookie("refreshToken", user.refreshToken, cookieOptions)
         .json(new ApiResponse(200, {user, accessToken}, "User logged in successfully"));
 });
 
 /**
  * Log out a user
  */
+let x = 1;
 const logoutUser = asyncHandler(async (req: AuthenticatedRequest, res: express.Response) => {
     const userId = req.user?.id;
     // Clear the refreshToken in the database
@@ -159,8 +146,8 @@ const logoutUser = asyncHandler(async (req: AuthenticatedRequest, res: express.R
     logger.info("User logged out successfully", {userId});
 
     res.status(200)
-        .clearCookie("accessToken", accessTokenCookieOptions)
-        .clearCookie("refreshToken", refreshTokenCookieOptions)
+        .clearCookie("accessToken", cookieOptions)
+        .clearCookie("refreshToken", cookieOptions)
         .json(new ApiResponse(200, {}, "User logged out successfully"));
 });
 
