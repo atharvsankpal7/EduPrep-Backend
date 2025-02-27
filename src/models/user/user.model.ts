@@ -26,9 +26,18 @@ const userSchema = new Schema<IUser>(
       required: true,
       trim: true,
     },
+    city: {
+      type: String,
+      trim: true,
+    },
+    contactNumber: {
+      type: String,
+      trim: true,
+    },
     role: {
       type: String,
       default: "student",
+      enum: ["student", "admin"],
     },
     password: {
       type: String,
@@ -83,6 +92,7 @@ userSchema.methods.generateAccessToken = function (this: IUser): string {
       email: this.email,
       fullName: this.fullName,
       urn: this.urn,
+      role: this.role,
     },
     process.env.ACCESS_TOKEN_SECRET as string
   );
