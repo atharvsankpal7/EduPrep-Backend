@@ -16,7 +16,7 @@ const accessTokenCookieOptions = {
   httpOnly: true,
   secure: true,
   sameSite: "lax" as const,
-  maxAge: 15 * 60 * 1000, // 15 minutes
+  maxAge: 60 * 60 * 1000, // 15 minutes
   path: "/",
 };
 const refreshTokenCookieOptions = {
@@ -48,7 +48,7 @@ const registerStudent = asyncHandler(
       throw new ApiError(400, "Invalid input", [parsed.error]);
     }
 
-    const { fullName, urn, email, password } = parsed.data;
+    const { fullName, urn, email, password, city, contactNumber } = parsed.data;
 
     // Check if user already exists
     const existingUser = await User.findOne({
@@ -66,6 +66,8 @@ const registerStudent = asyncHandler(
       urn,
       email,
       password,
+      city,
+      contactNumber,
     });
 
     const registeredUser = await User.findById(newUser._id).select("-password");

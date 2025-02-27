@@ -8,6 +8,7 @@ import { ApiError } from "./utils/ApiError";
 import rateLimiter from "./utils/raterLimiter.ts";
 import questionRouter from "./router/question.routes.ts";
 import topicRouter from "./router/topic.routes.ts";
+import adminRouter from "./router/admin.routes.ts";
 
 const app = express();
 
@@ -32,6 +33,7 @@ app.use("/api/v1/user", userRouter);
 app.use("/api/v1/test", testRouter);
 app.use("/api/v1/question", questionRouter);
 app.use("/api/v1/topic", topicRouter);
+app.use("/api/v1/admin", adminRouter);
 
 app.use('/*', (req, res) => {
     res.status(404).json({

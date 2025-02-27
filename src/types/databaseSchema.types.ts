@@ -8,6 +8,8 @@ export interface IUser extends mongoose.Document {
   password: string;
   refreshToken?: string;
   role: string;
+  city?: string;
+  contactNumber?: string;
   createdAt?: Date;
   updatedAt?: Date;
 
