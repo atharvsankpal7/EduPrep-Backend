@@ -1,1361 +1,9 @@
-2024-12-28 20:16:22 [[31merror[39m]: Unknown error processing Excel file named Junior.csv + Error: [
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "undefined",
-    "path": [
-      "option_2"
-    ],
-    "message": "Required"
-  },
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "undefined",
-    "path": [
-      "option_3"
-    ],
-    "message": "Required"
-  },
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "undefined",
-    "path": [
-      "topics"
-    ],
-    "message": "Required"
-  },
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "number",
-    "path": [
-      "standard"
-    ],
-    "message": "Expected string, received number"
-  }
-]
-2024-12-28 20:16:30 [[31merror[39m]: Unknown error processing Excel file named Junior.csv + Error: [
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "undefined",
-    "path": [
-      "option_2"
-    ],
-    "message": "Required"
-  },
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "undefined",
-    "path": [
-      "option_3"
-    ],
-    "message": "Required"
-  },
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "undefined",
-    "path": [
-      "topics"
-    ],
-    "message": "Required"
-  },
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "number",
-    "path": [
-      "standard"
-    ],
-    "message": "Expected string, received number"
-  }
-]
-2024-12-28 20:16:44 [[31merror[39m]: Unknown error processing Excel file named Junior.csv + Error: [
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "undefined",
-    "path": [
-      "option_2"
-    ],
-    "message": "Required"
-  },
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "undefined",
-    "path": [
-      "option_3"
-    ],
-    "message": "Required"
-  },
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "undefined",
-    "path": [
-      "topics"
-    ],
-    "message": "Required"
-  },
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "number",
-    "path": [
-      "standard"
-    ],
-    "message": "Expected string, received number"
-  }
-]
-2024-12-28 20:18:54 [[31merror[39m]: Unknown error processing Excel file named Junior.csv + Error: [
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "undefined",
-    "path": [
-      "option_2"
-    ],
-    "message": "Required"
-  },
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "undefined",
-    "path": [
-      "option_3"
-    ],
-    "message": "Required"
-  },
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "undefined",
-    "path": [
-      "topics"
-    ],
-    "message": "Required"
-  },
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "number",
-    "path": [
-      "standard"
-    ],
-    "message": "Expected string, received number"
-  }
-]
-2024-12-28 20:19:25 [[31merror[39m]: Unknown error processing Excel file named Junior.xlsx + Error: [
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "undefined",
-    "path": [
-      "option_2"
-    ],
-    "message": "Required"
-  },
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "undefined",
-    "path": [
-      "option_3"
-    ],
-    "message": "Required"
-  },
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "undefined",
-    "path": [
-      "topics"
-    ],
-    "message": "Required"
-  },
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "number",
-    "path": [
-      "standard"
-    ],
-    "message": "Expected string, received number"
-  }
-]
-2024-12-28 20:21:55 [[31merror[39m]: Unknown error processing Excel file named Junior.xlsx + Error: [
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "undefined",
-    "path": [
-      "option_2"
-    ],
-    "message": "Required"
-  },
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "undefined",
-    "path": [
-      "option_3"
-    ],
-    "message": "Required"
-  },
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "undefined",
-    "path": [
-      "topics"
-    ],
-    "message": "Required"
-  },
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "number",
-    "path": [
-      "standard"
-    ],
-    "message": "Expected string, received number"
-  }
-]
-2024-12-28 20:22:16 [[31merror[39m]: Unknown error processing Excel file named Junior.xlsx + Error: [
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "undefined",
-    "path": [
-      "option_2"
-    ],
-    "message": "Required"
-  },
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "undefined",
-    "path": [
-      "option_3"
-    ],
-    "message": "Required"
-  },
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "undefined",
-    "path": [
-      "topics"
-    ],
-    "message": "Required"
-  },
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "number",
-    "path": [
-      "standard"
-    ],
-    "message": "Expected string, received number"
-  }
-]
-2024-12-28 20:22:39 [[31merror[39m]: Unknown error processing Excel file named Junior.xlsx + Error: [
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "undefined",
-    "path": [
-      "option_2"
-    ],
-    "message": "Required"
-  },
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "undefined",
-    "path": [
-      "option_3"
-    ],
-    "message": "Required"
-  },
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "undefined",
-    "path": [
-      "topics"
-    ],
-    "message": "Required"
-  },
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "number",
-    "path": [
-      "standard"
-    ],
-    "message": "Expected string, received number"
-  }
-]
-2024-12-28 20:23:26 [[31merror[39m]: Unknown error processing Excel file named modified_file.xlsx + Error: [
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "undefined",
-    "path": [
-      "option_2"
-    ],
-    "message": "Required"
-  },
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "undefined",
-    "path": [
-      "option_3"
-    ],
-    "message": "Required"
-  },
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "number",
-    "path": [
-      "answer"
-    ],
-    "message": "Expected string, received number"
-  },
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "undefined",
-    "path": [
-      "topics"
-    ],
-    "message": "Required"
-  },
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "number",
-    "path": [
-      "standard"
-    ],
-    "message": "Expected string, received number"
-  }
-]
-2024-12-28 20:23:35 [[31merror[39m]: Unknown error processing Excel file named modified_file.xlsx + Error: [
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "undefined",
-    "path": [
-      "option_2"
-    ],
-    "message": "Required"
-  },
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "undefined",
-    "path": [
-      "option_3"
-    ],
-    "message": "Required"
-  },
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "number",
-    "path": [
-      "answer"
-    ],
-    "message": "Expected string, received number"
-  },
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "undefined",
-    "path": [
-      "topics"
-    ],
-    "message": "Required"
-  },
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "number",
-    "path": [
-      "standard"
-    ],
-    "message": "Expected string, received number"
-  }
-]
-2024-12-28 20:24:43 [[31merror[39m]: Unknown error processing Excel file named modified_file.xlsx + Error: [
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "undefined",
-    "path": [
-      "option_2"
-    ],
-    "message": "Required"
-  },
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "undefined",
-    "path": [
-      "option_3"
-    ],
-    "message": "Required"
-  },
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "number",
-    "path": [
-      "answer"
-    ],
-    "message": "Expected string, received number"
-  },
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "undefined",
-    "path": [
-      "topics"
-    ],
-    "message": "Required"
-  },
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "number",
-    "path": [
-      "standard"
-    ],
-    "message": "Expected string, received number"
-  }
-]
-2024-12-28 20:27:34 [[31merror[39m]: Unknown error processing Excel file named modified_file.xlsx + Error: [
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "number",
-    "path": [
-      "answer"
-    ],
-    "message": "Expected string, received number"
-  },
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "undefined",
-    "path": [
-      "topics"
-    ],
-    "message": "Required"
-  },
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "number",
-    "path": [
-      "standard"
-    ],
-    "message": "Expected string, received number"
-  }
-]
-2024-12-28 20:28:37 [[31merror[39m]: Unknown error processing Excel file named modified_file.xlsx + Error: [
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "undefined",
-    "path": [
-      "topics"
-    ],
-    "message": "Required"
-  },
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "number",
-    "path": [
-      "standard"
-    ],
-    "message": "Expected string, received number"
-  }
-]
-2024-12-28 20:38:15 [[31merror[39m]: Unknown error processing Excel file named modified_file.xlsx + Error: [
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "number",
-    "path": [
-      "answer"
-    ],
-    "message": "Expected string, received number"
-  },
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "undefined",
-    "path": [
-      "topics"
-    ],
-    "message": "Required"
-  },
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "number",
-    "path": [
-      "standard"
-    ],
-    "message": "Expected string, received number"
-  }
-]
-2024-12-28 20:39:25 [[31merror[39m]: Unknown error processing Excel file named 1735398495523-modified_file.xlsx + Error: [
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "number",
-    "path": [
-      "answer"
-    ],
-    "message": "Expected string, received number"
-  },
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "undefined",
-    "path": [
-      "topics"
-    ],
-    "message": "Required"
-  },
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "number",
-    "path": [
-      "standard"
-    ],
-    "message": "Expected string, received number"
-  }
-]
-2024-12-28 20:41:42 [[31merror[39m]: Unknown error processing Excel file named 1735398495523-modified_file.xlsx + Error: [
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "number",
-    "path": [
-      "answer"
-    ],
-    "message": "Expected string, received number"
-  },
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "undefined",
-    "path": [
-      "topics"
-    ],
-    "message": "Required"
-  },
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "number",
-    "path": [
-      "standard"
-    ],
-    "message": "Expected string, received number"
-  }
-]
-2024-12-28 20:43:02 [[31merror[39m]: Unknown error processing Excel file named 1735398495523-modified_file.xlsx + Error: [
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "number",
-    "path": [
-      "answer"
-    ],
-    "message": "Expected string, received number"
-  },
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "undefined",
-    "path": [
-      "topics"
-    ],
-    "message": "Required"
-  },
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "number",
-    "path": [
-      "standard"
-    ],
-    "message": "Expected string, received number"
-  }
-]
-2024-12-28 20:44:17 [[31merror[39m]: Unknown error processing Excel file named 1735398495523-modified_file.xlsx + Error: [
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "number",
-    "path": [
-      "answer"
-    ],
-    "message": "Expected string, received number"
-  },
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "undefined",
-    "path": [
-      "topics"
-    ],
-    "message": "Required"
-  },
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "number",
-    "path": [
-      "standard"
-    ],
-    "message": "Expected string, received number"
-  }
-]
-2024-12-28 20:44:54 [[31merror[39m]: Unknown error processing Excel file named 1735398495523-modified_file.xlsx + Error: [
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "number",
-    "path": [
-      "answer"
-    ],
-    "message": "Expected string, received number"
-  },
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "undefined",
-    "path": [
-      "topics"
-    ],
-    "message": "Required"
-  },
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "number",
-    "path": [
-      "standard"
-    ],
-    "message": "Expected string, received number"
-  }
-]
-2024-12-28 20:45:50 [[31merror[39m]: Unknown error processing Excel file named 1735398495523-modified_file.xlsx + Error: [
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "number",
-    "path": [
-      "answer"
-    ],
-    "message": "Expected string, received number"
-  },
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "undefined",
-    "path": [
-      "topics"
-    ],
-    "message": "Required"
-  },
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "number",
-    "path": [
-      "standard"
-    ],
-    "message": "Expected string, received number"
-  }
-]
-2024-12-28 20:47:44 [[31merror[39m]: Unknown error processing Excel file named 1735398495523-modified_file.xlsx + Error: [
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "undefined",
-    "path": [
-      "topics"
-    ],
-    "message": "Required"
-  }
-]
-2024-12-28 21:27:43 [[31merror[39m]: Unknown error processing Excel file named 1735398495523-modified_file.xlsx + Error: [
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "number",
-    "path": [
-      "answer"
-    ],
-    "message": "Expected string, received number"
-  },
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "undefined",
-    "path": [
-      "topics"
-    ],
-    "message": "Required"
-  },
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "number",
-    "path": [
-      "standard"
-    ],
-    "message": "Expected string, received number"
-  }
-]
-2024-12-28 21:28:54 [[31merror[39m]: Unknown error processing Excel file named 1735398495523-modified_file.xlsx + Error: [
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "number",
-    "path": [
-      "answer"
-    ],
-    "message": "Expected string, received number"
-  },
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "undefined",
-    "path": [
-      "topics"
-    ],
-    "message": "Required"
-  },
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "number",
-    "path": [
-      "standard"
-    ],
-    "message": "Expected string, received number"
-  }
-]
-2024-12-28 21:38:52 [[31merror[39m]: Unknown error processing Excel file named 1735398495523-modified_file.xlsx + Error: [
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "number",
-    "path": [
-      "answer"
-    ],
-    "message": "Expected string, received number"
-  },
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "undefined",
-    "path": [
-      "topics"
-    ],
-    "message": "Required"
-  },
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "number",
-    "path": [
-      "standard"
-    ],
-    "message": "Expected string, received number"
-  }
-]
-2024-12-28 21:43:15 [[31merror[39m]: Unknown error processing Excel file named 1735398495523-modified_file.xlsx + Error: [
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "number",
-    "path": [
-      "answer"
-    ],
-    "message": "Expected string, received number"
-  },
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "undefined",
-    "path": [
-      "topics"
-    ],
-    "message": "Required"
-  },
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "number",
-    "path": [
-      "standard"
-    ],
-    "message": "Expected string, received number"
-  }
-]
-2024-12-28 22:49:27 [[31merror[39m]: Unknown error processing Excel file named modified_file.xlsx + Error: [
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "number",
-    "path": [
-      "answer"
-    ],
-    "message": "Expected string, received number"
-  },
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "undefined",
-    "path": [
-      "topics"
-    ],
-    "message": "Required"
-  },
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "number",
-    "path": [
-      "standard"
-    ],
-    "message": "Expected string, received number"
-  }
-]
-2024-12-28 22:50:01 [[31merror[39m]: Unknown error processing Excel file named modified_file.xlsx + Error: [
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "number",
-    "path": [
-      "answer"
-    ],
-    "message": "Expected string, received number"
-  },
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "undefined",
-    "path": [
-      "topics"
-    ],
-    "message": "Required"
-  },
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "number",
-    "path": [
-      "standard"
-    ],
-    "message": "Expected string, received number"
-  }
-]
-2024-12-28 22:50:58 [[31merror[39m]: Unknown error processing Excel file named modified_file.xlsx + Error: [
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "number",
-    "path": [
-      "answer"
-    ],
-    "message": "Expected string, received number"
-  },
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "undefined",
-    "path": [
-      "topics"
-    ],
-    "message": "Required"
-  },
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "number",
-    "path": [
-      "standard"
-    ],
-    "message": "Expected string, received number"
-  }
-]
-2024-12-30 15:21:54 [[31merror[39m]: Unknown error processing Excel file named 1735406458810-modified_file.xlsx + Error: [
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "number",
-    "path": [
-      "answer"
-    ],
-    "message": "Expected string, received number"
-  },
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "undefined",
-    "path": [
-      "topics"
-    ],
-    "message": "Required"
-  },
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "number",
-    "path": [
-      "standard"
-    ],
-    "message": "Expected string, received number"
-  }
-]
-2024-12-30 15:23:44 [[31merror[39m]: Unknown error processing Excel file named 1735406458810-modified_file.xlsx + Error: [
-  {
-    "code": "too_small",
-    "minimum": 1,
-    "type": "string",
-    "inclusive": true,
-    "exact": false,
-    "message": "Topics are required",
-    "path": [
-      "topics"
-    ]
-  }
-]
-2024-12-30 15:51:51 [[31merror[39m]: Unknown error processing Excel file named 1735406458810-modified_file.xlsx + Error: ValidationError: difficultyLevel: MEDIUM
-2024-12-30 16:12:47 [[31merror[39m]: Unknown error processing Excel file named Junior College.xlsx + Error: [
-  {
-    "code": "too_small",
-    "minimum": 1,
-    "type": "string",
-    "inclusive": true,
-    "exact": false,
-    "message": "Topics are required",
-    "path": [
-      "topics"
-    ]
-  }
-]
-2024-12-30 16:14:06 [[31merror[39m]: Unknown error processing Excel file named Junior College.xlsx + Error: [
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "number",
-    "path": [
-      "option_1"
-    ],
-    "message": "Expected string, received number"
-  },
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "number",
-    "path": [
-      "option_2"
-    ],
-    "message": "Expected string, received number"
-  },
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "number",
-    "path": [
-      "option_3"
-    ],
-    "message": "Expected string, received number"
-  },
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "number",
-    "path": [
-      "option_4"
-    ],
-    "message": "Expected string, received number"
-  }
-]
-2024-12-30 16:16:13 [[31merror[39m]: Unknown error processing Excel file named Junior College.xlsx + Error: [
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "number",
-    "path": [
-      "option_1"
-    ],
-    "message": "Expected string, received number"
-  },
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "number",
-    "path": [
-      "option_2"
-    ],
-    "message": "Expected string, received number"
-  },
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "number",
-    "path": [
-      "option_3"
-    ],
-    "message": "Expected string, received number"
-  },
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "number",
-    "path": [
-      "option_4"
-    ],
-    "message": "Expected string, received number"
-  }
-]
-2024-12-30 16:24:24 [[31merror[39m]: Unknown error processing Excel file named Junior College.xlsx + Error: [
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "number",
-    "path": [
-      "answer"
-    ],
-    "message": "Expected string, received number"
-  },
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "number",
-    "path": [
-      "standard"
-    ],
-    "message": "Expected string, received number"
-  }
-]
-2024-12-30 16:25:35 [[31merror[39m]: Unknown error processing Excel file named Junior College.xlsx + Error: [
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "number",
-    "path": [
-      "standard"
-    ],
-    "message": "Expected string, received number"
-  }
-]
-2024-12-30 16:26:33 [[31merror[39m]: Unknown error processing Excel file named Junior College.xlsx + Error: [
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "number",
-    "path": [
-      "option_1"
-    ],
-    "message": "Expected string, received number"
-  },
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "number",
-    "path": [
-      "option_2"
-    ],
-    "message": "Expected string, received number"
-  },
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "number",
-    "path": [
-      "option_3"
-    ],
-    "message": "Expected string, received number"
-  },
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "number",
-    "path": [
-      "option_4"
-    ],
-    "message": "Expected string, received number"
-  }
-]
-2024-12-30 16:42:11 [[31merror[39m]: Unknown error processing Excel file named Junior College.xlsx + Error: [
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "number",
-    "path": [
-      "answer"
-    ],
-    "message": "Expected string, received number"
-  }
-]
-2024-12-30 16:43:43 [[31merror[39m]: Unknown error processing Excel file named Junior College.xlsx + Error: [
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "number",
-    "path": [
-      "option_1"
-    ],
-    "message": "Expected string, received number"
-  },
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "number",
-    "path": [
-      "option_2"
-    ],
-    "message": "Expected string, received number"
-  },
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "number",
-    "path": [
-      "option_3"
-    ],
-    "message": "Expected string, received number"
-  },
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "number",
-    "path": [
-      "option_4"
-    ],
-    "message": "Expected string, received number"
-  }
-]
-2024-12-30 23:07:14 [[31merror[39m]: Unknown error processing Excel file named phy1.xlsx + Error: ValidationError: standard: Path `standard` is required.
-2024-12-30 23:08:13 [[31merror[39m]: Unknown error processing Excel file named Junior College.xlsx + Error: ValidationError: standard: Path `standard` is required.
-2024-12-30 23:13:12 [[31merror[39m]: Not enough questions for Physics (XI). Required: 10, Found: 0
-2024-12-30 23:13:37 [[31merror[39m]: Not enough questions for Physics (XI). Required: 10, Found: 0
-2024-12-30 23:14:21 [[31merror[39m]: Not enough questions for Physics (11). Required: 10, Found: 0
-2024-12-30 23:14:42 [[31merror[39m]: Not enough questions for Physics (12). Required: 40, Found: 0
-2024-12-30 23:15:18 [[31merror[39m]: Not enough questions for Physics (12). Required: 40, Found: 0
-2024-12-30 23:21:01 [[31merror[39m]: Not enough questions for Physics (12). Required: 40, Found: 0
-2024-12-30 23:21:39 [[31merror[39m]: Not enough questions for physics (12). Required: 40, Found: 0
-2024-12-30 23:22:13 [[31merror[39m]: Not enough questions for chemistry (12). Required: 40, Found: 0
-2024-12-30 23:36:25 [[31merror[39m]: Not enough questions available for the selected topics. Requested: 100, Found: 0
-2025-01-01 16:27:54 [[31merror[39m]: Validation error:
-2025-01-01 16:29:38 [[31merror[39m]: ZodError: [
-  {
-    "code": "invalid_type",
-    "expected": "number",
-    "received": "string",
-    "path": [
-      "answer"
-    ],
-    "message": "Expected number, received string"
-  }
-]
-    at Object.get error [as error] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\zod\lib\types.js:55:31)
-    at ZodObject.parse (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\zod\lib\types.js:160:22)
-    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\excelProcessor.ts:32:49
+2025-01-25 03:14:55 [[31merror[39m]: Error: Insufficient questions for topic solid state
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\cetQuestionSelector.ts:48:17
     at Generator.next (<anonymous>)
-    at fulfilled (F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\excelProcessor.ts:5:58)
-    at processTicksAndRejections (node:internal/process/task_queues:95:5)
-2025-01-01 16:29:45 [[31merror[39m]: ZodError: [
-  {
-    "code": "invalid_type",
-    "expected": "number",
-    "received": "string",
-    "path": [
-      "answer"
-    ],
-    "message": "Expected number, received string"
-  }
-]
-    at Object.get error [as error] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\zod\lib\types.js:55:31)
-    at ZodObject.parse (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\zod\lib\types.js:160:22)
-    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\excelProcessor.ts:32:49
-    at Generator.next (<anonymous>)
-    at fulfilled (F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\excelProcessor.ts:5:58)
-    at processTicksAndRejections (node:internal/process/task_queues:95:5)
-2025-01-01 16:30:55 [[31merror[39m]: ZodError: [
-  {
-    "code": "invalid_type",
-    "expected": "number",
-    "received": "string",
-    "path": [
-      "answer"
-    ],
-    "message": "Expected number, received string"
-  }
-]
-    at Object.get error [as error] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\zod\lib\types.js:55:31)
-    at ZodObject.parse (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\zod\lib\types.js:160:22)
-    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\excelProcessor.ts:32:49
-    at Generator.next (<anonymous>)
-    at fulfilled (F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\excelProcessor.ts:5:58)
-    at processTicksAndRejections (node:internal/process/task_queues:95:5)
-2025-01-01 16:38:04 [[31merror[39m]: ZodError: [
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "undefined",
-    "path": [
-      "question"
-    ],
-    "message": "Required"
-  },
-  {
-    "code": "invalid_type",
-    "expected": "string",
-    "received": "undefined",
-    "path": [
-      "topics"
-    ],
-    "message": "Required"
-  }
-]
-    at Object.get error [as error] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\zod\lib\types.js:55:31)
-    at ZodObject.parse (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\zod\lib\types.js:160:22)
-    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\excelProcessor.ts:32:49
-    at Generator.next (<anonymous>)
-    at fulfilled (F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\excelProcessor.ts:5:58)
-    at processTicksAndRejections (node:internal/process/task_queues:95:5)
-2025-01-08 09:50:48 [[31merror[39m]: Failed to log out user: User not found
-2025-01-08 09:54:59 [[31merror[39m]: Failed to log out user: User not found
-2025-01-08 09:56:38 [[31merror[39m]: Failed to log out user: User not found
-2025-01-09 20:07:23 [[31merror[39m]: Failed to log out user: User not found
-2025-01-10 12:35:15 [[31merror[39m]: Failed to log out user: User not found
-2025-01-10 13:52:11 [[31merror[39m]: TokenExpiredError: jwt expired
-    at F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\jsonwebtoken\verify.js:190:21
-    at getSecret (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\jsonwebtoken\verify.js:97:14)
-    at Object.module.exports [as verify] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\jsonwebtoken\verify.js:101:10)
-    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:25:33
-    at Generator.next (<anonymous>)
-    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:8:71
-    at new Promise (<anonymous>)
-    at __awaiter (F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:4:12)
-    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:16:90
-    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:7:23
-2025-01-10 13:52:44 [[31merror[39m]: Failed to log out user: User not found
-2025-01-10 13:53:44 [[31merror[39m]: Failed to log out user: User not found
-2025-01-10 13:55:38 [[31merror[39m]: Failed to log out user: User not found
-2025-01-10 14:03:39 [[31merror[39m]: Error: Unauthorized access
-    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:22:23
-    at Generator.next (<anonymous>)
-    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:8:71
-    at new Promise (<anonymous>)
-    at __awaiter (F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:4:12)
-    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:16:90
-    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:7:23
-    at Generator.next (<anonymous>)
-    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:8:71
-    at new Promise (<anonymous>)
-2025-01-10 14:03:39 [[31merror[39m]: Error: Unauthorized access
-    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:22:23
-    at Generator.next (<anonymous>)
-    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:8:71
-    at new Promise (<anonymous>)
-    at __awaiter (F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:4:12)
-    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:16:90
-    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:7:23
-    at Generator.next (<anonymous>)
-    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:8:71
-    at new Promise (<anonymous>)
-2025-01-10 14:04:19 [[31merror[39m]: Error: Unauthorized access
-    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:22:23
-    at Generator.next (<anonymous>)
-    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:8:71
-    at new Promise (<anonymous>)
-    at __awaiter (F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:4:12)
-    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:16:90
-    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:7:23
-    at Generator.next (<anonymous>)
-    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:8:71
-    at new Promise (<anonymous>)
-2025-01-10 14:04:19 [[31merror[39m]: Error: Unauthorized access
-    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:22:23
-    at Generator.next (<anonymous>)
-    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:8:71
-    at new Promise (<anonymous>)
-    at __awaiter (F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:4:12)
-    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:16:90
-    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:7:23
-    at Generator.next (<anonymous>)
-    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:8:71
-    at new Promise (<anonymous>)
-2025-01-10 14:08:58 [[31merror[39m]: Error: Unauthorized access
-    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:22:23
-    at Generator.next (<anonymous>)
-    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:8:71
-    at new Promise (<anonymous>)
-    at __awaiter (F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:4:12)
-    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:16:90
-    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:7:23
-    at Generator.next (<anonymous>)
-    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:8:71
-    at new Promise (<anonymous>)
-2025-01-10 14:08:58 [[31merror[39m]: Error: Unauthorized access
-    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:22:23
-    at Generator.next (<anonymous>)
-    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:8:71
-    at new Promise (<anonymous>)
-    at __awaiter (F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:4:12)
-    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:16:90
-    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:7:23
-    at Generator.next (<anonymous>)
-    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:8:71
-    at new Promise (<anonymous>)
-2025-01-10 14:09:29 [[31merror[39m]: Error: Unauthorized access
-    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:22:23
-    at Generator.next (<anonymous>)
-    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:8:71
-    at new Promise (<anonymous>)
-    at __awaiter (F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:4:12)
-    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:16:90
-    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:7:23
-    at Generator.next (<anonymous>)
-    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:8:71
-    at new Promise (<anonymous>)
-2025-01-10 14:09:29 [[31merror[39m]: Error: Unauthorized access
-    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:22:23
-    at Generator.next (<anonymous>)
-    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:8:71
-    at new Promise (<anonymous>)
-    at __awaiter (F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:4:12)
-    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:16:90
-    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:7:23
-    at Generator.next (<anonymous>)
-    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:8:71
-    at new Promise (<anonymous>)
-2025-01-10 14:10:51 [[31merror[39m]: Error: Unauthorized access
+    at fulfilled (F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\cetQuestionSelector.ts:5:58)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-01-25 09:51:06 [[31merror[39m]: Error: Unauthorized access
     at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:23:23
     at Generator.next (<anonymous>)
     at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:8:71
@@ -1366,7 +14,12 @@
     at Generator.next (<anonymous>)
     at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:8:71
     at new Promise (<anonymous>)
-2025-01-10 14:10:51 [[31merror[39m]: Error: Unauthorized access
+2025-02-06 02:10:14 [[31merror[39m]: Error: Insufficient questions for topic solid state
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\cetQuestionSelector.ts:48:17
+    at Generator.next (<anonymous>)
+    at fulfilled (F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\cetQuestionSelector.ts:5:58)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-02-06 02:20:53 [[31merror[39m]: Error: Unauthorized access
     at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:23:23
     at Generator.next (<anonymous>)
     at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:8:71
@@ -1377,35 +30,417 @@
     at Generator.next (<anonymous>)
     at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:8:71
     at new Promise (<anonymous>)
-2025-01-12 15:32:12 [[31merror[39m]: Error: Unauthorized access
-    at C:\Users\Santosh Sankpal\Downloads\project\src\middleware\auth.middleware.ts:23:23
-    at Generator.next (<anonymous>)
-    at C:\Users\Santosh Sankpal\Downloads\project\src\middleware\auth.middleware.ts:8:71
-    at new Promise (<anonymous>)
-    at __awaiter (C:\Users\Santosh Sankpal\Downloads\project\src\middleware\auth.middleware.ts:4:12)
-    at C:\Users\Santosh Sankpal\Downloads\project\src\middleware\auth.middleware.ts:16:90
-    at C:\Users\Santosh Sankpal\Downloads\project\src\utils\asyncHandler.ts:7:23
-    at Generator.next (<anonymous>)
-    at C:\Users\Santosh Sankpal\Downloads\project\src\utils\asyncHandler.ts:8:71
-    at new Promise (<anonymous>)
-2025-01-12 15:33:36 [[31merror[39m]: Error: CET distribution configuration not found
-    at C:\Users\Santosh Sankpal\Downloads\project\src\utils\cetQuestionSelector.ts:16:13
-    at Generator.next (<anonymous>)
-    at fulfilled (C:\Users\Santosh Sankpal\Downloads\project\src\utils\cetQuestionSelector.ts:5:58)
-    at processTicksAndRejections (node:internal/process/task_queues:105:5)
-2025-01-12 15:33:36 [[31merror[39m]: Error: CET distribution configuration not found
-    at C:\Users\Santosh Sankpal\Downloads\project\src\utils\cetQuestionSelector.ts:16:13
-    at Generator.next (<anonymous>)
-    at fulfilled (C:\Users\Santosh Sankpal\Downloads\project\src\utils\cetQuestionSelector.ts:5:58)
-    at processTicksAndRejections (node:internal/process/task_queues:105:5)
-2025-01-12 19:09:04 [[31merror[39m]: TokenExpiredError: jwt expired
-    at F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\jsonwebtoken\verify.js:190:21
-    at getSecret (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\jsonwebtoken\verify.js:97:14)
-    at Object.module.exports [as verify] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\jsonwebtoken\verify.js:101:10)
-    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:26:33
+2025-02-06 02:27:15 [[31merror[39m]: Error: Unauthorized access
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:23:23
     at Generator.next (<anonymous>)
     at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:8:71
     at new Promise (<anonymous>)
     at __awaiter (F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:4:12)
     at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:16:90
     at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:7:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:8:71
+    at new Promise (<anonymous>)
+2025-02-06 02:28:12 [[31merror[39m]: Error: Unauthorized access
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:23:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:4:12)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:16:90
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:7:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:8:71
+    at new Promise (<anonymous>)
+2025-02-06 02:31:17 [[31merror[39m]: Error: Unauthorized access
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:23:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:4:12)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:16:90
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:7:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:8:71
+    at new Promise (<anonymous>)
+2025-02-26 10:52:41 [[31merror[39m]: Error: Unauthorized access
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:23:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:4:12)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:16:90
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:7:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:8:71
+    at new Promise (<anonymous>)
+2025-02-26 11:22:23 [[31merror[39m]: Error: Insufficient questions for topic solid state
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\cetQuestionSelector.ts:48:17
+    at Generator.next (<anonymous>)
+    at fulfilled (F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\cetQuestionSelector.ts:5:58)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-02-27 10:40:58 [[31merror[39m]: Error: Unauthorized access
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:22:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:4:12)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:16:90
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:7:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:8:71
+    at new Promise (<anonymous>)
+2025-02-27 10:41:07 [[31merror[39m]: ZodError: [
+  {
+    "code": "invalid_type",
+    "expected": "number",
+    "received": "nan",
+    "path": [
+      "answer"
+    ],
+    "message": "Expected number, received nan"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "topics"
+    ],
+    "message": "Required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "number",
+    "received": "undefined",
+    "path": [
+      "standard"
+    ],
+    "message": "Required"
+  }
+]
+    at Object.get error [as error] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\zod@3.24.1\node_modules\zod\lib\types.js:55:31)
+    at ZodObject.parse (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\zod@3.24.1\node_modules\zod\lib\types.js:131:22)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\excelProcessor.ts:24:43
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\excelProcessor.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\excelProcessor.ts:4:12)
+    at processExcelData (F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\excelProcessor.ts:22:12)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\controllers\question.controller.ts:25:58
+    at Generator.next (<anonymous>)
+2025-02-27 10:41:23 [[31merror[39m]: Invalid topic in Excel row 2: reproductive structures
+2025-02-27 10:48:10 [[31merror[39m]: Invalid topic in Excel row 2: evolution
+2025-02-27 10:59:11 [[31merror[39m]: Error: Unauthorized access
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:22:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:4:12)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:16:90
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:7:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:8:71
+    at new Promise (<anonymous>)
+2025-02-27 10:59:34 [[31merror[39m]: Error: Unauthorized access
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:22:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:4:12)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:16:90
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:7:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:8:71
+    at new Promise (<anonymous>)
+2025-02-27 11:04:26 [[31merror[39m]: Error: Unauthorized access
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:23:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:4:12)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:16:90
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:7:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:8:71
+    at new Promise (<anonymous>)
+2025-02-27 11:04:56 [[31merror[39m]: Error: Unauthorized access
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:23:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:4:12)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:16:90
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:7:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:8:71
+    at new Promise (<anonymous>)
+2025-02-27 11:20:34 [[31merror[39m]: Error: Unauthorized access
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:22:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:4:12)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:16:90
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:7:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:8:71
+    at new Promise (<anonymous>)
+2025-02-27 11:20:44 [[31merror[39m]: Error: Insufficient questions for topic solid state
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\cetQuestionSelector.ts:48:17
+    at Generator.next (<anonymous>)
+    at fulfilled (F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\cetQuestionSelector.ts:5:58)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-02-27 11:42:55 [[31merror[39m]: Error: Unauthorized access
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:22:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:4:12)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:16:90
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:7:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:8:71
+    at new Promise (<anonymous>)
+2025-02-27 11:42:57 [[31merror[39m]: Error: Unauthorized access
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:22:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:4:12)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:16:90
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:7:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:8:71
+    at new Promise (<anonymous>)
+2025-02-27 11:42:58 [[31merror[39m]: Error: Unauthorized access
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:22:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:4:12)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:16:90
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:7:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:8:71
+    at new Promise (<anonymous>)
+2025-02-27 11:42:58 [[31merror[39m]: Error: Unauthorized access
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:22:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:4:12)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:16:90
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:7:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:8:71
+    at new Promise (<anonymous>)
+2025-02-27 11:46:47 [[31merror[39m]: Error: Unauthorized access
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:22:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:4:12)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:16:90
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:7:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:8:71
+    at new Promise (<anonymous>)
+2025-02-27 12:51:59 [[31merror[39m]: Error: Unauthorized access
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:22:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:4:12)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:16:90
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:7:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:8:71
+    at new Promise (<anonymous>)
+2025-02-27 12:52:15 [[31merror[39m]: Error: Unauthorized access
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:22:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:4:12)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:16:90
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:7:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:8:71
+    at new Promise (<anonymous>)
+2025-02-27 12:55:57 [[31merror[39m]: Error: Unauthorized access
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:22:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:4:12)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:16:90
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:7:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:8:71
+    at new Promise (<anonymous>)
+2025-02-27 13:28:06 [[31merror[39m]: Error: Unauthorized access
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:22:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:4:12)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:16:90
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:7:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:8:71
+    at new Promise (<anonymous>)
+2025-02-27 16:12:03 [[31merror[39m]: Error: Unauthorized access
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:22:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:4:12)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:16:90
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:7:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:8:71
+    at new Promise (<anonymous>)
+2025-02-27 18:44:56 [[31merror[39m]: Error: Unauthorized access
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:22:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:4:12)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:16:90
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:7:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:8:71
+    at new Promise (<anonymous>)
+2025-02-27 18:48:38 [[31merror[39m]: Error: Unauthorized access
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:22:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:4:12)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:16:90
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:7:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:8:71
+    at new Promise (<anonymous>)
+2025-02-27 19:15:30 [[31merror[39m]: Error: Unauthorized access
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:22:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:4:12)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:16:90
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:7:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:8:71
+    at new Promise (<anonymous>)
+2025-02-27 19:17:17 [[31merror[39m]: Error: Unauthorized access
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:22:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:4:12)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:16:90
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:7:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:8:71
+    at new Promise (<anonymous>)
+2025-02-27 19:17:22 [[31merror[39m]: Error: Unauthorized access
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:22:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:4:12)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:16:90
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:7:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:8:71
+    at new Promise (<anonymous>)
+2025-02-27 19:17:38 [[31merror[39m]: Error: Unauthorized access
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:22:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:4:12)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:16:90
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:7:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:8:71
+    at new Promise (<anonymous>)
+2025-02-27 19:17:46 [[31merror[39m]: Error: Unauthorized access
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:22:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:4:12)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:16:90
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:7:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:8:71
+    at new Promise (<anonymous>)
+2025-02-27 19:17:50 [[31merror[39m]: Error: Unauthorized access
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:22:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:4:12)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:16:90
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:7:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:8:71
+    at new Promise (<anonymous>)
+2025-02-27 21:43:42 [[31merror[39m]: Error: Unauthorized access
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:22:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:4:12)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:16:90
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:7:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:8:71
+    at new Promise (<anonymous>)
+2025-02-27 22:18:25 [[31merror[39m]: Error: Unauthorized access
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:22:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:4:12)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:16:90
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:7:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:8:71
+    at new Promise (<anonymous>)
+2025-02-27 22:50:15 [[31merror[39m]: Error: Unauthorized access
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:22:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:4:12)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:16:90
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:7:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:8:71
+    at new Promise (<anonymous>)
+2025-02-27 23:02:18 [[31merror[39m]: Error: Unauthorized access
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:22:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:4:12)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:16:90
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:7:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:8:71
+    at new Promise (<anonymous>)
+2025-02-27 23:15:25 [[31merror[39m]: Error: Unauthorized access
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:22:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:4:12)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:16:90
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:7:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:8:71
+    at new Promise (<anonymous>)

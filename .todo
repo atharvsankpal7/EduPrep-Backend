@@ -7,3 +7,5 @@ for the test make sure that we have randomized order of the questions
 for each of the questions the options should also be shuffled, later brainstorm on how to solve the problem of correct option when the options are randomized
 
 add zod for validation in testResult controller
+
+for getting custom test we can search the topics on the basis of ID instead of topic name in order to increase the performance

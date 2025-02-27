@@ -22,13 +22,13 @@ interface Request extends ExpressRequest {
 // creates the test with the given specifications and saves it in the database
 const createCustomTest = async (user: IUser, body: any) => {
     const {time, numberOfQuestions, topicList, educationLevel} = body;
+    
     const validationResult = customTestSchema.safeParse({
-        time,
-        numberOfQuestions,
+        time: Number(time),
+        numberOfQuestions: Number(numberOfQuestions),
         topicList,
         educationLevel,
     });
-
     if (!validationResult.success) {
         const errorMessages = validationResult.error.errors.map(
             (error) => error.message
@@ -56,21 +56,33 @@ const createCustomTest = async (user: IUser, body: any) => {
         {$sample: {size: totalQuestions}},
     ]);
 
+    // Create test with a single section, similar to CET format
     const test = await Test.create({
         testName: "Custom Test " + Date.now(),
-        testDuration: validatedTime,
+        sections: [
+            {
+                sectionName: "Custom Test Section",
+                sectionDuration: validatedTime,
+                questions: selectedQuestions.map(q => q._id),
+                totalQuestions: totalQuestions
+            }
+        ],
+        totalDuration: validatedTime,
         totalQuestions: totalQuestions,
-        testQuestions: selectedQuestions,
         createdBy: user._id,
     });
 
-    const testDetails: TCreateTestResponse = {
-        test: test,
-        questions: selectedQuestions.map((q) => ({
-            question: q.questionText,
-            options: q.options,
-            answer: q.answer,
-        })),
+    // Prepare response with test details
+    const testDetails = {
+        testId: test.id,
+        name: test.testName,
+        duration: test.totalDuration,
+        totalQuestions: test.totalQuestions,
+        sections: test.sections.map(section => ({
+            name: section.sectionName,
+            duration: section.sectionDuration,
+            questionCount: section.totalQuestions
+        }))
     };
 
     return {testDetails};
