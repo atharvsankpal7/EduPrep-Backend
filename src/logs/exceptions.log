@@ -1,0 +1,16 @@
+2025-02-27 11:06:18 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/middleware/auth.middleware.ts[0m:[93m19[0m:[93m21[0m - [91merror[0m[90m TS2339: [0mProperty 'lo' does not exist on type 'Console'.
+
+[7m19[0m             console.lo
+[7m  [0m [91m                    ~~[0m
+
+    at createTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1699:10
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1313:32)
+    at Function._load (node:internal/modules/cjs/loader:1123:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
