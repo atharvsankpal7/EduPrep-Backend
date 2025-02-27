@@ -1,6 +1,7 @@
 import mongoose, {Schema} from "mongoose";
 
 export interface IUser extends mongoose.Document {
+  id:string;
   urn: number;
   email: string;
   fullName: string;
@@ -12,6 +13,7 @@ export interface IUser extends mongoose.Document {
 
   isPasswordCorrect(password: string): Promise<boolean>;
   generateAccessToken(): string;
+
   generateRefreshToken(): string;
 }
 

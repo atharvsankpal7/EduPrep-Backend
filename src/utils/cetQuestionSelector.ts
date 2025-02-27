@@ -44,7 +44,7 @@ export async function getCETQuestions(): Promise<QuestionDistribution> {
         ]);
 
         if (topicQuestions.length < topic.questionCount) {
-          logger.warn(`Insufficient questions for topic ${topic.topicName}`);
+          logger.warn(`Insufficient questions for topic ${topic.topicName}. Needed: ${topic.questionCount}, Found: ${topicQuestions.length}`);
           throw new ApiError(400, `Insufficient questions for topic ${topic.topicName}`);
         }
 
@@ -63,6 +63,23 @@ export async function getCETQuestions(): Promise<QuestionDistribution> {
     };
   } catch (error) {
     logger.error("Error in CET question selection:", error);
+    throw error;
+  }
+}
+
+/**
+ * Get the distribution of questions for CET by topic
+ */
+export async function getCETDistribution() {
+  try {
+    const distribution = await CETDistribution.findOne();
+    if (!distribution) {
+      throw new ApiError(404, "CET distribution configuration not found");
+    }
+    
+    return distribution.distributions;
+  } catch (error) {
+    logger.error("Error fetching CET distribution:", error);
     throw error;
   }
 }

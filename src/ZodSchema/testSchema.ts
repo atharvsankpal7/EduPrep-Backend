@@ -9,6 +9,6 @@ const customTestSchema = z.object({
     z.string().min(1, "Topic name must be at least 1 character long")
   ),
 
-  educationLevel: z.enum(["undergraduate", "juniorCollege"]),
+  // educationLevel: z.enum(["undergraduate", "juniorCollege"]),
 });
 export { customTestSchema };
