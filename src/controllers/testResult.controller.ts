@@ -26,7 +26,7 @@ const submitTest = asyncHandler(async (req: AuthenticatedRequest, res: Response)
     if (!test) {
         throw new ApiError(404, "Test not found");
     }
-    const questionIds = test.testQuestions;
+    const questionIds = test.sections.flatMap(section => section.questions);
     const questions = await Question.find({_id: {$in: questionIds}}).select('answer');
     const score = questions.filter((q, i) => q.answer === selectedAnswers[i].selectedOption).length;
 

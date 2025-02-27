@@ -1,46 +1,46 @@
-import mongoose, {Schema} from "mongoose";
+import mongoose, { Schema } from "mongoose";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
-import {IUser} from "../../types/databaseSchema.types.ts";
+import { IUser } from "../../types/databaseSchema.types.ts";
 
 const userSchema = new Schema<IUser>(
-    {
-        urn: {
-            type: Number,
-            required: true,
-            unique: true,
-            lowercase: true,
-            trim: true,
-            index: true,
-        },
-        email: {
-            type: String,
-            required: true,
-            unique: true,
-            lowercase: true,
-            trim: true,
-            index: true,
-        },
-        fullName: {
-            type: String,
-            required: true,
-            trim: true,
-        },
-        role: {
-            type: String,
-            default: "student",
-        },
-        password: {
-            type: String,
-            required: [true, "Password is required"],
-        },
-        refreshToken: {
-            type: String,
-        },
+  {
+    urn: {
+      type: Number,
+      required: true,
+      unique: true,
+      lowercase: true,
+      trim: true,
+      index: true,
     },
-    {
-        timestamps: true,
-    }
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+      lowercase: true,
+      trim: true,
+      index: true,
+    },
+    fullName: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    role: {
+      type: String,
+      default: "student",
+    },
+    password: {
+      type: String,
+      required: [true, "Password is required"],
+    },
+    refreshToken: {
+      type: String,
+    },
+  },
+  {
+    timestamps: true,
+  }
 );
 
 /**
@@ -48,28 +48,26 @@ const userSchema = new Schema<IUser>(
  * This function hashes the user's password using bcrypt before saving the document.
  */
 userSchema.pre<IUser>("save", async function (next) {
-    // Only hash the password if it has been modified (or is new)
-    if (!this.isModified("password")) return next();
+  // Only hash the password if it has been modified (or is new)
+  if (!this.isModified("password")) return next();
 
-    try {
-        const salt = await bcrypt.genSalt(10);
-        this.password = await bcrypt.hash(this.password, salt);
-        next();
-    } catch (error) {
-        next(error as Error);
-    }
-
+  try {
+    const salt = await bcrypt.genSalt(10);
+    this.password = await bcrypt.hash(this.password, salt);
+    next();
+  } catch (error) {
+    next(error as Error);
+  }
 });
-
 
 /**
  * Compares the provided password with the user's hashed password and returns a boolean indicating if the passwords match.
  */
 userSchema.methods.isPasswordCorrect = async function (
-    this: IUser,
-    password: string
+  this: IUser,
+  password: string
 ): Promise<boolean> {
-    return await bcrypt.compare(password, this.password);
+  return await bcrypt.compare(password, this.password);
 };
 
 /**
@@ -79,18 +77,15 @@ userSchema.methods.isPasswordCorrect = async function (
  * @returns {string} The generated access token.
  */
 userSchema.methods.generateAccessToken = function (this: IUser): string {
-    return jwt.sign(
-        {
-            _id: this._id,
-            email: this.email,
-            fullName: this.fullName,
-            urn: this.urn,
-        },
-        process.env.ACCESS_TOKEN_SECRET as string,
-        {
-            expiresIn: process.env.ACCESS_TOKEN_EXPIRY,
-        }
-    );
+  return jwt.sign(
+    {
+      _id: this._id,
+      email: this.email,
+      fullName: this.fullName,
+      urn: this.urn,
+    },
+    process.env.ACCESS_TOKEN_SECRET as string
+  );
 };
 
 /**
@@ -100,15 +95,12 @@ userSchema.methods.generateAccessToken = function (this: IUser): string {
  * @returns {string} The generated refresh token.
  */
 userSchema.methods.generateRefreshToken = function (this: IUser): string {
-    return jwt.sign(
-        {
-            _id: this._id,
-        },
-        process.env.REFRESH_TOKEN_SECRET as string,
-        {
-            expiresIn: process.env.REFRESH_TOKEN_EXPIRY,
-        }
-    );
+  return jwt.sign(
+    {
+      _id: this._id,
+    },
+    process.env.REFRESH_TOKEN_SECRET as string
+  );
 };
 
 export const User = mongoose.model<IUser>("User", userSchema);

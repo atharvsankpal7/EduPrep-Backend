@@ -18,13 +18,10 @@ export const authMiddleware = asyncHandler(
         try {
             const token =
                 req.cookies?.accessToken || req.header("Authorization")?.replace("Bearer ", "");
-            console.log("token", token);
             if (!token) {
                 throw new ApiError(401, "Unauthorized access");
             }
-            console.log(token)
             const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET!);
-            console.log(decoded);
             if (typeof decoded === "string") {
                 throw new ApiError(401, "Unauthorized access");
             }
