@@ -30,7 +30,6 @@ export const authMiddleware = asyncHandler(
             if (!user) {
                 throw new ApiError(401, "Invalid token");
             }
-
             // Attach the user to the request
             req.user = user;
             next();

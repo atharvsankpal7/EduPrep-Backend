@@ -22,17 +22,18 @@ interface Request extends ExpressRequest {
 // creates the test with the given specifications and saves it in the database
 const createCustomTest = async (user: IUser, body: any) => {
     const {time, numberOfQuestions, topicList, educationLevel} = body;
+    
     const validationResult = customTestSchema.safeParse({
-        time,
-        numberOfQuestions,
+        time: Number(time),
+        numberOfQuestions: Number(numberOfQuestions),
         topicList,
         educationLevel,
     });
-
     if (!validationResult.success) {
         const errorMessages = validationResult.error.errors.map(
             (error) => error.message
         );
+        console.log(validationResult.error);
         throw new ApiError(400, errorMessages.join(", "));
     }
 
@@ -55,21 +56,33 @@ const createCustomTest = async (user: IUser, body: any) => {
         {$sample: {size: totalQuestions}},
     ]);
 
+    // Create test with a single section, similar to CET format
     const test = await Test.create({
         testName: "Custom Test " + Date.now(),
-        testDuration: validatedTime,
+        sections: [
+            {
+                sectionName: "Custom Test Section",
+                sectionDuration: validatedTime,
+                questions: selectedQuestions.map(q => q._id),
+                totalQuestions: totalQuestions
+            }
+        ],
+        totalDuration: validatedTime,
         totalQuestions: totalQuestions,
-        testQuestions: selectedQuestions,
         createdBy: user._id,
     });
 
-    const testDetails: TCreateTestResponse = {
-        test: test,
-        questions: selectedQuestions.map((q) => ({
-            question: q.questionText,
-            options: q.options,
-            answer: q.answer,
-        })),
+    // Prepare response with test details
+    const testDetails = {
+        testId: test.id,
+        name: test.testName,
+        duration: test.totalDuration,
+        totalQuestions: test.totalQuestions,
+        sections: test.sections.map(section => ({
+            name: section.sectionName,
+            duration: section.sectionDuration,
+            questionCount: section.totalQuestions
+        }))
     };
 
     return {testDetails};
@@ -204,7 +217,7 @@ const createCETTest = asyncHandler(
         const questions = await Question.aggregate([
             {
                 $match: {
-                    _id: {$in: questionIds}
+                    _id: { $in: questionIds }
                 }
             },
             {
@@ -230,13 +243,13 @@ const createCETTest = asyncHandler(
             q.subjects.some((s: { subjectName: string; }) =>
                 s.subjectName.toLowerCase() === 'physics'
             )
-        ).slice(0, 50);
+        ).slice(0, 25);
 
         const chemistryQuestions = questions.filter(q =>
             q.subjects.some((s: { subjectName: string; }) =>
                 s.subjectName.toLowerCase() === 'chemistry'
             )
-        ).slice(0, 50);
+        ).slice(0, 25);
 
         const mathsQuestions = questions.filter(q =>
             q.subjects.some((s: { subjectName: string; }) =>
@@ -245,7 +258,7 @@ const createCETTest = asyncHandler(
         ).slice(0, 50);
 
         // Validate we have enough questions for each section
-        if (physicsQuestions.length < 50 || chemistryQuestions.length < 50 || mathsQuestions.length < 50) {
+        if (physicsQuestions.length < 25 || chemistryQuestions.length < 25 || mathsQuestions.length < 50) {
             logger.error("Insufficient questions for CET test sections", {
                 physics: physicsQuestions.length,
                 chemistry: chemistryQuestions.length,
@@ -263,25 +276,24 @@ const createCETTest = asyncHandler(
         const mathsQuestionIds = mathsQuestions.map(q => q._id);
 
         // Create test with sections
-        const sections = [
-            {
-                sectionName: "Physics and Chemistry",
-                sectionDuration: 90, // 90 minutes
-                questions: physicsChemQuestions,
-                totalQuestions: 100
-            },
-            {
-                sectionName: "Mathematics",
-                sectionDuration: 90, // 90 minutes
-                questions: mathsQuestionIds,
-                totalQuestions: 50
-            }
-        ]
         const test = await Test.create({
             testName: "CET Test " + Date.now(),
-            sections,
+            sections: [
+                {
+                    sectionName: "Physics and Chemistry",
+                    sectionDuration: 90, // 90 minutes
+                    questions: physicsChemQuestions,
+                    totalQuestions: 50
+                },
+                {
+                    sectionName: "Mathematics",
+                    sectionDuration: 90, // 90 minutes
+                    questions: mathsQuestionIds,
+                    totalQuestions: 50
+                }
+            ],
             totalDuration: 180, // Total duration in minutes
-            totalQuestions: sections.reduce((x, e) => e.totalQuestions + x, 0), // Total questions across all sections
+            totalQuestions: 100, // Total questions across all sections
             createdBy: user._id
         });
 
