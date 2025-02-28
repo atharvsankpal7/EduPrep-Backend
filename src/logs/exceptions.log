@@ -1,8 +1,113 @@
-2025-02-27 11:06:18 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
-[96msrc/middleware/auth.middleware.ts[0m:[93m19[0m:[93m21[0m - [91merror[0m[90m TS2339: [0mProperty 'lo' does not exist on type 'Console'.
+2025-02-28 03:27:58 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::5000
+    at Server.setupListenHandle [as _listen2] (node:net:1937:16)
+    at listenInCluster (node:net:1994:12)
+    at Server.listen (node:net:2099:7)
+    at Function.listen (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\express@4.21.2\node_modules\express\lib\application.js:635:24)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\index.ts:10:9
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-02-28 03:53:33 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/admin.controller.ts[0m:[93m48[0m:[93m5[0m - [91merror[0m[90m TS1109: [0mExpression expected.
 
-[7m19[0m             console.lo
-[7m  [0m [91m                    ~~[0m
+[7m48[0m     }
+[7m  [0m [91m    ~[0m
+
+    at createTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1699:10
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1313:32)
+    at Function._load (node:internal/modules/cjs/loader:1123:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-02-28 03:53:43 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/admin.controller.ts[0m:[93m48[0m:[93m5[0m - [91merror[0m[90m TS1109: [0mExpression expected.
+
+[7m48[0m     }
+[7m  [0m [91m    ~[0m
+
+    at createTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1699:10
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1313:32)
+    at Function._load (node:internal/modules/cjs/loader:1123:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-02-28 04:41:49 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/admin.controller.ts[0m:[93m79[0m:[93m6[0m - [91merror[0m[90m TS1313: [0mThe body of an 'if' statement cannot be the empty statement.
+
+[7m79[0m     );
+[7m  [0m [91m     ~[0m
+[96msrc/controllers/admin.controller.ts[0m:[93m65[0m:[93m5[0m - [91merror[0m[90m TS1005: [0m'(' expected.
+
+[7m65[0m     res.status(200).json(
+[7m  [0m [91m    ~~~[0m
+[96msrc/controllers/admin.controller.ts[0m:[93m79[0m:[93m6[0m - [91merror[0m[90m TS1005: [0m')' expected.
+
+[7m79[0m     );
+[7m  [0m [91m     ~[0m
+
+    at createTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1699:10
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1313:32)
+    at Function._load (node:internal/modules/cjs/loader:1123:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-02-28 04:42:03 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/admin.controller.ts[0m:[93m64[0m:[93m5[0m - [91merror[0m[90m TS2588: [0mCannot assign to 'students' because it is a constant.
+
+[7m64[0m     students = students.
+[7m  [0m [91m    ~~~~~~~~[0m
+[96msrc/controllers/admin.controller.ts[0m:[93m65[0m:[93m5[0m - [91merror[0m[90m TS2339: [0mProperty 'res' does not exist on type '(Document<unknown, {}, IUser> & IUser & Required<{ _id: unknown; }> & { __v: number; })[]'.
+
+[7m65[0m     res.status(200).json(
+[7m  [0m [91m    ~~~[0m
+
+    at createTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1699:10
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1313:32)
+    at Function._load (node:internal/modules/cjs/loader:1123:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-02-28 04:42:25 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/admin.controller.ts[0m:[93m65[0m:[93m5[0m - [91merror[0m[90m TS2588: [0mCannot assign to 'students' because it is a constant.
+
+[7m65[0m     students = students.map((student : IUser)=>{
+[7m  [0m [91m    ~~~~~~~~[0m
+
+    at createTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1699:10
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1313:32)
+    at Function._load (node:internal/modules/cjs/loader:1123:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-02-28 04:42:45 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/admin.controller.ts[0m:[93m65[0m:[93m5[0m - [91merror[0m[90m TS2322: [0mType 'void[]' is not assignable to type '(Document<unknown, {}, IUser> & IUser & Required<{ _id: unknown; }> & { __v: number; })[]'.
+  Type 'void' is not assignable to type 'Document<unknown, {}, IUser> & IUser & Required<{ _id: unknown; }> & { __v: number; }'.
+    Type 'void' is not assignable to type 'Document<unknown, {}, IUser>'.
+
+[7m65[0m     students = students.map((student: IUser) => {
+[7m  [0m [91m    ~~~~~~~~[0m
+[96msrc/controllers/admin.controller.ts[0m:[93m66[0m:[93m22[0m - [91merror[0m[90m TS18048: [0m'student.city' is possibly 'undefined'.
+
+[7m66[0m       student.city = student.city.toLowerCase();
+[7m  [0m [91m                     ~~~~~~~~~~~~[0m
 
     at createTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:859:12)
     at reportTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:863:19)
