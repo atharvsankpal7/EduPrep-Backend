@@ -12,7 +12,7 @@ import {IUser} from "../types/databaseSchema.types.ts";
 import {AuthenticatedRequest} from "../middleware/auth.middleware.ts";
 import {Topic} from "../models/topics/topic.model.ts";
 import {getCETQuestions} from "../utils/cetQuestionSelector";
-import {Schema} from "mongoose";
+import mongoose, {Schema} from "mongoose";
 
 // Custom Request interface to include user
 interface Request extends ExpressRequest {
@@ -93,6 +93,7 @@ const getCustomTest = asyncHandler(async (req: Request, res: Response) => {
     if (!req.user) {
         throw new ApiError(401, "Unauthorized");
     }
+    console.log(req.body);
     const {testDetails} = await createCustomTest(req.user, req.body);
     res
         .status(201)
@@ -212,18 +213,18 @@ const createCETTest = asyncHandler(
         const user = req.user!;
 
         const {questionIds} = await getCETQuestions();
-
+        console.log(questionIds.length);
         // Fetch all questions with their topics and subjects
         const questions = await Question.aggregate([
             {
                 $match: {
-                    _id: { $in: questionIds }
+                    _id: { $in: questionIds.map(id => new mongoose.Types.ObjectId(id)) }
                 }
             },
             {
                 $lookup: {
                     from: "topics",
-                    localField: "topicIds",
+                    localField: "topicId",
                     foreignField: "_id",
                     as: "topics"
                 }
@@ -243,7 +244,7 @@ const createCETTest = asyncHandler(
             q.subjects.some((s: { subjectName: string; }) =>
                 s.subjectName.toLowerCase() === 'physics'
             )
-        ).slice(0, 25);
+        ).slice(0, 30);
 
         const chemistryQuestions = questions.filter(q =>
             q.subjects.some((s: { subjectName: string; }) =>
@@ -255,10 +256,10 @@ const createCETTest = asyncHandler(
             q.subjects.some((s: { subjectName: string; }) =>
                 s.subjectName.toLowerCase() === 'mathematics'
             )
-        ).slice(0, 50);
-
+        ).slice(0, 45);
+            console.log(physicsQuestions.length, chemistryQuestions.length, mathsQuestions.length)
         // Validate we have enough questions for each section
-        if (physicsQuestions.length < 25 || chemistryQuestions.length < 25 || mathsQuestions.length < 50) {
+        if (physicsQuestions.length < 30 || chemistryQuestions.length < 25 || mathsQuestions.length < 45) {
             logger.error("Insufficient questions for CET test sections", {
                 physics: physicsQuestions.length,
                 chemistry: chemistryQuestions.length,

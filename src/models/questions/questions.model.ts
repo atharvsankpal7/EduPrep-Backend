@@ -3,7 +3,7 @@ import {DifficultyLevel, IQuestion} from "../../types/databaseSchema.types";
 
 const QuestionSchema = new Schema<IQuestion>(
     {
-        topicIds: [{type: Schema.Types.ObjectId, ref: "Topic", required: true}],
+        topicId: {type: Schema.Types.ObjectId, ref: "Topic", required: true},
         questionText: {type: String, required: true},
         options: {type: [String], required: true},
         answer: {type: Number, required: true},
