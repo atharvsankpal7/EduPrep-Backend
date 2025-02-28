@@ -9,6 +9,12 @@ export const userRegistrationSchema = z
       .string()
       .min(8, "Password must be at least 8 characters long")
       .max(64, "Password length should be less than 64"),
+    city: z.string().min(1, "City is required").optional(),
+    contactNumber: z
+      .string()
+      .min(10, "Contact number must be at least 10 digits")
+      .max(15, "Contact number must be less than 15 digits")
+      .optional(),
   })
   .passthrough();
 
@@ -29,3 +35,12 @@ export const userLoginSchema = z
     message: "At least one of email or URN must be provided",
     path: ["email"], // Assigns the error to the email field for clarity
   });
+
+export const createAdminSchema = z.object({
+  fullName: z.string().min(1, "Full name is required"),
+  email: z.string().email("Invalid email format"),
+  password: z
+    .string()
+    .min(8, "Password must be at least 8 characters long")
+    .max(64, "Password length should be less than 64"),
+});
