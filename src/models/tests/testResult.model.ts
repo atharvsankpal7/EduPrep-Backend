@@ -21,8 +21,10 @@ const TestResultSchema = new Schema<ITestResult>(
             isAutoSubmitted: {type: Boolean},
             tabSwitches: {type: Number},
         },
+        createdAt: {type: Date, default: Date.now},
     },
     {timestamps: true}
+    
 );
 
 export const TestResult = mongoose.model<ITestResult>(
