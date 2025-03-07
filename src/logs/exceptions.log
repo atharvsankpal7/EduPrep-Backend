@@ -1332,3 +1332,41 @@
     at Module.load (node:internal/modules/cjs/loader:1313:32)
     at Function._load (node:internal/modules/cjs/loader:1123:12)
     at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-03-07 10:55:31 [[31merror[39m]: Error: ENOENT: no such file or directory, open 'F:\study_material\codes\__Mega_Project\02BackEnd\src\certificates\key.pem'
+    at Object.openSync (node:fs:562:18)
+    at Object.readFileSync (node:fs:446:35)
+    at Object.<anonymous> (F:\study_material\codes\__Mega_Project\02BackEnd\src\app.ts:19:13)
+    at Module._compile (node:internal/modules/cjs/loader:1562:14)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1618:23)
+    at node:internal/modules/cjs/loader:1699:10
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1313:32)
+    at Function._load (node:internal/modules/cjs/loader:1123:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-03-07 10:55:49 [[31merror[39m]: Error: ENOENT: no such file or directory, open 'F:\study_material\codes\__Mega_Project\02BackEnd\src\certificates\key.pem'
+    at Object.openSync (node:fs:562:18)
+    at Object.readFileSync (node:fs:446:35)
+    at Object.<anonymous> (F:\study_material\codes\__Mega_Project\02BackEnd\src\app.ts:19:13)
+    at Module._compile (node:internal/modules/cjs/loader:1562:14)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1618:23)
+    at node:internal/modules/cjs/loader:1699:10
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1313:32)
+    at Function._load (node:internal/modules/cjs/loader:1123:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-03-07 11:15:35 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/test.controller.ts[0m:[93m298[0m:[93m24[0m - [91merror[0m[90m TS2304: [0mCannot find name 'user'.
+
+[7m298[0m             createdBy: user?._id
+[7m   [0m [91m                       ~~~~[0m
+
+    at createTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1699:10
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1313:32)
+    at Function._load (node:internal/modules/cjs/loader:1123:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)

@@ -211,9 +211,7 @@ const getTestWithId = asyncHandler(async (req: Request, res: Response) => {
 const createCETTest = asyncHandler(
     async (req: AuthenticatedRequest, res: Response) => {
         const user = req.user!;
-
         const {questionIds} = await getCETQuestions();
-        console.log(questionIds.length);
         // Fetch all questions with their topics and subjects
         const questions = await Question.aggregate([
             {
@@ -244,20 +242,19 @@ const createCETTest = asyncHandler(
             q.subjects.some((s: { subjectName: string; }) =>
                 s.subjectName.toLowerCase() === 'physics'
             )
-        ).slice(0, 30);
+        ).slice(0, 50);
 
         const chemistryQuestions = questions.filter(q =>
             q.subjects.some((s: { subjectName: string; }) =>
                 s.subjectName.toLowerCase() === 'chemistry'
             )
-        ).slice(0, 25);
+        ).slice(0, 50);
 
         const mathsQuestions = questions.filter(q =>
             q.subjects.some((s: { subjectName: string; }) =>
                 s.subjectName.toLowerCase() === 'mathematics'
             )
-        ).slice(0, 45);
-            console.log(physicsQuestions.length, chemistryQuestions.length, mathsQuestions.length)
+        ).slice(0, 50);
         // Validate we have enough questions for each section
         if (physicsQuestions.length < 30 || chemistryQuestions.length < 25 || mathsQuestions.length < 45) {
             logger.error("Insufficient questions for CET test sections", {
