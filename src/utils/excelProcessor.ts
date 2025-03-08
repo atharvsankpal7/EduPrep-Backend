@@ -4,12 +4,13 @@ import { ExcelRowSchema } from "../ZodSchema/excelSchema";
 import logger from "./logger";
 import { ApiError } from "./ApiError";
 import { z } from "zod";
+import { log } from "winston";
 
 interface ProcessedRow {
   questionText: string;
   options: string[];
   answer: number;
-  topicIds: string[];
+  topicId: string;
   explanation?: string;
   standard: number;
 }
@@ -21,34 +22,33 @@ export async function processExcelData(rows: any[]): Promise<ProcessedRow[]> {
   try {
     for (const [index, row] of rows.entries()) {
       // Validate row data
-      const validatedRow = ExcelRowSchema.parse(row);
+      const validation = ExcelRowSchema.safeParse(row);
+      if(!validation.success) {
+        logger.error(`Invalid data in Excel row ${index + 2}: ${JSON.stringify(row)}`);
+        continue;
+        // throw new ApiError(400, `Invalid data in Excel row ${index + 2}`);
+      }
+      const validatedRow = validation.data;
+      // Process topic
+      const topicName = validatedRow.topics.toLowerCase().trimStart();
+      let topic = topicCache.get(topicName);
 
-      // Process topics
-      const topicIds: string[] = [];
-      const topics = validatedRow.topics
-        .split(",")
-        .map((t) => t.trim().toLowerCase());
-
-      for (const topicName of topics) {
-        let topic = topicCache.get(topicName);
+      if (!topic) {
+        topic = await Topic.findOne({ topicName });
 
         if (!topic) {
-          topic = await Topic.findOne({ topicName });
-
-          if (!topic) {
-            logger.error(
-              `Invalid topic in Excel row ${index + 2}: ${topicName}`
-            );
-            throw new ApiError(
-              400,
-              `Topic "${topicName}" not found in database. Please check row ${
-                index + 2
-              } in Excel file.`
-            );
-          }
-          topicCache.set(topicName, topic);
-        }
-        topicIds.push(topic._id.toString());
+          
+          logger.error(
+            `Invalid topic in Excel row ${index + 2}: ${topicName}`
+          );
+          continue;
+          // throw new ApiError(
+          //   400,
+          //   `Topic "${topicName}" not found in database. Please check row ${
+          //     index + 2
+          //   } in Excel file.`
+          // );
+        } else topicCache.set(topicName, topic);
       }
 
       // Prepare question data
@@ -61,7 +61,7 @@ export async function processExcelData(rows: any[]): Promise<ProcessedRow[]> {
           validatedRow.option_4,
         ],
         answer: validatedRow.answer,
-        topicIds,
+        topicId: topic._id.toString(),
         explanation: validatedRow.explanation,
         standard: validatedRow.standard,
       });
