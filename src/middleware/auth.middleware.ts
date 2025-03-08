@@ -16,6 +16,7 @@ export const authMiddleware = asyncHandler(
     async (req: AuthenticatedRequest, _: express.Response, next: express.NextFunction) => {
 
         try {
+            console.log("trying to login ")
             const token =
                 req.cookies?.accessToken || req.header("Authorization")?.replace("Bearer ", "");
             if (!token) {

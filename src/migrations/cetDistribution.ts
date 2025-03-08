@@ -44,7 +44,8 @@ const physics11Distribution = {
     { topicName: "Sound", questionCount: 1, marksPerQuestion: 1 },
     { topicName: "Optics", questionCount: 1, marksPerQuestion: 1 },
     { topicName: "Electrostatics", questionCount: 1, marksPerQuestion: 1 },
-    { topicName: "Semiconductors", questionCount: 1, marksPerQuestion: 1 }
+    { topicName: "Semiconductors", questionCount: 1, marksPerQuestion: 1 },
+    { topicName: "measures of dispersion", questionCount: 1, marksPerQuestion: 1 }
   ]
 };
 
@@ -56,15 +57,15 @@ const mathsDistribution = {
     { topicName: "Matrics", questionCount: 2, marksPerQuestion: 2 },
     { topicName: "Trigonometric Functions", questionCount: 3, marksPerQuestion: 2 },
     { topicName: "Pair of Straight Lines", questionCount: 2, marksPerQuestion: 2 },
-    { topicName: "Vectors", questionCount: 4, marksPerQuestion: 2 },
+    { topicName: "Vectors", questionCount: 5, marksPerQuestion: 2 },
     { topicName: "Line and Plane", questionCount: 4, marksPerQuestion: 2 },
     { topicName: "Linear Programming", questionCount: 1, marksPerQuestion: 2 },
-    { topicName: "Differentiation", questionCount: 4, marksPerQuestion: 2 },
+    { topicName: "Differentiation", questionCount: 5, marksPerQuestion: 2 },
     { topicName: "Applications of Derivatives", questionCount: 3, marksPerQuestion: 2 },
     { topicName: "Indefinite Integration", questionCount: 3, marksPerQuestion: 2 },
-    { topicName: "Definite Integration", questionCount: 3, marksPerQuestion: 2 },
+    { topicName: "Definite Integration", questionCount: 4, marksPerQuestion: 2 },
     { topicName: "Application of Definite Integration", questionCount: 2, marksPerQuestion: 2 },
-    { topicName: "Differential Equations", questionCount: 3, marksPerQuestion: 2 },
+    { topicName: "Differential Equations", questionCount: 5, marksPerQuestion: 2 },
     { topicName: "Probability Distributions", questionCount: 2, marksPerQuestion: 2 },
     { topicName: "Binomial Distribution", questionCount: 2, marksPerQuestion: 2 }
   ]
@@ -83,7 +84,9 @@ const maths11Distribution = {
     { topicName: "Functions", questionCount: 1, marksPerQuestion: 2 },
     { topicName: "Limits", questionCount: 1, marksPerQuestion: 2 },
     { topicName: "Continuity", questionCount: 1, marksPerQuestion: 2 },
-    { topicName: "Conic Section", questionCount: 1, marksPerQuestion: 2 }
+    { topicName: "Conic Section", questionCount: 1, marksPerQuestion: 2 },
+    { topicName: "determinants and matrices", questionCount: 0, marksPerQuestion: 2 },
+    { topicName: "sequences and series", questionCount: 0, marksPerQuestion: 2 },
   ]
 };
 
@@ -101,12 +104,13 @@ const chemistryDistribution = {
     { topicName: "Transition and Inner Transition Elements", questionCount: 2, marksPerQuestion: 1 },
     { topicName: "Coordination Compounds", questionCount: 2, marksPerQuestion: 1 },
     { topicName: "Halogen Derivatives", questionCount: 2, marksPerQuestion: 1 },
-    { topicName: "Alcohols, Phenols and Ethers", questionCount: 3, marksPerQuestion: 1 },
+    { topicName: "Alcohols, Phenols, and Ethers", questionCount: 3, marksPerQuestion: 1 },
     { topicName: "Aldehydes, Ketones and Carboxylic Acids", questionCount: 3, marksPerQuestion: 1 },
     { topicName: "Amines", questionCount: 3, marksPerQuestion: 1 },
     { topicName: "Biomolecules", questionCount: 2, marksPerQuestion: 1 },
     { topicName: "Introduction to Polymer Chemistry", questionCount: 2, marksPerQuestion: 1 },
-    { topicName: "Green Chemistry and Nanochemistry", questionCount: 2, marksPerQuestion: 1 }
+    { topicName: "greenchemistry and nanochemistry", questionCount: 2, marksPerQuestion: 1 },
+    { topicName: "Metallurgy", questionCount: 0, marksPerQuestion: 1 },
   ]
 };
 
@@ -120,10 +124,12 @@ const chemistry11Distribution = {
     { topicName: "Redox Reactions", questionCount: 1, marksPerQuestion: 1 },
     { topicName: "Elements of Group 1 and 2", questionCount: 1, marksPerQuestion: 1 },
     { topicName: "States of Matter", questionCount: 1, marksPerQuestion: 1 },
-    { topicName: "Adsorption and Colloids", questionCount: 1, marksPerQuestion: 1 },
+    // { topicName: "Adsorption and Colloids", questionCount: 1, marksPerQuestion: 1 },
     { topicName: "Basic Principles of Organic Chemistry", questionCount: 1, marksPerQuestion: 1 },
     { topicName: "Hydrocarbons", questionCount: 1, marksPerQuestion: 1 },
-    { topicName: "Chemistry in Everyday Life", questionCount: 1, marksPerQuestion: 1 }
+    { topicName: "Chemistry in Everyday Life", questionCount: 1, marksPerQuestion: 1 },
+    { topicName: "Surface Chemistry", questionCount: 0, marksPerQuestion: 1 },
+    { topicName: "Hydrogen", questionCount: 1, marksPerQuestion: 1 },
   ]
 };
 

@@ -119,3 +119,1254 @@
     at Module.load (node:internal/modules/cjs/loader:1313:32)
     at Function._load (node:internal/modules/cjs/loader:1123:12)
     at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-02-28 06:25:36 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/testHistory.controller.ts[0m:[93m147[0m:[93m31[0m - [91merror[0m[90m TS7006: [0mParameter 'topic' implicitly has an 'any' type.
+
+[7m147[0m       question.topics.forEach(topic => {
+[7m   [0m [91m                              ~~~~~[0m
+[96msrc/controllers/testHistory.controller.ts[0m:[93m192[0m:[93m31[0m - [91merror[0m[90m TS2339: [0mProperty 'createdAt' does not exist on type 'Document<unknown, {}, ITestResult> & ITestResult & Required<{ _id: unknown; }> & { __v: number; }'.
+
+[7m192[0m         createdAt: testResult.createdAt
+[7m   [0m [91m                              ~~~~~~~~~[0m
+[96msrc/controllers/testHistory.controller.ts[0m:[93m214[0m:[93m3[0m - [91merror[0m[90m TS2345: [0mArgument of type '(req: AuthenticatedRequest, res: Response) => Promise<Response<any, Record<string, any>> | undefined>' is not assignable to parameter of type '(req: Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>, res: Response<any, Record<string, any>>, next: NextFunction) => Promise<...>'.
+  Type 'Promise<Response<any, Record<string, any>> | undefined>' is not assignable to type 'Promise<void>'.
+    Type 'Response<any, Record<string, any>> | undefined' is not assignable to type 'void'.
+      Type 'Response<any, Record<string, any>>' is not assignable to type 'void'.
+
+[7m214[0m   async (req: AuthenticatedRequest, res: Response) => {
+[7m   [0m [91m  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/testHistory.controller.ts[0m:[93m244[0m:[93m48[0m - [91merror[0m[90m TS18046: [0m'test._id' is of type 'unknown'.
+
+[7m244[0m     const testMap = new Map(tests.map(test => [test._id.toString(), test]));
+[7m   [0m [91m                                               ~~~~~~~~[0m
+[96msrc/controllers/testHistory.controller.ts[0m:[93m291[0m:[93m31[0m - [91merror[0m[90m TS7006: [0mParameter 'topic' implicitly has an 'any' type.
+
+[7m291[0m       question.topics.forEach(topic => {
+[7m   [0m [91m                              ~~~~~[0m
+
+    at createTSError (/home/project/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/project/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/project/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/project/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/project/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:144:14855)
+    at Object.require.extensions.<computed> [as .ts] (/home/project/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:144:12820)
+    at Module._load (node:internal/modules/cjs/loader:144:10273)
+    at Module.require (node:internal/modules/cjs/loader:144:13097)
+2025-02-28 06:25:48 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/testHistory.controller.ts[0m:[93m147[0m:[93m31[0m - [91merror[0m[90m TS7006: [0mParameter 'topic' implicitly has an 'any' type.
+
+[7m147[0m       question.topics.forEach(topic => {
+[7m   [0m [91m                              ~~~~~[0m
+[96msrc/controllers/testHistory.controller.ts[0m:[93m192[0m:[93m31[0m - [91merror[0m[90m TS2339: [0mProperty 'createdAt' does not exist on type 'Document<unknown, {}, ITestResult> & ITestResult & Required<{ _id: unknown; }> & { __v: number; }'.
+
+[7m192[0m         createdAt: testResult.createdAt
+[7m   [0m [91m                              ~~~~~~~~~[0m
+[96msrc/controllers/testHistory.controller.ts[0m:[93m214[0m:[93m3[0m - [91merror[0m[90m TS2345: [0mArgument of type '(req: AuthenticatedRequest, res: Response) => Promise<Response<any, Record<string, any>> | undefined>' is not assignable to parameter of type '(req: Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>, res: Response<any, Record<string, any>>, next: NextFunction) => Promise<...>'.
+  Type 'Promise<Response<any, Record<string, any>> | undefined>' is not assignable to type 'Promise<void>'.
+    Type 'Response<any, Record<string, any>> | undefined' is not assignable to type 'void'.
+      Type 'Response<any, Record<string, any>>' is not assignable to type 'void'.
+
+[7m214[0m   async (req: AuthenticatedRequest, res: Response) => {
+[7m   [0m [91m  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/testHistory.controller.ts[0m:[93m244[0m:[93m48[0m - [91merror[0m[90m TS18046: [0m'test._id' is of type 'unknown'.
+
+[7m244[0m     const testMap = new Map(tests.map(test => [test._id.toString(), test]));
+[7m   [0m [91m                                               ~~~~~~~~[0m
+[96msrc/controllers/testHistory.controller.ts[0m:[93m291[0m:[93m31[0m - [91merror[0m[90m TS7006: [0mParameter 'topic' implicitly has an 'any' type.
+
+[7m291[0m       question.topics.forEach(topic => {
+[7m   [0m [91m                              ~~~~~[0m
+
+    at createTSError (/home/project/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/project/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/project/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/project/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/project/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:144:14855)
+    at Object.require.extensions.<computed> [as .ts] (/home/project/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:144:12820)
+    at Module._load (node:internal/modules/cjs/loader:144:10273)
+    at Module.require (node:internal/modules/cjs/loader:144:13097)
+2025-02-28 06:36:58 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/testHistory.controller.ts[0m:[93m147[0m:[93m31[0m - [91merror[0m[90m TS7006: [0mParameter 'topic' implicitly has an 'any' type.
+
+[7m147[0m       question.topics.forEach(topic => {
+[7m   [0m [91m                              ~~~~~[0m
+[96msrc/controllers/testHistory.controller.ts[0m:[93m192[0m:[93m31[0m - [91merror[0m[90m TS2339: [0mProperty 'createdAt' does not exist on type 'Document<unknown, {}, ITestResult> & ITestResult & Required<{ _id: unknown; }> & { __v: number; }'.
+
+[7m192[0m         createdAt: testResult.createdAt
+[7m   [0m [91m                              ~~~~~~~~~[0m
+[96msrc/controllers/testHistory.controller.ts[0m:[93m214[0m:[93m3[0m - [91merror[0m[90m TS2345: [0mArgument of type '(req: AuthenticatedRequest, res: Response) => Promise<Response<any, Record<string, any>> | undefined>' is not assignable to parameter of type '(req: Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>, res: Response<any, Record<string, any>>, next: NextFunction) => Promise<...>'.
+  Type 'Promise<Response<any, Record<string, any>> | undefined>' is not assignable to type 'Promise<void>'.
+    Type 'Response<any, Record<string, any>> | undefined' is not assignable to type 'void'.
+      Type 'Response<any, Record<string, any>>' is not assignable to type 'void'.
+
+[7m214[0m   async (req: AuthenticatedRequest, res: Response) => {
+[7m   [0m [91m  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/testHistory.controller.ts[0m:[93m244[0m:[93m48[0m - [91merror[0m[90m TS18046: [0m'test._id' is of type 'unknown'.
+
+[7m244[0m     const testMap = new Map(tests.map(test => [test._id.toString(), test]));
+[7m   [0m [91m                                               ~~~~~~~~[0m
+[96msrc/controllers/testHistory.controller.ts[0m:[93m291[0m:[93m31[0m - [91merror[0m[90m TS7006: [0mParameter 'topic' implicitly has an 'any' type.
+
+[7m291[0m       question.topics.forEach(topic => {
+[7m   [0m [91m                              ~~~~~[0m
+
+    at createTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1699:10
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1313:32)
+    at Function._load (node:internal/modules/cjs/loader:1123:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-02-28 06:53:43 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/testHistory.controller.ts[0m:[93m147[0m:[93m31[0m - [91merror[0m[90m TS7006: [0mParameter 'topic' implicitly has an 'any' type.
+
+[7m147[0m       question.topics.forEach(topic => {
+[7m   [0m [91m                              ~~~~~[0m
+[96msrc/controllers/testHistory.controller.ts[0m:[93m192[0m:[93m31[0m - [91merror[0m[90m TS2339: [0mProperty 'createdAt' does not exist on type 'Document<unknown, {}, ITestResult> & ITestResult & Required<{ _id: unknown; }> & { __v: number; }'.
+
+[7m192[0m         createdAt: testResult.createdAt
+[7m   [0m [91m                              ~~~~~~~~~[0m
+
+    at createTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1699:10
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1313:32)
+    at Function._load (node:internal/modules/cjs/loader:1123:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-02-28 06:54:45 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/testHistory.controller.ts[0m:[93m192[0m:[93m31[0m - [91merror[0m[90m TS2339: [0mProperty 'createdAt' does not exist on type 'Document<unknown, {}, ITestResult> & ITestResult & Required<{ _id: unknown; }> & { __v: number; }'.
+
+[7m192[0m         createdAt: testResult.createdAt
+[7m   [0m [91m                              ~~~~~~~~~[0m
+
+    at createTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1699:10
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1313:32)
+    at Function._load (node:internal/modules/cjs/loader:1123:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-02-28 10:45:13 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/middleware/auth.middleware.ts[0m:[93m37[0m:[93m13[0m - [91merror[0m[90m TS2322: [0mType '(Document<unknown, {}, IUser> & IUser & Required<{ _id: unknown; }> & { __v: number; }) | null' is not assignable to type '(Document<unknown, {}, IUser> & IUser) | undefined'.
+  Type 'null' is not assignable to type '(Document<unknown, {}, IUser> & IUser) | undefined'.
+
+[7m37[0m             req.user = user;
+[7m  [0m [91m            ~~~~~~~~[0m
+
+    at createTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1699:10
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1313:32)
+    at Function._load (node:internal/modules/cjs/loader:1123:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-02-28 10:45:30 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/middleware/auth.middleware.ts[0m:[93m37[0m:[93m13[0m - [91merror[0m[90m TS2322: [0mType '(Document<unknown, {}, IUser> & IUser & Required<{ _id: unknown; }> & { __v: number; }) | null' is not assignable to type '(Document<unknown, {}, IUser> & IUser) | undefined'.
+  Type 'null' is not assignable to type '(Document<unknown, {}, IUser> & IUser) | undefined'.
+
+[7m37[0m             req.user = user;
+[7m  [0m [91m            ~~~~~~~~[0m
+
+    at createTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1699:10
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1313:32)
+    at Function._load (node:internal/modules/cjs/loader:1123:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-02-28 10:48:44 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/testResult.controller.ts[0m:[93m74[0m:[93m26[0m - [91merror[0m[90m TS2304: [0mCannot find name 'mongoose'.
+
+[7m74[0m                 _id: new mongoose.Types.ObjectId(id)
+[7m  [0m [91m                         ~~~~~~~~[0m
+
+    at createTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1699:10
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1313:32)
+    at Function._load (node:internal/modules/cjs/loader:1123:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-02-28 10:51:27 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/testResult.controller.ts[0m:[93m74[0m:[93m26[0m - [91merror[0m[90m TS2304: [0mCannot find name 'mongoose'.
+
+[7m74[0m                 _id: new mongoose.Types.ObjectId(id)
+[7m  [0m [91m                         ~~~~~~~~[0m
+
+    at createTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1699:10
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1313:32)
+    at Function._load (node:internal/modules/cjs/loader:1123:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-02-28 11:03:50 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/testResult.controller.ts[0m:[93m135[0m:[93m52[0m - [91merror[0m[90m TS7006: [0mParameter 'q' implicitly has an 'any' type.
+
+[7m135[0m     const correctAnswers = questionAnalysis.filter(q => q.isCorrect).length;
+[7m   [0m [91m                                                   ~[0m
+
+    at createTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1699:10
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1313:32)
+    at Function._load (node:internal/modules/cjs/loader:1123:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-02-28 11:39:13 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/utils/excelProcessor.ts[0m:[93m29[0m:[93m10[0m - [91merror[0m[90m TS2339: [0mProperty 'map' does not exist on type 'string'.
+
+[7m29[0m         .map((t) => t.trim().toLowerCase());
+[7m  [0m [91m         ~~~[0m
+[96msrc/utils/excelProcessor.ts[0m:[93m29[0m:[93m15[0m - [91merror[0m[90m TS7006: [0mParameter 't' implicitly has an 'any' type.
+
+[7m29[0m         .map((t) => t.trim().toLowerCase());
+[7m  [0m [91m              ~[0m
+
+    at createTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1699:10
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1313:32)
+    at Function._load (node:internal/modules/cjs/loader:1123:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-02-28 11:39:27 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/utils/excelProcessor.ts[0m:[93m28[0m:[93m42[0m - [91merror[0m[90m TS2339: [0mProperty 'map' does not exist on type 'string'.
+
+[7m28[0m       const topics = validatedRow.topics.map((t) => t.trim().toLowerCase());
+[7m  [0m [91m                                         ~~~[0m
+[96msrc/utils/excelProcessor.ts[0m:[93m28[0m:[93m47[0m - [91merror[0m[90m TS7006: [0mParameter 't' implicitly has an 'any' type.
+
+[7m28[0m       const topics = validatedRow.topics.map((t) => t.trim().toLowerCase());
+[7m  [0m [91m                                              ~[0m
+
+    at createTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1699:10
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1313:32)
+    at Function._load (node:internal/modules/cjs/loader:1123:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-02-28 11:41:03 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/utils/excelProcessor.ts[0m:[93m33[0m:[93m38[0m - [91merror[0m[90m TS2551: [0mProperty 'topic' does not exist on type '{ answer: number; explanation: string; standard: number; topics: string; subject: string; question: string; option_1: string; option_2: string; option_3: string; option_4: string; }'. Did you mean 'topics'?
+
+[7m33[0m       const topicName = validatedRow.topic.toLowerCase();
+[7m  [0m [91m                                     ~~~~~[0m
+
+    at createTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1699:10
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1313:32)
+    at Function._load (node:internal/modules/cjs/loader:1123:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-02-28 11:41:15 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/utils/excelProcessor.ts[0m:[93m27[0m:[93m38[0m - [91merror[0m[90m TS2551: [0mProperty 'topic' does not exist on type '{ answer: number; explanation: string; standard: number; topics: string; subject: string; question: string; option_1: string; option_2: string; option_3: string; option_4: string; }'. Did you mean 'topics'?
+
+[7m27[0m       const topicName = validatedRow.topic.toLowerCase();
+[7m  [0m [91m                                     ~~~~~[0m
+
+    at createTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1699:10
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1313:32)
+    at Function._load (node:internal/modules/cjs/loader:1123:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-02-28 11:43:50 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/utils/excelProcessor.ts[0m:[93m29[0m:[93m38[0m - [91merror[0m[90m TS2339: [0mProperty 'topics' does not exist on type 'never'.
+
+[7m29[0m       const topicName = validatedRow.topics.toLowerCase();
+[7m  [0m [91m                                     ~~~~~~[0m
+[96msrc/utils/excelProcessor.ts[0m:[93m50[0m:[93m36[0m - [91merror[0m[90m TS2339: [0mProperty 'question' does not exist on type 'never'.
+
+[7m50[0m         questionText: validatedRow.question,
+[7m  [0m [91m                                   ~~~~~~~~[0m
+[96msrc/utils/excelProcessor.ts[0m:[93m52[0m:[93m24[0m - [91merror[0m[90m TS2339: [0mProperty 'option_1' does not exist on type 'never'.
+
+[7m52[0m           validatedRow.option_1,
+[7m  [0m [91m                       ~~~~~~~~[0m
+[96msrc/utils/excelProcessor.ts[0m:[93m53[0m:[93m24[0m - [91merror[0m[90m TS2339: [0mProperty 'option_2' does not exist on type 'never'.
+
+[7m53[0m           validatedRow.option_2,
+[7m  [0m [91m                       ~~~~~~~~[0m
+[96msrc/utils/excelProcessor.ts[0m:[93m54[0m:[93m24[0m - [91merror[0m[90m TS2339: [0mProperty 'option_3' does not exist on type 'never'.
+
+[7m54[0m           validatedRow.option_3,
+[7m  [0m [91m                       ~~~~~~~~[0m
+[96msrc/utils/excelProcessor.ts[0m:[93m55[0m:[93m24[0m - [91merror[0m[90m TS2339: [0mProperty 'option_4' does not exist on type 'never'.
+
+[7m55[0m           validatedRow.option_4,
+[7m  [0m [91m                       ~~~~~~~~[0m
+[96msrc/utils/excelProcessor.ts[0m:[93m57[0m:[93m30[0m - [91merror[0m[90m TS2339: [0mProperty 'answer' does not exist on type 'never'.
+
+[7m57[0m         answer: validatedRow.answer,
+[7m  [0m [91m                             ~~~~~~[0m
+[96msrc/utils/excelProcessor.ts[0m:[93m59[0m:[93m35[0m - [91merror[0m[90m TS2339: [0mProperty 'explanation' does not exist on type 'never'.
+
+[7m59[0m         explanation: validatedRow.explanation,
+[7m  [0m [91m                                  ~~~~~~~~~~~[0m
+[96msrc/utils/excelProcessor.ts[0m:[93m60[0m:[93m32[0m - [91merror[0m[90m TS2339: [0mProperty 'standard' does not exist on type 'never'.
+
+[7m60[0m         standard: validatedRow.standard,
+[7m  [0m [91m                               ~~~~~~~~[0m
+[96msrc/utils/excelProcessor.ts[0m:[93m27[0m:[93m8[0m - [91merror[0m[90m TS1128: [0mDeclaration or statement expected.
+
+[7m27[0m       })
+[7m  [0m [91m       ~[0m
+
+    at createTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1699:10
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1313:32)
+    at Function._load (node:internal/modules/cjs/loader:1123:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-02-28 11:45:27 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/utils/excelProcessor.ts[0m:[93m25[0m:[93m23[0m - [91merror[0m[90m TS1003: [0mIdentifier expected.
+
+[7m25[0m       if(validatedRow.) {
+[7m  [0m [91m                      ~[0m
+
+    at createTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1699:10
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1313:32)
+    at Function._load (node:internal/modules/cjs/loader:1123:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-02-28 11:45:38 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/utils/excelProcessor.ts[0m:[93m29[0m:[93m38[0m - [91merror[0m[90m TS2339: [0mProperty 'topics' does not exist on type 'never'.
+
+[7m29[0m       const topicName = validatedRow.topics.toLowerCase();
+[7m  [0m [91m                                     ~~~~~~[0m
+[96msrc/utils/excelProcessor.ts[0m:[93m50[0m:[93m36[0m - [91merror[0m[90m TS2339: [0mProperty 'question' does not exist on type 'never'.
+
+[7m50[0m         questionText: validatedRow.question,
+[7m  [0m [91m                                   ~~~~~~~~[0m
+[96msrc/utils/excelProcessor.ts[0m:[93m52[0m:[93m24[0m - [91merror[0m[90m TS2339: [0mProperty 'option_1' does not exist on type 'never'.
+
+[7m52[0m           validatedRow.option_1,
+[7m  [0m [91m                       ~~~~~~~~[0m
+[96msrc/utils/excelProcessor.ts[0m:[93m53[0m:[93m24[0m - [91merror[0m[90m TS2339: [0mProperty 'option_2' does not exist on type 'never'.
+
+[7m53[0m           validatedRow.option_2,
+[7m  [0m [91m                       ~~~~~~~~[0m
+[96msrc/utils/excelProcessor.ts[0m:[93m54[0m:[93m24[0m - [91merror[0m[90m TS2339: [0mProperty 'option_3' does not exist on type 'never'.
+
+[7m54[0m           validatedRow.option_3,
+[7m  [0m [91m                       ~~~~~~~~[0m
+[96msrc/utils/excelProcessor.ts[0m:[93m55[0m:[93m24[0m - [91merror[0m[90m TS2339: [0mProperty 'option_4' does not exist on type 'never'.
+
+[7m55[0m           validatedRow.option_4,
+[7m  [0m [91m                       ~~~~~~~~[0m
+[96msrc/utils/excelProcessor.ts[0m:[93m57[0m:[93m30[0m - [91merror[0m[90m TS2339: [0mProperty 'answer' does not exist on type 'never'.
+
+[7m57[0m         answer: validatedRow.answer,
+[7m  [0m [91m                             ~~~~~~[0m
+[96msrc/utils/excelProcessor.ts[0m:[93m59[0m:[93m35[0m - [91merror[0m[90m TS2339: [0mProperty 'explanation' does not exist on type 'never'.
+
+[7m59[0m         explanation: validatedRow.explanation,
+[7m  [0m [91m                                  ~~~~~~~~~~~[0m
+[96msrc/utils/excelProcessor.ts[0m:[93m60[0m:[93m32[0m - [91merror[0m[90m TS2339: [0mProperty 'standard' does not exist on type 'never'.
+
+[7m60[0m         standard: validatedRow.standard,
+[7m  [0m [91m                               ~~~~~~~~[0m
+
+    at createTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1699:10
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1313:32)
+    at Function._load (node:internal/modules/cjs/loader:1123:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-02-28 11:45:47 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/utils/excelProcessor.ts[0m:[93m29[0m:[93m38[0m - [91merror[0m[90m TS2339: [0mProperty 'topics' does not exist on type 'SafeParseError<{ answer: string | number; standard: number; topics: string; subject: string; question: string; option_1: string | number; option_2: string | number; option_3: string | number; option_4: string | number; explanation?: string | undefined; }>'.
+
+[7m29[0m       const topicName = validatedRow.topics.toLowerCase();
+[7m  [0m [91m                                     ~~~~~~[0m
+[96msrc/utils/excelProcessor.ts[0m:[93m50[0m:[93m36[0m - [91merror[0m[90m TS2339: [0mProperty 'question' does not exist on type 'SafeParseError<{ answer: string | number; standard: number; topics: string; subject: string; question: string; option_1: string | number; option_2: string | number; option_3: string | number; option_4: string | number; explanation?: string | undefined; }>'.
+
+[7m50[0m         questionText: validatedRow.question,
+[7m  [0m [91m                                   ~~~~~~~~[0m
+[96msrc/utils/excelProcessor.ts[0m:[93m52[0m:[93m24[0m - [91merror[0m[90m TS2339: [0mProperty 'option_1' does not exist on type 'SafeParseError<{ answer: string | number; standard: number; topics: string; subject: string; question: string; option_1: string | number; option_2: string | number; option_3: string | number; option_4: string | number; explanation?: string | undefined; }>'.
+
+[7m52[0m           validatedRow.option_1,
+[7m  [0m [91m                       ~~~~~~~~[0m
+[96msrc/utils/excelProcessor.ts[0m:[93m53[0m:[93m24[0m - [91merror[0m[90m TS2339: [0mProperty 'option_2' does not exist on type 'SafeParseError<{ answer: string | number; standard: number; topics: string; subject: string; question: string; option_1: string | number; option_2: string | number; option_3: string | number; option_4: string | number; explanation?: string | undefined; }>'.
+
+[7m53[0m           validatedRow.option_2,
+[7m  [0m [91m                       ~~~~~~~~[0m
+[96msrc/utils/excelProcessor.ts[0m:[93m54[0m:[93m24[0m - [91merror[0m[90m TS2339: [0mProperty 'option_3' does not exist on type 'SafeParseError<{ answer: string | number; standard: number; topics: string; subject: string; question: string; option_1: string | number; option_2: string | number; option_3: string | number; option_4: string | number; explanation?: string | undefined; }>'.
+
+[7m54[0m           validatedRow.option_3,
+[7m  [0m [91m                       ~~~~~~~~[0m
+[96msrc/utils/excelProcessor.ts[0m:[93m55[0m:[93m24[0m - [91merror[0m[90m TS2339: [0mProperty 'option_4' does not exist on type 'SafeParseError<{ answer: string | number; standard: number; topics: string; subject: string; question: string; option_1: string | number; option_2: string | number; option_3: string | number; option_4: string | number; explanation?: string | undefined; }>'.
+
+[7m55[0m           validatedRow.option_4,
+[7m  [0m [91m                       ~~~~~~~~[0m
+[96msrc/utils/excelProcessor.ts[0m:[93m57[0m:[93m30[0m - [91merror[0m[90m TS2339: [0mProperty 'answer' does not exist on type 'SafeParseError<{ answer: string | number; standard: number; topics: string; subject: string; question: string; option_1: string | number; option_2: string | number; option_3: string | number; option_4: string | number; explanation?: string | undefined; }>'.
+
+[7m57[0m         answer: validatedRow.answer,
+[7m  [0m [91m                             ~~~~~~[0m
+[96msrc/utils/excelProcessor.ts[0m:[93m59[0m:[93m35[0m - [91merror[0m[90m TS2339: [0mProperty 'explanation' does not exist on type 'SafeParseError<{ answer: string | number; standard: number; topics: string; subject: string; question: string; option_1: string | number; option_2: string | number; option_3: string | number; option_4: string | number; explanation?: string | undefined; }>'.
+
+[7m59[0m         explanation: validatedRow.explanation,
+[7m  [0m [91m                                  ~~~~~~~~~~~[0m
+[96msrc/utils/excelProcessor.ts[0m:[93m60[0m:[93m32[0m - [91merror[0m[90m TS2339: [0mProperty 'standard' does not exist on type 'SafeParseError<{ answer: string | number; standard: number; topics: string; subject: string; question: string; option_1: string | number; option_2: string | number; option_3: string | number; option_4: string | number; explanation?: string | undefined; }>'.
+
+[7m60[0m         standard: validatedRow.standard,
+[7m  [0m [91m                               ~~~~~~~~[0m
+
+    at createTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1699:10
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1313:32)
+    at Function._load (node:internal/modules/cjs/loader:1123:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-02-28 11:45:59 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/utils/excelProcessor.ts[0m:[93m28[0m:[93m7[0m - [91merror[0m[90m TS2588: [0mCannot assign to 'validatedRow' because it is a constant.
+
+[7m28[0m       validatedRow = validatedRow.data;
+[7m  [0m [91m      ~~~~~~~~~~~~[0m
+[96msrc/utils/excelProcessor.ts[0m:[93m30[0m:[93m38[0m - [91merror[0m[90m TS2339: [0mProperty 'topics' does not exist on type 'SafeParseReturnType<{ answer: string | number; standard: number; topics: string; subject: string; question: string; option_1: string | number; option_2: string | number; option_3: string | number; option_4: string | number; explanation?: string | undefined; }, { ...; }>'.
+  Property 'topics' does not exist on type 'SafeParseSuccess<{ answer: number; explanation: string; standard: number; topics: string; subject: string; question: string; option_1: string; option_2: string; option_3: string; option_4: string; }>'.
+
+[7m30[0m       const topicName = validatedRow.topics.toLowerCase();
+[7m  [0m [91m                                     ~~~~~~[0m
+[96msrc/utils/excelProcessor.ts[0m:[93m51[0m:[93m36[0m - [91merror[0m[90m TS2339: [0mProperty 'question' does not exist on type 'SafeParseReturnType<{ answer: string | number; standard: number; topics: string; subject: string; question: string; option_1: string | number; option_2: string | number; option_3: string | number; option_4: string | number; explanation?: string | undefined; }, { ...; }>'.
+  Property 'question' does not exist on type 'SafeParseSuccess<{ answer: number; explanation: string; standard: number; topics: string; subject: string; question: string; option_1: string; option_2: string; option_3: string; option_4: string; }>'.
+
+[7m51[0m         questionText: validatedRow.question,
+[7m  [0m [91m                                   ~~~~~~~~[0m
+[96msrc/utils/excelProcessor.ts[0m:[93m53[0m:[93m24[0m - [91merror[0m[90m TS2339: [0mProperty 'option_1' does not exist on type 'SafeParseReturnType<{ answer: string | number; standard: number; topics: string; subject: string; question: string; option_1: string | number; option_2: string | number; option_3: string | number; option_4: string | number; explanation?: string | undefined; }, { ...; }>'.
+  Property 'option_1' does not exist on type 'SafeParseSuccess<{ answer: number; explanation: string; standard: number; topics: string; subject: string; question: string; option_1: string; option_2: string; option_3: string; option_4: string; }>'.
+
+[7m53[0m           validatedRow.option_1,
+[7m  [0m [91m                       ~~~~~~~~[0m
+[96msrc/utils/excelProcessor.ts[0m:[93m54[0m:[93m24[0m - [91merror[0m[90m TS2339: [0mProperty 'option_2' does not exist on type 'SafeParseReturnType<{ answer: string | number; standard: number; topics: string; subject: string; question: string; option_1: string | number; option_2: string | number; option_3: string | number; option_4: string | number; explanation?: string | undefined; }, { ...; }>'.
+  Property 'option_2' does not exist on type 'SafeParseSuccess<{ answer: number; explanation: string; standard: number; topics: string; subject: string; question: string; option_1: string; option_2: string; option_3: string; option_4: string; }>'.
+
+[7m54[0m           validatedRow.option_2,
+[7m  [0m [91m                       ~~~~~~~~[0m
+[96msrc/utils/excelProcessor.ts[0m:[93m55[0m:[93m24[0m - [91merror[0m[90m TS2339: [0mProperty 'option_3' does not exist on type 'SafeParseReturnType<{ answer: string | number; standard: number; topics: string; subject: string; question: string; option_1: string | number; option_2: string | number; option_3: string | number; option_4: string | number; explanation?: string | undefined; }, { ...; }>'.
+  Property 'option_3' does not exist on type 'SafeParseSuccess<{ answer: number; explanation: string; standard: number; topics: string; subject: string; question: string; option_1: string; option_2: string; option_3: string; option_4: string; }>'.
+
+[7m55[0m           validatedRow.option_3,
+[7m  [0m [91m                       ~~~~~~~~[0m
+[96msrc/utils/excelProcessor.ts[0m:[93m56[0m:[93m24[0m - [91merror[0m[90m TS2339: [0mProperty 'option_4' does not exist on type 'SafeParseReturnType<{ answer: string | number; standard: number; topics: string; subject: string; question: string; option_1: string | number; option_2: string | number; option_3: string | number; option_4: string | number; explanation?: string | undefined; }, { ...; }>'.
+  Property 'option_4' does not exist on type 'SafeParseSuccess<{ answer: number; explanation: string; standard: number; topics: string; subject: string; question: string; option_1: string; option_2: string; option_3: string; option_4: string; }>'.
+
+[7m56[0m           validatedRow.option_4,
+[7m  [0m [91m                       ~~~~~~~~[0m
+[96msrc/utils/excelProcessor.ts[0m:[93m58[0m:[93m30[0m - [91merror[0m[90m TS2339: [0mProperty 'answer' does not exist on type 'SafeParseReturnType<{ answer: string | number; standard: number; topics: string; subject: string; question: string; option_1: string | number; option_2: string | number; option_3: string | number; option_4: string | number; explanation?: string | undefined; }, { ...; }>'.
+  Property 'answer' does not exist on type 'SafeParseSuccess<{ answer: number; explanation: string; standard: number; topics: string; subject: string; question: string; option_1: string; option_2: string; option_3: string; option_4: string; }>'.
+
+[7m58[0m         answer: validatedRow.answer,
+[7m  [0m [91m                             ~~~~~~[0m
+[96msrc/utils/excelProcessor.ts[0m:[93m60[0m:[93m35[0m - [91merror[0m[90m TS2339: [0mProperty 'explanation' does not exist on type 'SafeParseReturnType<{ answer: string | number; standard: number; topics: string; subject: string; question: string; option_1: string | number; option_2: string | number; option_3: string | number; option_4: string | number; explanation?: string | undefined; }, { ...; }>'.
+  Property 'explanation' does not exist on type 'SafeParseSuccess<{ answer: number; explanation: string; standard: number; topics: string; subject: string; question: string; option_1: string; option_2: string; option_3: string; option_4: string; }>'.
+
+[7m60[0m         explanation: validatedRow.explanation,
+[7m  [0m [91m                                  ~~~~~~~~~~~[0m
+[96msrc/utils/excelProcessor.ts[0m:[93m61[0m:[93m32[0m - [91merror[0m[90m TS2339: [0mProperty 'standard' does not exist on type 'SafeParseReturnType<{ answer: string | number; standard: number; topics: string; subject: string; question: string; option_1: string | number; option_2: string | number; option_3: string | number; option_4: string | number; explanation?: string | undefined; }, { ...; }>'.
+  Property 'standard' does not exist on type 'SafeParseSuccess<{ answer: number; explanation: string; standard: number; topics: string; subject: string; question: string; option_1: string; option_2: string; option_3: string; option_4: string; }>'.
+
+[7m61[0m         standard: validatedRow.standard,
+[7m  [0m [91m                               ~~~~~~~~[0m
+
+    at createTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1699:10
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1313:32)
+    at Function._load (node:internal/modules/cjs/loader:1123:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-02-28 11:46:06 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/utils/excelProcessor.ts[0m:[93m28[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType 'undefined' is not assignable to type 'SafeParseReturnType<{ answer: string | number; standard: number; topics: string; subject: string; question: string; option_1: string | number; option_2: string | number; option_3: string | number; option_4: string | number; explanation?: string | undefined; }, { ...; }>'.
+
+[7m28[0m       validatedRow = validatedRow.data;
+[7m  [0m [91m      ~~~~~~~~~~~~[0m
+[96msrc/utils/excelProcessor.ts[0m:[93m30[0m:[93m38[0m - [91merror[0m[90m TS2339: [0mProperty 'topics' does not exist on type 'SafeParseReturnType<{ answer: string | number; standard: number; topics: string; subject: string; question: string; option_1: string | number; option_2: string | number; option_3: string | number; option_4: string | number; explanation?: string | undefined; }, { ...; }>'.
+  Property 'topics' does not exist on type 'SafeParseSuccess<{ answer: number; explanation: string; standard: number; topics: string; subject: string; question: string; option_1: string; option_2: string; option_3: string; option_4: string; }>'.
+
+[7m30[0m       const topicName = validatedRow.topics.toLowerCase();
+[7m  [0m [91m                                     ~~~~~~[0m
+[96msrc/utils/excelProcessor.ts[0m:[93m51[0m:[93m36[0m - [91merror[0m[90m TS2339: [0mProperty 'question' does not exist on type 'SafeParseReturnType<{ answer: string | number; standard: number; topics: string; subject: string; question: string; option_1: string | number; option_2: string | number; option_3: string | number; option_4: string | number; explanation?: string | undefined; }, { ...; }>'.
+  Property 'question' does not exist on type 'SafeParseSuccess<{ answer: number; explanation: string; standard: number; topics: string; subject: string; question: string; option_1: string; option_2: string; option_3: string; option_4: string; }>'.
+
+[7m51[0m         questionText: validatedRow.question,
+[7m  [0m [91m                                   ~~~~~~~~[0m
+[96msrc/utils/excelProcessor.ts[0m:[93m53[0m:[93m24[0m - [91merror[0m[90m TS2339: [0mProperty 'option_1' does not exist on type 'SafeParseReturnType<{ answer: string | number; standard: number; topics: string; subject: string; question: string; option_1: string | number; option_2: string | number; option_3: string | number; option_4: string | number; explanation?: string | undefined; }, { ...; }>'.
+  Property 'option_1' does not exist on type 'SafeParseSuccess<{ answer: number; explanation: string; standard: number; topics: string; subject: string; question: string; option_1: string; option_2: string; option_3: string; option_4: string; }>'.
+
+[7m53[0m           validatedRow.option_1,
+[7m  [0m [91m                       ~~~~~~~~[0m
+[96msrc/utils/excelProcessor.ts[0m:[93m54[0m:[93m24[0m - [91merror[0m[90m TS2339: [0mProperty 'option_2' does not exist on type 'SafeParseReturnType<{ answer: string | number; standard: number; topics: string; subject: string; question: string; option_1: string | number; option_2: string | number; option_3: string | number; option_4: string | number; explanation?: string | undefined; }, { ...; }>'.
+  Property 'option_2' does not exist on type 'SafeParseSuccess<{ answer: number; explanation: string; standard: number; topics: string; subject: string; question: string; option_1: string; option_2: string; option_3: string; option_4: string; }>'.
+
+[7m54[0m           validatedRow.option_2,
+[7m  [0m [91m                       ~~~~~~~~[0m
+[96msrc/utils/excelProcessor.ts[0m:[93m55[0m:[93m24[0m - [91merror[0m[90m TS2339: [0mProperty 'option_3' does not exist on type 'SafeParseReturnType<{ answer: string | number; standard: number; topics: string; subject: string; question: string; option_1: string | number; option_2: string | number; option_3: string | number; option_4: string | number; explanation?: string | undefined; }, { ...; }>'.
+  Property 'option_3' does not exist on type 'SafeParseSuccess<{ answer: number; explanation: string; standard: number; topics: string; subject: string; question: string; option_1: string; option_2: string; option_3: string; option_4: string; }>'.
+
+[7m55[0m           validatedRow.option_3,
+[7m  [0m [91m                       ~~~~~~~~[0m
+[96msrc/utils/excelProcessor.ts[0m:[93m56[0m:[93m24[0m - [91merror[0m[90m TS2339: [0mProperty 'option_4' does not exist on type 'SafeParseReturnType<{ answer: string | number; standard: number; topics: string; subject: string; question: string; option_1: string | number; option_2: string | number; option_3: string | number; option_4: string | number; explanation?: string | undefined; }, { ...; }>'.
+  Property 'option_4' does not exist on type 'SafeParseSuccess<{ answer: number; explanation: string; standard: number; topics: string; subject: string; question: string; option_1: string; option_2: string; option_3: string; option_4: string; }>'.
+
+[7m56[0m           validatedRow.option_4,
+[7m  [0m [91m                       ~~~~~~~~[0m
+[96msrc/utils/excelProcessor.ts[0m:[93m58[0m:[93m30[0m - [91merror[0m[90m TS2339: [0mProperty 'answer' does not exist on type 'SafeParseReturnType<{ answer: string | number; standard: number; topics: string; subject: string; question: string; option_1: string | number; option_2: string | number; option_3: string | number; option_4: string | number; explanation?: string | undefined; }, { ...; }>'.
+  Property 'answer' does not exist on type 'SafeParseSuccess<{ answer: number; explanation: string; standard: number; topics: string; subject: string; question: string; option_1: string; option_2: string; option_3: string; option_4: string; }>'.
+
+[7m58[0m         answer: validatedRow.answer,
+[7m  [0m [91m                             ~~~~~~[0m
+[96msrc/utils/excelProcessor.ts[0m:[93m60[0m:[93m35[0m - [91merror[0m[90m TS2339: [0mProperty 'explanation' does not exist on type 'SafeParseReturnType<{ answer: string | number; standard: number; topics: string; subject: string; question: string; option_1: string | number; option_2: string | number; option_3: string | number; option_4: string | number; explanation?: string | undefined; }, { ...; }>'.
+  Property 'explanation' does not exist on type 'SafeParseSuccess<{ answer: number; explanation: string; standard: number; topics: string; subject: string; question: string; option_1: string; option_2: string; option_3: string; option_4: string; }>'.
+
+[7m60[0m         explanation: validatedRow.explanation,
+[7m  [0m [91m                                  ~~~~~~~~~~~[0m
+[96msrc/utils/excelProcessor.ts[0m:[93m61[0m:[93m32[0m - [91merror[0m[90m TS2339: [0mProperty 'standard' does not exist on type 'SafeParseReturnType<{ answer: string | number; standard: number; topics: string; subject: string; question: string; option_1: string | number; option_2: string | number; option_3: string | number; option_4: string | number; explanation?: string | undefined; }, { ...; }>'.
+  Property 'standard' does not exist on type 'SafeParseSuccess<{ answer: number; explanation: string; standard: number; topics: string; subject: string; question: string; option_1: string; option_2: string; option_3: string; option_4: string; }>'.
+
+[7m61[0m         standard: validatedRow.standard,
+[7m  [0m [91m                               ~~~~~~~~[0m
+
+    at createTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1699:10
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1313:32)
+    at Function._load (node:internal/modules/cjs/loader:1123:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-02-28 11:46:34 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/utils/excelProcessor.ts[0m:[93m30[0m:[93m38[0m - [91merror[0m[90m TS2339: [0mProperty 'topics' does not exist on type 'never'.
+
+[7m30[0m       const topicName = validatedRow.topics.toLowerCase();
+[7m  [0m [91m                                     ~~~~~~[0m
+[96msrc/utils/excelProcessor.ts[0m:[93m51[0m:[93m36[0m - [91merror[0m[90m TS2339: [0mProperty 'question' does not exist on type 'never'.
+
+[7m51[0m         questionText: validatedRow.question,
+[7m  [0m [91m                                   ~~~~~~~~[0m
+[96msrc/utils/excelProcessor.ts[0m:[93m53[0m:[93m24[0m - [91merror[0m[90m TS2339: [0mProperty 'option_1' does not exist on type 'never'.
+
+[7m53[0m           validatedRow.option_1,
+[7m  [0m [91m                       ~~~~~~~~[0m
+[96msrc/utils/excelProcessor.ts[0m:[93m54[0m:[93m24[0m - [91merror[0m[90m TS2339: [0mProperty 'option_2' does not exist on type 'never'.
+
+[7m54[0m           validatedRow.option_2,
+[7m  [0m [91m                       ~~~~~~~~[0m
+[96msrc/utils/excelProcessor.ts[0m:[93m55[0m:[93m24[0m - [91merror[0m[90m TS2339: [0mProperty 'option_3' does not exist on type 'never'.
+
+[7m55[0m           validatedRow.option_3,
+[7m  [0m [91m                       ~~~~~~~~[0m
+[96msrc/utils/excelProcessor.ts[0m:[93m56[0m:[93m24[0m - [91merror[0m[90m TS2339: [0mProperty 'option_4' does not exist on type 'never'.
+
+[7m56[0m           validatedRow.option_4,
+[7m  [0m [91m                       ~~~~~~~~[0m
+[96msrc/utils/excelProcessor.ts[0m:[93m58[0m:[93m30[0m - [91merror[0m[90m TS2339: [0mProperty 'answer' does not exist on type 'never'.
+
+[7m58[0m         answer: validatedRow.answer,
+[7m  [0m [91m                             ~~~~~~[0m
+[96msrc/utils/excelProcessor.ts[0m:[93m60[0m:[93m35[0m - [91merror[0m[90m TS2339: [0mProperty 'explanation' does not exist on type 'never'.
+
+[7m60[0m         explanation: validatedRow.explanation,
+[7m  [0m [91m                                  ~~~~~~~~~~~[0m
+[96msrc/utils/excelProcessor.ts[0m:[93m61[0m:[93m32[0m - [91merror[0m[90m TS2339: [0mProperty 'standard' does not exist on type 'never'.
+
+[7m61[0m         standard: validatedRow.standard,
+[7m  [0m [91m                               ~~~~~~~~[0m
+
+    at createTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1699:10
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1313:32)
+    at Function._load (node:internal/modules/cjs/loader:1123:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-02-28 11:46:59 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/utils/excelProcessor.ts[0m:[93m25[0m:[93m11[0m - [91merror[0m[90m TS2304: [0mCannot find name 'validatedRow'.
+
+[7m25[0m       if(!validatedRow.success) {
+[7m  [0m [91m          ~~~~~~~~~~~~[0m
+[96msrc/utils/excelProcessor.ts[0m:[93m29[0m:[93m25[0m - [91merror[0m[90m TS2304: [0mCannot find name 'validatedRow'.
+
+[7m29[0m       const topicName = validatedRow.topics.toLowerCase();
+[7m  [0m [91m                        ~~~~~~~~~~~~[0m
+[96msrc/utils/excelProcessor.ts[0m:[93m50[0m:[93m23[0m - [91merror[0m[90m TS2304: [0mCannot find name 'validatedRow'.
+
+[7m50[0m         questionText: validatedRow.question,
+[7m  [0m [91m                      ~~~~~~~~~~~~[0m
+[96msrc/utils/excelProcessor.ts[0m:[93m52[0m:[93m11[0m - [91merror[0m[90m TS2304: [0mCannot find name 'validatedRow'.
+
+[7m52[0m           validatedRow.option_1,
+[7m  [0m [91m          ~~~~~~~~~~~~[0m
+[96msrc/utils/excelProcessor.ts[0m:[93m53[0m:[93m11[0m - [91merror[0m[90m TS2304: [0mCannot find name 'validatedRow'.
+
+[7m53[0m           validatedRow.option_2,
+[7m  [0m [91m          ~~~~~~~~~~~~[0m
+[96msrc/utils/excelProcessor.ts[0m:[93m54[0m:[93m11[0m - [91merror[0m[90m TS2304: [0mCannot find name 'validatedRow'.
+
+[7m54[0m           validatedRow.option_3,
+[7m  [0m [91m          ~~~~~~~~~~~~[0m
+[96msrc/utils/excelProcessor.ts[0m:[93m55[0m:[93m11[0m - [91merror[0m[90m TS2304: [0mCannot find name 'validatedRow'.
+
+[7m55[0m           validatedRow.option_4,
+[7m  [0m [91m          ~~~~~~~~~~~~[0m
+[96msrc/utils/excelProcessor.ts[0m:[93m57[0m:[93m17[0m - [91merror[0m[90m TS2304: [0mCannot find name 'validatedRow'.
+
+[7m57[0m         answer: validatedRow.answer,
+[7m  [0m [91m                ~~~~~~~~~~~~[0m
+[96msrc/utils/excelProcessor.ts[0m:[93m59[0m:[93m22[0m - [91merror[0m[90m TS2304: [0mCannot find name 'validatedRow'.
+
+[7m59[0m         explanation: validatedRow.explanation,
+[7m  [0m [91m                     ~~~~~~~~~~~~[0m
+[96msrc/utils/excelProcessor.ts[0m:[93m60[0m:[93m19[0m - [91merror[0m[90m TS2304: [0mCannot find name 'validatedRow'.
+
+[7m60[0m         standard: validatedRow.standard,
+[7m  [0m [91m                  ~~~~~~~~~~~~[0m
+
+    at createTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1699:10
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1313:32)
+    at Function._load (node:internal/modules/cjs/loader:1123:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-02-28 11:47:05 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/utils/excelProcessor.ts[0m:[93m29[0m:[93m25[0m - [91merror[0m[90m TS2304: [0mCannot find name 'validatedRow'.
+
+[7m29[0m       const topicName = validatedRow.topics.toLowerCase();
+[7m  [0m [91m                        ~~~~~~~~~~~~[0m
+[96msrc/utils/excelProcessor.ts[0m:[93m50[0m:[93m23[0m - [91merror[0m[90m TS2304: [0mCannot find name 'validatedRow'.
+
+[7m50[0m         questionText: validatedRow.question,
+[7m  [0m [91m                      ~~~~~~~~~~~~[0m
+[96msrc/utils/excelProcessor.ts[0m:[93m52[0m:[93m11[0m - [91merror[0m[90m TS2304: [0mCannot find name 'validatedRow'.
+
+[7m52[0m           validatedRow.option_1,
+[7m  [0m [91m          ~~~~~~~~~~~~[0m
+[96msrc/utils/excelProcessor.ts[0m:[93m53[0m:[93m11[0m - [91merror[0m[90m TS2304: [0mCannot find name 'validatedRow'.
+
+[7m53[0m           validatedRow.option_2,
+[7m  [0m [91m          ~~~~~~~~~~~~[0m
+[96msrc/utils/excelProcessor.ts[0m:[93m54[0m:[93m11[0m - [91merror[0m[90m TS2304: [0mCannot find name 'validatedRow'.
+
+[7m54[0m           validatedRow.option_3,
+[7m  [0m [91m          ~~~~~~~~~~~~[0m
+[96msrc/utils/excelProcessor.ts[0m:[93m55[0m:[93m11[0m - [91merror[0m[90m TS2304: [0mCannot find name 'validatedRow'.
+
+[7m55[0m           validatedRow.option_4,
+[7m  [0m [91m          ~~~~~~~~~~~~[0m
+[96msrc/utils/excelProcessor.ts[0m:[93m57[0m:[93m17[0m - [91merror[0m[90m TS2304: [0mCannot find name 'validatedRow'.
+
+[7m57[0m         answer: validatedRow.answer,
+[7m  [0m [91m                ~~~~~~~~~~~~[0m
+[96msrc/utils/excelProcessor.ts[0m:[93m59[0m:[93m22[0m - [91merror[0m[90m TS2304: [0mCannot find name 'validatedRow'.
+
+[7m59[0m         explanation: validatedRow.explanation,
+[7m  [0m [91m                     ~~~~~~~~~~~~[0m
+[96msrc/utils/excelProcessor.ts[0m:[93m60[0m:[93m19[0m - [91merror[0m[90m TS2304: [0mCannot find name 'validatedRow'.
+
+[7m60[0m         standard: validatedRow.standard,
+[7m  [0m [91m                  ~~~~~~~~~~~~[0m
+
+    at createTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1699:10
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1313:32)
+    at Function._load (node:internal/modules/cjs/loader:1123:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-02-28 12:14:57 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/models/questions/questions.model.ts[0m:[93m6[0m:[93m9[0m - [91merror[0m[90m TS2561: [0mObject literal may only specify known properties, but 'topicId' does not exist in type 'IQuestion | { options?: SchemaDefinitionProperty<string[], IQuestion> | undefined; id?: SchemaDefinitionProperty<any, IQuestion> | undefined; ... 6 more ...; standard?: SchemaDefinitionProperty<...> | undefined; }'. Did you mean to write 'topicIds'?
+
+[7m6[0m         topicId: [{type: Schema.Types.ObjectId, ref: "Topic", required: true}],
+[7m [0m [91m        ~~~~~~~[0m
+
+    at createTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1699:10
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1313:32)
+    at Function._load (node:internal/modules/cjs/loader:1123:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-02-28 12:15:03 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/models/questions/questions.model.ts[0m:[93m6[0m:[93m9[0m - [91merror[0m[90m TS2561: [0mObject literal may only specify known properties, but 'topicId' does not exist in type 'IQuestion | { options?: SchemaDefinitionProperty<string[], IQuestion> | undefined; id?: SchemaDefinitionProperty<any, IQuestion> | undefined; ... 6 more ...; standard?: SchemaDefinitionProperty<...> | undefined; }'. Did you mean to write 'topicIds'?
+
+[7m6[0m         topicId: [{type: Schema.Types.ObjectId, ref: "Topic", required: true}],
+[7m [0m [91m        ~~~~~~~[0m
+
+    at createTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1699:10
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1313:32)
+    at Function._load (node:internal/modules/cjs/loader:1123:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-02-28 12:15:42 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/utils/cetQuestionSelector.ts[0m:[93m38[0m:[93m28[0m - [91merror[0m[90m TS2304: [0mCannot find name 'mongoose'.
+
+[7m38[0m               topicId: new mongoose.
+[7m  [0m [91m                           ~~~~~~~~[0m
+[96msrc/utils/cetQuestionSelector.ts[0m:[93m39[0m:[93m13[0m - [91merror[0m[90m TS1003: [0mIdentifier expected.
+
+[7m39[0m             }
+[7m  [0m [91m            ~[0m
+
+    at createTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1699:10
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1313:32)
+    at Function._load (node:internal/modules/cjs/loader:1123:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-02-28 12:15:49 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/utils/cetQuestionSelector.ts[0m:[93m38[0m:[93m28[0m - [91merror[0m[90m TS2304: [0mCannot find name 'mongoose'.
+
+[7m38[0m               topicId: new mongoose.Types.ObjectId(topicDoc._id)
+[7m  [0m [91m                           ~~~~~~~~[0m
+
+    at createTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1699:10
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1313:32)
+    at Function._load (node:internal/modules/cjs/loader:1123:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-02-28 12:15:55 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/utils/cetQuestionSelector.ts[0m:[93m39[0m:[93m52[0m - [91merror[0m[90m TS2769: [0mNo overload matches this call.
+  The last overload gave the following error.
+    Argument of type 'unknown' is not assignable to parameter of type 'string | number | ObjectId | Uint8Array<ArrayBufferLike> | ObjectIdLike | undefined'.
+
+[7m39[0m               topicId: new mongoose.Types.ObjectId(topicDoc._id)
+[7m  [0m [91m                                                   ~~~~~~~~~~~~[0m
+
+  [96mnode_modules/.pnpm/bson@6.10.2/node_modules/bson/bson.d.ts[0m:[93m1386[0m:[93m5[0m
+    [7m1386[0m     constructor(inputId?: string | number | ObjectId | ObjectIdLike | Uint8Array);
+    [7m    [0m [96m    ~~~~~~~~~~~[0m
+    The last overload is declared here.
+
+    at createTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1699:10
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1313:32)
+    at Function._load (node:internal/modules/cjs/loader:1123:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-02-28 12:19:29 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/models/questions/questions.model.ts[0m:[93m6[0m:[93m9[0m - [91merror[0m[90m TS2561: [0mObject literal may only specify known properties, but 'topicId' does not exist in type 'IQuestion | { options?: SchemaDefinitionProperty<string[], IQuestion> | undefined; id?: SchemaDefinitionProperty<any, IQuestion> | undefined; ... 6 more ...; standard?: SchemaDefinitionProperty<...> | undefined; }'. Did you mean to write 'topicIds'?
+
+[7m6[0m         topicId: [{type: Schema.Types.ObjectId, ref: "Topic", required: true}],
+[7m [0m [91m        ~~~~~~~[0m
+
+    at createTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1699:10
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1313:32)
+    at Function._load (node:internal/modules/cjs/loader:1123:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-02-28 12:19:35 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/testHistory.controller.ts[0m:[93m192[0m:[93m31[0m - [91merror[0m[90m TS2339: [0mProperty 'createdAt' does not exist on type 'Document<unknown, {}, ITestResult> & ITestResult & Required<{ _id: unknown; }> & { __v: number; }'.
+
+[7m192[0m         createdAt: testResult.createdAt
+[7m   [0m [91m                              ~~~~~~~~~[0m
+
+    at createTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1699:10
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1313:32)
+    at Function._load (node:internal/modules/cjs/loader:1123:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-02-28 12:19:45 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/testHistory.controller.ts[0m:[93m192[0m:[93m31[0m - [91merror[0m[90m TS2339: [0mProperty 'createdAt' does not exist on type 'Document<unknown, {}, ITestResult> & ITestResult & Required<{ _id: unknown; }> & { __v: number; }'.
+
+[7m192[0m         createdAt: testResult.createdAt
+[7m   [0m [91m                              ~~~~~~~~~[0m
+
+    at createTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1699:10
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1313:32)
+    at Function._load (node:internal/modules/cjs/loader:1123:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-02-28 12:19:50 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/testHistory.controller.ts[0m:[93m192[0m:[93m31[0m - [91merror[0m[90m TS2339: [0mProperty 'createdAt' does not exist on type 'Document<unknown, {}, ITestResult> & ITestResult & Required<{ _id: unknown; }> & { __v: number; }'.
+
+[7m192[0m         createdAt: testResult.createdAt
+[7m   [0m [91m                              ~~~~~~~~~[0m
+
+    at createTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1699:10
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1313:32)
+    at Function._load (node:internal/modules/cjs/loader:1123:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-02-28 12:19:56 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/utils/cetQuestionSelector.ts[0m:[93m39[0m:[93m30[0m - [91merror[0m[90m TS2348: [0mValue of type 'typeof ObjectId' is not callable. Did you mean to include 'new'?
+
+[7m39[0m               topicIds: {new mongoose.Types.ObjectId(topicDoc.id)}
+[7m  [0m [91m                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/utils/cetQuestionSelector.ts[0m:[93m39[0m:[93m30[0m - [91merror[0m[90m TS1005: [0m':' expected.
+
+[7m39[0m               topicIds: {new mongoose.Types.ObjectId(topicDoc.id)}
+[7m  [0m [91m                             ~~~~~~~~[0m
+
+    at createTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1699:10
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1313:32)
+    at Function._load (node:internal/modules/cjs/loader:1123:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-02-28 12:20:00 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/utils/cetQuestionSelector.ts[0m:[93m13[0m:[93m42[0m - [91merror[0m[90m TS2355: [0mA function whose declared type is neither 'undefined', 'void', nor 'any' must return a value.
+
+[7m13[0m export async function getCETQuestions(): Promise<QuestionDistribution> {
+[7m  [0m [91m                                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/utils/cetQuestionSelector.ts[0m:[93m39[0m:[93m25[0m - [91merror[0m[90m TS2304: [0mCannot find name '$in'.
+
+[7m39[0m               topicIds: $in{new mongoose.Types.ObjectId(topicDoc.id)}
+[7m  [0m [91m                        ~~~[0m
+[96msrc/utils/cetQuestionSelector.ts[0m:[93m39[0m:[93m29[0m - [91merror[0m[90m TS2769: [0mNo overload matches this call.
+  Overload 1 of 2, '(pipeline?: PipelineStage[] | undefined, options?: AggregateOptions | undefined): Aggregate<any[]>', gave the following error.
+    Object literal may only specify known properties, and 'new' does not exist in type 'PipelineStage'.
+  Overload 2 of 2, '(pipeline: PipelineStage[]): Aggregate<any[]>', gave the following error.
+    Object literal may only specify known properties, and 'new' does not exist in type 'PipelineStage'.
+
+[7m39[0m               topicIds: $in{new mongoose.Types.ObjectId(topicDoc.id)}
+[7m  [0m [91m                            ~~~[0m
+
+[96msrc/utils/cetQuestionSelector.ts[0m:[93m39[0m:[93m33[0m - [91merror[0m[90m TS2348: [0mValue of type 'typeof ObjectId' is not callable. Did you mean to include 'new'?
+
+[7m39[0m               topicIds: $in{new mongoose.Types.ObjectId(topicDoc.id)}
+[7m  [0m [91m                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/utils/cetQuestionSelector.ts[0m:[93m42[0m:[93m30[0m - [91merror[0m[90m TS2552: [0mCannot find name 'topic'. Did you mean 'Topic'?
+
+[7m42[0m           { $sample: { size: topic.questionCount } },
+[7m  [0m [91m                             ~~~~~[0m
+[96msrc/utils/cetQuestionSelector.ts[0m:[93m45[0m:[93m21[0m - [91merror[0m[90m TS2304: [0mCannot find name 'topicQuestions'.
+
+[7m45[0m         console.log(topicQuestions);
+[7m  [0m [91m                    ~~~~~~~~~~~~~~[0m
+[96msrc/utils/cetQuestionSelector.ts[0m:[93m46[0m:[93m21[0m - [91merror[0m[90m TS2552: [0mCannot find name 'topic'. Did you mean 'Topic'?
+
+[7m46[0m         console.log(topic.topicName);
+[7m  [0m [91m                    ~~~~~[0m
+[96msrc/utils/cetQuestionSelector.ts[0m:[93m47[0m:[93m13[0m - [91merror[0m[90m TS2304: [0mCannot find name 'topicQuestions'.
+
+[7m47[0m         if (topicQuestions.length < topic.questionCount) {
+[7m  [0m [91m            ~~~~~~~~~~~~~~[0m
+[96msrc/utils/cetQuestionSelector.ts[0m:[93m47[0m:[93m37[0m - [91merror[0m[90m TS2552: [0mCannot find name 'topic'. Did you mean 'Topic'?
+
+[7m47[0m         if (topicQuestions.length < topic.questionCount) {
+[7m  [0m [91m                                    ~~~~~[0m
+[96msrc/utils/cetQuestionSelector.ts[0m:[93m48[0m:[93m59[0m - [91merror[0m[90m TS2552: [0mCannot find name 'topic'. Did you mean 'Topic'?
+
+[7m48[0m           logger.warn(`Insufficient questions for topic ${topic.topicName}. Needed: ${topic.questionCount}, Found: ${topicQuestions.length}`);
+[7m  [0m [91m                                                          ~~~~~[0m
+[96msrc/utils/cetQuestionSelector.ts[0m:[93m48[0m:[93m87[0m - [91merror[0m[90m TS2552: [0mCannot find name 'topic'. Did you mean 'Topic'?
+
+[7m48[0m           logger.warn(`Insufficient questions for topic ${topic.topicName}. Needed: ${topic.questionCount}, Found: ${topicQuestions.length}`);
+[7m  [0m [91m                                                                                      ~~~~~[0m
+[96msrc/utils/cetQuestionSelector.ts[0m:[93m48[0m:[93m118[0m - [91merror[0m[90m TS2304: [0mCannot find name 'topicQuestions'.
+
+[7m48[0m           logger.warn(`Insufficient questions for topic ${topic.topicName}. Needed: ${topic.questionCount}, Found: ${topicQuestions.length}`);
+[7m  [0m [91m                                                                                                                     ~~~~~~~~~~~~~~[0m
+[96msrc/utils/cetQuestionSelector.ts[0m:[93m49[0m:[93m71[0m - [91merror[0m[90m TS2552: [0mCannot find name 'topic'. Did you mean 'Topic'?
+
+[7m49[0m           throw new ApiError(400, `Insufficient questions for topic ${topic.topicName}`);
+[7m  [0m [91m                                                                      ~~~~~[0m
+[96msrc/utils/cetQuestionSelector.ts[0m:[93m55[0m:[93m14[0m - [91merror[0m[90m TS2304: [0mCannot find name 'topicQuestions'.
+
+[7m55[0m           ...topicQuestions.map(q => q._id.toString())
+[7m  [0m [91m             ~~~~~~~~~~~~~~[0m
+[96msrc/utils/cetQuestionSelector.ts[0m:[93m55[0m:[93m33[0m - [91merror[0m[90m TS7006: [0mParameter 'q' implicitly has an 'any' type.
+
+[7m55[0m           ...topicQuestions.map(q => q._id.toString())
+[7m  [0m [91m                                ~[0m
+[96msrc/utils/cetQuestionSelector.ts[0m:[93m57[0m:[93m23[0m - [91merror[0m[90m TS2304: [0mCannot find name 'topic'.
+
+[7m57[0m         totalMarks += topic.questionCount * topic.marksPerQuestion;
+[7m  [0m [91m                      ~~~~~[0m
+[96msrc/utils/cetQuestionSelector.ts[0m:[93m57[0m:[93m45[0m - [91merror[0m[90m TS2304: [0mCannot find name 'topic'.
+
+[7m57[0m         totalMarks += topic.questionCount * topic.marksPerQuestion;
+[7m  [0m [91m                                            ~~~~~[0m
+[96msrc/utils/cetQuestionSelector.ts[0m:[93m39[0m:[93m28[0m - [91merror[0m[90m TS1005: [0m',' expected.
+
+[7m39[0m               topicIds: $in{new mongoose.Types.ObjectId(topicDoc.id)}
+[7m  [0m [91m                           ~[0m
+[96msrc/utils/cetQuestionSelector.ts[0m:[93m39[0m:[93m33[0m - [91merror[0m[90m TS1005: [0m':' expected.
+
+[7m39[0m               topicIds: $in{new mongoose.Types.ObjectId(topicDoc.id)}
+[7m  [0m [91m                                ~~~~~~~~[0m
+[96msrc/utils/cetQuestionSelector.ts[0m:[93m40[0m:[93m13[0m - [91merror[0m[90m TS1005: [0m',' expected.
+
+[7m40[0m             }
+[7m  [0m [91m            ~[0m
+[96msrc/utils/cetQuestionSelector.ts[0m:[93m41[0m:[93m12[0m - [91merror[0m[90m TS1128: [0mDeclaration or statement expected.
+
+[7m41[0m           },
+[7m  [0m [91m           ~[0m
+[96msrc/utils/cetQuestionSelector.ts[0m:[93m42[0m:[93m53[0m - [91merror[0m[90m TS1128: [0mDeclaration or statement expected.
+
+[7m42[0m           { $sample: { size: topic.questionCount } },
+[7m  [0m [91m                                                    ~[0m
+[96msrc/utils/cetQuestionSelector.ts[0m:[93m44[0m:[93m9[0m - [91merror[0m[90m TS1128: [0mDeclaration or statement expected.
+
+[7m44[0m         ]);
+[7m  [0m [91m        ~[0m
+[96msrc/utils/cetQuestionSelector.ts[0m:[93m44[0m:[93m10[0m - [91merror[0m[90m TS1128: [0mDeclaration or statement expected.
+
+[7m44[0m         ]);
+[7m  [0m [91m         ~[0m
+[96msrc/utils/cetQuestionSelector.ts[0m:[93m59[0m:[93m5[0m - [91merror[0m[90m TS1472: [0m'catch' or 'finally' expected.
+
+[7m59[0m     }
+[7m  [0m [91m    ~[0m
+[96msrc/utils/cetQuestionSelector.ts[0m:[93m65[0m:[93m3[0m - [91merror[0m[90m TS1128: [0mDeclaration or statement expected.
+
+[7m65[0m   } catch (error) {
+[7m  [0m [91m  ~[0m
+[96msrc/utils/cetQuestionSelector.ts[0m:[93m65[0m:[93m5[0m - [91merror[0m[90m TS1005: [0m'try' expected.
+
+[7m65[0m   } catch (error) {
+[7m  [0m [91m    ~~~~~[0m
+[96msrc/utils/cetQuestionSelector.ts[0m:[93m69[0m:[93m1[0m - [91merror[0m[90m TS1128: [0mDeclaration or statement expected.
+
+[7m69[0m }
+[7m  [0m [91m~[0m
+
+    at createTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1699:10
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1313:32)
+    at Function._load (node:internal/modules/cjs/loader:1123:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-02-28 12:20:19 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/testHistory.controller.ts[0m:[93m192[0m:[93m31[0m - [91merror[0m[90m TS2339: [0mProperty 'createdAt' does not exist on type 'Document<unknown, {}, ITestResult> & ITestResult & Required<{ _id: unknown; }> & { __v: number; }'.
+
+[7m192[0m         createdAt: testResult.createdAt
+[7m   [0m [91m                              ~~~~~~~~~[0m
+
+    at createTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1699:10
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1313:32)
+    at Function._load (node:internal/modules/cjs/loader:1123:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-02-28 12:21:32 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/testHistory.controller.ts[0m:[93m192[0m:[93m31[0m - [91merror[0m[90m TS2339: [0mProperty 'createdAt' does not exist on type 'Document<unknown, {}, ITestResult> & ITestResult & Required<{ _id: unknown; }> & { __v: number; }'.
+
+[7m192[0m         createdAt: testResult.createdAt
+[7m   [0m [91m                              ~~~~~~~~~[0m
+
+    at createTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1699:10
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1313:32)
+    at Function._load (node:internal/modules/cjs/loader:1123:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-02-28 12:21:42 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/models/tests/testResult.model.ts[0m:[93m24[0m:[93m9[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'createdAt' does not exist in type 'ITestResult | { id?: SchemaDefinitionProperty<any, ITestResult> | undefined; _id?: SchemaDefinitionProperty<unknown, ITestResult> | undefined; ... 5 more ...; score?: SchemaDefinitionProperty<...> | undefined; }'.
+
+[7m24[0m         createdAt: {type: Date, default: Date.now},
+[7m  [0m [91m        ~~~~~~~~~[0m
+
+    at createTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1699:10
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1313:32)
+    at Function._load (node:internal/modules/cjs/loader:1123:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-02-28 12:32:12 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/utils/excelProcessor.ts[0m:[93m64[0m:[93m9[0m - [91merror[0m[90m TS2561: [0mObject literal may only specify known properties, but 'topicIds' does not exist in type 'ProcessedRow'. Did you mean to write 'topicId'?
+
+[7m64[0m         topicIds: topic._id.toString(),
+[7m  [0m [91m        ~~~~~~~~[0m
+
+    at createTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1699:10
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1313:32)
+    at Function._load (node:internal/modules/cjs/loader:1123:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-02-28 12:37:00 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/models/questions/questions.model.ts[0m:[93m6[0m:[93m9[0m - [91merror[0m[90m TS2561: [0mObject literal may only specify known properties, but 'topicId' does not exist in type 'IQuestion | { options?: SchemaDefinitionProperty<string[], IQuestion> | undefined; id?: SchemaDefinitionProperty<any, IQuestion> | undefined; ... 6 more ...; standard?: SchemaDefinitionProperty<...> | undefined; }'. Did you mean to write 'topicIds'?
+
+[7m6[0m         topicId: {type: Schema.Types.ObjectId, ref: "Topic", required: true},
+[7m [0m [91m        ~~~~~~~[0m
+
+    at createTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1699:10
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1313:32)
+    at Function._load (node:internal/modules/cjs/loader:1123:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-02-28 12:37:11 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/models/questions/questions.model.ts[0m:[93m6[0m:[93m9[0m - [91merror[0m[90m TS2561: [0mObject literal may only specify known properties, but 'topicId' does not exist in type 'IQuestion | { options?: SchemaDefinitionProperty<string[], IQuestion> | undefined; id?: SchemaDefinitionProperty<any, IQuestion> | undefined; ... 6 more ...; standard?: SchemaDefinitionProperty<...> | undefined; }'. Did you mean to write 'topicIds'?
+
+[7m6[0m         topicId: {type: Schema.Types.ObjectId, ref: "Topic", required: true},
+[7m [0m [91m        ~~~~~~~[0m
+
+    at createTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1699:10
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1313:32)
+    at Function._load (node:internal/modules/cjs/loader:1123:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-02-28 12:51:13 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/test.controller.ts[0m:[93m260[0m:[93m25[0m - [91merror[0m[90m TS2304: [0mCannot find name 'py'.
+
+[7m260[0m             console.log(py)
+[7m   [0m [91m                        ~~[0m
+
+    at createTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1699:10
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1313:32)
+    at Function._load (node:internal/modules/cjs/loader:1123:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-02-28 12:52:38 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/test.controller.ts[0m:[93m221[0m:[93m61[0m - [91merror[0m[90m TS2769: [0mNo overload matches this call.
+  The last overload gave the following error.
+    Argument of type 'string[]' is not assignable to parameter of type 'string | number | ObjectId | Uint8Array<ArrayBufferLike> | ObjectIdLike | undefined'.
+      Type 'string[]' is missing the following properties from type 'Uint8Array<ArrayBufferLike>': BYTES_PER_ELEMENT, buffer, byteLength, byteOffset, and 3 more.
+
+[7m221[0m                     _id: { $in: new mongoose.Types.ObjectId(questionIds) }
+[7m   [0m [91m                                                            ~~~~~~~~~~~[0m
+
+  [96mnode_modules/.pnpm/bson@6.10.2/node_modules/bson/bson.d.ts[0m:[93m1386[0m:[93m5[0m
+    [7m1386[0m     constructor(inputId?: string | number | ObjectId | ObjectIdLike | Uint8Array);
+    [7m    [0m [96m    ~~~~~~~~~~~[0m
+    The last overload is declared here.
+
+    at createTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1699:10
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1313:32)
+    at Function._load (node:internal/modules/cjs/loader:1123:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-02-28 12:52:46 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/test.controller.ts[0m:[93m221[0m:[93m61[0m - [91merror[0m[90m TS2769: [0mNo overload matches this call.
+  The last overload gave the following error.
+    Argument of type 'string[]' is not assignable to parameter of type 'string | number | ObjectId | Uint8Array<ArrayBufferLike> | ObjectIdLike | undefined'.
+      Type 'string[]' is missing the following properties from type 'Uint8Array<ArrayBufferLike>': BYTES_PER_ELEMENT, buffer, byteLength, byteOffset, and 3 more.
+
+[7m221[0m                     _id: { $in: new mongoose.Types.ObjectId(questionIds) }
+[7m   [0m [91m                                                            ~~~~~~~~~~~[0m
+
+  [96mnode_modules/.pnpm/bson@6.10.2/node_modules/bson/bson.d.ts[0m:[93m1386[0m:[93m5[0m
+    [7m1386[0m     constructor(inputId?: string | number | ObjectId | ObjectIdLike | Uint8Array);
+    [7m    [0m [96m    ~~~~~~~~~~~[0m
+    The last overload is declared here.
+
+    at createTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1699:10
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1313:32)
+    at Function._load (node:internal/modules/cjs/loader:1123:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-02-28 12:58:57 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/test.controller.ts[0m:[93m273[0m:[93m37[0m - [91merror[0m[90m TS7006: [0mParameter 'q' implicitly has an 'any' type.
+
+[7m273[0m             ...physicsQuestions.map(q => q._id),
+[7m   [0m [91m                                    ~[0m
+[96msrc/controllers/test.controller.ts[0m:[93m247[0m:[93m11[0m - [91merror[0m[90m TS1003: [0mIdentifier expected.
+
+[7m247[0m         ).;
+[7m   [0m [91m          ~[0m
+
+    at createTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1699:10
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1313:32)
+    at Function._load (node:internal/modules/cjs/loader:1123:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-03-07 10:55:31 [[31merror[39m]: Error: ENOENT: no such file or directory, open 'F:\study_material\codes\__Mega_Project\02BackEnd\src\certificates\key.pem'
+    at Object.openSync (node:fs:562:18)
+    at Object.readFileSync (node:fs:446:35)
+    at Object.<anonymous> (F:\study_material\codes\__Mega_Project\02BackEnd\src\app.ts:19:13)
+    at Module._compile (node:internal/modules/cjs/loader:1562:14)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1618:23)
+    at node:internal/modules/cjs/loader:1699:10
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1313:32)
+    at Function._load (node:internal/modules/cjs/loader:1123:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-03-07 10:55:49 [[31merror[39m]: Error: ENOENT: no such file or directory, open 'F:\study_material\codes\__Mega_Project\02BackEnd\src\certificates\key.pem'
+    at Object.openSync (node:fs:562:18)
+    at Object.readFileSync (node:fs:446:35)
+    at Object.<anonymous> (F:\study_material\codes\__Mega_Project\02BackEnd\src\app.ts:19:13)
+    at Module._compile (node:internal/modules/cjs/loader:1562:14)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1618:23)
+    at node:internal/modules/cjs/loader:1699:10
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1313:32)
+    at Function._load (node:internal/modules/cjs/loader:1123:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-03-07 11:15:35 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/test.controller.ts[0m:[93m298[0m:[93m24[0m - [91merror[0m[90m TS2304: [0mCannot find name 'user'.
+
+[7m298[0m             createdBy: user?._id
+[7m   [0m [91m                       ~~~~[0m
+
+    at createTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1699:10
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1313:32)
+    at Function._load (node:internal/modules/cjs/loader:1123:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)

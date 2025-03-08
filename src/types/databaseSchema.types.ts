@@ -35,7 +35,7 @@ export interface ITopic extends mongoose.Document {
 }
 
 export interface IQuestion extends mongoose.Document {
-  topicIds: Schema.Types.ObjectId[];
+  topicId: Schema.Types.ObjectId;
   questionText: string;
   options: string[];
   answer: number;
@@ -80,6 +80,7 @@ export interface ITestResult extends mongoose.Document {
     isAutoSubmitted: boolean;
     tabSwitches: number;
   };
+  createdAt: Date;
 }
 
 export interface ICompanySpecificTestDetails extends mongoose.Document {
