@@ -15,12 +15,16 @@ const app = express();
 
 // middlewares before handling the router
 app.use(
-    cors({
-        origin: "http://localhost:3000",
-        credentials: true,
-        methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
-        allowedHeaders: ["Content-Type", "Authorization"],
-    })
+  cors({
+    origin: [
+      process.env.FRONTEND_ORIGIN!,
+      "http://localhost:3000",
+      "https://edu-prep.vercel.app",
+    ],
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
 );
 
 app.use(express.json({ limit: "16kb" }));
@@ -37,22 +41,22 @@ app.use("/api/v1/topic", topicRouter);
 app.use("/api/v1/admin", adminRouter);
 app.use("/api/v1/test-history", testHistoryRouter);
 
-app.use('/*', (req, res) => {
-    res.status(404).json({
-        success: false,
-        message: "Route not found on the server",
-    });
+app.use("/*", (req, res) => {
+  res.status(404).json({
+    success: false,
+    message: "Route not found on the server",
+  });
 });
 
 // global error handler
 app.use((err: ApiError, req: express.Request, res: express.Response) => {
-    const statusCode = err?.statusCode || 500;
-    const message = err?.message || "Internal Server Error";
-    res.status(statusCode).json({
-        success: false,
-        message,
-        ...(process.env.NODE_ENV !== "production" && { stack: err.stack }), // Include stack trace in development
-    });
+  const statusCode = err?.statusCode || 500;
+  const message = err?.message || "Internal Server Error";
+  res.status(statusCode).json({
+    success: false,
+    message,
+    ...(process.env.NODE_ENV !== "production" && { stack: err.stack }), // Include stack trace in development
+  });
 });
 
 export { app };
