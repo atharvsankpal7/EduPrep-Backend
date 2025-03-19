@@ -13,27 +13,39 @@ export interface AuthenticatedRequest extends express.Request {
 }
 
 export const authMiddleware = asyncHandler(
-    async (req: AuthenticatedRequest, _: express.Response, next: express.NextFunction) => {
-
+    async (req: AuthenticatedRequest, res: express.Response, next: express.NextFunction): Promise<void> => {
         try {
-            console.log("trying to login ")
             const token =
                 req.cookies?.accessToken || req.header("Authorization")?.replace("Bearer ", "");
+            
             if (!token) {
                 throw new ApiError(401, "Unauthorized access");
             }
-            const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET!);
-            if (typeof decoded === "string") {
-                throw new ApiError(401, "Unauthorized access");
-            }
-            const user = await User.findById(decoded._id).select("-password -refreshToken");
 
-            if (!user) {
-                throw new ApiError(401, "Invalid token");
+            try {
+                const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET!);
+                if (typeof decoded === "string") {
+                    throw new ApiError(401, "Invalid token");
+                }
+
+                const user = await User.findById(decoded._id).select("-password -refreshToken");
+                if (!user) {
+                    throw new ApiError(401, "Invalid token");
+                }
+
+                req.user = user;
+                next();
+            } catch (error) {
+                // If token verification fails, check if it's due to expiration
+                if (error instanceof jwt.TokenExpiredError) {
+                    // Redirect to refresh token endpoint
+                    res.status(401).json(
+                        new ApiError(401, "Access token expired")
+                    );
+                    return;
+                }
+                throw error;
             }
-            // Attach the user to the request
-            req.user = user;
-            next();
         } catch (err) {
             logger.error("Error in authMiddleware:", err);
             if (err instanceof ApiError) {
@@ -41,5 +53,4 @@ export const authMiddleware = asyncHandler(
             }
             throw new ApiError(401, "Unauthorized access");
         }
-    }
-);
+    });

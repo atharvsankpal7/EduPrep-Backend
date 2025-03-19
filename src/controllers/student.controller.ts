@@ -10,13 +10,14 @@ import {
 } from "../ZodSchema/userSchema.ts";
 import generateAccessAndRefreshToken from "../utils/tokenGenerator.ts";
 import { AuthenticatedRequest } from "../middleware/auth.middleware.ts";
+import jwt from "jsonwebtoken";
 
 // Cookie options
 const accessTokenCookieOptions = {
   httpOnly: true,
   secure: true,
   sameSite: "lax" as const,
-  maxAge: 60 * 60 * 1000, // 15 minutes
+  maxAge : 60 * 60 * 1000 * 24, // 1 hour
   path: "/",
 };
 const refreshTokenCookieOptions = {
@@ -195,4 +196,52 @@ const logoutUser = asyncHandler(
   }
 );
 
-export { registerStudent, loginUser, logoutUser };
+/**
+ * Refresh access token using refresh token
+ */
+const refreshAccessToken = asyncHandler(
+  async (req: express.Request, res: express.Response) => {
+    const refreshToken = req.cookies?.refreshToken;
+
+    if (!refreshToken) {
+      throw new ApiError(401, "Refresh token not found");
+    }
+
+    try {
+      // Verify the refresh token
+      const decoded = jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET!) as { _id: string };
+      
+      // Find user with matching refresh token
+      const user = await User.findOne({
+        _id: decoded._id,
+        refreshToken: refreshToken
+      }).select("-password");
+
+      if (!user) {
+        throw new ApiError(401, "Invalid refresh token");
+      }
+
+      // Generate new tokens
+      const { accessToken, user: updatedUser } = await generateAccessAndRefreshToken(user._id);
+
+      logger.info("Access token refreshed successfully", { userId: user._id });
+
+      res
+        .status(200)
+        .cookie("accessToken", accessToken, accessTokenCookieOptions)
+        .cookie("refreshToken", updatedUser.refreshToken, refreshTokenCookieOptions)
+        .json(
+          new ApiResponse(
+            200,
+            { accessToken },
+            "Access token refreshed successfully"
+          )
+        );
+    } catch (error) {
+      logger.error("Error refreshing access token:", error);
+      throw new ApiError(401, "Invalid refresh token");
+    }
+  }
+);
+
+export { registerStudent, loginUser, logoutUser, refreshAccessToken };
