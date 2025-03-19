@@ -16,10 +16,8 @@ const app = express();
 // middlewares before handling the router
 app.use(
   cors({
-    origin: [
-      "http://localhost:3000",
-      "https://edu-prep.vercel.app",
-    ],
+    origin: "https://edu-prep.vercel.app",
+    // origin: "http://localhost:3000",
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
     allowedHeaders: ["Content-Type", "Authorization"],
