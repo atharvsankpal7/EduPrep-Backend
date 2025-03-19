@@ -78,7 +78,7 @@ const maths11Distribution = {
     { topicName: "Trigonometry-2", questionCount: 1, marksPerQuestion: 2 },
     { topicName: "Straight Line", questionCount: 1, marksPerQuestion: 2 },
     { topicName: "Circle", questionCount: 1, marksPerQuestion: 2 },
-    { topicName: "Probability", questionCount: 1, marksPerQuestion: 2 },
+    { topicName: "Probability", questionCount: 1, marksPerQuestion: 2 }, 
     { topicName: "Complex Numbers", questionCount: 1, marksPerQuestion: 2 },
     { topicName: "Permutation Combination", questionCount: 1, marksPerQuestion: 2 },
     { topicName: "Functions", questionCount: 1, marksPerQuestion: 2 },
