@@ -7,9 +7,9 @@ import logger from "../utils/logger";
 import {
   userLoginSchema,
   userRegistrationSchema,
-} from "../ZodSchema/userSchema.ts";
-import generateAccessAndRefreshToken from "../utils/tokenGenerator.ts";
-import { AuthenticatedRequest } from "../middleware/auth.middleware.ts";
+} from "../ZodSchema/userSchema";
+import generateAccessAndRefreshToken from "../utils/tokenGenerator";
+import { AuthenticatedRequest } from "../middleware/auth.middleware";
 import jwt from "jsonwebtoken";
 
 // Cookie options
