@@ -256,7 +256,7 @@ const createCETTest = asyncHandler(
             )
         ).slice(0, 50);
         // Validate we have enough questions for each section
-        if (physicsQuestions.length < 30 || chemistryQuestions.length < 25 || mathsQuestions.length < 45) {
+        if (physicsQuestions.length < 50 || chemistryQuestions.length < 50 || mathsQuestions.length < 50) {
             logger.error("Insufficient questions for CET test sections", {
                 physics: physicsQuestions.length,
                 chemistry: chemistryQuestions.length,
