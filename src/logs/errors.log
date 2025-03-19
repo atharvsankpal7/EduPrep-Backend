@@ -4299,3 +4299,36 @@
     at Generator.next (<anonymous>)
     at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:8:71
     at new Promise (<anonymous>)
+2025-03-19 19:03:47 [[31merror[39m]: Test not found with id: 67daab893165c84904c76011
+2025-03-19 19:03:50 [[31merror[39m]: Test not found with id: 67daab893165c84904c76011
+2025-03-19 19:03:50 [[31merror[39m]: Test not found with id: 67daab893165c84904c76011
+2025-03-19 19:04:33 [[31merror[39m]: Test not found with id: 67daab893165c84904c76011
+2025-03-19 19:04:33 [[31merror[39m]: Test not found with id: 67daab893165c84904c76011
+2025-03-19 19:04:52 [[31merror[39m]: Error: Unauthorized access
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:22:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:4:12)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:16:107
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:7:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:8:71
+    at new Promise (<anonymous>)
+2025-03-19 19:04:57 [[31merror[39m]: Error: Unauthorized access
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:22:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:4:12)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:16:107
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:7:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:8:71
+    at new Promise (<anonymous>)
+2025-03-19 19:05:16 [[31merror[39m]: Test not found with id: 67c16666c11274620d8e095d
+2025-03-19 19:05:42 [[31merror[39m]: Test not found with id: 67daab833165c84904c75f04
+2025-03-19 19:07:25 [[31merror[39m]: Test not found with id: 67daab893165c84904c76011
+2025-03-19 19:07:25 [[31merror[39m]: Test not found with id: 67daab893165c84904c76011
+2025-03-19 19:07:27 [[31merror[39m]: Test not found with id: 67daab833165c84904c75f04
+2025-03-19 19:07:27 [[31merror[39m]: Test not found with id: 67daab833165c84904c75f04

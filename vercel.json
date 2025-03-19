@@ -13,7 +13,7 @@
         }
     ],
     "functions": {
-        "src/*": {
+        "src/index.ts": {
             "maxDuration": 90
         }
     }
