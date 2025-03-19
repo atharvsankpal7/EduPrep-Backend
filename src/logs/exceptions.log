@@ -1370,3 +1370,108 @@
     at Module.load (node:internal/modules/cjs/loader:1313:32)
     at Function._load (node:internal/modules/cjs/loader:1123:12)
     at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-03-19 13:58:23 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/middleware/auth.middleware.ts[0m:[93m35[0m:[93m62[0m - [91merror[0m[90m TS2339: [0mProperty '_id' does not exist on type 'string | JwtPayload'.
+  Property '_id' does not exist on type 'string'.
+
+[7m35[0m         const user = await User.findById(decodedRefreshToken._id);
+[7m  [0m [91m                                                             ~~~[0m
+
+    at createTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1699:10
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1313:32)
+    at Function._load (node:internal/modules/cjs/loader:1123:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-03-19 13:58:39 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/middleware/auth.middleware.ts[0m:[93m35[0m:[93m63[0m - [91merror[0m[90m TS2339: [0mProperty '_id' does not exist on type 'string | JwtPayload'.
+  Property '_id' does not exist on type 'string'.
+
+[7m35[0m         const user = await User.findById(decodedRefreshToken?._id);
+[7m  [0m [91m                                                              ~~~[0m
+
+    at createTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1699:10
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1313:32)
+    at Function._load (node:internal/modules/cjs/loader:1123:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-03-19 13:59:11 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/middleware/auth.middleware.ts[0m:[93m43[0m:[93m7[0m - [91merror[0m[90m TS1109: [0mExpression expected.
+
+[7m43[0m       }
+[7m  [0m [91m      ~[0m
+
+    at createTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1699:10
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1313:32)
+    at Function._load (node:internal/modules/cjs/loader:1123:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-03-19 14:00:05 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/middleware/auth.middleware.ts[0m:[93m43[0m:[93m9[0m - [91merror[0m[90m TS2304: [0mCannot find name 'res'.
+
+[7m43[0m         res.cookie("accessToken", newAccessToken, {
+[7m  [0m [91m        ~~~[0m
+
+    at createTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1699:10
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1313:32)
+    at Function._load (node:internal/modules/cjs/loader:1123:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-03-19 14:01:04 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/middleware/auth.middleware.ts[0m:[93m83[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType 'FlattenMaps<IUser> & Required<{ _id: FlattenMaps<unknown>; }> & { __v: number; }' is not assignable to type '(Document<unknown, {}, IUser> & IUser) | undefined'.
+  Type 'FlattenMaps<IUser> & Required<{ _id: FlattenMaps<unknown>; }> & { __v: number; }' is not assignable to type 'Document<unknown, {}, IUser> & IUser'.
+    Type 'FlattenMaps<IUser> & Required<{ _id: FlattenMaps<unknown>; }> & { __v: number; }' is not assignable to type 'Document<unknown, {}, IUser>'.
+      The types returned by '$clearModifiedPaths().toJSON(...)' are incompatible between these types.
+        Type '{ [x: string]: any; }' is missing the following properties from type 'FlattenMaps<IUser & Required<{ _id: unknown; }>>': id, urn, email, fullName, and 60 more.
+
+[7m83[0m       req.user = user;
+[7m  [0m [91m      ~~~~~~~~[0m
+
+    at createTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1699:10
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1313:32)
+    at Function._load (node:internal/modules/cjs/loader:1123:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-03-19 14:14:49 [[31merror[39m]: TSError: ⨯ Unable to compile TypeScript:
+[96msrc/middleware/auth.middleware.ts[0m:[93m16[0m:[93m5[0m - [91merror[0m[90m TS2345: [0mArgument of type '(req: AuthenticatedRequest, res: express.Response, next: express.NextFunction) => Promise<express.Response<any, Record<string, any>> | undefined>' is not assignable to parameter of type '(req: Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>, res: Response<any, Record<string, any>>, next: NextFunction) => Promise<...>'.
+  Type 'Promise<Response<any, Record<string, any>> | undefined>' is not assignable to type 'Promise<void>'.
+    Type 'Response<any, Record<string, any>> | undefined' is not assignable to type 'void'.
+      Type 'Response<any, Record<string, any>>' is not assignable to type 'void'.
+
+[7m16[0m     async (req: AuthenticatedRequest, res: express.Response, next: express.NextFunction) => {
+[7m  [0m [91m    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:863:19)
+    at getOutput (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1077:36)
+    at Object.compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1433:41)
+    at Module.m._compile (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1699:10
+    at Object.require.extensions.<computed> [as .ts] (F:\study_material\codes\__Mega_Project\02BackEnd\node_modules\.pnpm\ts-node@10.9.2_@types+node@22.13.1_typescript@5.7.3\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1313:32)
+    at Function._load (node:internal/modules/cjs/loader:1123:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)

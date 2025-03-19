@@ -4399,3 +4399,225 @@
 2025-03-07 12:04:48 [[32minfo[39m]: CET distribution setup completed successfully
 2025-03-07 12:05:40 [[32minfo[39m]: Connected to MongoDB
 2025-03-07 12:05:40 [[32minfo[39m]: CET distribution setup completed successfully
+2025-03-08 15:34:38 [[31merror[39m]: Error: Unauthorized access
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:23:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:4:12)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:16:90
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:7:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:8:71
+    at new Promise (<anonymous>)
+2025-03-08 15:34:45 [[32minfo[39m]: User logged in successfully
+2025-03-08 16:36:39 [[31merror[39m]: Error: Unauthorized access
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:23:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:4:12)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:16:90
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:7:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:8:71
+    at new Promise (<anonymous>)
+2025-03-12 09:22:54 [[32minfo[39m]: User logged in successfully
+2025-03-12 09:56:24 [[32minfo[39m]: User logged out successfully
+2025-03-12 09:56:42 [[32minfo[39m]: User logged in successfully
+2025-03-12 09:56:57 [[32minfo[39m]: User logged out successfully
+2025-03-12 09:57:31 [[32minfo[39m]: User logged in successfully
+2025-03-12 09:58:09 [[32minfo[39m]: User logged out successfully
+2025-03-12 10:00:34 [[32minfo[39m]: User logged in successfully
+2025-03-19 13:55:42 [[32minfo[39m]: User logged in successfully
+2025-03-19 13:56:42 [[31merror[39m]: Rate limit exceeded - IP: ::1, Path: /api/v1/test/67da7f943d7b51fc08fb8441, Method: GET, User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36
+2025-03-19 13:56:43 [[31merror[39m]: Rate limit exceeded - IP: ::1, Path: /api/v1/test/67da7f9d3d7b51fc08fb8454/result, Method: GET, User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36
+2025-03-19 13:56:44 [[31merror[39m]: Rate limit exceeded - IP: ::1, Path: /api/v1/test/67da7f943d7b51fc08fb8441, Method: GET, User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36
+2025-03-19 13:56:45 [[31merror[39m]: Rate limit exceeded - IP: ::1, Path: /api/v1/test/67da7f9d3d7b51fc08fb8454/result, Method: GET, User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36
+2025-03-19 13:56:47 [[31merror[39m]: Rate limit exceeded - IP: ::1, Path: /api/v1/test/67da7f943d7b51fc08fb8441, Method: GET, User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36
+2025-03-19 13:56:48 [[31merror[39m]: Rate limit exceeded - IP: ::1, Path: /api/v1/test/67da7f9d3d7b51fc08fb8454/result, Method: GET, User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36
+2025-03-19 14:22:15 [[32minfo[39m]: User logged out successfully
+2025-03-19 14:22:25 [[32minfo[39m]: User logged in successfully
+2025-03-19 14:22:38 [[31merror[39m]: Error: Unauthorized access
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:22:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:4:12)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:16:107
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:7:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:8:71
+    at new Promise (<anonymous>)
+2025-03-19 14:22:38 [[32minfo[39m]: Access token refreshed successfully
+2025-03-19 14:22:41 [[31merror[39m]: Error: Unauthorized access
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:22:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:4:12)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:16:107
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:7:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:8:71
+    at new Promise (<anonymous>)
+2025-03-19 14:22:41 [[31merror[39m]: Error: Unauthorized access
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:22:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:4:12)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:16:107
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:7:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:8:71
+    at new Promise (<anonymous>)
+2025-03-19 14:22:52 [[31merror[39m]: Error: Unauthorized access
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:22:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:4:12)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:16:107
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:7:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:8:71
+    at new Promise (<anonymous>)
+2025-03-19 14:22:52 [[31merror[39m]: Error: Unauthorized access
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:22:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:4:12)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:16:107
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:7:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:8:71
+    at new Promise (<anonymous>)
+2025-03-19 14:24:22 [[31merror[39m]: Error: Unauthorized access
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:22:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:4:12)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:16:107
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:7:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:8:71
+    at new Promise (<anonymous>)
+2025-03-19 14:24:22 [[31merror[39m]: Error: Unauthorized access
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:22:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:4:12)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:16:107
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:7:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:8:71
+    at new Promise (<anonymous>)
+2025-03-19 14:24:33 [[31merror[39m]: Error: Unauthorized access
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:22:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:4:12)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:16:107
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:7:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:8:71
+    at new Promise (<anonymous>)
+2025-03-19 14:24:38 [[32minfo[39m]: User logged in successfully
+2025-03-19 14:24:52 [[31merror[39m]: Error: Unauthorized access
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:22:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:4:12)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:16:107
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:7:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:8:71
+    at new Promise (<anonymous>)
+2025-03-19 14:24:52 [[32minfo[39m]: Access token refreshed successfully
+2025-03-19 14:24:54 [[31merror[39m]: Error: Unauthorized access
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:22:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:4:12)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:16:107
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:7:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:8:71
+    at new Promise (<anonymous>)
+2025-03-19 14:24:54 [[31merror[39m]: Error: Unauthorized access
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:22:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:4:12)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:16:107
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:7:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:8:71
+    at new Promise (<anonymous>)
+2025-03-19 14:40:17 [[32minfo[39m]: User logged in successfully
+2025-03-19 14:40:25 [[31merror[39m]: Error: Unauthorized access
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:22:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:4:12)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:16:107
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:7:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:8:71
+    at new Promise (<anonymous>)
+2025-03-19 14:40:25 [[32minfo[39m]: Access token refreshed successfully
+2025-03-19 14:40:28 [[31merror[39m]: Error: Unauthorized access
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:22:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:4:12)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:16:107
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:7:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:8:71
+    at new Promise (<anonymous>)
+2025-03-19 14:40:28 [[31merror[39m]: Error: Unauthorized access
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:22:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:4:12)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:16:107
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:7:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:8:71
+    at new Promise (<anonymous>)
+2025-03-19 14:41:02 [[31merror[39m]: Error: Unauthorized access
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:22:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:4:12)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:16:107
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:7:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:8:71
+    at new Promise (<anonymous>)
+2025-03-19 14:41:02 [[31merror[39m]: Error: Unauthorized access
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:22:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:4:12)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\middleware\auth.middleware.ts:16:107
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:7:23
+    at Generator.next (<anonymous>)
+    at F:\study_material\codes\__Mega_Project\02BackEnd\src\utils\asyncHandler.ts:8:71
+    at new Promise (<anonymous>)
+2025-03-19 14:44:50 [[32minfo[39m]: User logged in successfully
+2025-03-19 17:03:01 [[32minfo[39m]: User logged in successfully
