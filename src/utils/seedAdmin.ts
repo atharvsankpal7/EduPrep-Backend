@@ -28,10 +28,9 @@ async function seedAdmin() {
     });
 
     logger.info(`Admin user created with ID: ${admin._id}`);
-    console.log("Admin user created successfully");
-    console.log("Email: admin@example.com");
-    console.log("Password: Admin@123456");
-    console.log("Please change this password after first login");
+
+
+
 
   } catch (error) {
     logger.error("Error seeding admin user:", error);

@@ -17,14 +17,12 @@ interface Request extends ExpressRequest {
 // saving the new test result in the database
 const submitTest = asyncHandler(async (req: AuthenticatedRequest, res: Response) => {
     const {id} = req.params;
-    console.log("test is being submitted for ", req.user?.id);
 
     const studentId = req.user?.id;
     if (!studentId) {
         throw new ApiError(401, "Unauthorized access");
     }
 
-    console.log("student id is ", studentId);
     const {selectedAnswers, timeTaken, autoSubmission} = req.body;
     
     // Validate required fields
@@ -56,7 +54,6 @@ const submitTest = asyncHandler(async (req: AuthenticatedRequest, res: Response)
         score
     });
 
-    console.log("test result is ", testResult);
     res.status(201).send(
         new ApiResponse(201, {testResult}, "Test submitted successfully")
     );
@@ -66,8 +63,7 @@ const getTestResult = asyncHandler(async (req: Request, res: Response) => {
     const {id} = req.params;
     const studentId = req.user?.id;
 
-   console.log("test result is being fetched for ", req.user?.id);
-   console.log(id)
+
     // Aggregation pipeline for fetching test results and related questions
     
     const [testResult] = await TestResult.aggregate([
@@ -108,7 +104,7 @@ const getTestResult = asyncHandler(async (req: Request, res: Response) => {
             },
         },
     ]);
-    console.log("test result is ", testResult);
+
     if (!testResult) {
         throw new ApiError(404, "Test not found");
     }
