@@ -30,8 +30,8 @@
 
 import express from 'express';
 import {createCETTest, getCompanySpecificTest, getCustomTest, getTestWithId,} from '../controllers/test.controller';
-import {getTestResult, submitTest} from "../controllers/testResult.controller.ts";
-import {authMiddleware} from "../middleware/auth.middleware.ts";
+import {getTestResult, submitTest} from "../controllers/testResult.controller";
+import {authMiddleware} from "../middleware/auth.middleware";
 
 const router = express.Router();
 

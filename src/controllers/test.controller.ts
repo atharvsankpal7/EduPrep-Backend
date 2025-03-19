@@ -8,9 +8,9 @@ import {TCreateTestResponse} from "../types/sharedTypes";
 import ApiResponse from "../utils/ApiResponse";
 import logger from "../utils/logger";
 import {CompanySpecificTestDetails} from "../models/topics/company-specific-topics.model";
-import {IUser} from "../types/databaseSchema.types.ts";
-import {AuthenticatedRequest} from "../middleware/auth.middleware.ts";
-import {Topic} from "../models/topics/topic.model.ts";
+import {IUser} from "../types/databaseSchema.types";
+import {AuthenticatedRequest} from "../middleware/auth.middleware";
+import {Topic} from "../models/topics/topic.model";
 import {getCETQuestions} from "../utils/cetQuestionSelector";
 import mongoose, {Schema} from "mongoose";
 
