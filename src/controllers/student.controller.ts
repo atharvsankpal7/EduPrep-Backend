@@ -14,14 +14,13 @@ import { AuthenticatedRequest } from "../middleware/auth.middleware";
 // Cookie options
 const accessTokenCookieOptions = {
   httpOnly: true,
-  secure: true,
+  secure: false,
   sameSite: "lax" as const,
   maxAge: 2 * 24 * 60 * 60 * 1000, // 2 days
   path: "/",
 };
-const refreshTokenCookieOptions = {
-  httpOnly: true,
-  secure: true,
+const refreshTokenCookieOptions = {  httpOnly: true,
+  secure: false,
   sameSite: "lax" as const,
   maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
   path: "/",
