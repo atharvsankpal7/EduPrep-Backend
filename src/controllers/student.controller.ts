@@ -16,7 +16,7 @@ const accessTokenCookieOptions = {
   httpOnly: true,
   secure: true,
   sameSite: "lax" as const,
-  maxAge: 24 * 60 * 60 * 1000 * 2, // 2 days
+  maxAge: 2 * 24 * 60 * 60 * 1000, // 2 days
   path: "/",
 };
 const refreshTokenCookieOptions = {
@@ -41,7 +41,6 @@ const registerStudent = asyncHandler(
       }
       req.body.urn = urn;
     }
-    console.log(req.body);
     const parsed = userRegistrationSchema.safeParse(req.body);
     if (!parsed.success) {
       logger.warn("Validation errors during registration", {

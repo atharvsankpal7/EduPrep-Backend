@@ -33,7 +33,7 @@ const createCustomTest = async (user: IUser, body: any) => {
         const errorMessages = validationResult.error.errors.map(
             (error) => error.message
         );
-        console.log(validationResult.error);
+
         throw new ApiError(400, errorMessages.join(", "));
     }
 
@@ -93,7 +93,7 @@ const getCustomTest = asyncHandler(async (req: Request, res: Response) => {
     if (!req.user) {
         throw new ApiError(401, "Unauthorized");
     }
-    console.log(req.body);
+
     const {testDetails} = await createCustomTest(req.user, req.body);
     res
         .status(201)
