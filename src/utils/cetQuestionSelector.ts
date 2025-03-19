@@ -31,7 +31,7 @@ export async function getCETQuestions(): Promise<QuestionDistribution> {
           logger.warn(`Topic not found: ${topic.topicName}`);
           throw new ApiError(404, `Topic not found: ${topic.topicName}`);
         }
-        console.log(topicDoc.id);
+
         // Get questions for this specific topic
         const topicQuestions = await Question.aggregate([
           {
@@ -42,8 +42,8 @@ export async function getCETQuestions(): Promise<QuestionDistribution> {
           { $sample: { size: topic.questionCount } },
           { $project: { _id: 1 } },
         ]);
-        console.log(topicQuestions);
-        console.log(topic.topicName);
+
+
         if (topicQuestions.length < topic.questionCount) {
           logger.warn(
             `Insufficient questions for topic ${topic.topicName}. Needed: ${topic.questionCount}, Found: ${topicQuestions.length}`
