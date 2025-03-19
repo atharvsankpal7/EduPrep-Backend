@@ -7,7 +7,7 @@ import logger from "../utils/logger";
 import {
   userLoginSchema,
   userRegistrationSchema,
-} from "../ZodSchema/userSchema.ts";
+} from "../ZodSchema/userSchema";
 import generateAccessAndRefreshToken from "../utils/tokenGenerator";
 import { AuthenticatedRequest } from "../middleware/auth.middleware";
 
