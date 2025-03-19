@@ -1,11 +1,11 @@
-import asyncHandler from "../utils/asyncHandler.ts";
+import asyncHandler from "../utils/asyncHandler";
 import express from "express";
-import {ApiError} from "../utils/ApiError.ts";
+import {ApiError} from "../utils/ApiError";
 import jwt from "jsonwebtoken";
 import {User} from "../models/user/user.model";
 import {Document} from "mongoose";
-import {IUser} from "../types/databaseSchema.types.ts";
-import logger from "../utils/logger.ts";
+import {IUser} from "../types/databaseSchema.types";
+import logger from "../utils/logger";
 
 // Extend express.Request to include user with User type
 export interface AuthenticatedRequest extends express.Request {
