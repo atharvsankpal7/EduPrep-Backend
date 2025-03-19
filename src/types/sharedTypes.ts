@@ -1,4 +1,4 @@
-import {ITest} from "./databaseSchema.types.ts";
+import {ITest} from "./databaseSchema.types";
 
 interface Subject {
     subjectName: string; // Name of the subject

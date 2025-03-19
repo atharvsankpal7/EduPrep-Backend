@@ -1,4 +1,4 @@
-import logger from "./logger.ts";
+import logger from "./logger";
 import {rateLimit} from 'express-rate-limit'
 
 const rateLimiter = rateLimit({

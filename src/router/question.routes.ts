@@ -1,7 +1,7 @@
 import express from "express";
 import { authMiddleware } from "../middleware/auth.middleware";
-import { uploadMiddleware } from "../middleware/multer.middleware.ts";
-import { saveExcel } from "../controllers/question.controller.ts";
+import { uploadMiddleware } from "../middleware/multer.middleware";
+import { saveExcel } from "../controllers/question.controller";
 const router = express.Router();
 
 router

@@ -1,8 +1,8 @@
-import asyncHandler from "../utils/asyncHandler.ts";
+import asyncHandler from "../utils/asyncHandler";
 import express from "express";
-import { ApiError } from "../utils/ApiError.ts";
-import { AuthenticatedRequest } from "./auth.middleware.ts";
-import logger from "../utils/logger.ts";
+import { ApiError } from "../utils/ApiError";
+import { AuthenticatedRequest } from "./auth.middleware";
+import logger from "../utils/logger";
 
 export const adminMiddleware = asyncHandler(
   async (
