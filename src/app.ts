@@ -2,14 +2,14 @@ import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 // route import
-import userRouter from "./router/user.routes.ts";
+import userRouter from "./router/user.routes";
 import testRouter from "./router/test.routes";
 import { ApiError } from "./utils/ApiError";
-import rateLimiter from "./utils/raterLimiter.ts";
-import questionRouter from "./router/question.routes.ts";
-import topicRouter from "./router/topic.routes.ts";
-import adminRouter from "./router/admin.routes.ts";
-import testHistoryRouter from "./router/testHistory.routes.ts";
+import rateLimiter from "./utils/raterLimiter";
+import questionRouter from "./router/question.routes";
+import topicRouter from "./router/topic.routes";
+import adminRouter from "./router/admin.routes";
+import testHistoryRouter from "./router/testHistory.routes";
 
 const app = express();
 

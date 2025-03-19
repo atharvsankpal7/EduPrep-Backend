@@ -5,7 +5,7 @@ import {AuthenticatedRequest} from "../middleware/auth.middleware";
 import ApiResponse from "../utils/ApiResponse";
 import {ApiError} from "../utils/ApiError";
 import * as XLSX from "xlsx";
-import {Question} from "../models/questions/questions.model.ts";
+import {Question} from "../models/questions/questions.model";
 import fs from "fs";
 import {processExcelData} from "../utils/excelProcessor";
 

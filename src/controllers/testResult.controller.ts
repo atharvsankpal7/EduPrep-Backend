@@ -1,12 +1,12 @@
 import {Request as ExpressRequest, Response} from "express";
-import {IUser} from "../types/databaseSchema.types.ts";
-import {AuthenticatedRequest} from "../middleware/auth.middleware.ts";
-import {TestResult} from "../models/tests/testResult.model.ts";
-import asyncHandler from "../utils/asyncHandler.ts";
-import {ApiError} from "../utils/ApiError.ts";
-import {Test} from "../models/tests/test.model.ts";
-import {Question} from "../models/questions/questions.model.ts";
-import ApiResponse from "../utils/ApiResponse.ts";
+import {IUser} from "../types/databaseSchema.types";
+import {AuthenticatedRequest} from "../middleware/auth.middleware";
+import {TestResult} from "../models/tests/testResult.model";
+import asyncHandler from "../utils/asyncHandler";
+import {ApiError} from "../utils/ApiError";
+import {Test} from "../models/tests/test.model";
+import {Question} from "../models/questions/questions.model";
+import ApiResponse from "../utils/ApiResponse";
 import mongoose from "mongoose";
 
 // Custom Request interface to include user
