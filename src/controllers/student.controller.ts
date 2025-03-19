@@ -7,9 +7,9 @@ import logger from "../utils/logger";
 import {
   userLoginSchema,
   userRegistrationSchema,
-} from "../ZodSchema/userSchema";
-import generateAccessAndRefreshToken from "../utils/tokenGenerator";
-import { AuthenticatedRequest } from "../middleware/auth.middleware";
+} from "../ZodSchema/userSchema.ts";
+import generateAccessAndRefreshToken from "../utils/tokenGenerator.ts";
+import { AuthenticatedRequest } from "../middleware/auth.middleware.ts";
 import jwt from "jsonwebtoken";
 
 // Cookie options
@@ -17,7 +17,7 @@ const accessTokenCookieOptions = {
   httpOnly: true,
   secure: true,
   sameSite: "lax" as const,
-  maxAge : 60 * 60 * 1000 * 24, // 1 hour
+  maxAge: 24 * 60 * 60 * 1000, // 1 day
   path: "/",
 };
 const refreshTokenCookieOptions = {
@@ -45,7 +45,9 @@ const registerStudent = asyncHandler(
     console.log(req.body);
     const parsed = userRegistrationSchema.safeParse(req.body);
     if (!parsed.success) {
-      logger.warn("Validation errors during registration", { error: parsed.error });
+      logger.warn("Validation errors during registration", {
+        error: parsed.error,
+      });
       throw new ApiError(400, "Invalid input", [parsed.error]);
     }
 
@@ -84,14 +86,14 @@ const registerStudent = asyncHandler(
     );
 
     logger.info("User registered successfully", { userId: newUser._id });
-     res
+    res
       .status(201)
       .cookie("accessToken", accessToken, accessTokenCookieOptions)
       .cookie("refreshToken", user.refreshToken, refreshTokenCookieOptions)
       .json(
         new ApiResponse(
           201,
-          { user:registeredUser },
+          { user: registeredUser },
           "User registered successfully"
         )
       );
@@ -160,13 +162,7 @@ const loginUser = asyncHandler(
       .status(200)
       .cookie("accessToken", accessToken, accessTokenCookieOptions)
       .cookie("refreshToken", user.refreshToken, refreshTokenCookieOptions)
-      .json(
-        new ApiResponse(
-          200,
-          { user },
-          "User logged in successfully"
-        )
-      );
+      .json(new ApiResponse(200, { user }, "User logged in successfully"));
   }
 );
 
@@ -209,12 +205,15 @@ const refreshAccessToken = asyncHandler(
 
     try {
       // Verify the refresh token
-      const decoded = jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET!) as { _id: string };
-      
+      const decoded = jwt.verify(
+        refreshToken,
+        process.env.REFRESH_TOKEN_SECRET!
+      ) as { _id: string };
+
       // Find user with matching refresh token
       const user = await User.findOne({
         _id: decoded._id,
-        refreshToken: refreshToken
+        refreshToken: refreshToken,
       }).select("-password");
 
       if (!user) {
@@ -222,14 +221,19 @@ const refreshAccessToken = asyncHandler(
       }
 
       // Generate new tokens
-      const { accessToken, user: updatedUser } = await generateAccessAndRefreshToken(user._id);
+      const { accessToken, user: updatedUser } =
+        await generateAccessAndRefreshToken(user._id);
 
       logger.info("Access token refreshed successfully", { userId: user._id });
 
       res
         .status(200)
         .cookie("accessToken", accessToken, accessTokenCookieOptions)
-        .cookie("refreshToken", updatedUser.refreshToken, refreshTokenCookieOptions)
+        .cookie(
+          "refreshToken",
+          updatedUser.refreshToken,
+          refreshTokenCookieOptions
+        )
         .json(
           new ApiResponse(
             200,
