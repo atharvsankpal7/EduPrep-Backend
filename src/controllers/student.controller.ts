@@ -53,18 +53,18 @@ const registerStudent = asyncHandler(
 
     // Check if user already exists
     const existingUser = await User.findOne({
-      $or: [{ email }],
+      email,
     });
-
+    console.log(existingUser);
     if (existingUser) {
       logger.warn("User with email already exists", { email });
-      throw new ApiError(409, "User with this email or URN already exists");
+      throw new ApiError(409, "User with this email  exists");
     }
 
     // Create the new user
     const newUser = await User.create({
       fullName,
-      
+
       email,
       password,
       city,
