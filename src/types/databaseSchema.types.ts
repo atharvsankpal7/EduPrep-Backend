@@ -2,7 +2,7 @@ import mongoose, {Schema} from "mongoose";
 
 export interface IUser extends mongoose.Document {
   id:string;
-  urn: number;
+  // urn: number;
   email: string;
   fullName: string;
   password: string;
