@@ -5,14 +5,14 @@ import { IUser } from "../../types/databaseSchema.types";
 
 const userSchema = new Schema<IUser>(
   {
-    urn: {
-      type: Number,
-      required: true,
-      unique: true,
-      lowercase: true,
-      trim: true,
-      index: true,
-    },
+    // urn: {
+    //   type: Number,
+    //   required: true,
+    //   unique: true,
+    //   lowercase: true,
+    //   trim: true,
+    //   index: true,
+    // },
     email: {
       type: String,
       required: true,
@@ -91,7 +91,7 @@ userSchema.methods.generateAccessToken = function (this: IUser): string {
       _id: this._id,
       email: this.email,
       fullName: this.fullName,
-      urn: this.urn,
+      // urn: this.urn,
       role: this.role,
     },
     process.env.ACCESS_TOKEN_SECRET as string
