@@ -72,6 +72,7 @@ const registerStudent = asyncHandler(
     });
 
     const registeredUser = await User.findById(newUser._id).select("-password");
+    console.log(registeredUser);
     if (!registeredUser) {
       logger.error("Failed to retrieve registered user from database", {
         userId: newUser._id,
