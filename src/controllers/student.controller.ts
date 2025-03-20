@@ -32,15 +32,15 @@ const refreshTokenCookieOptions = {
  */
 const registerStudent = asyncHandler(
   async (req: express.Request, res: express.Response) => {
-    // Convert urn to number before validation
-    if (req.body.urn) {
-      const urn = Number(req.body.urn);
-      if (isNaN(urn)) {
-        logger.warn("Invalid URN format", { urn: req.body.urn });
-        throw new ApiError(400, "Invalid URN format");
-      }
-      req.body.urn = urn;
-    }
+    // // Convert urn to number before validation
+    // if (req.body.urn) {
+    //   const urn = Number(req.body.urn);
+    //   if (isNaN(urn)) {
+    //     logger.warn("Invalid URN format", { urn: req.body.urn });
+    //     throw new ApiError(400, "Invalid URN format");
+    //   }
+    //   req.body.urn = urn;
+    // }
     const parsed = userRegistrationSchema.safeParse(req.body);
     if (!parsed.success) {
       logger.warn("Validation errors during registration", {
@@ -121,21 +121,19 @@ const loginUser = asyncHandler(
       throw new ApiError(400, "Invalid input", errors);
     }
 
-    const { urn, email, password } = parsed.data;
+    const { email, password } = parsed.data;
 
     // Find the existing user by either email or urn
     let existingUser;
     if (email) {
       existingUser = await User.findOne({ email });
     }
-    if (urn) {
-      existingUser = await User.findOne({ urn });
-    }
+    // if (urn) {
+    //   existingUser = await User.findOne({ urn });
+    // }
 
     if (!existingUser) {
-      logger.warn(
-        `User not found during login for email: ${email} or urn: ${urn}`
-      );
+      logger.warn(`User not found during login for email: ${email} `);
       throw new ApiError(404, "User not found");
     }
 
