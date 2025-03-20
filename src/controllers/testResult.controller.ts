@@ -76,7 +76,6 @@ const submitTest = asyncHandler(
         new ApiResponse(201, { testResult }, "Test submitted successfully")
       );
   }
-
 );// gathering the existing test results for a student along with the questions asked in the test
 const getTestResult = asyncHandler(async (req: Request, res: Response) => {
   const { id } = req.params;
