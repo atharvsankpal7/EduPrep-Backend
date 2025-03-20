@@ -49,22 +49,22 @@ const registerStudent = asyncHandler(
       throw new ApiError(400, "Invalid input", [parsed.error]);
     }
 
-    const { fullName, urn, email, password, city, contactNumber } = parsed.data;
+    const { fullName, email, password, city, contactNumber } = parsed.data;
 
     // Check if user already exists
     const existingUser = await User.findOne({
-      $or: [{ email }, { urn }],
+      $or: [{ email }],
     });
 
     if (existingUser) {
-      logger.warn("User with email or URN already exists", { email, urn });
+      logger.warn("User with email already exists", { email });
       throw new ApiError(409, "User with this email or URN already exists");
     }
 
     // Create the new user
     const newUser = await User.create({
       fullName,
-      urn,
+      
       email,
       password,
       city,
@@ -104,14 +104,14 @@ const registerStudent = asyncHandler(
 const loginUser = asyncHandler(
   async (req: express.Request, res: express.Response) => {
     // Convert urn to number before validation, ensuring it's valid
-    if (req.body.urn) {
-      const urn = Number(req.body.urn);
-      if (isNaN(urn)) {
-        logger.warn("Invalid URN format", { urn: req.body.urn });
-        throw new ApiError(400, "Invalid URN format");
-      }
-      req.body.urn = urn;
-    }
+    // if (req.body.urn) {
+    //   const urn = Number(req.body.urn);
+    //   if (isNaN(urn)) {
+    //     logger.warn("Invalid URN format", { urn: req.body.urn });
+    //     throw new ApiError(400, "Invalid URN format");
+    //   }
+    //   req.body.urn = urn;
+    // }
 
     // Validate request body using schema
     const parsed = userLoginSchema.safeParse(req.body);
