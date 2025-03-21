@@ -12,14 +12,14 @@ import generateAccessAndRefreshToken from "../utils/tokenGenerator";
 import { AuthenticatedRequest } from "../middleware/auth.middleware";
 
 // Cookie options
-const accessTokenCookieOptions = {
+export const accessTokenCookieOptions = {
   httpOnly: true,
   secure: true,
   sameSite: "none" as const,
-  maxAge: 60 * 1000, // 2 days
+  maxAge: 15* 60 * 1000, // 15 minutes
   path: "/",
 };
-const refreshTokenCookieOptions = {
+export const refreshTokenCookieOptions = {
   httpOnly: true,
   secure: true,
   sameSite: "none" as const,
@@ -151,7 +151,7 @@ const loginUser = asyncHandler(
     const { accessToken, user } = await generateAccessAndRefreshToken(
       existingUser._id
     );
-
+    
     logger.info("User logged in successfully", { userId: existingUser._id });
 
     // Respond with success, setting cookies for tokens
@@ -189,4 +189,13 @@ const logoutUser = asyncHandler(
   }
 );
 
-export { registerStudent, loginUser, logoutUser };
+const getUser = asyncHandler(
+  async (req: AuthenticatedRequest, res: express.Response) => {
+    const userId = req.user?.id;
+    if(!userId){
+      throw new ApiError(401, "Unauthorized");
+    }
+    res.status(200).json(new ApiResponse(200, { user: req.user }, "User fetched successfully"));
+  }
+);
+export { registerStudent, loginUser, logoutUser, getUser };
