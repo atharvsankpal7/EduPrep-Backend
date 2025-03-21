@@ -83,7 +83,6 @@ userSchema.methods.generateAccessToken = function (this: IUser): string {
       _id: this._id,
       email: this.email,
       fullName: this.fullName,
-
       role: this.role,
     },
     process.env.ACCESS_TOKEN_SECRET as string
