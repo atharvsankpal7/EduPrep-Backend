@@ -16,7 +16,7 @@ const accessTokenCookieOptions = {
   httpOnly: true,
   secure: true,
   sameSite: "none" as const,
-  maxAge: 2 * 24 * 60 * 60 * 1000, // 2 days
+  maxAge: 60 * 1000, // 2 days
   path: "/",
 };
 const refreshTokenCookieOptions = {
