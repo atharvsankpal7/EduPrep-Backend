@@ -68,8 +68,7 @@ const submitTest = asyncHandler(async (req: AuthenticatedRequest, res: Response)
         autoSubmission,
         score
     });
-    
-    console.log(score);
+
     res.status(201).send(
         new ApiResponse(201, {testResult}, "Test submitted successfully")
     );
