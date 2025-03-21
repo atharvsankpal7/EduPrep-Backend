@@ -93,7 +93,7 @@ const getTestResult = asyncHandler(async (req: Request, res: Response) => {
     // Fetch the questions separately
     const questions = await Question.find({
         _id: { $in: questionIds }
-    }).select('_id answer question options');
+    }).select('_id answer questionText options');
 
     // Create a map for faster question lookup
     const questionMap = new Map();
@@ -106,7 +106,6 @@ const getTestResult = asyncHandler(async (req: Request, res: Response) => {
         const questionId = answer.questionId.toString();
         const question = questionMap.get(questionId);
         const isCorrect = question?.answer === answer.selectedOption;
-        
         return {
             questionId: answer.questionId,
             questionText: question.questionText,
