@@ -6,7 +6,7 @@ function removeConsoleLogs(dir) {
         const fullPath = path.join(dir, file);
         if (fs.statSync(fullPath).isDirectory()) {
             removeConsoleLogs(fullPath);
-        } else if (file.endsWith('.ts')) {
+        } else if (file.endsWith('.ts') && !['db.ts', 'app.ts', 'index.ts'].includes(file)) {
             let content = fs.readFileSync(fullPath, 'utf8');
             let updatedContent = content.replace(/^\s*console\.log\(.*\);?\s*$/gm, '');
             fs.writeFileSync(fullPath, updatedContent, 'utf8');

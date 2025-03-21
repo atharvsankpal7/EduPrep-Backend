@@ -55,7 +55,7 @@ const registerStudent = asyncHandler(
     const existingUser = await User.findOne({
       email,
     });
-    console.log(existingUser);
+
     if (existingUser) {
       logger.warn("User with email already exists", { email });
       throw new ApiError(409, "User with this email  exists");
@@ -72,7 +72,7 @@ const registerStudent = asyncHandler(
     });
 
     const registeredUser = await User.findById(newUser._id).select("-password");
-    console.log(registeredUser);
+
     if (!registeredUser) {
       logger.error("Failed to retrieve registered user from database", {
         userId: newUser._id,
