@@ -6,7 +6,7 @@
     "dev": "nodemon src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
     "seed:admin": "ts-node src/utils/seedAdmin.ts",
-    "start" :"node src/index"
+    "start": "node src/index"
   },
   "keywords": [],
   "author": "",
@@ -46,7 +46,6 @@
     "multer": "^1.4.5-lts.1",
     "nodemailer": "^6.9.16",
     "winston": "^3.17.0",
-    "xlsx": "^0.18.5",
     "zod": "^3.23.8"
   }
 }
