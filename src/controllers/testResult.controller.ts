@@ -110,8 +110,8 @@ const getTestResult = asyncHandler(async (req: Request, res: Response) => {
             questionId: answer.questionId,
             questionText: question.questionText,
             options: question?.options,
-            selectedOption: answer.selectedOption,
-            correctOption: question?.answer,
+            selectedOption: answer.selectedOption - 1,
+            correctOption: question?.answer - 1,
             isCorrect: isCorrect
         };
     });
