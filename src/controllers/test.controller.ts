@@ -22,7 +22,6 @@ interface Request extends ExpressRequest {
 // creates the test with the given specifications and saves it in the database
 const createCustomTest = async (user: IUser, body: any) => {
   const { time, numberOfQuestions, topicList, educationLevel } = body;
-
   const validationResult = customTestSchema.safeParse({
     time: Number(time),
     numberOfQuestions: Number(numberOfQuestions),
@@ -42,19 +41,26 @@ const createCustomTest = async (user: IUser, body: any) => {
     numberOfQuestions: totalQuestions,
     topicList: validatedTopicList,
   } = validationResult.data;
-
   const allTopics = await Topic.find({
-    _id: { $in: validatedTopicList },
+    topicName: { $in: topicList },
   });
 
   if (allTopics.length === 0) {
     throw new ApiError(400, "At least one topic is required.");
   }
 
+  // Get questions with full details using aggregation
   const selectedQuestions = await Question.aggregate([
-    { $match: { topic: { $in: validatedTopicList.map(id => new mongoose.Types.ObjectId(id)) } } },
+    { $match: { topicId: { $in: allTopics.map(topic => topic._id) } } },
     { $sample: { size: totalQuestions } },
   ]);
+
+  if (selectedQuestions.length < totalQuestions) {
+    logger.warn(
+      `Requested ${totalQuestions} questions but only found ${selectedQuestions.length} for the given topics`
+    );
+  }
+
   // Create test with a single section, similar to CET format
   const test = await Test.create({
     testName: "Custom Test " + Date.now(),
@@ -63,31 +69,40 @@ const createCustomTest = async (user: IUser, body: any) => {
         sectionName: "Custom Test Section",
         sectionDuration: validatedTime,
         questions: selectedQuestions.map((q) => q._id),
-        totalQuestions: totalQuestions,
+        totalQuestions: selectedQuestions.length,
       },
     ],
     totalDuration: validatedTime,
-    totalQuestions: totalQuestions,
+    totalQuestions: selectedQuestions.length,
     createdBy: user._id,
   });
 
-  // Prepare response with test details
+  // Prepare response with test details and full question data
+  const sectionsWithQuestions = test.sections.map((section, index) => {
+    return {
+      name: section.sectionName,
+      duration: section.sectionDuration,
+      questionCount: section.totalQuestions,
+      questions: selectedQuestions.map(question => ({
+        _id: question._id,
+        questionText: question.questionText,
+        options: question.options,
+        answer: question.answer,
+        explanation: question.explanation,
+      })),
+    };
+  });
+
   const testDetails = {
     testId: test.id,
     name: test.testName,
     duration: test.totalDuration,
     totalQuestions: test.totalQuestions,
-    sections: test.sections.map((section) => ({
-      name: section.sectionName,
-      duration: section.sectionDuration,
-      questionCount: section.totalQuestions,
-    })),
+    sections: sectionsWithQuestions,
   };
 
   return { testDetails };
 };
-
-//
 const getCustomTest = asyncHandler(async (req: Request, res: Response) => {
   if (!req.user) {
     throw new ApiError(401, "Unauthorized");
