@@ -1,315 +1,337 @@
-import {Request as ExpressRequest, Response} from "express";
-import {ApiError} from "../utils/ApiError";
-import {customTestSchema} from "../ZodSchema/testSchema";
+import { Request as ExpressRequest, Response } from "express";
+import { ApiError } from "../utils/ApiError";
+import { customTestSchema } from "../ZodSchema/testSchema";
 import asyncHandler from "../utils/asyncHandler";
-import {Question} from "../models/questions/questions.model";
-import {Test} from "../models/tests/test.model";
-import {TCreateTestResponse} from "../types/sharedTypes";
+import { Question } from "../models/questions/questions.model";
+import { Test } from "../models/tests/test.model";
+import { TCreateTestResponse } from "../types/sharedTypes";
 import ApiResponse from "../utils/ApiResponse";
 import logger from "../utils/logger";
-import {CompanySpecificTestDetails} from "../models/topics/company-specific-topics.model";
-import {IUser} from "../types/databaseSchema.types";
-import {AuthenticatedRequest} from "../middleware/auth.middleware";
-import {Topic} from "../models/topics/topic.model";
-import {getCETQuestions} from "../utils/cetQuestionSelector";
-import mongoose, {Schema} from "mongoose";
+import { CompanySpecificTestDetails } from "../models/topics/company-specific-topics.model";
+import { IUser } from "../types/databaseSchema.types";
+import { AuthenticatedRequest } from "../middleware/auth.middleware";
+import { Topic } from "../models/topics/topic.model";
+import { getCETQuestions } from "../utils/cetQuestionSelector";
+import mongoose, { Schema } from "mongoose";
 
 // Custom Request interface to include user
 interface Request extends ExpressRequest {
-    user?: IUser;
+  user?: IUser;
 }
 
 // creates the test with the given specifications and saves it in the database
 const createCustomTest = async (user: IUser, body: any) => {
-    const {time, numberOfQuestions, topicList, educationLevel} = body;
-    
-    const validationResult = customTestSchema.safeParse({
-        time: Number(time),
-        numberOfQuestions: Number(numberOfQuestions),
-        topicList,
-        educationLevel,
-    });
-    if (!validationResult.success) {
-        const errorMessages = validationResult.error.errors.map(
-            (error) => error.message
-        );
+  const { time, numberOfQuestions, topicList, educationLevel } = body;
 
-        throw new ApiError(400, errorMessages.join(", "));
-    }
+  const validationResult = customTestSchema.safeParse({
+    time: Number(time),
+    numberOfQuestions: Number(numberOfQuestions),
+    topicList,
+    educationLevel,
+  });
+  if (!validationResult.success) {
+    const errorMessages = validationResult.error.errors.map(
+      (error) => error.message
+    );
 
-    const {
-        time: validatedTime,
-        numberOfQuestions: totalQuestions,
-        topicList: validatedTopicList,
-    } = validationResult.data;
+    throw new ApiError(400, errorMessages.join(", "));
+  }
 
-    const allTopics = await Topic.find({
-        topicName: {$in: validatedTopicList},
-    });
+  const {
+    time: validatedTime,
+    numberOfQuestions: totalQuestions,
+    topicList: validatedTopicList,
+  } = validationResult.data;
 
-    if (allTopics.length === 0) {
-        throw new ApiError(400, "At least one topic is required.");
-    }
+  const allTopics = await Topic.find({
+    _id: { $in: validatedTopicList },
+  });
 
-    const selectedQuestions = await Question.aggregate([
-        // { $match: { topicName: { $in: validatedTopicList } } },
-        {$sample: {size: totalQuestions}},
-    ]);
+  if (allTopics.length === 0) {
+    throw new ApiError(400, "At least one topic is required.");
+  }
 
-    // Create test with a single section, similar to CET format
-    const test = await Test.create({
-        testName: "Custom Test " + Date.now(),
-        sections: [
-            {
-                sectionName: "Custom Test Section",
-                sectionDuration: validatedTime,
-                questions: selectedQuestions.map(q => q._id),
-                totalQuestions: totalQuestions
-            }
-        ],
-        totalDuration: validatedTime,
+  const selectedQuestions = await Question.aggregate([
+    { $match: { topic: { $in: validatedTopicList.map(id => new mongoose.Types.ObjectId(id)) } } },
+    { $sample: { size: totalQuestions } },
+  ]);
+  // Create test with a single section, similar to CET format
+  const test = await Test.create({
+    testName: "Custom Test " + Date.now(),
+    sections: [
+      {
+        sectionName: "Custom Test Section",
+        sectionDuration: validatedTime,
+        questions: selectedQuestions.map((q) => q._id),
         totalQuestions: totalQuestions,
-        createdBy: user._id,
-    });
+      },
+    ],
+    totalDuration: validatedTime,
+    totalQuestions: totalQuestions,
+    createdBy: user._id,
+  });
 
-    // Prepare response with test details
-    const testDetails = {
-        testId: test.id,
-        name: test.testName,
-        duration: test.totalDuration,
-        totalQuestions: test.totalQuestions,
-        sections: test.sections.map(section => ({
-            name: section.sectionName,
-            duration: section.sectionDuration,
-            questionCount: section.totalQuestions
-        }))
-    };
+  // Prepare response with test details
+  const testDetails = {
+    testId: test.id,
+    name: test.testName,
+    duration: test.totalDuration,
+    totalQuestions: test.totalQuestions,
+    sections: test.sections.map((section) => ({
+      name: section.sectionName,
+      duration: section.sectionDuration,
+      questionCount: section.totalQuestions,
+    })),
+  };
 
-    return {testDetails};
+  return { testDetails };
 };
 
 //
 const getCustomTest = asyncHandler(async (req: Request, res: Response) => {
-    if (!req.user) {
-        throw new ApiError(401, "Unauthorized");
-    }
+  if (!req.user) {
+    throw new ApiError(401, "Unauthorized");
+  }
 
-    const {testDetails} = await createCustomTest(req.user, req.body);
-    res
-        .status(201)
-        .send(new ApiResponse(201, {testDetails}, "Test Creation successful"));
+  const { testDetails } = await createCustomTest(req.user, req.body);
+  res
+    .status(201)
+    .send(new ApiResponse(201, { testDetails }, "Test Creation successful"));
 });
 
 // Controller for creating a company-specific test
-const getCompanySpecificTest = asyncHandler(async (req: Request, res: Response) => {
-        if (!req.user) {
-            throw new ApiError(401, "Unauthorized");
-        }
-        const {companyName} = req.params;
-        const testDetails = await CompanySpecificTestDetails.findOne({
-            companyName,
-        });
-
-        if (!testDetails) {
-            logger.error(
-                "Request for company ",
-                companyName,
-                " not found by user ",
-                req.user._id
-            );
-            throw new ApiError(404, "Company-specific test details not found");
-        }
-
-        logger.info(
-            "Test created for company ",
-            companyName,
-            " by user ",
-            req.user._id
-        );
-
-        const {testDetails: customTestDetails} = await createCustomTest(
-            req.user,
-            {
-                time: testDetails.time,
-                numberOfQuestions: testDetails.numberOfQuestions,
-                topicList: testDetails.topicList,
-                educationLevel: "undergraduate",
-            }
-        );
-
-        res
-            .status(201)
-            .send(
-                new ApiResponse(
-                    201,
-                    {testDetails: customTestDetails},
-                    "Company-specific test created"
-                )
-            );
+const getCompanySpecificTest = asyncHandler(
+  async (req: Request, res: Response) => {
+    if (!req.user) {
+      throw new ApiError(401, "Unauthorized");
     }
+    const { companyName } = req.params;
+    const testDetails = await CompanySpecificTestDetails.findOne({
+      companyName,
+    });
+
+    if (!testDetails) {
+      logger.error(
+        "Request for company ",
+        companyName,
+        " not found by user ",
+        req.user._id
+      );
+      throw new ApiError(404, "Company-specific test details not found");
+    }
+
+    logger.info(
+      "Test created for company ",
+      companyName,
+      " by user ",
+      req.user._id
+    );
+
+    const { testDetails: customTestDetails } = await createCustomTest(
+      req.user,
+      {
+        time: testDetails.time,
+        numberOfQuestions: testDetails.numberOfQuestions,
+        topicList: testDetails.topicList,
+        educationLevel: "undergraduate",
+      }
+    );
+
+    res
+      .status(201)
+      .send(
+        new ApiResponse(
+          201,
+          { testDetails: customTestDetails },
+          "Company-specific test created"
+        )
+      );
+  }
 );
 
 const getTestWithId = asyncHandler(async (req: Request, res: Response) => {
-    const {id} = req.params;
+  const { id } = req.params;
 
-    // Find test and populate sections
-    const test = await Test.findById(id);
-    if (!test) {
-        logger.error(`Test not found with id: ${id}`);
-        throw new ApiError(404, "Test not found");
-    }
+  // Find test and populate sections
+  const test = await Test.findById(id);
+  if (!test) {
+    logger.error(`Test not found with id: ${id}`);
+    throw new ApiError(404, "Test not found");
+  }
 
-    // Get all question IDs from all sections
-    const allQuestionIds = test.sections.reduce((acc, section) => {
-        return [...acc, ...section.questions];
-    }, [] as Schema.Types.ObjectId[]);
+  // Get all question IDs from all sections
+  const allQuestionIds = test.sections.reduce((acc, section) => {
+    return [...acc, ...section.questions];
+  }, [] as Schema.Types.ObjectId[]);
 
-    // Fetch all questions
-    const questions = await Question.find({_id: {$in: allQuestionIds}});
+  // Fetch all questions
+  const questions = await Question.find({ _id: { $in: allQuestionIds } });
 
-    // Create a map for quick question lookup
-    const questionMap = new Map(questions.map(q => [q.id, q]));
+  // Create a map for quick question lookup
+  const questionMap = new Map(questions.map((q) => [q.id, q]));
 
-    // Organize questions by section
-    const sectionsWithQuestions = test.sections.map(section => ({
-        sectionName: section.sectionName,
-        sectionDuration: section.sectionDuration,
-        totalQuestions: section.totalQuestions,
-        questions: section.questions.map(qId => {
-            const question = questionMap.get(qId.toString());
-            if (!question) {
-                logger.error(`Question not found: ${qId}`);
-                throw new ApiError(500, "Question data inconsistency detected");
-            }
-            return {
-                _id: question._id,
-                questionText: question.questionText,
-                options: question.options,
-                answer: question.answer,
-                explanation: question.explanation
-            };
-        })
-    }));
+  // Organize questions by section
+  const sectionsWithQuestions = test.sections.map((section) => ({
+    sectionName: section.sectionName,
+    sectionDuration: section.sectionDuration,
+    totalQuestions: section.totalQuestions,
+    questions: section.questions.map((qId) => {
+      const question = questionMap.get(qId.toString());
+      if (!question) {
+        logger.error(`Question not found: ${qId}`);
+        throw new ApiError(500, "Question data inconsistency detected");
+      }
+      return {
+        _id: question._id,
+        questionText: question.questionText,
+        options: question.options,
+        answer: question.answer,
+        explanation: question.explanation,
+      };
+    }),
+  }));
 
-    // Prepare response
-    const testResponse = {
-        _id: test._id,
-        testName: test.testName,
-        totalDuration: test.totalDuration,
-        totalQuestions: test.totalQuestions,
-        sections: sectionsWithQuestions,
-        expiryTime: test.expiryTime,
-    };
+  // Prepare response
+  const testResponse = {
+    _id: test._id,
+    testName: test.testName,
+    totalDuration: test.totalDuration,
+    totalQuestions: test.totalQuestions,
+    sections: sectionsWithQuestions,
+    expiryTime: test.expiryTime,
+  };
 
-    res.status(200).send(
-        new ApiResponse(200, {test: testResponse}, "Test fetched successfully")
+  res
+    .status(200)
+    .send(
+      new ApiResponse(200, { test: testResponse }, "Test fetched successfully")
     );
 });
 
 // Update the createCETTest function
 
 const createCETTest = asyncHandler(
-    async (req: AuthenticatedRequest, res: Response) => {
-        const user = req.user!;
-        const {questionIds} = await getCETQuestions();
-        // Fetch all questions with their topics and subjects
-        const questions = await Question.aggregate([
-            {
-                $match: {
-                    _id: { $in: questionIds.map(id => new mongoose.Types.ObjectId(id)) }
-                }
-            },
-            {
-                $lookup: {
-                    from: "topics",
-                    localField: "topicId",
-                    foreignField: "_id",
-                    as: "topics"
-                }
-            },
-            {
-                $lookup: {
-                    from: "subjects",
-                    localField: "topics.subjectId",
-                    foreignField: "_id",
-                    as: "subjects"
-                }
-            }
-        ]);
+  async (req: AuthenticatedRequest, res: Response) => {
+    const user = req.user!;
+    const { questionIds } = await getCETQuestions();
+    // Fetch all questions with their topics and subjects
+    const questions = await Question.aggregate([
+      {
+        $match: {
+          _id: {
+            $in: questionIds.map((id) => new mongoose.Types.ObjectId(id)),
+          },
+        },
+      },
+      {
+        $lookup: {
+          from: "topics",
+          localField: "topicId",
+          foreignField: "_id",
+          as: "topics",
+        },
+      },
+      {
+        $lookup: {
+          from: "subjects",
+          localField: "topics.subjectId",
+          foreignField: "_id",
+          as: "subjects",
+        },
+      },
+    ]);
 
-        // Categorize questions by subject
-        const physicsQuestions = questions.filter(q =>
-            q.subjects.some((s: { subjectName: string; }) =>
-                s.subjectName.toLowerCase() === 'physics'
-            )
-        ).slice(0, 50);
+    // Categorize questions by subject
+    const physicsQuestions = questions
+      .filter((q) =>
+        q.subjects.some(
+          (s: { subjectName: string }) =>
+            s.subjectName.toLowerCase() === "physics"
+        )
+      )
+      .slice(0, 50);
 
-        const chemistryQuestions = questions.filter(q =>
-            q.subjects.some((s: { subjectName: string; }) =>
-                s.subjectName.toLowerCase() === 'chemistry'
-            )
-        ).slice(0, 50);
+    const chemistryQuestions = questions
+      .filter((q) =>
+        q.subjects.some(
+          (s: { subjectName: string }) =>
+            s.subjectName.toLowerCase() === "chemistry"
+        )
+      )
+      .slice(0, 50);
 
-        const mathsQuestions = questions.filter(q =>
-            q.subjects.some((s: { subjectName: string; }) =>
-                s.subjectName.toLowerCase() === 'mathematics'
-            )
-        ).slice(0, 50);
-        // Validate we have enough questions for each section
-        if (physicsQuestions.length < 50 || chemistryQuestions.length < 50 || mathsQuestions.length < 50) {
-            logger.error("Insufficient questions for CET test sections", {
-                physics: physicsQuestions.length,
-                chemistry: chemistryQuestions.length,
-                maths: mathsQuestions.length
-            });
-            throw new ApiError(500, "Insufficient questions available for test creation");
-        }
-
-        // Extract just the question IDs
-        const physicsChemQuestions = [
-            ...physicsQuestions.map(q => q._id),
-            ...chemistryQuestions.map(q => q._id)
-        ];
-
-        const mathsQuestionIds = mathsQuestions.map(q => q._id);
-
-        // Create test with sections
-        const test = await Test.create({
-            testName: "CET Test " + Date.now(),
-            sections: [
-                {
-                    sectionName: "Physics and Chemistry",
-                    sectionDuration: 90, // 90 minutes
-                    questions: physicsChemQuestions,
-                    totalQuestions: 50
-                },
-                {
-                    sectionName: "Mathematics",
-                    sectionDuration: 90, // 90 minutes
-                    questions: mathsQuestionIds,
-                    totalQuestions: 50
-                }
-            ],
-            totalDuration: 180, // Total duration in minutes
-            totalQuestions: 100, // Total questions across all sections
-            createdBy: user._id
-        });
-
-        const testDetails = {
-            testId: test.id,
-            name: test.testName,
-            duration: test.totalDuration,
-            totalQuestions: test.totalQuestions,
-            sections: test.sections.map(section => ({
-                name: section.sectionName,
-                duration: section.sectionDuration,
-                questionCount: section.totalQuestions
-            }))
-        };
-
-        res.status(201).send(
-            new ApiResponse(201, {testDetails}, "CET Test created successfully")
-        );
+    const mathsQuestions = questions
+      .filter((q) =>
+        q.subjects.some(
+          (s: { subjectName: string }) =>
+            s.subjectName.toLowerCase() === "mathematics"
+        )
+      )
+      .slice(0, 50);
+    // Validate we have enough questions for each section
+    if (
+      physicsQuestions.length < 50 ||
+      chemistryQuestions.length < 50 ||
+      mathsQuestions.length < 50
+    ) {
+      logger.error("Insufficient questions for CET test sections", {
+        physics: physicsQuestions.length,
+        chemistry: chemistryQuestions.length,
+        maths: mathsQuestions.length,
+      });
+      throw new ApiError(
+        500,
+        "Insufficient questions available for test creation"
+      );
     }
+
+    // Extract just the question IDs
+    const physicsChemQuestions = [
+      ...physicsQuestions.map((q) => q._id),
+      ...chemistryQuestions.map((q) => q._id),
+    ];
+
+    const mathsQuestionIds = mathsQuestions.map((q) => q._id);
+
+    // Create test with sections
+    const test = await Test.create({
+      testName: "CET Test " + Date.now(),
+      sections: [
+        {
+          sectionName: "Physics and Chemistry",
+          sectionDuration: 90, // 90 minutes
+          questions: physicsChemQuestions,
+          totalQuestions: 50,
+        },
+        {
+          sectionName: "Mathematics",
+          sectionDuration: 90, // 90 minutes
+          questions: mathsQuestionIds,
+          totalQuestions: 50,
+        },
+      ],
+      totalDuration: 180, // Total duration in minutes
+      totalQuestions: 100, // Total questions across all sections
+      createdBy: user._id,
+    });
+
+    const testDetails = {
+      testId: test.id,
+      name: test.testName,
+      duration: test.totalDuration,
+      totalQuestions: test.totalQuestions,
+      sections: test.sections.map((section) => ({
+        name: section.sectionName,
+        duration: section.sectionDuration,
+        questionCount: section.totalQuestions,
+      })),
+    };
+
+    res
+      .status(201)
+      .send(
+        new ApiResponse(201, { testDetails }, "CET Test created successfully")
+      );
+  }
 );
-export {getCustomTest, getCompanySpecificTest, createCETTest, getTestWithId};
+export { getCustomTest, getCompanySpecificTest, createCETTest, getTestWithId };
