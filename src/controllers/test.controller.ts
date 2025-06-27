@@ -53,7 +53,7 @@ const createCustomTest = async (user: IUser, body: any) => {
   const selectedQuestions = await Question.aggregate([
     { $match: { topicId: { $in: allTopics.map(topic => topic._id) } } },
     { $sample: { size: totalQuestions } },
-  ]);
+  ]).allowDiskUse(true);
 
   if (selectedQuestions.length < totalQuestions) {
     logger.warn(
