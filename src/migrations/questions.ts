@@ -1,8 +1,8 @@
-import { Question } from "../models/questions/questions.model";
-import mongoose from "mongoose";
 import dotenv from "dotenv";
 import logger from "../utils/logger";
-import { Topic } from "../models/topics/topic.model";
+import { connectToDatabase, closeDatabase } from "../db/connection";
+import { createQuestions } from "../db/helpers/question.helpers";
+import { findTopicByName } from "../db/helpers/topic.helpers";
 
 dotenv.config();
 
@@ -156,14 +156,14 @@ const mathsQuestions = [
     }
 ];
 
-async function createQuestions() {
+async function seedQuestions() {
     try {
-        await mongoose.connect(process.env.MONGO_URI!);
-        logger.info("Connected to MongoDB");
+        await connectToDatabase();
+        logger.info("Connected to PostgreSQL");
 
         for (const subject of [...physicsQuestions, ...mathsQuestions]) {
             // Find topic
-            const topic = await Topic.findOne({ topicName: subject.topicName });
+            const topic = await findTopicByName(subject.topicName.toLowerCase());
             if (!topic) {
                 logger.error(`Topic not found: ${subject.topicName}`);
                 continue;
@@ -172,10 +172,10 @@ async function createQuestions() {
             // Create questions for this topic
             const questionsToCreate = subject.questions.map(q => ({
                 ...q,
-                topicIds: [topic._id]
+                topicId: topic.id
             }));
 
-            await Question.insertMany(questionsToCreate);
+            await createQuestions(questionsToCreate);
             logger.info(`Created ${questionsToCreate.length} questions for topic: ${subject.topicName}`);
         }
 
@@ -184,8 +184,8 @@ async function createQuestions() {
         logger.error("Error in questions creation:", error);
         throw error;
     } finally {
-        await mongoose.disconnect();
+        await closeDatabase();
     }
 }
 
-createQuestions();
+seedQuestions();

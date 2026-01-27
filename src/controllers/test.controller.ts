@@ -2,25 +2,25 @@ import { Request as ExpressRequest, Response } from "express";
 import { ApiError } from "../utils/ApiError";
 import { customTestSchema } from "../ZodSchema/testSchema";
 import asyncHandler from "../utils/asyncHandler";
-import { Question } from "../models/questions/questions.model";
-import { Test } from "../models/tests/test.model";
-import { TCreateTestResponse } from "../types/sharedTypes";
 import ApiResponse from "../utils/ApiResponse";
 import logger from "../utils/logger";
-import { CompanySpecificTestDetails } from "../models/topics/company-specific-topics.model";
-import { IUser } from "../types/databaseSchema.types";
-import { AuthenticatedRequest } from "../middleware/auth.middleware";
-import { Topic } from "../models/topics/topic.model";
 import { getCETQuestions } from "../utils/cetQuestionSelector";
-import mongoose, { Schema } from "mongoose";
-
-// Custom Request interface to include user
-interface Request extends ExpressRequest {
-  user?: IUser;
-}
+import {
+  createTestWithSections,
+  findTestWithQuestions,
+} from "../db/helpers/test.helpers";
+import {
+  findTopicsByIds,
+  findTopicsByNames,
+} from "../db/helpers/topic.helpers";
+import {
+  getQuestionsWithDetails,
+  getRandomQuestionsFromTopics,
+} from "../db/helpers/question.helpers";
+import { getCompanyTestDetails } from "../db/helpers/distribution.helpers";
 
 // creates the test with the given specifications and saves it in the database
-const createCustomTest = async (user: IUser, body: any) => {
+const createCustomTest = async (userId: number, body: any) => {
   const { time, numberOfQuestions, topicList, educationLevel } = body;
   const validationResult = customTestSchema.safeParse({
     time: Number(time),
@@ -41,19 +41,21 @@ const createCustomTest = async (user: IUser, body: any) => {
     numberOfQuestions: totalQuestions,
     topicList: validatedTopicList,
   } = validationResult.data;
-  const allTopics = await Topic.find({
-    topicName: { $in: topicList },
-  });
+  const numericPattern = /^\d+$/;
+  const looksLikeIds = validatedTopicList.every((topic) => numericPattern.test(topic));
+  const allTopics = looksLikeIds
+    ? await findTopicsByIds(validatedTopicList.map((id) => Number(id)))
+    : await findTopicsByNames(validatedTopicList);
 
   if (allTopics.length === 0) {
     throw new ApiError(400, "At least one topic is required.");
   }
 
-  // Get questions with full details using aggregation
-  const selectedQuestions = await Question.aggregate([
-    { $match: { topicId: { $in: allTopics.map(topic => topic._id) } } },
-    { $sample: { size: totalQuestions } },
-  ]).allowDiskUse(true);
+  const topicIds = allTopics.map((topic) => topic.id);
+  const selectedQuestions = await getRandomQuestionsFromTopics(
+    topicIds,
+    totalQuestions
+  );
 
   if (selectedQuestions.length < totalQuestions) {
     logger.warn(
@@ -62,29 +64,30 @@ const createCustomTest = async (user: IUser, body: any) => {
   }
 
   // Create test with a single section, similar to CET format
-  const test = await Test.create({
+  const sections = [
+    {
+      sectionName: "Custom Test Section",
+      sectionDuration: validatedTime,
+      questionIds: selectedQuestions.map((q) => q.id),
+    },
+  ];
+
+  const test = await createTestWithSections({
     testName: "Custom Test " + Date.now(),
-    sections: [
-      {
-        sectionName: "Custom Test Section",
-        sectionDuration: validatedTime,
-        questions: selectedQuestions.map((q) => q._id),
-        totalQuestions: selectedQuestions.length,
-      },
-    ],
     totalDuration: validatedTime,
     totalQuestions: selectedQuestions.length,
-    createdBy: user._id,
+    createdBy: userId,
+    sections,
   });
 
   // Prepare response with test details and full question data
-  const sectionsWithQuestions = test.sections.map((section, index) => {
+  const sectionsWithQuestions = sections.map((section) => {
     return {
       name: section.sectionName,
       duration: section.sectionDuration,
-      questionCount: section.totalQuestions,
+      questionCount: section.questionIds.length,
       questions: selectedQuestions.map(question => ({
-        _id: question._id,
+        _id: question.id,
         questionText: question.questionText,
         options: question.options,
         answer: question.answer,
@@ -103,12 +106,12 @@ const createCustomTest = async (user: IUser, body: any) => {
 
   return { testDetails };
 };
-const getCustomTest = asyncHandler(async (req: Request, res: Response) => {
+const getCustomTest = asyncHandler(async (req: ExpressRequest, res: Response) => {
   if (!req.user) {
     throw new ApiError(401, "Unauthorized");
   }
 
-  const { testDetails } = await createCustomTest(req.user, req.body);
+  const { testDetails } = await createCustomTest(req.user.id, req.body);
   res
     .status(201)
     .send(new ApiResponse(201, { testDetails }, "Test Creation successful"));
@@ -116,21 +119,19 @@ const getCustomTest = asyncHandler(async (req: Request, res: Response) => {
 
 // Controller for creating a company-specific test
 const getCompanySpecificTest = asyncHandler(
-  async (req: Request, res: Response) => {
+  async (req: ExpressRequest, res: Response) => {
     if (!req.user) {
       throw new ApiError(401, "Unauthorized");
     }
     const { companyName } = req.params;
-    const testDetails = await CompanySpecificTestDetails.findOne({
-      companyName,
-    });
+    const testDetails = await getCompanyTestDetails(companyName);
 
     if (!testDetails) {
       logger.error(
         "Request for company ",
         companyName,
         " not found by user ",
-        req.user._id
+        req.user.id
       );
       throw new ApiError(404, "Company-specific test details not found");
     }
@@ -139,15 +140,15 @@ const getCompanySpecificTest = asyncHandler(
       "Test created for company ",
       companyName,
       " by user ",
-      req.user._id
+      req.user.id
     );
 
     const { testDetails: customTestDetails } = await createCustomTest(
-      req.user,
+      req.user.id,
       {
         time: testDetails.time,
         numberOfQuestions: testDetails.numberOfQuestions,
-        topicList: testDetails.topicList,
+        topicList: testDetails.topicIds.map((id) => String(id)),
         educationLevel: "undergraduate",
       }
     );
@@ -164,55 +165,28 @@ const getCompanySpecificTest = asyncHandler(
   }
 );
 
-const getTestWithId = asyncHandler(async (req: Request, res: Response) => {
+const getTestWithId = asyncHandler(async (req: ExpressRequest, res: Response) => {
   const { id } = req.params;
 
   // Find test and populate sections
-  const test = await Test.findById(id);
+  const test = await findTestWithQuestions(id);
   if (!test) {
     logger.error(`Test not found with id: ${id}`);
     throw new ApiError(404, "Test not found");
   }
 
-  // Get all question IDs from all sections
-  const allQuestionIds = test.sections.reduce((acc, section) => {
-    return [...acc, ...section.questions];
-  }, [] as Schema.Types.ObjectId[]);
-
-  // Fetch all questions
-  const questions = await Question.find({ _id: { $in: allQuestionIds } });
-
-  // Create a map for quick question lookup
-  const questionMap = new Map(questions.map((q) => [q.id, q]));
-
-  // Organize questions by section
-  const sectionsWithQuestions = test.sections.map((section) => ({
-    sectionName: section.sectionName,
-    sectionDuration: section.sectionDuration,
-    totalQuestions: section.totalQuestions,
-    questions: section.questions.map((qId) => {
-      const question = questionMap.get(qId.toString());
-      if (!question) {
-        logger.error(`Question not found: ${qId}`);
-        throw new ApiError(500, "Question data inconsistency detected");
-      }
-      return {
-        _id: question._id,
-        questionText: question.questionText,
-        options: question.options,
-        answer: question.answer,
-        explanation: question.explanation,
-      };
-    }),
-  }));
-
   // Prepare response
   const testResponse = {
-    _id: test._id,
+    _id: test.id,
     testName: test.testName,
     totalDuration: test.totalDuration,
     totalQuestions: test.totalQuestions,
-    sections: sectionsWithQuestions,
+    sections: test.sections.map((section) => ({
+      sectionName: section.sectionName,
+      sectionDuration: section.sectionDuration,
+      totalQuestions: section.totalQuestions,
+      questions: section.questions,
+    })),
     expiryTime: test.expiryTime,
   };
 
@@ -226,61 +200,28 @@ const getTestWithId = asyncHandler(async (req: Request, res: Response) => {
 // Update the createCETTest function
 
 const createCETTest = asyncHandler(
-  async (req: AuthenticatedRequest, res: Response) => {
+  async (req: ExpressRequest, res: Response) => {
     const user = req.user!;
     const { questionIds } = await getCETQuestions();
     // Fetch all questions with their topics and subjects
-    const questions = await Question.aggregate([
-      {
-        $match: {
-          _id: {
-            $in: questionIds.map((id) => new mongoose.Types.ObjectId(id)),
-          },
-        },
-      },
-      {
-        $lookup: {
-          from: "topics",
-          localField: "topicId",
-          foreignField: "_id",
-          as: "topics",
-        },
-      },
-      {
-        $lookup: {
-          from: "subjects",
-          localField: "topics.subjectId",
-          foreignField: "_id",
-          as: "subjects",
-        },
-      },
-    ]);
+    const questions = await getQuestionsWithDetails(questionIds);
 
     // Categorize questions by subject
     const physicsQuestions = questions
       .filter((q) =>
-        q.subjects.some(
-          (s: { subjectName: string }) =>
-            s.subjectName.toLowerCase() === "physics"
-        )
+        q.subjectName?.toLowerCase() === "physics"
       )
       .slice(0, 50);
 
     const chemistryQuestions = questions
       .filter((q) =>
-        q.subjects.some(
-          (s: { subjectName: string }) =>
-            s.subjectName.toLowerCase() === "chemistry"
-        )
+        q.subjectName?.toLowerCase() === "chemistry"
       )
       .slice(0, 50);
 
     const mathsQuestions = questions
       .filter((q) =>
-        q.subjects.some(
-          (s: { subjectName: string }) =>
-            s.subjectName.toLowerCase() === "mathematics"
-        )
+        q.subjectName?.toLowerCase() === "mathematics"
       )
       .slice(0, 50);
     // Validate we have enough questions for each section
@@ -302,32 +243,32 @@ const createCETTest = asyncHandler(
 
     // Extract just the question IDs
     const physicsChemQuestions = [
-      ...physicsQuestions.map((q) => q._id),
-      ...chemistryQuestions.map((q) => q._id),
+      ...physicsQuestions.map((q) => q.id),
+      ...chemistryQuestions.map((q) => q.id),
     ];
 
-    const mathsQuestionIds = mathsQuestions.map((q) => q._id);
+    const mathsQuestionIds = mathsQuestions.map((q) => q.id);
 
     // Create test with sections
-    const test = await Test.create({
+    const sections = [
+      {
+        sectionName: "Physics and Chemistry",
+        sectionDuration: 90, // 90 minutes
+        questionIds: physicsChemQuestions,
+      },
+      {
+        sectionName: "Mathematics",
+        sectionDuration: 90, // 90 minutes
+        questionIds: mathsQuestionIds,
+      },
+    ];
+
+    const test = await createTestWithSections({
       testName: "CET Test " + Date.now(),
-      sections: [
-        {
-          sectionName: "Physics and Chemistry",
-          sectionDuration: 90, // 90 minutes
-          questions: physicsChemQuestions,
-          totalQuestions: 50,
-        },
-        {
-          sectionName: "Mathematics",
-          sectionDuration: 90, // 90 minutes
-          questions: mathsQuestionIds,
-          totalQuestions: 50,
-        },
-      ],
       totalDuration: 180, // Total duration in minutes
       totalQuestions: 100, // Total questions across all sections
-      createdBy: user._id,
+      createdBy: user.id,
+      sections,
     });
 
     const testDetails = {
@@ -335,10 +276,10 @@ const createCETTest = asyncHandler(
       name: test.testName,
       duration: test.totalDuration,
       totalQuestions: test.totalQuestions,
-      sections: test.sections.map((section) => ({
+      sections: sections.map((section) => ({
         name: section.sectionName,
         duration: section.sectionDuration,
-        questionCount: section.totalQuestions,
+        questionCount: section.questionIds.length,
       })),
     };
 

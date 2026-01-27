@@ -1,21 +1,18 @@
-import {Request as ExpressRequest, Response} from "express";
-import {IUser} from "../types/databaseSchema.types";
-import {AuthenticatedRequest} from "../middleware/auth.middleware";
-import {TestResult} from "../models/tests/testResult.model";
+import { Request, Response } from "express";
 import asyncHandler from "../utils/asyncHandler";
-import {ApiError} from "../utils/ApiError";
-import {Test} from "../models/tests/test.model";
-import {Question} from "../models/questions/questions.model";
+import { ApiError } from "../utils/ApiError";
 import ApiResponse from "../utils/ApiResponse";
-import mongoose from "mongoose";
-
-// Custom Request interface to include user
-interface Request extends ExpressRequest {
-    user?: IUser;
-}
+import {
+  createTestResultWithAnswers,
+  findTestById,
+  findTestResultById,
+  getTestQuestionInfo,
+  getTestResultAnswers,
+} from "../db/helpers/test.helpers";
+import { findQuestionsByIds } from "../db/helpers/question.helpers";
 
 // saving the new test result in the database
-const submitTest = asyncHandler(async (req: AuthenticatedRequest, res: Response) => {
+const submitTest = asyncHandler(async (req: Request, res: Response) => {
     const {id} = req.params;
 
     const studentId = req.user?.id;
@@ -23,50 +20,48 @@ const submitTest = asyncHandler(async (req: AuthenticatedRequest, res: Response)
         throw new ApiError(401, "Unauthorized access");
     }
 
-    const {selectedAnswers, timeTaken, autoSubmission} = req.body;
+    const { selectedAnswers, timeTaken, autoSubmission } = req.body;
     
     // Validate required fields
-    if (!selectedAnswers || !Array.isArray(selectedAnswers)) {
-        throw new ApiError(400, "Selected answers are required and must be an array");
+    if (!selectedAnswers) {
+        throw new ApiError(400, "Answers are required and must be an array");
     }
 
-    const test = await Test.findById(id);
+    const test = await findTestById(id);
     if (!test) {
         throw new ApiError(404, "Test not found");
     }
 
-    // Extract question IDs from the selected answers
-    const questionIds = selectedAnswers.map(answer => answer.questionId);
-    
-    // Find all questions that were answered
-    const questions = await Question.find({_id: {$in: questionIds}});
-    
-    // Create a map for faster question lookup by ID string
-    const questionMap = new Map();
-
-    questions.forEach((question: any) => {
-        questionMap.set(question._id.toString(), question);
-
-    });    
-    // Calculate score by comparing each selected answer with the correct answer
-    let score = 0;
-    for (const answer of selectedAnswers) {
-        const questionId = answer.questionId.toString();
-        const question = questionMap.get(questionId);
-        
-        // Only increment score if question exists and selected option matches correct answer
-        if (question && answer.selectedOption === question.answer) {
-            score++;
-        }
+    const testQuestionInfo = await getTestQuestionInfo(id);
+    if (testQuestionInfo.length === 0) {
+        throw new ApiError(400, "No questions found for this test");
     }
 
-    const testResult = await TestResult.create({
+    if (selectedAnswers.length !== testQuestionInfo.length) {
+        throw new ApiError(400, "Answers length does not match test questions");
+    }
+
+    let score = 0;
+    const mappedAnswers = testQuestionInfo.map((question, index) => {
+        const selectedOption = selectedAnswers[index].selectedOption;
+        if (selectedOption === question.answer) {
+            score++;
+        }
+        return {
+            questionId: question.questionId,
+            selectedOption,
+            sectionId: question.sectionId,
+        };
+    });
+
+    const testResult = await createTestResultWithAnswers({
         testId: id,
         studentId,
-        selectedAnswers,
         timeTaken,
-        autoSubmission,
-        score
+        isAutoSubmitted: Boolean(autoSubmission?.isAutoSubmitted),
+        tabSwitches: Number(autoSubmission?.tabSwitches ?? 0),
+        score,
+        answers: mappedAnswers,
     });
 
     res.status(201).send(
@@ -80,20 +75,16 @@ const getTestResult = asyncHandler(async (req: Request, res: Response) => {
     const studentId = req.user?.id;
 
     // First, fetch the test result to get the selected answers
-    const testResult = await TestResult.findById(id);
+    const testResult = await findTestResultById(id);
     if (!testResult) {
         throw new ApiError(404, "Test result not found");
     }
 
-    // Extract question IDs from the selected answers
-    const questionIds = testResult.selectedAnswers.map((answer: any) => 
-        new mongoose.Types.ObjectId(answer.questionId)
-    );
+    const answers = await getTestResultAnswers(id);
+    const questionIds = answers.map((answer) => answer.questionId);
 
     // Fetch the questions separately
-    const questions = await Question.find({
-        _id: { $in: questionIds }
-    }).select('_id answer questionText options');
+    const questions = await findQuestionsByIds(questionIds);
 
     // Create a map for faster question lookup
     const questionMap = new Map();
@@ -102,7 +93,7 @@ const getTestResult = asyncHandler(async (req: Request, res: Response) => {
     });
 
     // Calculate correct answers and prepare detailed question analysis
-    const questionAnalysis = testResult.selectedAnswers.map((answer: any) => {
+    const questionAnalysis = answers.map((answer) => {
         const questionId = answer.questionId.toString();
         const question = questionMap.get(questionId);
         const isCorrect = question?.answer === answer.selectedOption;
@@ -119,11 +110,11 @@ const getTestResult = asyncHandler(async (req: Request, res: Response) => {
     const correctAnswers = questionAnalysis.filter((q: { isCorrect: any; }) => q.isCorrect).length;
 
     const response = {
-        id: testResult._id,
-        totalQuestions: testResult.selectedAnswers.length,
+        id: testResult.id,
+        totalQuestions: answers.length,
         correctAnswers,
         timeSpent: testResult.timeTaken,
-        invalid: testResult.autoSubmission?.isAutoSubmitted ?? false,
+        invalid: testResult.isAutoSubmitted,
         questionAnalysis,
         testId : testResult.testId,
     };

@@ -1,28 +1,29 @@
 import express from "express";
 import asyncHandler from "../utils/asyncHandler";
 import { ApiError } from "../utils/ApiError";
-import { User } from "../models/user/user.model";
 import ApiResponse from "../utils/ApiResponse";
 import logger from "../utils/logger";
 import {
-  userLoginSchema,
   userRegistrationSchema,
 } from "../ZodSchema/userSchema";
-import generateAccessAndRefreshToken from "../utils/tokenGenerator";
-import { AuthenticatedRequest } from "../middleware/auth.middleware";
+import {
+  clearUserRefreshToken,
+  createUser,
+  findUserByEmail,
+  findUserByIdSecure,
+  findUserByIdPublic,
+} from "../db/helpers/user.helpers";
+import { countActiveSessionsByUser, createSession, revokeSession } from "../db/helpers/session.helpers";
+import { getMaxConcurrentSessions } from "../db/helpers/constants.helpers";
 
 // Cookie options
-export const accessTokenCookieOptions = {
+const sessionSameSite: "none" | "lax" =
+  process.env.NODE_ENV === "production" ? "none" : "lax";
+
+export const sessionCookieOptions = {
   httpOnly: true,
-  secure: true,
-  sameSite: "none" as const,
-  maxAge: 15* 60 * 1000, // 15 minutes
-  path: "/",
-};
-export const refreshTokenCookieOptions = {
-  httpOnly: true,
-  secure: true,
-  sameSite: "none" as const,
+  secure: process.env.NODE_ENV === "production",
+  sameSite: sessionSameSite,
   maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
   path: "/",
 };
@@ -32,15 +33,7 @@ export const refreshTokenCookieOptions = {
  */
 const registerStudent = asyncHandler(
   async (req: express.Request, res: express.Response) => {
-    // // Convert urn to number before validation
-    // if (req.body.urn) {
-    //   const urn = Number(req.body.urn);
-    //   if (isNaN(urn)) {
-    //     logger.warn("Invalid URN format", { urn: req.body.urn });
-    //     throw new ApiError(400, "Invalid URN format");
-    //   }
-    //   req.body.urn = urn;
-    // }
+
     const parsed = userRegistrationSchema.safeParse(req.body);
     if (!parsed.success) {
       logger.warn("Validation errors during registration", {
@@ -49,12 +42,10 @@ const registerStudent = asyncHandler(
       throw new ApiError(400, "Invalid input", [parsed.error]);
     }
 
-    const { fullName, email, password, city, contactNumber } = parsed.data;
+    const { fullName, email, password } = parsed.data;
 
     // Check if user already exists
-    const existingUser = await User.findOne({
-      email,
-    });
+    const existingUser = await findUserByEmail(email);
 
     if (existingUser) {
       logger.warn("User with email already exists", { email });
@@ -62,33 +53,37 @@ const registerStudent = asyncHandler(
     }
 
     // Create the new user
-    const newUser = await User.create({
+    const newUser = await createUser({
       fullName,
-
-      email,
+      email: email.toLowerCase(),
       password,
-      city,
-      contactNumber,
     });
 
-    const registeredUser = await User.findById(newUser._id).select("-password");
+    const registeredUser = await findUserByIdPublic(newUser.id);
 
     if (!registeredUser) {
       logger.error("Failed to retrieve registered user from database", {
-        userId: newUser._id,
+        userId: newUser.id,
       });
       throw new ApiError(500, "Something went wrong");
     }
-    // Generate tokens
-    const { accessToken, user } = await generateAccessAndRefreshToken(
-      newUser._id
-    );
+    const maxSessions = await getMaxConcurrentSessions(1);
+    const activeSessions = await countActiveSessionsByUser(newUser.id);
+    if (activeSessions >= maxSessions) {
+      throw new ApiError(403, "Concurrent session limit reached");
+    }
 
-    logger.info("User registered successfully", { userId: newUser._id });
+    const session = await createSession({
+      userId: newUser.id,
+      userAgent: req.header("user-agent") || null,
+      ipAddress: req.ip || null,
+      expiresAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+    });
+
+    logger.info("User registered successfully", { userId: newUser.id });
     res
       .status(201)
-      .cookie("accessToken", accessToken, accessTokenCookieOptions)
-      .cookie("refreshToken", user.refreshToken, refreshTokenCookieOptions)
+      .cookie("sessionId", session.id, sessionCookieOptions)
       .json(
         new ApiResponse(
           201,
@@ -114,52 +109,32 @@ const loginUser = asyncHandler(
     //   req.body.urn = urn;
     // }
 
-    // Validate request body using schema
-    const parsed = userLoginSchema.safeParse(req.body);
-    if (!parsed.success) {
-      const errors = parsed.error.errors.map((err) => err.message);
-      logger.warn("Validation errors during login", { errors });
-      throw new ApiError(400, "Invalid input", errors);
+    const passportUser = req.user;
+    if (!passportUser) {
+      throw new ApiError(401, "Unauthorized");
     }
 
-    const { email, password } = parsed.data;
-
-    // Find the existing user by either email or urn
-    let existingUser;
-    if (email) {
-      existingUser = await User.findOne({ email });
-    }
-    // if (urn) {
-    //   existingUser = await User.findOne({ urn });
-    // }
-
-    if (!existingUser) {
-      logger.warn(`User not found during login for email: ${email} `);
-      throw new ApiError(404, "User not found");
+    const maxSessions = await getMaxConcurrentSessions(1);
+    const activeSessions = await countActiveSessionsByUser(passportUser.id);
+    if (activeSessions >= maxSessions) {
+      throw new ApiError(403, "Concurrent session limit reached");
     }
 
-    // Check if password is correct
-    const isPasswordCorrect = await existingUser.isPasswordCorrect(password);
-    if (!isPasswordCorrect) {
-      logger.warn("Incorrect password during login", {
-        userId: existingUser._id,
-      });
-      throw new ApiError(401, "Wrong password");
-    }
+    const session = await createSession({
+      userId: passportUser.id,
+      userAgent: req.header("user-agent") || null,
+      ipAddress: req.ip || null,
+      expiresAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+    });
 
-    // Generate access and refresh tokens
-    const { accessToken, user } = await generateAccessAndRefreshToken(
-      existingUser._id
-    );
-    
-    logger.info("User logged in successfully", { userId: existingUser._id });
+    const publicUser = await findUserByIdPublic(passportUser.id);
+    logger.info("User logged in successfully", { userId: passportUser.id });
 
     // Respond with success, setting cookies for tokens
     res
       .status(200)
-      .cookie("accessToken", accessToken, accessTokenCookieOptions)
-      .cookie("refreshToken", user.refreshToken, refreshTokenCookieOptions)
-      .json(new ApiResponse(200, { user }, "User logged in successfully"));
+      .cookie("sessionId", session.id, sessionCookieOptions)
+      .json(new ApiResponse(200, { user: publicUser }, "User logged in successfully"));
   }
 );
 
@@ -167,30 +142,35 @@ const loginUser = asyncHandler(
  * Log out a user
  */
 const logoutUser = asyncHandler(
-  async (req: AuthenticatedRequest, res: express.Response) => {
+  async (req: express.Request, res: express.Response) => {
     const userId = req.user?.id;
+    if (!userId) {
+      throw new ApiError(401, "Unauthorized");
+    }
     // Clear the refreshToken in the database
-    const updatedUser = await User.findByIdAndUpdate(userId, {
-      $unset: { refreshToken: 1 },
-    });
-
-    if (!updatedUser) {
+    const existingUser = await findUserByIdSecure(userId);
+    if (!existingUser) {
       logger.error("Failed to log out user: User not found", { userId });
       throw new ApiError(404, "User not found");
+    }
+
+    await clearUserRefreshToken(userId);
+    const sessionId = req.cookies?.sessionId;
+    if (sessionId) {
+      await revokeSession(sessionId);
     }
 
     logger.info("User logged out successfully", { userId });
 
     res
       .status(200)
-      .clearCookie("accessToken", accessTokenCookieOptions)
-      .clearCookie("refreshToken", refreshTokenCookieOptions)
+      .clearCookie("sessionId", sessionCookieOptions)
       .json(new ApiResponse(200, {}, "User logged out successfully"));
   }
 );
 
 const getUser = asyncHandler(
-  async (req: AuthenticatedRequest, res: express.Response) => {
+  async (req: express.Request, res: express.Response) => {
     const userId = req.user?.id;
     if(!userId){
       throw new ApiError(401, "Unauthorized");

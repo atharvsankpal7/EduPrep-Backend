@@ -1,10 +1,15 @@
-import { CETDistribution } from "../models/tests/cetDistribution.model";
-import mongoose from "mongoose";
 import dotenv from "dotenv";
 import logger from "../utils/logger";
-import { Topic } from "../models/topics/topic.model";
-import { Subject } from "../models/topics/subject.model";
-import { Domain } from "../models/topics/domain.model";
+import { connectToDatabase, closeDatabase } from "../db/connection";
+import { upsertCETDistribution } from "../db/helpers/distribution.helpers";
+import {
+  createDomain,
+  createSubject,
+  createTopic,
+  findDomainByName,
+  findSubjectByName,
+  findTopicByName,
+} from "../db/helpers/topic.helpers";
 
 dotenv.config();
 
@@ -135,35 +140,26 @@ const chemistry11Distribution = {
 
 async function setupCETDistribution() {
   try {
-    await mongoose.connect(process.env.MONGO_URI!);
-    logger.info("Connected to MongoDB");
+    await connectToDatabase();
+    logger.info("Connected to PostgreSQL");
 
     // Create domains if they don't exist
-    const domains = {
-      juniorCollege: await Domain.findOneAndUpdate(
-        { domainName: "juniorCollege" },
-        { domainName: "juniorCollege", educationLevel: "juniorCollege" },
-        { upsert: true, new: true }
-      )
-    };
+    const domainName = "juniorCollege";
+    const domain =
+      (await findDomainByName(domainName)) ||
+      (await createDomain({ domainName, educationLevel: "juniorCollege" }));
 
     // Create subjects if they don't exist
     const subjects = {
-      physics: await Subject.findOneAndUpdate(
-        { subjectName: "physics" },
-        { subjectName: "physics", domainId: domains.juniorCollege._id },
-        { upsert: true, new: true }
-      ),
-      chemistry: await Subject.findOneAndUpdate(
-        { subjectName: "chemistry" },
-        { subjectName: "chemistry", domainId: domains.juniorCollege._id },
-        { upsert: true, new: true }
-      ),
-      mathematics: await Subject.findOneAndUpdate(
-        { subjectName: "mathematics" },
-        { subjectName: "mathematics", domainId: domains.juniorCollege._id },
-        { upsert: true, new: true }
-      )
+      physics:
+        (await findSubjectByName("physics")) ||
+        (await createSubject({ subjectName: "physics", domainId: domain.id })),
+      chemistry:
+        (await findSubjectByName("chemistry")) ||
+        (await createSubject({ subjectName: "chemistry", domainId: domain.id })),
+      mathematics:
+        (await findSubjectByName("mathematics")) ||
+        (await createSubject({ subjectName: "mathematics", domainId: domain.id })),
     };
 
     // Create topics and update distribution with topic IDs
@@ -173,26 +169,27 @@ async function setupCETDistribution() {
                        physicsDistribution, physics11Distribution,
                        mathsDistribution, maths11Distribution]) {
       const subjectName = dist.subject.toLowerCase();
-      const subjectId = subjects[subjectName as keyof typeof subjects]._id;
+      const subjectId = subjects[subjectName as keyof typeof subjects].id;
       
       const topicsWithIds = await Promise.all(
         dist.topics.map(async (topic) => {
-          const topicDoc = await Topic.findOneAndUpdate(
-            { 
-              topicName: topic.topicName.toLowerCase(),
-              subjectId: subjectId
-            },
-            { 
-              topicName: topic.topicName.toLowerCase(),
-              subjectId: subjectId
-            },
-            { upsert: true, new: true }
-          );
+          const normalizedName = topic.topicName.toLowerCase();
+          let topicRecord = await findTopicByName(normalizedName);
+          if (!topicRecord) {
+            topicRecord = await createTopic({
+              topicName: normalizedName,
+              subjectId,
+            });
+          } else if (topicRecord.subjectId !== subjectId) {
+            logger.warn(
+              `Topic name "${normalizedName}" already exists under a different subject; reusing existing topic`
+            );
+          }
 
           return {
             ...topic,
-            topicId: topicDoc._id,
-            topicName: topic.topicName.toLowerCase()
+            topicId: topicRecord.id,
+            topicName: normalizedName
           };
         })
       );
@@ -204,17 +201,14 @@ async function setupCETDistribution() {
     }
 
     // Clear and create new CET distribution
-    await CETDistribution.deleteMany({});
-    await CETDistribution.create({
-      distributions: updatedDistributions
-    });
+    await upsertCETDistribution(updatedDistributions);
 
     logger.info("CET distribution setup completed successfully");
   } catch (error) {
     logger.error("Error in CET distribution setup:", error);
     throw error;
   } finally {
-    await mongoose.disconnect();
+    await closeDatabase();
   }
 }
 
