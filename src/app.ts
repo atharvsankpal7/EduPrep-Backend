@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
+import passport from "./utils/passport";
 // route import
 import userRouter from "./router/user.routes";
 import testRouter from "./router/test.routes";
@@ -28,6 +29,7 @@ app.use(express.json({ limit: "16kb" }));
 app.use(express.urlencoded({ extended: true, limit: "16kb" }));
 app.use(express.static("public")); // public folder is available via URL without additional logic
 app.use(cookieParser()); // parses cookies automatically and puts them in req.cookies
+app.use(passport.initialize());
 
 app.use(rateLimiter);
 // route declarations

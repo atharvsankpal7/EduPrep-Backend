@@ -18,14 +18,6 @@ const userSchema = new Schema<IUser>(
       required: true,
       trim: true,
     },
-    city: {
-      type: String,
-      trim: true,
-    },
-    contactNumber: {
-      type: String,
-      trim: true,
-    },
     role: {
       type: String,
       default: "student",

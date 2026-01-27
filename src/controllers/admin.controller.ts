@@ -1,19 +1,25 @@
 import express from "express";
 import asyncHandler from "../utils/asyncHandler";
 import { ApiError } from "../utils/ApiError";
-import { User } from "../models/user/user.model";
 import ApiResponse from "../utils/ApiResponse";
 import logger from "../utils/logger";
 import { createAdminSchema } from "../ZodSchema/userSchema";
-import { AuthenticatedRequest } from "../middleware/auth.middleware";
-import { IUser } from "../types/databaseSchema.types";
+import {
+  countStudents,
+  createUser,
+  findStudentById,
+  findUserByEmail,
+  findUserById,
+  findUserByIdPublic,
+  listStudents,
+} from "../db/helpers/user.helpers";
 
 /**
  * Get all students sorted by creation date in descending order
  */
 
 const getAllStudents = asyncHandler(
-  async (req: AuthenticatedRequest, res: express.Response) => {
+  async (req: express.Request, res: express.Response) => {
     // Check if the user is an admin
     if (req.user?.role !== "admin") {
       logger.warn("Unauthorized access attempt to admin endpoint", {
@@ -27,36 +33,31 @@ const getAllStudents = asyncHandler(
     const limit = parseInt(req.query.limit as string) || 10;
     const skip = (page - 1) * limit;
 
-    // Build filter object
-    const filter: any = { role: "student" };
+    const startDate = req.query.startDate
+      ? new Date(req.query.startDate as string)
+      : undefined;
+    const endDate = req.query.endDate
+      ? new Date(req.query.endDate as string)
+      : undefined;
 
-    if (req.query.city) {
-      filter.city = req.query.city;
+    if (startDate && Number.isNaN(startDate.getTime())) {
+      throw new ApiError(400, "Invalid startDate");
+    }
+    if (endDate && Number.isNaN(endDate.getTime())) {
+      throw new ApiError(400, "Invalid endDate");
     }
 
-    if (req.query.startDate || req.query.endDate) {
-      filter.createdAt = {};
-      if (req.query.startDate) {
-        filter.createdAt.$gte = new Date(req.query.startDate as string);
-      }
-      if (req.query.endDate) {
-        filter.createdAt.$lte = new Date(req.query.endDate as string);
-      }
-    }
-
-    if (req.query.search) {
-      filter.fullName = { $regex: req.query.search, $options: "i" };
-    }
+    const filters = {
+      search: req.query.search ? String(req.query.search) : undefined,
+      startDate,
+      endDate,
+    };
 
     // Get total count for pagination
-    const totalStudents = await User.countDocuments(filter);
+    const totalStudents = await countStudents(filters);
 
     // Get students sorted by creation date in descending order
-    let students = await User.find(filter)
-      .select("-password -refreshToken")
-      .sort({ createdAt: -1 })
-      .skip(skip)
-      .limit(limit);
+    const students = await listStudents(filters, limit, skip);
 
     logger.info("Admin retrieved student list", {
       adminId: req.user?.id,
@@ -84,7 +85,7 @@ const getAllStudents = asyncHandler(
  * Create a new admin user
  */
 const createAdmin = asyncHandler(
-  async (req: AuthenticatedRequest, res: express.Response) => {
+  async (req: express.Request, res: express.Response) => {
     // Only super admins can create other admins
     if (req.user?.role !== "admin") {
       logger.warn("Unauthorized attempt to create admin", {
@@ -104,31 +105,29 @@ const createAdmin = asyncHandler(
     const { fullName, email, password } = parsed.data;
 
     // Check if user already exists
-    const existingUser = await User.findOne({ email });
+    const existingUser = await findUserByEmail(email);
     if (existingUser) {
       logger.warn("Admin with email already exists", { email });
       throw new ApiError(409, "User with this email already exists");
     }
 
-    // Generate a unique URN for admin (using timestamp)
-    const urn = parseInt(`99${Date.now().toString().slice(-8)}`);
-
     // Create the new admin
-    const newAdmin = await User.create({
+    const newAdmin = await createUser({
       fullName,
-      email,
+      email: email.toLowerCase(),
       password,
-      urn,
       role: "admin",
     });
 
-    const createdAdmin = await User.findById(newAdmin._id).select(
-      "-password -refreshToken"
-    );
+    const createdAdmin = await findUserByIdPublic(newAdmin.id);
+    if (!createdAdmin) {
+      logger.error("Failed to retrieve created admin", { adminId: newAdmin.id });
+      throw new ApiError(500, "Something went wrong");
+    }
 
     logger.info("New admin created", {
       createdBy: req.user?.id,
-      newAdminId: newAdmin._id,
+      newAdminId: newAdmin.id,
     });
 
     res
@@ -147,7 +146,7 @@ const createAdmin = asyncHandler(
  * Get details of a specific student
  */
 const getStudentDetails = asyncHandler(
-  async (req: AuthenticatedRequest, res: express.Response) => {
+  async (req: express.Request, res: express.Response) => {
     // Check if the user is an admin
     if (req.user?.role !== "admin") {
       logger.warn("Unauthorized access attempt to admin endpoint", {
@@ -157,19 +156,25 @@ const getStudentDetails = asyncHandler(
     }
 
     const { studentId } = req.params;
+    const studentIdNumber = Number(studentId);
+    if (Number.isNaN(studentIdNumber)) {
+      throw new ApiError(400, "Invalid studentId");
+    }
 
-    const student = await User.findById(studentId).select(
-      "-password -refreshToken"
-    );
-
-    if (!student) {
+    const existingUser = await findUserById(studentIdNumber);
+    if (!existingUser) {
       logger.warn("Student not found", { studentId });
       throw new ApiError(404, "Student not found");
     }
 
-    if (student.role !== "student") {
+    if (existingUser.role !== "student") {
       logger.warn("Requested ID is not a student", { studentId });
       throw new ApiError(400, "Requested ID is not a student");
+    }
+    const student = await findStudentById(studentIdNumber);
+    if (!student) {
+      logger.warn("Student not found", { studentId });
+      throw new ApiError(404, "Student not found");
     }
 
     logger.info("Admin retrieved student details", {

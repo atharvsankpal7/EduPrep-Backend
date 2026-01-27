@@ -1,12 +1,11 @@
 import asyncHandler from "../utils/asyncHandler";
 import express from "express";
 import { ApiError } from "../utils/ApiError";
-import { AuthenticatedRequest } from "./auth.middleware";
 import logger from "../utils/logger";
 
 export const adminMiddleware = asyncHandler(
   async (
-    req: AuthenticatedRequest,
+    req: express.Request,
     _: express.Response,
     next: express.NextFunction
   ) => {

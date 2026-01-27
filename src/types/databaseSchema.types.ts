@@ -1,41 +1,41 @@
-import mongoose, {Schema} from "mongoose";
-
-export interface IUser extends mongoose.Document {
-  id:string;
+export interface IUser {
+  _id?: string;
+  id: number;
   // urn: number;
   email: string;
   fullName: string;
   password: string;
   refreshToken?: string;
   role: string;
-  city?: string;
-  contactNumber?: string;
   createdAt?: Date;
   updatedAt?: Date;
 
   isPasswordCorrect(password: string): Promise<boolean>;
   generateAccessToken(): string;
-
   generateRefreshToken(): string;
 }
 
-export interface IDomain extends mongoose.Document {
+export interface IDomain {
+  _id?: string;
   domainName: string;
   educationLevel: string;
 }
 
-export interface ISubject extends mongoose.Document {
+export interface ISubject {
+  _id?: string;
   subjectName: string;
-  domainId: Schema.Types.ObjectId;
+  domainId: number;
 }
 
-export interface ITopic extends mongoose.Document {
+export interface ITopic {
+  _id?: string;
   topicName: string;
-  subjectId: Schema.Types.ObjectId;
+  subjectId: number;
 }
 
-export interface IQuestion extends mongoose.Document {
-  topicId: Schema.Types.ObjectId;
+export interface IQuestion {
+  _id?: string;
+  topicId: number;
   questionText: string;
   options: string[];
   answer: number;
@@ -53,26 +53,28 @@ export enum DifficultyLevel {
 export interface ITestSection {
   sectionName: string;
   sectionDuration: number; // in minutes
-  questions: Schema.Types.ObjectId[]; // questionIds for this section
+  questions: string[]; // questionIds for this section
   totalQuestions: number;
 }
 
-export interface ITest extends mongoose.Document {
+export interface ITest {
+  _id?: string;
   testName: string;
   sections: ITestSection[];
   totalDuration: number; // total duration in minutes (sum of all section durations)
   totalQuestions: number; // total questions across all sections
   expiryTime: Date;
-  createdBy: Schema.Types.ObjectId; // userId
+  createdBy: number; // userId
 }
 
-export interface ITestResult extends mongoose.Document {
-  testId: Schema.Types.ObjectId;
-  studentId: Schema.Types.ObjectId; // the student who gave the test
+export interface ITestResult {
+  _id?: string;
+  testId: string;
+  studentId: number; // the student who gave the test
   score: number;
   timeTaken: number; // in seconds
   selectedAnswers: {
-    questionId: Schema.Types.ObjectId;
+    questionId: string;
     selectedOption: number;
     sectionName: string; // Added to track which section the answer belongs to
   }[];
@@ -83,9 +85,10 @@ export interface ITestResult extends mongoose.Document {
   createdAt: Date;
 }
 
-export interface ICompanySpecificTestDetails extends mongoose.Document {
+export interface ICompanySpecificTestDetails {
+  _id?: string;
   companyName: string;
   time: number;
   numberOfQuestions: number;
-  topicList: Schema.Types.ObjectId[];
+  topicList: string[];
 }
