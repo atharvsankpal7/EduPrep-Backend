@@ -11,6 +11,7 @@ import questionRouter from "./router/question.routes";
 import topicRouter from "./router/topic.routes";
 import adminRouter from "./router/admin.routes";
 import testHistoryRouter from "./router/testHistory.routes";
+import logger from "./utils/logger";
 
 const app = express();
 
@@ -25,7 +26,7 @@ app.use(
   })
 );
 app.set('trust proxy', 1); // Enables trusting the first proxy
-app.use(express.json({ limit: "16kb" }));
+app.use(express.json({ limit: "5mb" }));
 app.use(express.urlencoded({ extended: true, limit: "16kb" }));
 app.use(express.static("public")); // public folder is available via URL without additional logic
 app.use(cookieParser()); // parses cookies automatically and puts them in req.cookies
@@ -48,13 +49,29 @@ app.use("/*", (req, res) => {
 });
 
 // global error handler
-app.use((err: ApiError, req: express.Request, res: express.Response) => {
-  const statusCode = err?.statusCode || 500;
-  const message = err?.message || "Internal Server Error";
+app.use((err: unknown, req: express.Request, res: express.Response, _: express.NextFunction) => {
+  const statusCode = err instanceof ApiError ? err.statusCode : 500;
+  const message =
+    err instanceof ApiError
+      ? err.message
+      : err instanceof Error
+        ? err.message
+        : "Internal Server Error";
+  const stack = err instanceof Error ? err.stack : undefined;
+
+  logger.error("Unhandled request error", {
+    method: req.method,
+    path: req.originalUrl,
+    statusCode,
+    message,
+    stack,
+  });
+  console.error("Unhandled request error:", { method: req.method, path: req.originalUrl, statusCode, message, stack });
+
   res.status(statusCode).json({
     success: false,
     message,
-    ...(process.env.NODE_ENV !== "production" && { stack: err.stack }), // Include stack trace in development
+    ...(process.env.NODE_ENV !== "production" && { stack }), // Include stack trace in development
   });
 });
 

@@ -8,7 +8,6 @@ export interface SessionWithUser {
   email: string;
   fullName: string;
   role: 'student' | 'admin';
-  refreshToken: string | null;
   createdAt: Date;
   updatedAt: Date;
   expiresAt: Date | null;
@@ -36,7 +35,6 @@ export async function getActiveSessionWithUser(
       email: users.email,
       fullName: users.fullName,
       role: users.role,
-      refreshToken: users.refreshToken,
       createdAt: users.createdAt,
       updatedAt: users.updatedAt,
       expiresAt: sessions.expiresAt,

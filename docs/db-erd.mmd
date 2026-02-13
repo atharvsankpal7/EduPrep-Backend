@@ -1,0 +1,150 @@
+erDiagram
+  domains {
+    int id PK
+    varchar domain_name
+    varchar education_level
+    timestamp created_at
+    timestamp updated_at
+  }
+
+  subjects {
+    int id PK
+    varchar subject_name
+    int domain_id FK
+    timestamp created_at
+    timestamp updated_at
+  }
+
+  topics {
+    int id PK
+    varchar topic_name
+    int subject_id FK
+    timestamp created_at
+    timestamp updated_at
+  }
+
+  questions {
+    uuid id PK
+    int topic_id FK
+    text question_text
+    text[] options
+    int answer
+    difficulty_level difficulty_level
+    text explanation
+    int standard
+    timestamp created_at
+    timestamp updated_at
+  }
+
+  cet_distributions {
+    int id PK
+    jsonb distributions
+    timestamp created_at
+    timestamp updated_at
+  }
+
+  company_specific_tests {
+    int id PK
+    varchar company_name
+    int time
+    int number_of_questions
+    int[] topic_ids
+    timestamp created_at
+    timestamp updated_at
+  }
+
+  tests {
+    uuid id PK
+    varchar test_name
+    int total_duration
+    int total_questions
+    timestamp expiry_time
+    int created_by FK
+    timestamp created_at
+    timestamp updated_at
+  }
+
+  test_sections {
+    uuid id PK
+    uuid test_id FK
+    varchar section_name
+    int section_duration
+    int total_questions
+    timestamp created_at
+    timestamp updated_at
+  }
+
+  test_section_questions {
+    uuid id PK
+    uuid test_section_id FK
+    uuid question_id FK
+    int question_order
+    timestamp created_at
+  }
+
+  test_results {
+    uuid id PK
+    uuid test_id FK
+    int student_id FK
+    int score
+    int time_taken
+    boolean is_auto_submitted
+    int tab_switches
+    timestamp created_at
+    timestamp updated_at
+  }
+
+  test_result_answers {
+    uuid id PK
+    uuid test_result_id FK
+    uuid question_id FK
+    uuid section_id FK
+    int selected_option
+    timestamp created_at
+  }
+
+  users {
+    int id PK
+    varchar email
+    varchar full_name
+    text password
+    text refresh_token
+    user_role role
+    timestamp created_at
+    timestamp updated_at
+  }
+
+  sessions {
+    uuid id PK
+    int user_id FK
+    text user_agent
+    text ip_address
+    timestamp created_at
+    timestamp last_seen_at
+    timestamp expires_at
+    timestamp revoked_at
+  }
+
+  constants {
+    varchar key PK
+    jsonb value
+    timestamp created_at
+    timestamp updated_at
+  }
+
+  domains ||--o{ subjects : has
+  subjects ||--o{ topics : has
+  topics ||--o{ questions : has
+
+  users ||--o{ tests : creates
+  tests ||--o{ test_sections : has
+  test_sections ||--o{ test_section_questions : includes
+  questions ||--o{ test_section_questions : appears_in
+
+  tests ||--o{ test_results : results
+  users ||--o{ test_results : takes
+  test_results ||--o{ test_result_answers : answers
+  questions ||--o{ test_result_answers : answered
+  test_sections ||--o{ test_result_answers : within
+
+  users ||--o{ sessions : sessions

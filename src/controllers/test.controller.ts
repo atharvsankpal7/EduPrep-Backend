@@ -22,8 +22,12 @@ import { getCompanyTestDetails } from "../db/helpers/distribution.helpers";
 // creates the test with the given specifications and saves it in the database
 const createCustomTest = async (userId: number, body: any) => {
   const { time, numberOfQuestions, topicList, educationLevel } = body;
+  const parsedTime = Number(time);
+  const normalizedDurationInMinutes =
+    parsedTime >= 900 && parsedTime % 60 === 0 ? parsedTime / 60 : parsedTime;
+
   const validationResult = customTestSchema.safeParse({
-    time: Number(time),
+    time: normalizedDurationInMinutes,
     numberOfQuestions: Number(numberOfQuestions),
     topicList,
     educationLevel,

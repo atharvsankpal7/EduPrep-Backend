@@ -28,7 +28,6 @@ export const authMiddleware = asyncHandler(
         email: session.email,
         fullName: session.fullName,
         role: session.role,
-        refreshToken: session.refreshToken,
         createdAt: session.createdAt,
         updatedAt: session.updatedAt,
       };
