@@ -99,16 +99,6 @@ const registerStudent = asyncHandler(
  */
 const loginUser = asyncHandler(
   async (req: express.Request, res: express.Response) => {
-    // Convert urn to number before validation, ensuring it's valid
-    // if (req.body.urn) {
-    //   const urn = Number(req.body.urn);
-    //   if (isNaN(urn)) {
-    //     logger.warn("Invalid URN format", { urn: req.body.urn });
-    //     throw new ApiError(400, "Invalid URN format");
-    //   }
-    //   req.body.urn = urn;
-    // }
-
     const passportUser = req.user;
     if (!passportUser) {
       throw new ApiError(401, "Unauthorized");
