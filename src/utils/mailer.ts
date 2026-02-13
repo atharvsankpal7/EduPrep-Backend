@@ -1,6 +1,7 @@
 import nodemailer from 'nodemailer';
 import SMTPPool from "nodemailer/lib/smtp-pool";
 import SMTPTransport from "nodemailer/lib/smtp-transport";
+import logger from './logger';
 
 
 export const sendMail = async (options: SMTPPool.MailOptions): Promise<void> => {
@@ -24,7 +25,7 @@ export const sendMail = async (options: SMTPPool.MailOptions): Promise<void> => 
             html: options?.html,
         } as SMTPTransport.MailOptions);
     } catch (error) {
-        console.error('Error sending email:', error);
+        logger.error('Error sending email', { error });
         throw new Error('Failed to send email');
     }
 };
