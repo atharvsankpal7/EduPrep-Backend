@@ -20,14 +20,6 @@ import {
 
 const getAllStudents = asyncHandler(
   async (req: express.Request, res: express.Response) => {
-    // Check if the user is an admin
-    if (req.user?.role !== "admin") {
-      logger.warn("Unauthorized access attempt to admin endpoint", {
-        userId: req.user?.id,
-      });
-      throw new ApiError(403, "Unauthorized: Admin access required");
-    }
-
     // Get pagination parameters
     const page = parseInt(req.query.page as string) || 1;
     const limit = parseInt(req.query.limit as string) || 10;
@@ -86,14 +78,6 @@ const getAllStudents = asyncHandler(
  */
 const createAdmin = asyncHandler(
   async (req: express.Request, res: express.Response) => {
-    // Only super admins can create other admins
-    if (req.user?.role !== "admin") {
-      logger.warn("Unauthorized attempt to create admin", {
-        userId: req.user?.id,
-      });
-      throw new ApiError(403, "Unauthorized: Admin access required");
-    }
-
     const parsed = createAdminSchema.safeParse(req.body);
     if (!parsed.success) {
       logger.warn("Validation errors during admin creation", {
@@ -147,14 +131,6 @@ const createAdmin = asyncHandler(
  */
 const getStudentDetails = asyncHandler(
   async (req: express.Request, res: express.Response) => {
-    // Check if the user is an admin
-    if (req.user?.role !== "admin") {
-      logger.warn("Unauthorized access attempt to admin endpoint", {
-        userId: req.user?.id,
-      });
-      throw new ApiError(403, "Unauthorized: Admin access required");
-    }
-
     const { studentId } = req.params;
     const studentIdNumber = Number(studentId);
     if (Number.isNaN(studentIdNumber)) {
