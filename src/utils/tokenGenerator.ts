@@ -1,21 +1,14 @@
-import {User} from "../models/user/user.model";
-import {ApiError} from "./ApiError";
+import { ApiError } from "./ApiError";
+import { generateTokensForUser } from "../db/helpers/auth.helpers";
+import { findUserByIdSecure } from "../db/helpers/user.helpers";
 
-const generateAccessAndRefreshToken = async (userId: unknown) => {
+const generateAccessAndRefreshToken = async (userId: number) => {
 
-    let user = await User.findById(userId).select("-password -refreshToken");
+    const { accessToken } = await generateTokensForUser(userId);
+    const user = await findUserByIdSecure(userId);
     if (!user) {
         throw new ApiError(404, "Invalid user id!");
     }
-
-    const accessToken = user.generateAccessToken();
-    const refreshToken = user.generateRefreshToken();
-    if (!accessToken || !refreshToken) {
-        throw new ApiError(500, "Error generating tokens");
-    }
-
-    user.refreshToken = refreshToken;
-    user = await user.save({validateBeforeSave: false});
 
     return {user, accessToken};
 

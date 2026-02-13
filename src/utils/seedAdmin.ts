@@ -1,17 +1,17 @@
-import mongoose from "mongoose";
 import dotenv from "dotenv";
-import { User } from "../models/user/user.model";
 import logger from "./logger";
+import { connectToDatabase, closeDatabase } from "../db/connection";
+import { createUser, findAnyAdmin } from "../db/helpers/user.helpers";
 
 dotenv.config();
 
 async function seedAdmin() {
   try {
-    await mongoose.connect(process.env.MONGO_URI!);
-    logger.info("Connected to MongoDB for admin seeding");
+    await connectToDatabase();
+    logger.info("Connected to PostgreSQL for admin seeding");
 
     // Check if admin already exists
-    const adminExists = await User.findOne({ role: "admin" });
+    const adminExists = await findAnyAdmin();
     
     if (adminExists) {
       logger.info("Admin user already exists, skipping seed");
@@ -19,15 +19,14 @@ async function seedAdmin() {
     }
 
     // Create admin user
-    const admin = await User.create({
+    const admin = await createUser({
       fullName: "System Admin",
       email: "admin@example.com",
       password: "Admin@123456", // This should be changed after first login
-      urn: 9999999999,
       role: "admin"
     });
 
-    logger.info(`Admin user created with ID: ${admin._id}`);
+    logger.info(`Admin user created with ID: ${admin.id}`);
 
 
 
@@ -35,7 +34,7 @@ async function seedAdmin() {
   } catch (error) {
     logger.error("Error seeding admin user:", error);
   } finally {
-    await mongoose.disconnect();
+    await closeDatabase();
   }
 }
 

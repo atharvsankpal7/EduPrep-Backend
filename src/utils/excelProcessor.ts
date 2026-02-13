@@ -1,23 +1,21 @@
-import { Subject } from "../models/topics/subject.model";
-import { Topic } from "../models/topics/topic.model";
 import { ExcelRowSchema } from "../ZodSchema/excelSchema";
 import logger from "./logger";
 import { ApiError } from "./ApiError";
 import { z } from "zod";
-import { log } from "winston";
+import { findTopicByName } from "../db/helpers/topic.helpers";
 
 interface ProcessedRow {
   questionText: string;
   options: string[];
   answer: number;
-  topicId: string;
+  topicId: number;
   explanation?: string;
   standard: number;
 }
 
 export async function processExcelData(rows: any[]): Promise<ProcessedRow[]> {
   const processedQuestions: ProcessedRow[] = [];
-  const topicCache = new Map<string, any>();
+  const topicCache = new Map<string, { id: number }>();
 
   try {
     for (const [index, row] of rows.entries()) {
@@ -34,7 +32,10 @@ export async function processExcelData(rows: any[]): Promise<ProcessedRow[]> {
       let topic = topicCache.get(topicName);
 
       if (!topic) {
-        topic = await Topic.findOne({ topicName });
+        const foundTopic = await findTopicByName(topicName);
+        if (foundTopic) {
+          topic = { id: foundTopic.id };
+        }
 
         if (!topic) {
           
@@ -61,7 +62,7 @@ export async function processExcelData(rows: any[]): Promise<ProcessedRow[]> {
           validatedRow.option_4,
         ],
         answer: validatedRow.answer,
-        topicId: topic._id.toString(),
+        topicId: topic.id,
         explanation: validatedRow.explanation,
         standard: validatedRow.standard,
       });

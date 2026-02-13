@@ -1,9 +1,8 @@
-import mongoose from "mongoose";
-import { Question } from "../models/questions/questions.model";
-import { CETDistribution } from "../models/tests/cetDistribution.model";
-import { Topic } from "../models/topics/topic.model";
 import { ApiError } from "./ApiError";
 import logger from "./logger";
+import { getCETDistribution as fetchCETDistribution } from "../db/helpers/distribution.helpers";
+import { getRandomQuestionsFromTopics } from "../db/helpers/question.helpers";
+import { findTopicByName } from "../db/helpers/topic.helpers";
 
 interface QuestionDistribution {
   questionIds: string[];
@@ -12,7 +11,7 @@ interface QuestionDistribution {
 
 export async function getCETQuestions(): Promise<QuestionDistribution> {
   try {
-    const distribution = await CETDistribution.findOne();
+    const distribution = await fetchCETDistribution();
     if (!distribution) {
       throw new ApiError(404, "CET distribution configuration not found");
     }
@@ -22,26 +21,18 @@ export async function getCETQuestions(): Promise<QuestionDistribution> {
 
     for (const subjectDist of distribution.distributions) {
       for (const topic of subjectDist.topics) {
-        // Find topic ID from the Topic model
-        const topicDoc = await Topic.findOne({
-          topicName: topic.topicName.toLowerCase(),
-        });
+        const topicId = topic.topicId ?? (await findTopicByName(topic.topicName))?.id;
 
-        if (!topicDoc) {
+        if (!topicId) {
           logger.warn(`Topic not found: ${topic.topicName}`);
           throw new ApiError(404, `Topic not found: ${topic.topicName}`);
         }
 
         // Get questions for this specific topic
-        const topicQuestions = await Question.aggregate([
-          {
-            $match: {
-              topicId: new mongoose.Types.ObjectId(topicDoc.id),
-            },
-          },
-          { $sample: { size: topic.questionCount } },
-          { $project: { _id: 1 } },
-        ]);
+        const topicQuestions = await getRandomQuestionsFromTopics(
+          [topicId],
+          topic.questionCount
+        );
 
 
         if (topicQuestions.length < topic.questionCount) {
@@ -57,7 +48,7 @@ export async function getCETQuestions(): Promise<QuestionDistribution> {
         // Add selected questions and calculate marks
         allSelectedQuestions = [
           ...allSelectedQuestions,
-          ...topicQuestions.map((q) => q._id.toString()),
+          ...topicQuestions.map((q) => q.id),
         ];
         totalMarks += topic.questionCount * topic.marksPerQuestion;
       }
@@ -78,7 +69,7 @@ export async function getCETQuestions(): Promise<QuestionDistribution> {
  */
 export async function getCETDistribution() {
   try {
-    const distribution = await CETDistribution.findOne();
+    const distribution = await fetchCETDistribution();
     if (!distribution) {
       throw new ApiError(404, "CET distribution configuration not found");
     }

@@ -1,11 +1,10 @@
 import { Request, Response } from "express";
 import asyncHandler from "../utils/asyncHandler";
-import { CETDistribution } from "../models/tests/cetDistribution.model";
-import { Topic } from "../models/topics/topic.model";
-import { Subject } from "../models/topics/subject.model";
 import ApiResponse from "../utils/ApiResponse";
 import { ApiError } from "../utils/ApiError";
 import logger from "../utils/logger";
+import { getCETDistribution } from "../db/helpers/distribution.helpers";
+import { findSubjectByName, getTopicsBySubject as fetchTopicsBySubject, getTopicsWithSubject } from "../db/helpers/topic.helpers";
 
 /**
  * Get all CET topics with their distribution information
@@ -13,7 +12,7 @@ import logger from "../utils/logger";
 const getCETTopics = asyncHandler(async (req: Request, res: Response) => {
   try {
     // Get the CET distribution configuration
-    const cetDistribution = await CETDistribution.findOne();
+    const cetDistribution = await getCETDistribution();
     
     if (!cetDistribution) {
       logger.error("CET distribution configuration not found");
@@ -48,65 +47,41 @@ const getCETTopics = asyncHandler(async (req: Request, res: Response) => {
 const getAllTopics = asyncHandler(async (req: Request, res: Response) => {
   try {
     // Aggregate to get all topics with their subjects
-    const topics = await Topic.aggregate([
-      {
-        $lookup: {
-          from: "subjects",
-          localField: "subjectId",
-          foreignField: "_id",
-          as: "subject"
-        }
-      },
-      {
-        $unwind: "$subject"
-      },
-      {
-        $lookup: {
-          from: "domains",
-          localField: "subject.domainId",
-          foreignField: "_id",
-          as: "domain"
-        }
-      },
-      {
-        $unwind: "$domain"
-      },
-      {
-        $group: {
-          _id: "$subject.subjectName",
-          subjectName: { $first: "$subject.subjectName" },
-          domainName: { $first: "$domain.domainName" },
-          educationLevel: { $first: "$domain.educationLevel" },
-          topics: {
-            $push: {
-              topicId: "$_id",
-              topicName: "$topicName"
-            }
-          }
-        }
-      },
-      {
-        $group: {
-          _id: "$domainName",
-          domainName: { $first: "$domainName" },
-          educationLevel: { $first: "$educationLevel" },
-          subjects: {
-            $push: {
-              subjectName: "$subjectName",
-              topics: "$topics"
-            }
-          }
-        }
-      },
-      {
-        $project: {
-          _id: 0,
-          domainName: 1,
-          educationLevel: 1,
-          subjects: 1
-        }
+    const rows = await getTopicsWithSubject();
+    const domainMap = new Map<string, { domainName: string; educationLevel: string; subjects: Map<string, { subjectName: string; topics: { topicId: number; topicName: string }[] }> }>();
+
+    rows.forEach((row) => {
+      if (!row.domainName || !row.subjectName) {
+        return;
       }
-    ]);
+
+      if (!domainMap.has(row.domainName)) {
+        domainMap.set(row.domainName, {
+          domainName: row.domainName,
+          educationLevel: row.educationLevel ?? "",
+          subjects: new Map(),
+        });
+      }
+
+      const domain = domainMap.get(row.domainName)!;
+      if (!domain.subjects.has(row.subjectName)) {
+        domain.subjects.set(row.subjectName, {
+          subjectName: row.subjectName,
+          topics: [],
+        });
+      }
+
+      domain.subjects.get(row.subjectName)!.topics.push({
+        topicId: row.id,
+        topicName: row.topicName,
+      });
+    });
+
+    const topics = Array.from(domainMap.values()).map((domain) => ({
+      domainName: domain.domainName,
+      educationLevel: domain.educationLevel,
+      subjects: Array.from(domain.subjects.values()),
+    }));
 
     res.status(200).json(
       new ApiResponse(200, { domains: topics }, "All topics fetched successfully")
@@ -125,9 +100,7 @@ const getTopicsBySubject = asyncHandler(async (req: Request, res: Response) => {
   
   try {
     // Find the subject
-    const subject = await Subject.findOne({ 
-      subjectName: subjectName.toLowerCase() 
-    });
+    const subject = await findSubjectByName(subjectName);
     
     if (!subject) {
       logger.error(`Subject not found: ${subjectName}`);
@@ -135,7 +108,7 @@ const getTopicsBySubject = asyncHandler(async (req: Request, res: Response) => {
     }
     
     // Find topics for this subject
-    const topics = await Topic.find({ subjectId: subject._id });
+    const topics = await fetchTopicsBySubject(subject.id);
     
     if (topics.length === 0) {
       logger.warn(`No topics found for subject: ${subjectName}`);
@@ -145,7 +118,7 @@ const getTopicsBySubject = asyncHandler(async (req: Request, res: Response) => {
       new ApiResponse(200, { 
         subject: subjectName,
         topics: topics.map(t => ({
-          topicId: t._id,
+          topicId: t.id,
           topicName: t.topicName
         }))
       }, "Topics fetched successfully")
