@@ -3,10 +3,17 @@ import logger from "./logger";
 import { getCETDistribution as fetchCETDistribution } from "../db/helpers/distribution.helpers";
 import { getRandomQuestionsFromTopics } from "../db/helpers/question.helpers";
 import { findTopicByName } from "../db/helpers/topic.helpers";
+import { Question } from "../db/schema/questions";
+
+export interface EnrichedQuestion extends Question {
+  subjectName: string;
+  topicName: string;
+}
 
 interface QuestionDistribution {
   questionIds: string[];
   totalMarks: number;
+  questions: EnrichedQuestion[];
 }
 
 export async function getCETQuestions(): Promise<QuestionDistribution> {
@@ -16,12 +23,11 @@ export async function getCETQuestions(): Promise<QuestionDistribution> {
       throw new ApiError(404, "CET distribution configuration not found");
     }
 
-    let allSelectedQuestions: string[] = [];
-    let totalMarks = 0;
-
-    for (const subjectDist of distribution.distributions) {
-      for (const topic of subjectDist.topics) {
-        const topicId = topic.topicId ?? (await findTopicByName(topic.topicName))?.id;
+    // Flatten all topics from all subjects into a single list of tasks
+    const tasks = distribution.distributions.flatMap((subjectDist) =>
+      subjectDist.topics.map(async (topic) => {
+        const topicId =
+          topic.topicId ?? (await findTopicByName(topic.topicName))?.id;
 
         if (!topicId) {
           logger.warn(`Topic not found: ${topic.topicName}`);
@@ -34,7 +40,6 @@ export async function getCETQuestions(): Promise<QuestionDistribution> {
           topic.questionCount
         );
 
-
         if (topicQuestions.length < topic.questionCount) {
           logger.warn(
             `Insufficient questions for topic ${topic.topicName}. Needed: ${topic.questionCount}, Found: ${topicQuestions.length}`
@@ -45,18 +50,36 @@ export async function getCETQuestions(): Promise<QuestionDistribution> {
           );
         }
 
-        // Add selected questions and calculate marks
-        allSelectedQuestions = [
-          ...allSelectedQuestions,
-          ...topicQuestions.map((q) => q.id),
-        ];
-        totalMarks += topic.questionCount * topic.marksPerQuestion;
-      }
-    }
+        const marks = topic.questionCount * topic.marksPerQuestion;
+
+        // Enrich questions with subject and topic names
+        const enrichedQuestions: EnrichedQuestion[] = topicQuestions.map(
+          (q) => ({
+            ...q,
+            subjectName: subjectDist.subject,
+            topicName: topic.topicName,
+          })
+        );
+
+        return {
+          questions: enrichedQuestions,
+          marks,
+        };
+      })
+    );
+
+    // Execute all tasks in parallel
+    const results = await Promise.all(tasks);
+
+    // Aggregate results
+    const allEnrichedQuestions = results.flatMap((r) => r.questions);
+    const totalMarks = results.reduce((sum, r) => sum + r.marks, 0);
+    const questionIds = allEnrichedQuestions.map((q) => q.id);
 
     return {
-      questionIds: allSelectedQuestions,
+      questionIds,
       totalMarks,
+      questions: allEnrichedQuestions,
     };
   } catch (error) {
     logger.error("Error in CET question selection:", error);
