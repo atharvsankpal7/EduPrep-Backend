@@ -1,15 +1,14 @@
 import asyncHandler from "../utils/asyncHandler";
 import express from "express";
 import logger from "../utils/logger";
-import {AuthenticatedRequest} from "../middleware/auth.middleware";
 import ApiResponse from "../utils/ApiResponse";
 import {ApiError} from "../utils/ApiError";
 import * as XLSX from "xlsx";
-import {Question} from "../models/questions/questions.model";
 import fs from "fs";
 import {processExcelData} from "../utils/excelProcessor";
+import { createQuestions } from "../db/helpers/question.helpers";
 
-export const saveExcel = asyncHandler(async (req: AuthenticatedRequest, res: express.Response) => {
+export const saveExcel = asyncHandler(async (req: express.Request, res: express.Response) => {
     if (!req.file) {
         logger.warn("File not found, userId: " + req.user?.id);
         throw new ApiError(400, "File not found");
@@ -25,14 +24,14 @@ export const saveExcel = asyncHandler(async (req: AuthenticatedRequest, res: exp
         const processedQuestions = await processExcelData(sheetData);
         
         // Save questions to database
-        const savedQuestions = await Question.insertMany(processedQuestions);
+        const savedQuestions = await createQuestions(processedQuestions);
 
         if (!savedQuestions) {
             logger.warn("Questions couldn't be saved to database");
             throw new ApiError(400, "Questions not created");
         }
 
-        logger.info(`${savedQuestions.length} questions saved successfully, firstId : ${savedQuestions[0]._id}, lastId : ${savedQuestions[savedQuestions.length - 1]._id}`);
+        logger.info(`${savedQuestions.length} questions saved successfully, firstId : ${savedQuestions[0].id}, lastId : ${savedQuestions[savedQuestions.length - 1].id}`);
 
         res.status(201).json(
             new ApiResponse(201, true, "Questions saved successfully")
