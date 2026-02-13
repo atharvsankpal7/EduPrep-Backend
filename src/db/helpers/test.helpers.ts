@@ -56,20 +56,17 @@ export async function createTestWithSections(data: CreateTestInput): Promise<Tes
       })
       .returning();
 
-    const sectionRows = await Promise.all(
-      data.sections.map((section) =>
-        tx
-          .insert(testSections)
-          .values({
-            testId: test.id,
-            sectionName: section.sectionName,
-            sectionDuration: section.sectionDuration,
-            totalQuestions: section.questionIds.length,
-          })
-          .returning()
-          .then(([row]) => row)
+    const sectionRows = await tx
+      .insert(testSections)
+      .values(
+        data.sections.map((section) => ({
+          testId: test.id,
+          sectionName: section.sectionName,
+          sectionDuration: section.sectionDuration,
+          totalQuestions: section.questionIds.length,
+        }))
       )
-    );
+      .returning();
 
     const sectionQuestions = sectionRows.flatMap((section, sectionIndex) => {
       const questionIds = data.sections[sectionIndex].questionIds;
