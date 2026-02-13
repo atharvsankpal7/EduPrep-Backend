@@ -1,4 +1,5 @@
 import express from "express";
+import helmet from "helmet";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import passport from "./utils/passport";
@@ -16,6 +17,7 @@ import logger from "./utils/logger";
 const app = express();
 
 // middlewares before handling the router
+app.use(helmet());
 app.use(
   cors({
     origin: ["https://edu-prep.vercel.app", "http://localhost:3000"],
