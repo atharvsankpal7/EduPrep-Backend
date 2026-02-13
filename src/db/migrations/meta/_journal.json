@@ -8,6 +8,13 @@
       "when": 1769112395714,
       "tag": "0000_initial_setup",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1769112396714,
+      "tag": "0001_seed_max_concurrent_sessions",
+      "breakpoints": true
     }
   ]
 }

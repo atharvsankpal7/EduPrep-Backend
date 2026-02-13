@@ -1,12 +1,20 @@
 import { createLogger, format, transports } from "winston";
 import path from "path";
+import util from "util";
 
 // Define custom logging formats
 const { combine, timestamp, printf, colorize, errors } = format;
 
 // Custom format for log messages
-const customFormat = printf(({ level, message, timestamp, stack }) => {
-    return `${timestamp} [${level}]: ${stack || message}`;
+const customFormat = printf(({ level, message, timestamp, stack, ...meta }) => {
+    const content = stack || message;
+    const metaKeys = Object.keys(meta);
+    if (metaKeys.length === 0) {
+        return `${timestamp} [${level}]: ${content}`;
+    }
+
+    const metaString = util.inspect(meta, { depth: null, colors: false, compact: true });
+    return `${timestamp} [${level}]: ${content} ${metaString}`;
 });
 
 // Logger configuration
