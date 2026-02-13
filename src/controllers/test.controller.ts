@@ -14,7 +14,6 @@ import {
   findTopicsByNames,
 } from "../db/helpers/topic.helpers";
 import {
-  getQuestionsWithDetails,
   getRandomQuestionsFromTopics,
 } from "../db/helpers/question.helpers";
 import { getCompanyTestDetails } from "../db/helpers/distribution.helpers";
@@ -206,9 +205,7 @@ const getTestWithId = asyncHandler(async (req: ExpressRequest, res: Response) =>
 const createCETTest = asyncHandler(
   async (req: ExpressRequest, res: Response) => {
     const user = req.user!;
-    const { questionIds } = await getCETQuestions();
-    // Fetch all questions with their topics and subjects
-    const questions = await getQuestionsWithDetails(questionIds);
+    const { questions } = await getCETQuestions();
 
     // Categorize questions by subject
     const physicsQuestions = questions
