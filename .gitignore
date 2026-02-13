@@ -6,3 +6,5 @@ src/uploads
 src/logs
 
 .vercel
+rzp-key.csv
+.env.local
