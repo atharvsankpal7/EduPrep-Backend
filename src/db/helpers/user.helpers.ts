@@ -6,6 +6,15 @@ import { hashPassword } from './auth.helpers';
 export type UserWithoutPassword = Omit<User, 'password'>;
 export type PublicUser = Omit<User, 'password' | 'refreshToken'>;
 
+const publicUserFields = {
+  id: users.id,
+  email: users.email,
+  fullName: users.fullName,
+  role: users.role,
+  createdAt: users.createdAt,
+  updatedAt: users.updatedAt,
+};
+
 export interface StudentFilters {
   search?: string;
   startDate?: Date;
@@ -50,13 +59,8 @@ export async function findUserById(id: number): Promise<User | undefined> {
 export async function findUserByIdSecure(id: number): Promise<UserWithoutPassword | undefined> {
   const [user] = await db
     .select({
-      id: users.id,
-      email: users.email,
-      fullName: users.fullName,
-      role: users.role,
+      ...publicUserFields,
       refreshToken: users.refreshToken,
-      createdAt: users.createdAt,
-      updatedAt: users.updatedAt,
     })
     .from(users)
     .where(eq(users.id, id));
@@ -67,14 +71,7 @@ export async function findUserByIdSecure(id: number): Promise<UserWithoutPasswor
 // Find user by ID without password or refresh token
 export async function findUserByIdPublic(id: number): Promise<PublicUser | undefined> {
   const [user] = await db
-    .select({
-      id: users.id,
-      email: users.email,
-      fullName: users.fullName,
-      role: users.role,
-      createdAt: users.createdAt,
-      updatedAt: users.updatedAt,
-    })
+    .select(publicUserFields)
     .from(users)
     .where(eq(users.id, id));
 
@@ -145,14 +142,7 @@ export async function listStudents(
   offset: number
 ): Promise<PublicUser[]> {
   return db
-    .select({
-      id: users.id,
-      email: users.email,
-      fullName: users.fullName,
-      role: users.role,
-      createdAt: users.createdAt,
-      updatedAt: users.updatedAt,
-    })
+    .select(publicUserFields)
     .from(users)
     .where(buildStudentFilter(filters))
     .orderBy(desc(users.createdAt))
@@ -163,14 +153,7 @@ export async function listStudents(
 // Find student by ID (public fields only)
 export async function findStudentById(id: number): Promise<PublicUser | undefined> {
   const [student] = await db
-    .select({
-      id: users.id,
-      email: users.email,
-      fullName: users.fullName,
-      role: users.role,
-      createdAt: users.createdAt,
-      updatedAt: users.updatedAt,
-    })
+    .select(publicUserFields)
     .from(users)
     .where(and(eq(users.id, id), eq(users.role, 'student')));
 
