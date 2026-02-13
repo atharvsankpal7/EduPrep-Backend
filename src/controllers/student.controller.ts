@@ -143,10 +143,8 @@ const loginUser = asyncHandler(
  */
 const logoutUser = asyncHandler(
   async (req: express.Request, res: express.Response) => {
-    const userId = req.user?.id;
-    if (!userId) {
-      throw new ApiError(401, "Unauthorized");
-    }
+    const userId = req.user!.id;
+
     // Clear the refreshToken in the database
     const existingUser = await findUserByIdSecure(userId);
     if (!existingUser) {
