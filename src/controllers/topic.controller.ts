@@ -10,86 +10,76 @@ import { findSubjectByName, getTopicsBySubject as fetchTopicsBySubject, getTopic
  * Get all CET topics with their distribution information
  */
 const getCETTopics = asyncHandler(async (req: Request, res: Response) => {
-  try {
-    // Get the CET distribution configuration
-    const cetDistribution = await getCETDistribution();
-    
-    if (!cetDistribution) {
-      logger.error("CET distribution configuration not found");
-      throw new ApiError(404, "CET distribution configuration not found");
-    }
+  // Get the CET distribution configuration
+  const cetDistribution = await getCETDistribution();
 
-    // Transform the data to match the required format
-    const topicsBySubject = cetDistribution.distributions.map(dist => {
-      return {
-        subject: dist.subject,
-        standard: dist.standard,
-        topics: dist.topics.map(topic => ({
-          topicName: topic.topicName,
-          questionCount: topic.questionCount,
-          topicId: topic.topicId
-        }))
-      };
-    });
-
-    res.status(200).json(
-      new ApiResponse(200, { topicsBySubject }, "CET topics fetched successfully")
-    );
-  } catch (error) {
-    logger.error("Error fetching CET topics:", error);
-    throw error;
+  if (!cetDistribution) {
+    logger.error("CET distribution configuration not found");
+    throw new ApiError(404, "CET distribution configuration not found");
   }
+
+  // Transform the data to match the required format
+  const topicsBySubject = cetDistribution.distributions.map(dist => {
+    return {
+      subject: dist.subject,
+      standard: dist.standard,
+      topics: dist.topics.map(topic => ({
+        topicName: topic.topicName,
+        questionCount: topic.questionCount,
+        topicId: topic.topicId
+      }))
+    };
+  });
+
+  res.status(200).json(
+    new ApiResponse(200, { topicsBySubject }, "CET topics fetched successfully")
+  );
 });
 
 /**
  * Get all available topics grouped by subject
  */
 const getAllTopics = asyncHandler(async (req: Request, res: Response) => {
-  try {
-    // Aggregate to get all topics with their subjects
-    const rows = await getTopicsWithSubject();
-    const domainMap = new Map<string, { domainName: string; educationLevel: string; subjects: Map<string, { subjectName: string; topics: { topicId: number; topicName: string }[] }> }>();
+  // Aggregate to get all topics with their subjects
+  const rows = await getTopicsWithSubject();
+  const domainMap = new Map<string, { domainName: string; educationLevel: string; subjects: Map<string, { subjectName: string; topics: { topicId: number; topicName: string }[] }> }>();
 
-    rows.forEach((row) => {
-      if (!row.domainName || !row.subjectName) {
-        return;
-      }
+  rows.forEach((row) => {
+    if (!row.domainName || !row.subjectName) {
+      return;
+    }
 
-      if (!domainMap.has(row.domainName)) {
-        domainMap.set(row.domainName, {
-          domainName: row.domainName,
-          educationLevel: row.educationLevel ?? "",
-          subjects: new Map(),
-        });
-      }
-
-      const domain = domainMap.get(row.domainName)!;
-      if (!domain.subjects.has(row.subjectName)) {
-        domain.subjects.set(row.subjectName, {
-          subjectName: row.subjectName,
-          topics: [],
-        });
-      }
-
-      domain.subjects.get(row.subjectName)!.topics.push({
-        topicId: row.id,
-        topicName: row.topicName,
+    if (!domainMap.has(row.domainName)) {
+      domainMap.set(row.domainName, {
+        domainName: row.domainName,
+        educationLevel: row.educationLevel ?? "",
+        subjects: new Map(),
       });
+    }
+
+    const domain = domainMap.get(row.domainName)!;
+    if (!domain.subjects.has(row.subjectName)) {
+      domain.subjects.set(row.subjectName, {
+        subjectName: row.subjectName,
+        topics: [],
+      });
+    }
+
+    domain.subjects.get(row.subjectName)!.topics.push({
+      topicId: row.id,
+      topicName: row.topicName,
     });
+  });
 
-    const topics = Array.from(domainMap.values()).map((domain) => ({
-      domainName: domain.domainName,
-      educationLevel: domain.educationLevel,
-      subjects: Array.from(domain.subjects.values()),
-    }));
+  const topics = Array.from(domainMap.values()).map((domain) => ({
+    domainName: domain.domainName,
+    educationLevel: domain.educationLevel,
+    subjects: Array.from(domain.subjects.values()),
+  }));
 
-    res.status(200).json(
-      new ApiResponse(200, { domains: topics }, "All topics fetched successfully")
-    );
-  } catch (error) {
-    logger.error("Error fetching all topics:", error);
-    throw error;
-  }
+  res.status(200).json(
+    new ApiResponse(200, { domains: topics }, "All topics fetched successfully")
+  );
 });
 
 /**
@@ -97,36 +87,31 @@ const getAllTopics = asyncHandler(async (req: Request, res: Response) => {
  */
 const getTopicsBySubject = asyncHandler(async (req: Request, res: Response) => {
   const { subjectName } = req.params;
-  
-  try {
-    // Find the subject
-    const subject = await findSubjectByName(subjectName);
-    
-    if (!subject) {
-      logger.error(`Subject not found: ${subjectName}`);
-      throw new ApiError(404, `Subject not found: ${subjectName}`);
-    }
-    
-    // Find topics for this subject
-    const topics = await fetchTopicsBySubject(subject.id);
-    
-    if (topics.length === 0) {
-      logger.warn(`No topics found for subject: ${subjectName}`);
-    }
-    
-    res.status(200).json(
-      new ApiResponse(200, { 
-        subject: subjectName,
-        topics: topics.map(t => ({
-          topicId: t.id,
-          topicName: t.topicName
-        }))
-      }, "Topics fetched successfully")
-    );
-  } catch (error) {
-    logger.error(`Error fetching topics for subject ${subjectName}:`, error);
-    throw error;
+
+  // Find the subject
+  const subject = await findSubjectByName(subjectName);
+
+  if (!subject) {
+    logger.error(`Subject not found: ${subjectName}`);
+    throw new ApiError(404, `Subject not found: ${subjectName}`);
   }
+
+  // Find topics for this subject
+  const topics = await fetchTopicsBySubject(subject.id);
+
+  if (topics.length === 0) {
+    logger.warn(`No topics found for subject: ${subjectName}`);
+  }
+
+  res.status(200).json(
+    new ApiResponse(200, {
+      subject: subjectName,
+      topics: topics.map(t => ({
+        topicId: t.id,
+        topicName: t.topicName
+      }))
+    }, "Topics fetched successfully")
+  );
 });
 
 export { getCETTopics, getAllTopics, getTopicsBySubject };

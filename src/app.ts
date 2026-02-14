@@ -52,20 +52,16 @@ app.use("/*", (req, res) => {
 
 // global error handler
 app.use((err: unknown, req: express.Request, res: express.Response, _: express.NextFunction) => {
-  const statusCode = err instanceof ApiError ? err.statusCode : 500;
-  const message =
-    err instanceof ApiError
-      ? err.message
-      : err instanceof Error
-        ? err.message
-        : "Internal Server Error";
+  const isApiError = err instanceof ApiError;
+  const statusCode = isApiError ? err.statusCode : 500;
+  const message = isApiError ? err.message : "Internal Server Error";
   const stack = err instanceof Error ? err.stack : undefined;
 
   logger.error("Unhandled request error", {
     method: req.method,
     path: req.originalUrl,
     statusCode,
-    message,
+    message: err instanceof Error ? err.message : message,
     stack,
   });
 
