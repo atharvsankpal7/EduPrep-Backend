@@ -15,7 +15,7 @@ import { findQuestionsByIds } from "../db/helpers/question.helpers";
 const submitTest = asyncHandler(async (req: Request, res: Response) => {
     const {id} = req.params;
 
-    const studentId = req.user?.id;
+    const studentId = req.loggedInUser.id;
     if (!studentId) {
         throw new ApiError(401, "Unauthorized access");
     }
@@ -72,7 +72,7 @@ const submitTest = asyncHandler(async (req: Request, res: Response) => {
 // gathering the existing test results for a student along with the questions asked in the test
 const getTestResult = asyncHandler(async (req: Request, res: Response) => {
     const {id} = req.params;
-    const studentId = req.user?.id;
+    const studentId = req.loggedInUser.id;
 
     // First, fetch the test result to get the selected answers
     const testResult = await findTestResultById(id);

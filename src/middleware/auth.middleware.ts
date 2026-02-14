@@ -21,7 +21,7 @@ export const authMiddleware = asyncHandler(
 
     await touchSession(sessionId);
 
-    req.user = {
+    req.loggedInUser = {
       id: session.userId,
       email: session.email,
       fullName: session.fullName,

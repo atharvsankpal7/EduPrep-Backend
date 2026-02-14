@@ -26,7 +26,16 @@ passport.use(
           return done(new ApiError(401, "Wrong password"));
         }
 
-        return done(null, user);
+        const loggedInUser: Express.User = {
+          id: user.id,
+          email: user.email,
+          fullName: user.fullName,
+          role: user.role,
+          createdAt: user.createdAt,
+          updatedAt: user.updatedAt,
+        };
+
+        return done(null, loggedInUser);
       } catch (error) {
         return done(error);
       }
