@@ -7,7 +7,7 @@ import passport from "./utils/passport";
 import userRouter from "./router/user.routes";
 import testRouter from "./router/test.routes";
 import { ApiError } from "./utils/ApiError";
-import rateLimiter from "./utils/raterLimiter";
+import rateLimiter from "./utils/rateLimiter";
 import questionRouter from "./router/question.routes";
 import topicRouter from "./router/topic.routes";
 import adminRouter from "./router/admin.routes";
