@@ -44,12 +44,28 @@ export async function getRandomQuestionsFromTopics(
 ): Promise<Question[]> {
   if (topicIds.length === 0) return [];
 
-  return db
-    .select()
+  // Optimized: Select IDs first to avoid sorting wide rows
+  const randomIdsResult = await db
+    .select({ id: questions.id })
     .from(questions)
     .where(inArray(questions.topicId, topicIds))
     .orderBy(sql`RANDOM()`)
     .limit(limit);
+
+  const randomIds = randomIdsResult.map((r) => r.id);
+
+  if (randomIds.length === 0) return [];
+
+  const resultQuestions = await db
+    .select()
+    .from(questions)
+    .where(inArray(questions.id, randomIds));
+
+  // Re-sort to match the random order of IDs
+  const questionsMap = new Map(resultQuestions.map((q) => [q.id, q]));
+  return randomIds
+    .map((id) => questionsMap.get(id))
+    .filter((q): q is Question => q !== undefined);
 }
 
 // Get questions with topic and subject info
