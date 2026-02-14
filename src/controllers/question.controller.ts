@@ -3,8 +3,9 @@ import express from "express";
 import logger from "../utils/logger";
 import ApiResponse from "../utils/ApiResponse";
 import {ApiError} from "../utils/ApiError";
-import * as XLSX from "xlsx";
 import fs from "fs";
+import path from "path";
+import { Worker } from "worker_threads";
 import {processExcelData} from "../utils/excelProcessor";
 import { createQuestions } from "../db/helpers/question.helpers";
 
@@ -15,10 +16,34 @@ export const saveExcel = asyncHandler(async (req: express.Request, res: express.
     }
 
     try {
-        // Read the uploaded Excel file
-        const workbook = XLSX.readFile(req.file.path);
-        const sheetName = workbook.SheetNames[0];
-        const sheetData = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName], {defval: ""});
+        // Offload Excel parsing to a worker thread to avoid blocking the event loop
+        const isTs = __filename.endsWith(".ts");
+        const workerPath = path.resolve(__dirname, "../workers/excelWorker" + (isTs ? ".ts" : ".js"));
+
+        const sheetData = await new Promise<any[]>((resolve, reject) => {
+            const worker = new Worker(workerPath, {
+                workerData: { filePath: req.file!.path },
+                execArgv: isTs ? ["-r", "ts-node/register"] : undefined
+            });
+
+            worker.on("message", (message) => {
+                if (message.success) {
+                    resolve(message.data);
+                } else {
+                    reject(new Error(message.error || "Unknown worker error"));
+                }
+            });
+
+            worker.on("error", (err) => {
+                reject(err);
+            });
+
+            worker.on("exit", (code) => {
+                if (code !== 0) {
+                    reject(new Error(`Worker stopped with exit code ${code}`));
+                }
+            });
+        });
 
         // Process the Excel data
         const processedQuestions = await processExcelData(sheetData);
