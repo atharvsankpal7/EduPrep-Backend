@@ -94,8 +94,6 @@ const createCustomTest = async (userId: number, body: any) => {
         _id: question.id,
         questionText: question.questionText,
         options: question.options,
-        answer: question.answer,
-        explanation: question.explanation,
       })),
     };
   });
@@ -189,7 +187,11 @@ const getTestWithId = asyncHandler(async (req: ExpressRequest, res: Response) =>
       sectionName: section.sectionName,
       sectionDuration: section.sectionDuration,
       totalQuestions: section.totalQuestions,
-      questions: section.questions,
+      questions: section.questions.map((question: any) => ({
+        id: question.id,
+        questionText: question.questionText,
+        options: question.options,
+      })),
     })),
     expiryTime: test.expiryTime,
   };
