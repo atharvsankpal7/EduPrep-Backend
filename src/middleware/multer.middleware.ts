@@ -1,5 +1,7 @@
 import multer from 'multer';
 import fs from 'fs';
+import path from 'path';
+import crypto from 'crypto';
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -11,7 +13,9 @@ const storage = multer.diskStorage({
     cb(null, uploadDir);
   },
   filename: (req, file, cb) => {
-    cb(null, `${Date.now()}-${file.originalname}`);
+    const uniqueSuffix = crypto.randomUUID();
+    const ext = path.extname(file.originalname);
+    cb(null, `${uniqueSuffix}${ext}`);
   }
 });
 
