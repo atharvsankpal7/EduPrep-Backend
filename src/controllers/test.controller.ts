@@ -18,6 +18,7 @@ import {
   getRandomQuestionsFromTopics,
 } from "../db/helpers/question.helpers";
 import { getCompanyTestDetails } from "../db/helpers/distribution.helpers";
+import { shuffleArray } from "../utils/arrayUtils";
 
 // creates the test with the given specifications and saves it in the database
 const createCustomTest = async (userId: number, body: any) => {
@@ -189,7 +190,7 @@ const getTestWithId = asyncHandler(async (req: ExpressRequest, res: Response) =>
       sectionName: section.sectionName,
       sectionDuration: section.sectionDuration,
       totalQuestions: section.totalQuestions,
-      questions: section.questions,
+      questions: shuffleArray(section.questions),
     })),
     expiryTime: test.expiryTime,
   };
