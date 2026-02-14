@@ -13,12 +13,20 @@ interface ProcessedRow {
   standard: number;
 }
 
+function sanitizeForCSV(value: string): string {
+  if (/^[=+\-@]/.test(value)) {
+    return `'${value}`;
+  }
+  return value;
+}
+
 export async function processExcelData(rows: any[]): Promise<ProcessedRow[]> {
   const processedQuestions: ProcessedRow[] = [];
   const topicCache = new Map<string, { id: number }>();
 
   try {
-    for (const [index, row] of rows.entries()) {
+    for (let index = 0; index < rows.length; index++) {
+      const row = rows[index];
       // Validate row data
       const validation = ExcelRowSchema.safeParse(row);
       if(!validation.success) {
@@ -54,16 +62,16 @@ export async function processExcelData(rows: any[]): Promise<ProcessedRow[]> {
 
       // Prepare question data
       processedQuestions.push({
-        questionText: validatedRow.question,
+        questionText: sanitizeForCSV(validatedRow.question),
         options: [
-          validatedRow.option_1,
-          validatedRow.option_2,
-          validatedRow.option_3,
-          validatedRow.option_4,
+          sanitizeForCSV(validatedRow.option_1),
+          sanitizeForCSV(validatedRow.option_2),
+          sanitizeForCSV(validatedRow.option_3),
+          sanitizeForCSV(validatedRow.option_4),
         ],
         answer: validatedRow.answer,
         topicId: topic.id,
-        explanation: validatedRow.explanation,
+        explanation: sanitizeForCSV(validatedRow.explanation),
         standard: validatedRow.standard,
       });
     }
