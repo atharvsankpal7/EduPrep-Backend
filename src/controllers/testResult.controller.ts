@@ -42,8 +42,14 @@ const submitTest = asyncHandler(async (req: Request, res: Response) => {
     }
 
     let score = 0;
-    const mappedAnswers = testQuestionInfo.map((question, index) => {
-        const selectedOption = selectedAnswers[index].selectedOption;
+    const mappedAnswers = testQuestionInfo.map((question) => {
+        const answer = selectedAnswers.find((a: any) => String(a.questionId) === String(question.questionId));
+
+        if (!answer) {
+            throw new ApiError(400, `Answer for question ${question.questionId} not found`);
+        }
+
+        const selectedOption = answer.selectedOption;
         if (selectedOption === question.answer) {
             score++;
         }
