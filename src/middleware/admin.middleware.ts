@@ -10,15 +10,15 @@ export const adminMiddleware = asyncHandler(
     next: express.NextFunction
   ) => {
     // Check if user exists and is authenticated
-    if (!req.user) {
+    if (!req.loggedInUser) {
       throw new ApiError(401, "Unauthorized access");
     }
 
     // Check if user is an admin
-    if (req.user.role !== "admin") {
+    if (req.loggedInUser.role !== "admin") {
       logger.warn("Non-admin user attempted to access admin route", {
-        userId: req.user.id,
-        role: req.user.role,
+        userId: req.loggedInUser.id,
+        role: req.loggedInUser.role,
       });
       throw new ApiError(403, "Forbidden: Admin access required");
     }

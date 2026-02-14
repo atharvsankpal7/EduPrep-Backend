@@ -52,7 +52,7 @@ const getAllStudents = asyncHandler(
     const students = await listStudents(filters, limit, skip);
 
     logger.info("Admin retrieved student list", {
-      adminId: req.user?.id,
+      adminId: req.loggedInUser.id,
       count: students.length,
     });
     
@@ -110,7 +110,7 @@ const createAdmin = asyncHandler(
     }
 
     logger.info("New admin created", {
-      createdBy: req.user?.id,
+      createdBy: req.loggedInUser.id,
       newAdminId: newAdmin.id,
     });
 
@@ -154,7 +154,7 @@ const getStudentDetails = asyncHandler(
     }
 
     logger.info("Admin retrieved student details", {
-      adminId: req.user?.id,
+      adminId: req.loggedInUser.id,
       studentId,
     });
 

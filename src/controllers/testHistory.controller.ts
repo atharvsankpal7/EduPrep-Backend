@@ -19,7 +19,7 @@ import { getQuestionsWithDetails } from "../db/helpers/question.helpers";
  */
 const getUserTestHistory = asyncHandler(
   async (req: Request, res: Response) => {
-    const userId = req.user?.id;
+    const userId = req.loggedInUser.id;
     
     if (!userId) {
       throw new ApiError(401, "Unauthorized access");
@@ -61,7 +61,7 @@ const getUserTestHistory = asyncHandler(
  */
 const getTestResultWithRecommendations = asyncHandler(
   async (req: Request, res: Response) => {
-    const userId = req.user?.id;
+    const userId = req.loggedInUser.id;
     const { resultId } = req.params;
     
     if (!userId) {
@@ -165,7 +165,7 @@ const getTestResultWithRecommendations = asyncHandler(
  */
 const getUserPerformanceAnalytics = asyncHandler(
   async (req: Request, res: Response) => {
-    const userId = req.user?.id;
+    const userId = req.loggedInUser.id;
     
     if (!userId) {
       throw new ApiError(401, "Unauthorized access");

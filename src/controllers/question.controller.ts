@@ -19,7 +19,7 @@ const safeDeleteUploadedFile = async (filePath: string) => {
 export const saveExcel = asyncHandler(async (req: express.Request, res: express.Response) => {
     const uploadedFile = req.file;
     if (!uploadedFile) {
-        logger.warn("File not found, userId: " + req.user?.id);
+        logger.warn("File not found, userId: " + req.loggedInUser.id);
         throw new ApiError(400, "File not found");
     }
 

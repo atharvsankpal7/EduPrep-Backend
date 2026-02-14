@@ -99,26 +99,26 @@ const registerStudent = asyncHandler(
  */
 const loginUser = asyncHandler(
   async (req: express.Request, res: express.Response) => {
-    const passportUser = req.user;
-    if (!passportUser) {
+    const loggedInUser = req.loggedInUser;
+    if (!loggedInUser) {
       throw new ApiError(401, "Unauthorized");
     }
 
     const maxSessions = await getMaxConcurrentSessions(1);
-    const activeSessions = await countActiveSessionsByUser(passportUser.id);
+    const activeSessions = await countActiveSessionsByUser(loggedInUser.id);
     if (activeSessions >= maxSessions) {
       throw new ApiError(403, "Concurrent session limit reached");
     }
 
     const session = await createSession({
-      userId: passportUser.id,
+      userId: loggedInUser.id,
       userAgent: req.header("user-agent") || null,
       ipAddress: req.ip || null,
       expiresAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
     });
 
-    const publicUser = await findUserByIdPublic(passportUser.id);
-    logger.info("User logged in successfully", { userId: passportUser.id });
+    const publicUser = await findUserByIdPublic(loggedInUser.id);
+    logger.info("User logged in successfully", { userId: loggedInUser.id });
 
     // Respond with success, setting cookies for tokens
     res
@@ -133,7 +133,7 @@ const loginUser = asyncHandler(
  */
 const logoutUser = asyncHandler(
   async (req: express.Request, res: express.Response) => {
-    const userId = req.user!.id;
+    const userId = req.loggedInUser.id;
 
     // Clear the refreshToken in the database
     const existingUser = await findUserByIdSecure(userId);
@@ -159,11 +159,11 @@ const logoutUser = asyncHandler(
 
 const getUser = asyncHandler(
   async (req: express.Request, res: express.Response) => {
-    const userId = req.user?.id;
+    const userId = req.loggedInUser.id;
     if(!userId){
       throw new ApiError(401, "Unauthorized");
     }
-    res.status(200).json(new ApiResponse(200, { user: req.user }, "User fetched successfully"));
+    res.status(200).json(new ApiResponse(200, { user: req.loggedInUser }, "User fetched successfully"));
   }
 );
 export { registerStudent, loginUser, logoutUser, getUser };

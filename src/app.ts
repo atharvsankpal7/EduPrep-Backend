@@ -32,7 +32,7 @@ app.use(express.json({ limit: "5mb" }));
 app.use(express.urlencoded({ extended: true, limit: "16kb" }));
 app.use(express.static("public")); // public folder is available via URL without additional logic
 app.use(cookieParser()); // parses cookies automatically and puts them in req.cookies
-app.use(passport.initialize());
+app.use(passport.initialize({ userProperty: "loggedInUser" }));
 
 app.use(rateLimiter);
 // route declarations

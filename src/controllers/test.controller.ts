@@ -111,11 +111,11 @@ const createCustomTest = async (userId: number, body: any) => {
   return { testDetails };
 };
 const getCustomTest = asyncHandler(async (req: ExpressRequest, res: Response) => {
-  if (!req.user) {
+  if (!req.loggedInUser) {
     throw new ApiError(401, "Unauthorized");
   }
 
-  const { testDetails } = await createCustomTest(req.user.id, req.body);
+  const { testDetails } = await createCustomTest(req.loggedInUser.id, req.body);
   res
     .status(201)
     .send(new ApiResponse(201, { testDetails }, "Test Creation successful"));
@@ -124,7 +124,7 @@ const getCustomTest = asyncHandler(async (req: ExpressRequest, res: Response) =>
 // Controller for creating a company-specific test
 const getCompanySpecificTest = asyncHandler(
   async (req: ExpressRequest, res: Response) => {
-    if (!req.user) {
+    if (!req.loggedInUser) {
       throw new ApiError(401, "Unauthorized");
     }
     const { companyName } = req.params;
@@ -135,7 +135,7 @@ const getCompanySpecificTest = asyncHandler(
         "Request for company ",
         companyName,
         " not found by user ",
-        req.user.id
+        req.loggedInUser.id
       );
       throw new ApiError(404, "Company-specific test details not found");
     }
@@ -144,11 +144,11 @@ const getCompanySpecificTest = asyncHandler(
       "Test created for company ",
       companyName,
       " by user ",
-      req.user.id
+      req.loggedInUser.id
     );
 
     const { testDetails: customTestDetails } = await createCustomTest(
-      req.user.id,
+      req.loggedInUser.id,
       {
         time: testDetails.time,
         numberOfQuestions: testDetails.numberOfQuestions,
@@ -205,7 +205,7 @@ const getTestWithId = asyncHandler(async (req: ExpressRequest, res: Response) =>
 
 const createCETTest = asyncHandler(
   async (req: ExpressRequest, res: Response) => {
-    const user = req.user!;
+    const user = req.loggedInUser;
     const { questionIds } = await getCETQuestions();
     // Fetch all questions with their topics and subjects
     const questions = await getQuestionsWithDetails(questionIds);
