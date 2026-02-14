@@ -8,8 +8,17 @@ import * as fs from "fs";
 import {processExcelData} from "../utils/excelProcessor";
 import { createQuestions } from "../db/helpers/question.helpers";
 
+const safeDeleteUploadedFile = async (filePath: string) => {
+    try {
+        await fs.promises.unlink(filePath);
+    } catch (error) {
+        logger.warn(`Unable to delete uploaded file at ${filePath}`, { error });
+    }
+};
+
 export const saveExcel = asyncHandler(async (req: express.Request, res: express.Response) => {
-    if (!req.file) {
+    const uploadedFile = req.file;
+    if (!uploadedFile) {
         logger.warn("File not found, userId: " + req.user?.id);
         throw new ApiError(400, "File not found");
     }
@@ -17,7 +26,7 @@ export const saveExcel = asyncHandler(async (req: express.Request, res: express.
     try {
         // Read the uploaded Excel file using ExcelJS to avoid vulnerabilities in xlsx
         const workbook = new ExcelJS.Workbook();
-        await workbook.xlsx.readFile(req.file.path);
+        await workbook.xlsx.readFile(uploadedFile.path);
         const worksheet = workbook.worksheets[0];
 
         const sheetData: any[] = [];
@@ -79,15 +88,8 @@ export const saveExcel = asyncHandler(async (req: express.Request, res: express.
         res.status(201).json(
             new ApiResponse(201, true, "Questions saved successfully")
         );
-    } catch (error: unknown) {
-        if (error instanceof ApiError) {
-            throw error;
-        } else {
-            logger.error(`Unknown error processing Excel file named ${req.file.originalname} + Error: ${error}`);
-            throw new ApiError(500, "Error processing Excel file");
-        }
     } finally {
         // Clean up: Delete the uploaded file
-        fs.unlinkSync(req.file.path);
+        await safeDeleteUploadedFile(uploadedFile.path);
     }
 });
