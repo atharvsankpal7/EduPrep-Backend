@@ -18,11 +18,16 @@ async function seedAdmin() {
       return;
     }
 
+    const adminPassword = process.env.ADMIN_PASSWORD;
+    if (!adminPassword) {
+      throw new Error("ADMIN_PASSWORD environment variable is not set");
+    }
+
     // Create admin user
     const admin = await createUser({
       fullName: "System Admin",
       email: "admin@example.com",
-      password: "Admin@123456", // This should be changed after first login
+      password: adminPassword,
       role: "admin"
     });
 
