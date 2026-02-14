@@ -1,6 +1,6 @@
 import { db } from '../connection';
 import { questions, Question, NewQuestion, topics, subjects } from '../schema';
-import { eq, inArray, sql, and } from 'drizzle-orm';
+import { eq, inArray, sql } from 'drizzle-orm';
 
 // Create question
 export async function createQuestion(data: NewQuestion): Promise<Question> {
@@ -44,12 +44,32 @@ export async function getRandomQuestionsFromTopics(
 ): Promise<Question[]> {
   if (topicIds.length === 0) return [];
 
-  return db
-    .select()
+  // Optimization: Fetch only IDs first to avoid sorting large text fields (like questionText, explanation)
+  // This reduces the data moved during the sort operation significantly.
+  const randomIds = await db
+    .select({ id: questions.id })
     .from(questions)
     .where(inArray(questions.topicId, topicIds))
     .orderBy(sql`RANDOM()`)
     .limit(limit);
+
+  if (randomIds.length === 0) return [];
+
+  const ids = randomIds.map((r) => r.id);
+
+  // Fetch full details for the selected IDs
+  const questionsData = await db
+    .select()
+    .from(questions)
+    .where(inArray(questions.id, ids));
+
+  // Map results back to the random order of IDs
+  const questionMap = new Map(questionsData.map((q) => [q.id, q]));
+
+  // Return questions in the same order as the random IDs
+  return ids
+    .map((id) => questionMap.get(id))
+    .filter((q): q is Question => q !== undefined);
 }
 
 // Get questions with topic and subject info
