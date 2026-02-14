@@ -4,6 +4,8 @@ import { ApiError } from "../utils/ApiError";
 import logger from "../utils/logger";
 import { getCETDistribution } from "../db/helpers/distribution.helpers";
 import { findSubjectByName, getTopicsBySubject as fetchTopicsBySubject, getTopicsWithSubject } from "../db/helpers/topic.helpers";
+import { subjectNameParamsSchema } from "../ZodSchema/topicSchema";
+import { validateType } from "../utils/zodValidator";
 
 /**
  * Get all CET topics with their distribution information
@@ -85,7 +87,7 @@ const getAllTopics = async (_req: Request, res: Response) => {
  * Get topics for a specific subject
  */
 const getTopicsBySubject = async (req: Request, res: Response) => {
-  const { subjectName } = req.params;
+  const { subjectName } = validateType(subjectNameParamsSchema, req.params);
 
   // Find the subject
   const subject = await findSubjectByName(subjectName);
