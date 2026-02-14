@@ -3,8 +3,8 @@ import express from "express";
 import logger from "../utils/logger";
 import ApiResponse from "../utils/ApiResponse";
 import {ApiError} from "../utils/ApiError";
-import * as XLSX from "xlsx";
-import fs from "fs";
+import * as ExcelJS from "exceljs";
+import * as fs from "fs";
 import {processExcelData} from "../utils/excelProcessor";
 import { createQuestions } from "../db/helpers/question.helpers";
 
@@ -15,10 +15,53 @@ export const saveExcel = asyncHandler(async (req: express.Request, res: express.
     }
 
     try {
-        // Read the uploaded Excel file
-        const workbook = XLSX.readFile(req.file.path);
-        const sheetName = workbook.SheetNames[0];
-        const sheetData = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName], {defval: ""});
+        // Read the uploaded Excel file using ExcelJS to avoid vulnerabilities in xlsx
+        const workbook = new ExcelJS.Workbook();
+        await workbook.xlsx.readFile(req.file.path);
+        const worksheet = workbook.worksheets[0];
+
+        const sheetData: any[] = [];
+        const headers: {[key: number]: string} = {};
+
+        // Get headers from first row
+        const headerRow = worksheet.getRow(1);
+        headerRow.eachCell((cell, colNumber) => {
+            headers[colNumber] = cell.text ? cell.text.toString() : "";
+        });
+
+        // Get data
+        worksheet.eachRow((row, rowNumber) => {
+            if (rowNumber === 1) return; // Skip header row
+            const rowData: any = {};
+
+            // Initialize all headers with empty string
+            Object.values(headers).forEach(header => {
+                if(header) rowData[header] = "";
+            });
+
+            row.eachCell((cell, colNumber) => {
+                const header = headers[colNumber];
+                if (header) {
+                    // Extract value safely
+                    let cellValue = "";
+                    if (cell.value !== null && cell.value !== undefined) {
+                        if (typeof cell.value === 'object') {
+                             if ('text' in cell.value) {
+                                 cellValue = (cell.value as any).text;
+                             } else if ('result' in cell.value) {
+                                 cellValue = String((cell.value as any).result);
+                             } else {
+                                 cellValue = String(cell.value);
+                             }
+                        } else {
+                            cellValue = String(cell.value);
+                        }
+                    }
+                    rowData[header] = cellValue;
+                }
+            });
+            sheetData.push(rowData);
+        });
 
         // Process the Excel data
         const processedQuestions = await processExcelData(sheetData);
