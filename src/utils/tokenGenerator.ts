@@ -1,13 +1,18 @@
-import { ApiError } from "./ApiError";
 import { generateTokensForUser } from "../db/helpers/auth.helpers";
-import { findUserByIdSecure } from "../db/helpers/user.helpers";
 
 const generateAccessAndRefreshToken = async (userId: number) => {
 
-    const { accessToken } = await generateTokensForUser(userId);
-    const user = await findUserByIdSecure(userId);
-    if (!user) {
-        throw new ApiError(404, "Invalid user id!");
+    const { accessToken, refreshToken, user: fullUser } = await generateTokensForUser(userId);
+
+    // Create a new user object with the updated refresh token
+    const user = {
+        ...fullUser,
+        refreshToken
+    };
+
+    // Remove password from the user object to avoid exposing it
+    if ('password' in user) {
+        delete (user as any).password;
     }
 
     return {user, accessToken};
