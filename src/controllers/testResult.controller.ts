@@ -10,6 +10,7 @@ import {
   getTestResultAnswers,
 } from "../db/helpers/test.helpers";
 import { findQuestionsByIds } from "../db/helpers/question.helpers";
+import { shuffleOptions } from "../utils/shuffle";
 
 // saving the new test result in the database
 const submitTest = asyncHandler(async (req: Request, res: Response) => {
@@ -43,7 +44,20 @@ const submitTest = asyncHandler(async (req: Request, res: Response) => {
 
     let score = 0;
     const mappedAnswers = testQuestionInfo.map((question, index) => {
-        const selectedOption = selectedAnswers[index].selectedOption;
+        let selectedOption = selectedAnswers[index].selectedOption;
+
+        // Reconstruct shuffle to find original option index
+        const seed = studentId.toString() + question.questionId;
+        const { indexMap } = shuffleOptions(question.options, question.answer, seed);
+
+        // selectedOption is 1-based index from shuffled array
+        // We need 1-based index from original array
+        // indexMap maps shuffledIndex (0-based) -> originalIndex (0-based)
+        if (selectedOption > 0 && selectedOption <= question.options.length) {
+             const originalIndexZeroBased = indexMap[selectedOption - 1];
+             selectedOption = originalIndexZeroBased + 1;
+        }
+
         if (selectedOption === question.answer) {
             score++;
         }

@@ -10,6 +10,7 @@ import {
   TestResult,
 } from '../schema';
 import { eq, and, desc, sql, inArray, asc } from 'drizzle-orm';
+import { shuffleOptions } from '../../utils/shuffle';
 
 export interface CreateTestSectionInput {
   sectionName: string;
@@ -96,6 +97,7 @@ export interface TestQuestionInfo {
   sectionId: string;
   answer: number;
   questionOrder: number;
+  options: string[];
 }
 
 export async function getTestQuestionInfo(testId: string): Promise<TestQuestionInfo[]> {
@@ -105,6 +107,7 @@ export async function getTestQuestionInfo(testId: string): Promise<TestQuestionI
       sectionId: testSectionQuestions.testSectionId,
       answer: questions.answer,
       questionOrder: testSectionQuestions.questionOrder,
+      options: questions.options,
     })
     .from(testSections)
     .innerJoin(testSectionQuestions, eq(testSectionQuestions.testSectionId, testSections.id))
@@ -114,7 +117,7 @@ export async function getTestQuestionInfo(testId: string): Promise<TestQuestionI
 }
 
 // Find test with questions populated
-export async function findTestWithQuestions(id: string) {
+export async function findTestWithQuestions(id: string, userId?: number) {
   const test = await findTestById(id);
   if (!test) return null;
 
@@ -149,11 +152,22 @@ export async function findTestWithQuestions(id: string) {
     }
 
     if (row.questionId) {
+      let options = row.options;
+      let answer = row.answer;
+
+      if (userId) {
+        // Deterministic shuffle using userId + questionId as seed
+        const seed = userId.toString() + row.questionId;
+        const result = shuffleOptions(row.options, row.answer, seed);
+        options = result.shuffledOptions;
+        answer = result.newAnswerIndex;
+      }
+
       sectionMap.get(row.sectionId)!.questions.push({
         id: row.questionId,
         questionText: row.questionText,
-        options: row.options,
-        answer: row.answer,
+        options: options,
+        answer: answer,
         explanation: row.explanation,
       });
     }

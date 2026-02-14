@@ -18,6 +18,7 @@ import {
   getRandomQuestionsFromTopics,
 } from "../db/helpers/question.helpers";
 import { getCompanyTestDetails } from "../db/helpers/distribution.helpers";
+import { shuffleOptions } from "../utils/shuffle";
 
 // creates the test with the given specifications and saves it in the database
 const createCustomTest = async (userId: number, body: any) => {
@@ -90,13 +91,19 @@ const createCustomTest = async (userId: number, body: any) => {
       name: section.sectionName,
       duration: section.sectionDuration,
       questionCount: section.questionIds.length,
-      questions: selectedQuestions.map(question => ({
-        _id: question.id,
-        questionText: question.questionText,
-        options: question.options,
-        answer: question.answer,
-        explanation: question.explanation,
-      })),
+      questions: selectedQuestions.map(question => {
+        // Deterministic shuffle using userId + questionId as seed
+        const seed = userId.toString() + question.id;
+        const { shuffledOptions, newAnswerIndex } = shuffleOptions(question.options, question.answer, seed);
+
+        return {
+          _id: question.id,
+          questionText: question.questionText,
+          options: shuffledOptions,
+          answer: newAnswerIndex,
+          explanation: question.explanation,
+        };
+      }),
     };
   });
 
@@ -173,7 +180,7 @@ const getTestWithId = asyncHandler(async (req: ExpressRequest, res: Response) =>
   const { id } = req.params;
 
   // Find test and populate sections
-  const test = await findTestWithQuestions(id);
+  const test = await findTestWithQuestions(id, req.user?.id);
   if (!test) {
     logger.error(`Test not found with id: ${id}`);
     throw new ApiError(404, "Test not found");
