@@ -11,7 +11,6 @@ import {
 } from "../db/helpers/test.helpers";
 import {
   findTopicsByIds,
-  findTopicsByNames,
 } from "../db/helpers/topic.helpers";
 import {
   getQuestionsWithDetails,
@@ -45,11 +44,8 @@ const createCustomTest = async (userId: number, body: any) => {
     numberOfQuestions: totalQuestions,
     topicList: validatedTopicList,
   } = validationResult.data;
-  const numericPattern = /^\d+$/;
-  const looksLikeIds = validatedTopicList.every((topic) => numericPattern.test(topic));
-  const allTopics = looksLikeIds
-    ? await findTopicsByIds(validatedTopicList.map((id) => Number(id)))
-    : await findTopicsByNames(validatedTopicList);
+
+  const allTopics = await findTopicsByIds(validatedTopicList);
 
   if (allTopics.length === 0) {
     throw new ApiError(400, "At least one topic is required.");
