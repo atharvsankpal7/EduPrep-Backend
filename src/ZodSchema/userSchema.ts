@@ -26,3 +26,7 @@ export const userLoginSchema = z.object({
 });
 
 export const createAdminSchema = baseUserSchema;
+
+export const studentIdParamsSchema = z.object({
+  studentId: z.coerce.number().int().positive("studentId must be a positive integer"),
+});

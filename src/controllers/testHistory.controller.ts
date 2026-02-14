@@ -12,6 +12,8 @@ import {
   getUserPerformanceSummary,
 } from "../db/helpers/test.helpers";
 import { getQuestionsWithDetails } from "../db/helpers/question.helpers";
+import { resultIdParamsSchema } from "../ZodSchema/testSchema";
+import { validateType } from "../utils/zodValidator";
 
 /**
  * Get all test attempts for the authenticated user
@@ -58,7 +60,7 @@ const getUserTestHistory = async (req: Request, res: Response) => {
  */
 const getTestResultWithRecommendations = async (req: Request, res: Response) => {
     const userId = req.loggedInUser.id;
-    const { resultId } = req.params;
+    const { resultId } = validateType(resultIdParamsSchema, req.params);
     
     if (!userId) {
       throw new ApiError(401, "Unauthorized access");

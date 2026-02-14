@@ -1,38 +1,18 @@
-src/models/questions/questions.model.ts(6,9): error TS2322: Type '{ type: typeof Schema.Types.ObjectId; ref: string; required: true; index: true; }' is not assignable to type 'SchemaDefinitionProperty<number, IQuestion, Document<unknown, {}, IQuestion, { id: string; }, ResolveSchemaOptions<DefaultSchemaOptions>> & Omit<...> & { ...; }> | undefined'.
-  Types of property 'type' are incompatible.
-    Type 'typeof ObjectId' is not assignable to type 'typeof Mixed | NumberSchemaDefinition | undefined'.
-      Type 'typeof ObjectId' is not assignable to type 'NumberConstructor | typeof Mixed | typeof Number | Number'.
-        Type 'typeof ObjectId' is missing the following properties from type 'NumberConstructor': MAX_VALUE, MIN_VALUE, NaN, NEGATIVE_INFINITY, and 10 more.
-src/models/tests/test.model.ts(18,13): error TS2322: Type '{ type: typeof Schema.Types.ObjectId; ref: string; required: true; }' is not assignable to type 'SchemaDefinitionProperty<number, ITest, Document<unknown, {}, ITest, { id: string; }, ResolveSchemaOptions<DefaultSchemaOptions>> & Omit<...> & { ...; }> | undefined'.
-  Types of property 'type' are incompatible.
-    Type 'typeof ObjectId' is not assignable to type 'typeof Mixed | NumberSchemaDefinition | undefined'.
-      Type 'typeof ObjectId' is not assignable to type 'NumberConstructor | typeof Mixed | typeof Number | Number'.
-        Type 'typeof ObjectId' is missing the following properties from type 'NumberConstructor': MAX_VALUE, MIN_VALUE, NaN, NEGATIVE_INFINITY, and 10 more.
-src/models/tests/testResult.model.ts(6,9): error TS2322: Type '{ type: typeof Schema.Types.ObjectId; ref: string; required: true; index: true; }' is not assignable to type 'SchemaDefinitionProperty<string, ITestResult, Document<unknown, {}, ITestResult, { id: string; }, ResolveSchemaOptions<DefaultSchemaOptions>> & Omit<...> & { ...; }> | undefined'.
-  Types of property 'type' are incompatible.
-    Type 'typeof ObjectId' is not assignable to type 'typeof Mixed | StringSchemaDefinition | undefined'.
-      Type 'typeof ObjectId' is not assignable to type 'StringConstructor | typeof Mixed | typeof String | String'.
-        Type 'typeof ObjectId' is missing the following properties from type 'StringConstructor': fromCharCode, fromCodePoint, raw
-src/models/tests/testResult.model.ts(7,9): error TS2322: Type '{ type: typeof Schema.Types.ObjectId; ref: string; required: true; index: true; }' is not assignable to type 'SchemaDefinitionProperty<number, ITestResult, Document<unknown, {}, ITestResult, { id: string; }, ResolveSchemaOptions<DefaultSchemaOptions>> & Omit<...> & { ...; }> | undefined'.
-  Types of property 'type' are incompatible.
-    Type 'typeof ObjectId' is not assignable to type 'typeof Mixed | NumberSchemaDefinition | undefined'.
-      Type 'typeof ObjectId' is not assignable to type 'NumberConstructor | typeof Mixed | typeof Number | Number'.
-        Type 'typeof ObjectId' is missing the following properties from type 'NumberConstructor': MAX_VALUE, MIN_VALUE, NaN, NEGATIVE_INFINITY, and 10 more.
-src/models/topics/subject.model.ts(7,7): error TS2322: Type '{ type: typeof Schema.Types.ObjectId; ref: string; required: true; }' is not assignable to type 'SchemaDefinitionProperty<number, ISubject, Document<unknown, {}, ISubject, { id: string; }, ResolveSchemaOptions<DefaultSchemaOptions>> & Omit<...> & { ...; }> | undefined'.
-  Types of property 'type' are incompatible.
-    Type 'typeof ObjectId' is not assignable to type 'typeof Mixed | NumberSchemaDefinition | undefined'.
-      Type 'typeof ObjectId' is not assignable to type 'NumberConstructor | typeof Mixed | typeof Number | Number'.
-        Type 'typeof ObjectId' is missing the following properties from type 'NumberConstructor': MAX_VALUE, MIN_VALUE, NaN, NEGATIVE_INFINITY, and 10 more.
-src/models/topics/topic.model.ts(7,5): error TS2322: Type '{ type: typeof Schema.Types.ObjectId; ref: string; required: true; index: true; }' is not assignable to type 'SchemaDefinitionProperty<number, ITopic, Document<unknown, {}, ITopic, { id: string; }, ResolveSchemaOptions<DefaultSchemaOptions>> & Omit<...> & { ...; }> | undefined'.
-  Types of property 'type' are incompatible.
-    Type 'typeof ObjectId' is not assignable to type 'typeof Mixed | NumberSchemaDefinition | undefined'.
-      Type 'typeof ObjectId' is not assignable to type 'NumberConstructor | typeof Mixed | typeof Number | Number'.
-        Type 'typeof ObjectId' is missing the following properties from type 'NumberConstructor': MAX_VALUE, MIN_VALUE, NaN, NEGATIVE_INFINITY, and 10 more.
-src/models/user/user.model.ts(45,13): error TS2339: Property 'isModified' does not exist on type 'IUser'.
-src/models/user/user.model.ts(45,44): error TS2349: This expression is not callable.
-  Type 'SaveOptions' has no call signatures.
-src/models/user/user.model.ts(50,5): error TS2349: This expression is not callable.
-  Type 'SaveOptions' has no call signatures.
-src/models/user/user.model.ts(52,5): error TS2349: This expression is not callable.
-  Type 'SaveOptions' has no call signatures.
-tests/excelProcessor.test.ts(2,53): error TS2307: Cannot find module 'bun:test' or its corresponding type declarations.
+src/controllers/test.controller.ts(173,44): error TS2345: Argument of type 'string | string[]' is not assignable to parameter of type 'string'.
+  Type 'string[]' is not assignable to type 'string'.
+src/controllers/testHistory.controller.ts(68,53): error TS2345: Argument of type 'string | string[]' is not assignable to parameter of type 'string'.
+  Type 'string[]' is not assignable to type 'string'.
+src/controllers/testHistory.controller.ts(76,48): error TS2345: Argument of type 'string | string[]' is not assignable to parameter of type 'string'.
+  Type 'string[]' is not assignable to type 'string'.
+src/controllers/testResult.controller.ts(29,37): error TS2345: Argument of type 'string | string[]' is not assignable to parameter of type 'string'.
+  Type 'string[]' is not assignable to type 'string'.
+src/controllers/testResult.controller.ts(34,56): error TS2345: Argument of type 'string | string[]' is not assignable to parameter of type 'string'.
+  Type 'string[]' is not assignable to type 'string'.
+src/controllers/testResult.controller.ts(57,9): error TS2322: Type 'string | string[]' is not assignable to type 'string'.
+  Type 'string[]' is not assignable to type 'string'.
+src/controllers/testResult.controller.ts(77,49): error TS2345: Argument of type 'string | string[]' is not assignable to parameter of type 'string'.
+  Type 'string[]' is not assignable to type 'string'.
+src/controllers/testResult.controller.ts(82,48): error TS2345: Argument of type 'string | string[]' is not assignable to parameter of type 'string'.
+  Type 'string[]' is not assignable to type 'string'.
+src/controllers/topic.controller.ts(91,43): error TS2345: Argument of type 'string | string[]' is not assignable to parameter of type 'string'.
+  Type 'string[]' is not assignable to type 'string'.

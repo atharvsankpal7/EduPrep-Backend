@@ -44,12 +44,14 @@ const logger = createLogger({
         new transports.File({
             filename: path.join(__dirname, "../logs/exceptions.log"),
         }),
+        new transports.Console(),
     ],
     rejectionHandlers: [
         // Handle unhandled promise rejections
         new transports.File({
             filename: path.join(__dirname, "../logs/rejections.log"),
         }),
+        new transports.Console(),
     ],
 });
 

@@ -2,7 +2,8 @@ import express from "express";
 import { ApiError } from "../utils/ApiError";
 import ApiResponse from "../utils/ApiResponse";
 import logger from "../utils/logger";
-import { createAdminSchema } from "../ZodSchema/userSchema";
+import { createAdminSchema, studentIdParamsSchema } from "../ZodSchema/userSchema";
+import { validateType } from "../utils/zodValidator";
 import {
   countStudents,
   createUser,
@@ -75,15 +76,7 @@ const getAllStudents = async (req: express.Request, res: express.Response) => {
  * Create a new admin user
  */
 const createAdmin = async (req: express.Request, res: express.Response) => {
-    const parsed = createAdminSchema.safeParse(req.body);
-    if (!parsed.success) {
-      logger.warn("Validation errors during admin creation", {
-        error: parsed.error,
-      });
-      throw new ApiError(400, "Invalid input", [parsed.error]);
-    }
-
-    const { fullName, email, password } = parsed.data;
+    const { fullName, email, password } = validateType(createAdminSchema, req.body);
 
     // Check if user already exists
     const existingUser = await findUserByEmail(email);
@@ -126,31 +119,27 @@ const createAdmin = async (req: express.Request, res: express.Response) => {
  * Get details of a specific student
  */
 const getStudentDetails = async (req: express.Request, res: express.Response) => {
-    const { studentId } = req.params;
-    const studentIdNumber = Number(studentId);
-    if (Number.isNaN(studentIdNumber)) {
-      throw new ApiError(400, "Invalid studentId");
-    }
+    const { studentId: studentIdNumber } = validateType(studentIdParamsSchema, req.params);
 
     const existingUser = await findUserById(studentIdNumber);
     if (!existingUser) {
-      logger.warn("Student not found", { studentId });
+      logger.warn("Student not found", { studentId: studentIdNumber });
       throw new ApiError(404, "Student not found");
     }
 
     if (existingUser.role !== "student") {
-      logger.warn("Requested ID is not a student", { studentId });
+      logger.warn("Requested ID is not a student", { studentId: studentIdNumber });
       throw new ApiError(400, "Requested ID is not a student");
     }
     const student = await findStudentById(studentIdNumber);
     if (!student) {
-      logger.warn("Student not found", { studentId });
+      logger.warn("Student not found", { studentId: studentIdNumber });
       throw new ApiError(404, "Student not found");
     }
 
     logger.info("Admin retrieved student details", {
       adminId: req.loggedInUser.id,
-      studentId,
+      studentId: studentIdNumber,
     });
 
     res

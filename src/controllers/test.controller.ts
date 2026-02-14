@@ -1,8 +1,9 @@
 import { Request as ExpressRequest, Response } from "express";
 import { ApiError } from "../utils/ApiError";
-import { customTestSchema } from "../ZodSchema/testSchema";
+import { companyNameParamsSchema, customTestSchema, testIdParamsSchema } from "../ZodSchema/testSchema";
 import ApiResponse from "../utils/ApiResponse";
 import logger from "../utils/logger";
+import { validateType } from "../utils/zodValidator";
 import { getCETQuestions } from "../utils/cetQuestionSelector";
 import {
   createTestWithSections,
@@ -19,31 +20,12 @@ import {
 import { getCompanyTestDetails } from "../db/helpers/distribution.helpers";
 
 // creates the test with the given specifications and saves it in the database
-const createCustomTest = async (userId: number, body: any) => {
-  const { time, numberOfQuestions, topicList, educationLevel } = body;
-  const parsedTime = Number(time);
-  const normalizedDurationInMinutes =
-    parsedTime >= 900 && parsedTime % 60 === 0 ? parsedTime / 60 : parsedTime;
-
-  const validationResult = customTestSchema.safeParse({
-    time: normalizedDurationInMinutes,
-    numberOfQuestions: Number(numberOfQuestions),
-    topicList,
-    educationLevel,
-  });
-  if (!validationResult.success) {
-    const errorMessages = validationResult.error.errors.map(
-      (error) => error.message
-    );
-
-    throw new ApiError(400, errorMessages.join(", "));
-  }
-
+const createCustomTest = async (userId: number, body: unknown) => {
   const {
     time: validatedTime,
     numberOfQuestions: totalQuestions,
     topicList: validatedTopicList,
-  } = validationResult.data;
+  } = validateType(customTestSchema, body);
   const numericPattern = /^\d+$/;
   const looksLikeIds = validatedTopicList.every((topic) => numericPattern.test(topic));
   const allTopics = looksLikeIds
@@ -110,9 +92,7 @@ const createCustomTest = async (userId: number, body: any) => {
   return { testDetails };
 };
 const getCustomTest = async (req: ExpressRequest, res: Response) => {
-  if (!req.loggedInUser) {
-    throw new ApiError(401, "Unauthorized");
-  }
+
 
   const { testDetails } = await createCustomTest(req.loggedInUser.id, req.body);
   res
@@ -122,10 +102,7 @@ const getCustomTest = async (req: ExpressRequest, res: Response) => {
 
 // Controller for creating a company-specific test
 const getCompanySpecificTest = async (req: ExpressRequest, res: Response) => {
-    if (!req.loggedInUser) {
-      throw new ApiError(401, "Unauthorized");
-    }
-    const { companyName } = req.params;
+    const { companyName } = validateType(companyNameParamsSchema, req.params);
     const testDetails = await getCompanyTestDetails(companyName);
 
     if (!testDetails) {
@@ -167,7 +144,7 @@ const getCompanySpecificTest = async (req: ExpressRequest, res: Response) => {
 };
 
 const getTestWithId = async (req: ExpressRequest, res: Response) => {
-  const { id } = req.params;
+  const { id } = validateType(testIdParamsSchema, req.params);
 
   // Find test and populate sections
   const test = await findTestWithQuestions(id);

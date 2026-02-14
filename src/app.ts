@@ -43,7 +43,7 @@ app.use("/api/v1/topic", topicRouter);
 app.use("/api/v1/admin", adminRouter);
 app.use("/api/v1/test-history", testHistoryRouter);
 
-app.use("/*", (req, res) => {
+app.all(/.*/, (req, res) => {
   res.status(404).json({
     success: false,
     message: "Route not found on the server",

@@ -1,6 +1,8 @@
 import { Request, Response } from "express";
 import { ApiError } from "../utils/ApiError";
 import ApiResponse from "../utils/ApiResponse";
+import { submitTestBodySchema, testIdParamsSchema } from "../ZodSchema/testSchema";
+import { validateType } from "../utils/zodValidator";
 import {
   createTestResultWithAnswers,
   findTestById,
@@ -12,19 +14,14 @@ import { findQuestionsByIds } from "../db/helpers/question.helpers";
 
 // saving the new test result in the database
 const submitTest = async (req: Request, res: Response) => {
-    const {id} = req.params;
+    const { id } = validateType(testIdParamsSchema, req.params);
 
     const studentId = req.loggedInUser.id;
     if (!studentId) {
         throw new ApiError(401, "Unauthorized access");
     }
-
-    const { selectedAnswers, timeTaken, autoSubmission } = req.body;
-    
-    // Validate required fields
-    if (!selectedAnswers) {
-        throw new ApiError(400, "Answers are required and must be an array");
-    }
+    console.log(req.body)
+    const { selectedAnswers, timeTaken, autoSubmission } = validateType(submitTestBodySchema, req.body);
 
     const test = await findTestById(id);
     if (!test) {
@@ -57,8 +54,8 @@ const submitTest = async (req: Request, res: Response) => {
         testId: id,
         studentId,
         timeTaken,
-        isAutoSubmitted: Boolean(autoSubmission?.isAutoSubmitted),
-        tabSwitches: Number(autoSubmission?.tabSwitches ?? 0),
+        isAutoSubmitted: autoSubmission.isAutoSubmitted,
+        tabSwitches: autoSubmission.tabSwitches,
         score,
         answers: mappedAnswers,
     });
@@ -70,7 +67,7 @@ const submitTest = async (req: Request, res: Response) => {
 
 // gathering the existing test results for a student along with the questions asked in the test
 const getTestResult = async (req: Request, res: Response) => {
-    const {id} = req.params;
+    const { id } = validateType(testIdParamsSchema, req.params);
     const studentId = req.loggedInUser.id;
 
     // First, fetch the test result to get the selected answers

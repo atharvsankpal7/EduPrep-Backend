@@ -5,6 +5,7 @@ import logger from "../utils/logger";
 import {
   userRegistrationSchema,
 } from "../ZodSchema/userSchema";
+import { validateType } from "../utils/zodValidator";
 import {
   clearUserRefreshToken,
   createUser,
@@ -31,16 +32,7 @@ export const sessionCookieOptions = {
  * Register a new student
  */
 const registerStudent = async (req: express.Request, res: express.Response) => {
-
-    const parsed = userRegistrationSchema.safeParse(req.body);
-    if (!parsed.success) {
-      logger.warn("Validation errors during registration", {
-        error: parsed.error,
-      });
-      throw new ApiError(400, "Invalid input", [parsed.error]);
-    }
-
-    const { fullName, email, password } = parsed.data;
+    const { fullName, email, password } = validateType(userRegistrationSchema, req.body);
 
     // Check if user already exists
     const existingUser = await findUserByEmail(email);
