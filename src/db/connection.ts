@@ -14,6 +14,26 @@ const pool = new Pool({
   connectionTimeoutMillis: 2000,
 });
 
+type PoolClientLike = {
+  on: (event: 'error', listener: (error: Error) => void) => void;
+};
+
+pool.on('error', (error: Error) => {
+  logger.error('Unexpected PostgreSQL pool error', {
+    message: error.message,
+    stack: error.stack,
+  });
+});
+
+pool.on('connect', (client: PoolClientLike) => {
+  client.on('error', (error: Error) => {
+    logger.error('PostgreSQL client error', {
+      message: error.message,
+      stack: error.stack,
+    });
+  });
+});
+
 // Drizzle database instance with schema
 export const db = drizzle(pool, { schema });
 
@@ -24,8 +44,12 @@ export async function connectToDatabase(): Promise<void> {
     client.release();
     logger.info('Successfully connected to PostgreSQL database');
   } catch (error) {
-    logger.error('Failed to connect to PostgreSQL database', { error });
-    throw new Error('Database connection failed');
+    const dbError = error instanceof Error ? error : new Error(String(error));
+    logger.error('Failed to connect to PostgreSQL database', {
+      message: dbError.message,
+      stack: dbError.stack,
+    });
+    throw dbError;
   }
 }
 
