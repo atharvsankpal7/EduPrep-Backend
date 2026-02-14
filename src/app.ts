@@ -66,7 +66,6 @@ app.use((err: unknown, req: express.Request, res: express.Response, _: express.N
     message,
     stack,
   });
-  console.error("Unhandled request error:", { method: req.method, path: req.originalUrl, statusCode, message, stack });
 
   res.status(statusCode).json({
     success: false,
