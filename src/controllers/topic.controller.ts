@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import asyncHandler from "../utils/asyncHandler";
 import ApiResponse from "../utils/ApiResponse";
 import { ApiError } from "../utils/ApiError";
 import logger from "../utils/logger";
@@ -9,7 +8,7 @@ import { findSubjectByName, getTopicsBySubject as fetchTopicsBySubject, getTopic
 /**
  * Get all CET topics with their distribution information
  */
-const getCETTopics = asyncHandler(async (req: Request, res: Response) => {
+const getCETTopics = async (_req: Request, res: Response) => {
   // Get the CET distribution configuration
   const cetDistribution = await getCETDistribution();
 
@@ -34,12 +33,12 @@ const getCETTopics = asyncHandler(async (req: Request, res: Response) => {
   res.status(200).json(
     new ApiResponse(200, { topicsBySubject }, "CET topics fetched successfully")
   );
-});
+};
 
 /**
  * Get all available topics grouped by subject
  */
-const getAllTopics = asyncHandler(async (req: Request, res: Response) => {
+const getAllTopics = async (_req: Request, res: Response) => {
   // Aggregate to get all topics with their subjects
   const rows = await getTopicsWithSubject();
   const domainMap = new Map<string, { domainName: string; educationLevel: string; subjects: Map<string, { subjectName: string; topics: { topicId: number; topicName: string }[] }> }>();
@@ -80,12 +79,12 @@ const getAllTopics = asyncHandler(async (req: Request, res: Response) => {
   res.status(200).json(
     new ApiResponse(200, { domains: topics }, "All topics fetched successfully")
   );
-});
+};
 
 /**
  * Get topics for a specific subject
  */
-const getTopicsBySubject = asyncHandler(async (req: Request, res: Response) => {
+const getTopicsBySubject = async (req: Request, res: Response) => {
   const { subjectName } = req.params;
 
   // Find the subject
@@ -112,6 +111,6 @@ const getTopicsBySubject = asyncHandler(async (req: Request, res: Response) => {
       }))
     }, "Topics fetched successfully")
   );
-});
+};
 
 export { getCETTopics, getAllTopics, getTopicsBySubject };

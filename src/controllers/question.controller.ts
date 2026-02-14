@@ -1,4 +1,3 @@
-import asyncHandler from "../utils/asyncHandler";
 import express from "express";
 import logger from "../utils/logger";
 import ApiResponse from "../utils/ApiResponse";
@@ -16,7 +15,7 @@ const safeDeleteUploadedFile = async (filePath: string) => {
     }
 };
 
-export const saveExcel = asyncHandler(async (req: express.Request, res: express.Response) => {
+export const saveExcel = async (req: express.Request, res: express.Response) => {
     const uploadedFile = req.file;
     if (!uploadedFile) {
         logger.warn("File not found, userId: " + req.loggedInUser.id);
@@ -92,4 +91,4 @@ export const saveExcel = asyncHandler(async (req: express.Request, res: express.
         // Clean up: Delete the uploaded file
         await safeDeleteUploadedFile(uploadedFile.path);
     }
-});
+};

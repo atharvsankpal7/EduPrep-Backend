@@ -1,7 +1,6 @@
 import { Request as ExpressRequest, Response } from "express";
 import { ApiError } from "../utils/ApiError";
 import { customTestSchema } from "../ZodSchema/testSchema";
-import asyncHandler from "../utils/asyncHandler";
 import ApiResponse from "../utils/ApiResponse";
 import logger from "../utils/logger";
 import { getCETQuestions } from "../utils/cetQuestionSelector";
@@ -110,7 +109,7 @@ const createCustomTest = async (userId: number, body: any) => {
 
   return { testDetails };
 };
-const getCustomTest = asyncHandler(async (req: ExpressRequest, res: Response) => {
+const getCustomTest = async (req: ExpressRequest, res: Response) => {
   if (!req.loggedInUser) {
     throw new ApiError(401, "Unauthorized");
   }
@@ -119,11 +118,10 @@ const getCustomTest = asyncHandler(async (req: ExpressRequest, res: Response) =>
   res
     .status(201)
     .send(new ApiResponse(201, { testDetails }, "Test Creation successful"));
-});
+};
 
 // Controller for creating a company-specific test
-const getCompanySpecificTest = asyncHandler(
-  async (req: ExpressRequest, res: Response) => {
+const getCompanySpecificTest = async (req: ExpressRequest, res: Response) => {
     if (!req.loggedInUser) {
       throw new ApiError(401, "Unauthorized");
     }
@@ -166,10 +164,9 @@ const getCompanySpecificTest = asyncHandler(
           "Company-specific test created"
         )
       );
-  }
-);
+};
 
-const getTestWithId = asyncHandler(async (req: ExpressRequest, res: Response) => {
+const getTestWithId = async (req: ExpressRequest, res: Response) => {
   const { id } = req.params;
 
   // Find test and populate sections
@@ -199,12 +196,11 @@ const getTestWithId = asyncHandler(async (req: ExpressRequest, res: Response) =>
     .send(
       new ApiResponse(200, { test: testResponse }, "Test fetched successfully")
     );
-});
+};
 
 // Update the createCETTest function
 
-const createCETTest = asyncHandler(
-  async (req: ExpressRequest, res: Response) => {
+const createCETTest = async (req: ExpressRequest, res: Response) => {
     const user = req.loggedInUser;
     const { questionIds } = await getCETQuestions();
     // Fetch all questions with their topics and subjects
@@ -292,6 +288,5 @@ const createCETTest = asyncHandler(
       .send(
         new ApiResponse(201, { testDetails }, "CET Test created successfully")
       );
-  }
-);
+};
 export { getCustomTest, getCompanySpecificTest, createCETTest, getTestWithId };

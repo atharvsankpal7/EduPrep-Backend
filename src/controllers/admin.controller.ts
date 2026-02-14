@@ -1,5 +1,4 @@
 import express from "express";
-import asyncHandler from "../utils/asyncHandler";
 import { ApiError } from "../utils/ApiError";
 import ApiResponse from "../utils/ApiResponse";
 import logger from "../utils/logger";
@@ -18,8 +17,7 @@ import {
  * Get all students sorted by creation date in descending order
  */
 
-const getAllStudents = asyncHandler(
-  async (req: express.Request, res: express.Response) => {
+const getAllStudents = async (req: express.Request, res: express.Response) => {
     // Get pagination parameters
     const page = parseInt(req.query.page as string) || 1;
     const limit = parseInt(req.query.limit as string) || 10;
@@ -71,13 +69,12 @@ const getAllStudents = asyncHandler(
         "Students retrieved successfully"
       )
     );
-  });
+};
 
 /**
  * Create a new admin user
  */
-const createAdmin = asyncHandler(
-  async (req: express.Request, res: express.Response) => {
+const createAdmin = async (req: express.Request, res: express.Response) => {
     const parsed = createAdminSchema.safeParse(req.body);
     if (!parsed.success) {
       logger.warn("Validation errors during admin creation", {
@@ -123,14 +120,12 @@ const createAdmin = asyncHandler(
           "Admin created successfully"
         )
       );
-  }
-);
+};
 
 /**
  * Get details of a specific student
  */
-const getStudentDetails = asyncHandler(
-  async (req: express.Request, res: express.Response) => {
+const getStudentDetails = async (req: express.Request, res: express.Response) => {
     const { studentId } = req.params;
     const studentIdNumber = Number(studentId);
     if (Number.isNaN(studentIdNumber)) {
@@ -167,7 +162,6 @@ const getStudentDetails = asyncHandler(
           "Student details retrieved successfully"
         )
       );
-  }
-);
+};
 
 export { getAllStudents, createAdmin, getStudentDetails };
