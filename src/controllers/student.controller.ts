@@ -1,5 +1,4 @@
 import express from "express";
-import asyncHandler from "../utils/asyncHandler";
 import { ApiError } from "../utils/ApiError";
 import ApiResponse from "../utils/ApiResponse";
 import logger from "../utils/logger";
@@ -31,8 +30,7 @@ export const sessionCookieOptions = {
 /**
  * Register a new student
  */
-const registerStudent = asyncHandler(
-  async (req: express.Request, res: express.Response) => {
+const registerStudent = async (req: express.Request, res: express.Response) => {
 
     const parsed = userRegistrationSchema.safeParse(req.body);
     if (!parsed.success) {
@@ -91,14 +89,12 @@ const registerStudent = asyncHandler(
           "User registered successfully"
         )
       );
-  }
-);
+};
 
 /**
  * Log in a student
  */
-const loginUser = asyncHandler(
-  async (req: express.Request, res: express.Response) => {
+const loginUser = async (req: express.Request, res: express.Response) => {
     const loggedInUser = req.loggedInUser;
     if (!loggedInUser) {
       throw new ApiError(401, "Unauthorized");
@@ -125,14 +121,12 @@ const loginUser = asyncHandler(
       .status(200)
       .cookie("sessionId", session.id, sessionCookieOptions)
       .json(new ApiResponse(200, { user: publicUser }, "User logged in successfully"));
-  }
-);
+};
 
 /**
  * Log out a user
  */
-const logoutUser = asyncHandler(
-  async (req: express.Request, res: express.Response) => {
+const logoutUser = async (req: express.Request, res: express.Response) => {
     const userId = req.loggedInUser.id;
 
     // Clear the refreshToken in the database
@@ -154,16 +148,13 @@ const logoutUser = asyncHandler(
       .status(200)
       .clearCookie("sessionId")
       .json(new ApiResponse(200, {}, "User logged out successfully"));
-  }
-);
+};
 
-const getUser = asyncHandler(
-  async (req: express.Request, res: express.Response) => {
-    const userId = req.loggedInUser.id;
-    if(!userId){
-      throw new ApiError(401, "Unauthorized");
-    }
-    res.status(200).json(new ApiResponse(200, { user: req.loggedInUser }, "User fetched successfully"));
+const getUser = async (req: express.Request, res: express.Response) => {
+  const userId = req.loggedInUser.id;
+  if (!userId) {
+    throw new ApiError(401, "Unauthorized");
   }
-);
+  res.status(200).json(new ApiResponse(200, { user: req.loggedInUser }, "User fetched successfully"));
+};
 export { registerStudent, loginUser, logoutUser, getUser };

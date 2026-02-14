@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import asyncHandler from "../utils/asyncHandler";
 import ApiResponse from "../utils/ApiResponse";
 import { ApiError } from "../utils/ApiError";
 import logger from "../utils/logger";
@@ -17,8 +16,7 @@ import { getQuestionsWithDetails } from "../db/helpers/question.helpers";
 /**
  * Get all test attempts for the authenticated user
  */
-const getUserTestHistory = asyncHandler(
-  async (req: Request, res: Response) => {
+const getUserTestHistory = async (req: Request, res: Response) => {
     const userId = req.loggedInUser.id;
     
     if (!userId) {
@@ -53,14 +51,12 @@ const getUserTestHistory = asyncHandler(
         "Test history retrieved successfully"
       )
     );
-  }
-);
+};
 
 /**
  * Get detailed test result with recommendations
  */
-const getTestResultWithRecommendations = asyncHandler(
-  async (req: Request, res: Response) => {
+const getTestResultWithRecommendations = async (req: Request, res: Response) => {
     const userId = req.loggedInUser.id;
     const { resultId } = req.params;
     
@@ -157,14 +153,12 @@ const getTestResultWithRecommendations = asyncHandler(
         "Test result with recommendations retrieved successfully"
       )
     );
-  }
-);
+};
 
 /**
  * Get overall performance analytics for the user
  */
-const getUserPerformanceAnalytics = asyncHandler(
-  async (req: Request, res: Response) => {
+const getUserPerformanceAnalytics = async (req: Request, res: Response) => {
     const userId = req.loggedInUser.id;
     
     if (!userId) {
@@ -218,7 +212,6 @@ const getUserPerformanceAnalytics = asyncHandler(
         "Performance analytics retrieved successfully"
       )
     );
-  }
-);
+};
 
 export { getUserTestHistory, getTestResultWithRecommendations, getUserPerformanceAnalytics };

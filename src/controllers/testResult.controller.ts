@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import asyncHandler from "../utils/asyncHandler";
 import { ApiError } from "../utils/ApiError";
 import ApiResponse from "../utils/ApiResponse";
 import {
@@ -12,7 +11,7 @@ import {
 import { findQuestionsByIds } from "../db/helpers/question.helpers";
 
 // saving the new test result in the database
-const submitTest = asyncHandler(async (req: Request, res: Response) => {
+const submitTest = async (req: Request, res: Response) => {
     const {id} = req.params;
 
     const studentId = req.loggedInUser.id;
@@ -67,10 +66,10 @@ const submitTest = asyncHandler(async (req: Request, res: Response) => {
     res.status(201).send(
         new ApiResponse(201, {testResult}, "Test submitted successfully")
     );
-});
+};
 
 // gathering the existing test results for a student along with the questions asked in the test
-const getTestResult = asyncHandler(async (req: Request, res: Response) => {
+const getTestResult = async (req: Request, res: Response) => {
     const {id} = req.params;
     const studentId = req.loggedInUser.id;
 
@@ -122,6 +121,6 @@ const getTestResult = asyncHandler(async (req: Request, res: Response) => {
     res.status(200).json(
         new ApiResponse(200, response, "Test result fetched successfully")
     );
-});
+};
 
 export {submitTest, getTestResult};
