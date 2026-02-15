@@ -1,17 +1,25 @@
 import multer from 'multer';
 import fs from 'fs';
+import path from 'path';
+import crypto from 'crypto';
+
+// Ensure uploads directory exists at module initialization
+// Using absolute path relative to process.cwd() or similar is safer but 'uploads/' works if run from consistent root
+const uploadDir = 'uploads/';
+if (!fs.existsSync(uploadDir)) {
+  fs.mkdirSync(uploadDir, { recursive: true });
+}
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    const uploadDir = 'uploads/';
-    // Create uploads directory if it doesn't exist
-    if (!fs.existsSync(uploadDir)) {
-      fs.mkdirSync(uploadDir, { recursive: true });
-    }
+    // Directory is already ensured at startup to avoid blocking I/O per request
     cb(null, uploadDir);
   },
   filename: (req, file, cb) => {
-    cb(null, `${Date.now()}-${file.originalname}`);
+    // Use random UUID for filename to prevent collisions and path traversal
+    const uniqueSuffix = crypto.randomUUID();
+    const ext = path.extname(file.originalname);
+    cb(null, `${uniqueSuffix}${ext}`);
   }
 });
 
