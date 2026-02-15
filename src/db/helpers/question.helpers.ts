@@ -1,6 +1,6 @@
 import { db } from '../connection';
 import { questions, Question, NewQuestion, topics, subjects } from '../schema';
-import { eq, inArray, sql, and } from 'drizzle-orm';
+import { eq, inArray, sql } from 'drizzle-orm';
 
 // Create question
 export async function createQuestion(data: NewQuestion): Promise<Question> {
@@ -46,6 +46,21 @@ export async function getRandomQuestionsFromTopics(
 
   return db
     .select()
+    .from(questions)
+    .where(inArray(questions.topicId, topicIds))
+    .orderBy(sql`RANDOM()`)
+    .limit(limit);
+}
+
+// Get random question IDs from topics
+export async function getRandomQuestionIdsFromTopics(
+  topicIds: number[],
+  limit: number
+): Promise<{ id: string }[]> {
+  if (topicIds.length === 0) return [];
+
+  return db
+    .select({ id: questions.id })
     .from(questions)
     .where(inArray(questions.topicId, topicIds))
     .orderBy(sql`RANDOM()`)
