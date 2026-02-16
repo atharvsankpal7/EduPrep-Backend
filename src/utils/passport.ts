@@ -4,6 +4,9 @@ import { ApiError } from "./ApiError";
 import { findUserByEmail } from "../db/helpers/user.helpers";
 import { comparePassword } from "../db/helpers/auth.helpers";
 
+// Pre-computed hash for timing attack mitigation
+const DUMMY_HASH = '$2b$10$ORrrZLv6dm/h90DsyxSZquN9i0HTDJMthfO74WdBxkNNdS9RMgeei';
+
 passport.use(
   new LocalStrategy(
     {
@@ -17,13 +20,14 @@ passport.use(
         }
 
         const user = await findUserByEmail(email);
-        if (!user) {
-          return done(new ApiError(404, "User not found"));
-        }
 
-        const isPasswordCorrect = await comparePassword(password, user.password);
-        if (!isPasswordCorrect) {
-          return done(new ApiError(401, "Wrong password"));
+        // Constant-time comparison: always compare password, even if user not found
+        const passwordToCompare = user ? user.password : DUMMY_HASH;
+        const isPasswordCorrect = await comparePassword(password, passwordToCompare);
+
+        // If user is not found OR password is not correct, return generic error
+        if (!user || !isPasswordCorrect) {
+          return done(new ApiError(401, "Invalid email or password"));
         }
 
         const loggedInUser: Express.User = {
