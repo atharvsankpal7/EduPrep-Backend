@@ -287,6 +287,22 @@ export async function getTestResultAnswers(resultId: string) {
     .where(eq(testResultAnswers.testResultId, resultId));
 }
 
+// Get test result answers with question details
+export async function getTestResultAnswersWithQuestionDetails(resultId: string) {
+  return db
+    .select({
+      questionId: testResultAnswers.questionId,
+      selectedOption: testResultAnswers.selectedOption,
+      sectionId: testResultAnswers.sectionId,
+      questionText: questions.questionText,
+      options: questions.options,
+      answer: questions.answer,
+    })
+    .from(testResultAnswers)
+    .innerJoin(questions, eq(testResultAnswers.questionId, questions.id))
+    .where(eq(testResultAnswers.testResultId, resultId));
+}
+
 // Get recent tests (joined) for student
 export async function getRecentTestsByStudent(studentId: number, limit: number) {
   return db
