@@ -8,9 +8,8 @@ import {
   findTestById,
   findTestResultById,
   getTestQuestionInfo,
-  getTestResultAnswers,
+  getTestResultAnswersWithQuestionDetails,
 } from "../db/helpers/test.helpers";
-import { findQuestionsByIds } from "../db/helpers/question.helpers";
 
 // saving the new test result in the database
 const submitTest = async (req: Request, res: Response) => {
@@ -76,29 +75,17 @@ const getTestResult = async (req: Request, res: Response) => {
         throw new ApiError(404, "Test result not found");
     }
 
-    const answers = await getTestResultAnswers(id);
-    const questionIds = answers.map((answer) => answer.questionId);
-
-    // Fetch the questions separately
-    const questions = await findQuestionsByIds(questionIds);
-
-    // Create a map for faster question lookup
-    const questionMap = new Map();
-    questions.forEach(question => {
-        questionMap.set(question.id.toString(), question);
-    });
+    const answersWithQuestions = await getTestResultAnswersWithQuestionDetails(id);
 
     // Calculate correct answers and prepare detailed question analysis
-    const questionAnalysis = answers.map((answer) => {
-        const questionId = answer.questionId.toString();
-        const question = questionMap.get(questionId);
-        const isCorrect = question?.answer === answer.selectedOption;
+    const questionAnalysis = answersWithQuestions.map((item) => {
+        const isCorrect = item.answer === item.selectedOption;
         return {
-            questionId: answer.questionId,
-            questionText: question.questionText,
-            options: question?.options,
-            selectedOption: answer.selectedOption - 1,
-            correctOption: question?.answer - 1,
+            questionId: item.questionId,
+            questionText: item.questionText,
+            options: item.options,
+            selectedOption: item.selectedOption - 1,
+            correctOption: item.answer - 1,
             isCorrect: isCorrect
         };
     });
@@ -107,7 +94,7 @@ const getTestResult = async (req: Request, res: Response) => {
 
     const response = {
         id: testResult.id,
-        totalQuestions: answers.length,
+        totalQuestions: answersWithQuestions.length,
         correctAnswers,
         timeSpent: testResult.timeTaken,
         invalid: testResult.isAutoSubmitted,
