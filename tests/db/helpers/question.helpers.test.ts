@@ -1,5 +1,17 @@
 import { describe, it, expect, mock } from "bun:test";
 
+mock.module("drizzle-orm", () => ({
+  eq: () => {},
+  inArray: () => {},
+  sql: (strings: any) => strings,
+}));
+
+mock.module("../../../src/db/schema", () => ({
+  questions: { id: {}, topicId: {} },
+  topics: {},
+  subjects: {},
+}));
+
 const chain = {
   from: mock(() => chain),
   where: mock(() => chain),
@@ -16,10 +28,10 @@ mock.module("../../../src/db/connection", () => ({
   db: mockDb
 }));
 
-import { getRandomQuestionsFromTopics } from "../../../src/db/helpers/question.helpers";
-
 describe("getRandomQuestionsFromTopics", () => {
   it("should fetch random questions using two-step process", async () => {
+    const { getRandomQuestionsFromTopics } = await import("../../../src/db/helpers/question.helpers");
+
     mockDb.select.mockClear();
 
     const questions = await getRandomQuestionsFromTopics([1, 2], 2);
