@@ -1,7 +1,7 @@
 import { ApiError } from "./ApiError";
 import logger from "./logger";
 import { getCETDistribution as fetchCETDistribution } from "../db/helpers/distribution.helpers";
-import { getRandomQuestionsFromTopics } from "../db/helpers/question.helpers";
+import { getRandomQuestionIdsFromTopics } from "../db/helpers/question.helpers";
 import { findTopicByName } from "../db/helpers/topic.helpers";
 
 interface QuestionDistribution {
@@ -29,7 +29,7 @@ export async function getCETQuestions(): Promise<QuestionDistribution> {
         }
 
         // Get questions for this specific topic
-        const topicQuestions = await getRandomQuestionsFromTopics(
+        const topicQuestions = await getRandomQuestionIdsFromTopics(
           [topicId],
           topic.questionCount
         );
