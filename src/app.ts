@@ -7,7 +7,7 @@ import passport from "./utils/passport";
 import userRouter from "./router/user.routes";
 import testRouter from "./router/test.routes";
 import { ApiError } from "./utils/ApiError";
-import rateLimiter from "./utils/raterLimiter";
+import { globalLimiter } from "./utils/raterLimiter";
 import questionRouter from "./router/question.routes";
 import topicRouter from "./router/topic.routes";
 import adminRouter from "./router/admin.routes";
@@ -34,7 +34,7 @@ app.use(express.static("public")); // public folder is available via URL without
 app.use(cookieParser()); // parses cookies automatically and puts them in req.cookies
 app.use(passport.initialize({ userProperty: "loggedInUser" }));
 
-app.use(rateLimiter);
+app.use(globalLimiter);
 // route declarations
 app.use("/api/v1/user", userRouter);
 app.use("/api/v1/test", testRouter);
