@@ -1,7 +1,7 @@
 import { ApiError } from "./ApiError";
 import logger from "./logger";
 import { getCETDistribution as fetchCETDistribution } from "../db/helpers/distribution.helpers";
-import { getRandomQuestionsFromTopics } from "../db/helpers/question.helpers";
+import { getRandomQuestionIdsFromTopics } from "../db/helpers/question.helpers";
 import { findTopicByName } from "../db/helpers/topic.helpers";
 
 interface QuestionDistribution {
@@ -29,15 +29,15 @@ export async function getCETQuestions(): Promise<QuestionDistribution> {
         }
 
         // Get questions for this specific topic
-        const topicQuestions = await getRandomQuestionsFromTopics(
+        const topicQuestionIds = await getRandomQuestionIdsFromTopics(
           [topicId],
           topic.questionCount
         );
 
 
-        if (topicQuestions.length < topic.questionCount) {
+        if (topicQuestionIds.length < topic.questionCount) {
           logger.warn(
-            `Insufficient questions for topic ${topic.topicName}. Needed: ${topic.questionCount}, Found: ${topicQuestions.length}`
+            `Insufficient questions for topic ${topic.topicName}. Needed: ${topic.questionCount}, Found: ${topicQuestionIds.length}`
           );
           throw new ApiError(
             400,
@@ -48,7 +48,7 @@ export async function getCETQuestions(): Promise<QuestionDistribution> {
         // Add selected questions and calculate marks
         allSelectedQuestions = [
           ...allSelectedQuestions,
-          ...topicQuestions.map((q) => q.id),
+          ...topicQuestionIds,
         ];
         totalMarks += topic.questionCount * topic.marksPerQuestion;
       }
