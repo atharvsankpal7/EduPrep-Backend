@@ -1,5 +1,24 @@
 import multer from 'multer';
 import fs from 'fs';
+import crypto from 'crypto';
+
+export const MIME_TYPE_MAP: Record<string, string> = {
+  'image/jpeg': '.jpg',
+  'image/png': '.png',
+  'image/gif': '.gif',
+  'application/vnd.ms-excel': '.xls',
+  'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet': '.xlsx',
+  'text/csv': '.csv'
+};
+
+export const generateFilename = (req: any, file: Express.Multer.File, cb: (error: Error | null, filename: string) => void) => {
+  const extension = MIME_TYPE_MAP[file.mimetype];
+  if (!extension) {
+    return cb(new Error('Invalid mime type'), '');
+  }
+  const filename = `${crypto.randomUUID()}${extension}`;
+  cb(null, filename);
+};
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -10,20 +29,11 @@ const storage = multer.diskStorage({
     }
     cb(null, uploadDir);
   },
-  filename: (req, file, cb) => {
-    cb(null, `${Date.now()}-${file.originalname}`);
-  }
+  filename: generateFilename
 });
 
 const fileFilter = (req: Express.Request, file: Express.Multer.File, cb: multer.FileFilterCallback) => {
-  const allowedMimes = [
-    'image/jpeg',
-    'image/png',
-    'image/gif',
-    'application/vnd.ms-excel',
-    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-    'text/csv'
-  ];
+  const allowedMimes = Object.keys(MIME_TYPE_MAP);
 
   if (allowedMimes.includes(file.mimetype)) {
     cb(null, true);
