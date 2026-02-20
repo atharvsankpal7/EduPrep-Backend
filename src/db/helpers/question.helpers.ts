@@ -37,11 +37,11 @@ export async function findQuestionsByTopics(topicIds: number[]): Promise<Questio
   return db.select().from(questions).where(inArray(questions.topicId, topicIds));
 }
 
-// Get random questions from topics
-export async function getRandomQuestionsFromTopics(
+// Get random question IDs from topics
+export async function getRandomQuestionIdsFromTopics(
   topicIds: number[],
   limit: number
-): Promise<Question[]> {
+): Promise<string[]> {
   if (topicIds.length === 0) return [];
 
   // Optimization: Fetch only IDs first to avoid sorting large text fields (like questionText, explanation)
@@ -53,9 +53,17 @@ export async function getRandomQuestionsFromTopics(
     .orderBy(sql`RANDOM()`)
     .limit(limit);
 
-  if (randomIds.length === 0) return [];
+  return randomIds.map((r) => r.id);
+}
 
-  const ids = randomIds.map((r) => r.id);
+// Get random questions from topics
+export async function getRandomQuestionsFromTopics(
+  topicIds: number[],
+  limit: number
+): Promise<Question[]> {
+  const ids = await getRandomQuestionIdsFromTopics(topicIds, limit);
+
+  if (ids.length === 0) return [];
 
   // Fetch full details for the selected IDs
   const questionsData = await db
