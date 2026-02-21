@@ -24,19 +24,16 @@ export async function processExcelData(rows: any[]): Promise<ProcessedRow[]> {
   const processedQuestions: ProcessedRow[] = [];
   const topicCache = new Map<string, { id: number }>();
 
-  // Batch fetch topics to avoid N+1 queries
   try {
     const uniqueTopics = new Set<string>();
     for (const row of rows) {
-      if (row && typeof row === 'object' && 'topics' in row && typeof row.topics === 'string') {
         uniqueTopics.add(row.topics.toLowerCase().trimStart());
-      }
+
     }
 
     if (uniqueTopics.size > 0) {
       const foundTopics = await findTopicsByNames(Array.from(uniqueTopics));
       for (const topic of foundTopics) {
-        // Normalize key to ensure cache hit since lookups use lowercase
         topicCache.set(topic.topicName.toLowerCase(), { id: topic.id });
       }
     }
@@ -44,7 +41,7 @@ export async function processExcelData(rows: any[]): Promise<ProcessedRow[]> {
     logger.warn("Failed to batch fetch topics, falling back to individual lookups", error);
   }
 
-  try {
+
     for (let index = 0; index < rows.length; index++) {
       const row = rows[index];
       // Validate row data
@@ -98,15 +95,5 @@ export async function processExcelData(rows: any[]): Promise<ProcessedRow[]> {
     }
 
     return processedQuestions;
-  } catch (error) {
-    if (error instanceof z.ZodError) {
-      logger.error("Validation error:", error);
-      throw new ApiError(
-        400,
-        "Invalid data format in Excel file",
-        error.errors.map((e) => e.message)
-      );
-    }
-    throw error;
-  }
+  
 }
