@@ -7,7 +7,7 @@ import passport from "./utils/passport";
 import userRouter from "./router/user.routes";
 import testRouter from "./router/test.routes";
 import { ApiError } from "./utils/ApiError";
-import rateLimiter from "./utils/raterLimiter";
+import { globalLimiter } from "./utils/raterLimiter";
 import questionRouter from "./router/question.routes";
 import topicRouter from "./router/topic.routes";
 import adminRouter from "./router/admin.routes";
@@ -28,19 +28,14 @@ app.use(
     allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
-app.set('trust proxy', 1); // Enables trusting the first proxy
+app.set("trust proxy", 1); // Enables trusting the first proxy
 app.use(express.json({ limit: "5mb" }));
 app.use(express.urlencoded({ extended: true, limit: "16kb" }));
 app.use(express.static("public")); // public folder is available via URL without additional logic
 app.use(cookieParser()); // parses cookies automatically and puts them in req.cookies
 app.use(passport.initialize({ userProperty: "loggedInUser" }));
 
-if (process.env.NODE_ENV !== "test") {
-  app.use(morganSuccessHandler);
-  app.use(morganErrorHandler);
-}
-
-app.use(rateLimiter);
+app.use(globalLimiter);
 // route declarations
 app.use("/api/v1/user", userRouter);
 app.use("/api/v1/test", testRouter);
@@ -57,25 +52,32 @@ app.all(/.*/, (req, res) => {
 });
 
 // global error handler
-app.use((err: unknown, req: express.Request, res: express.Response, _: express.NextFunction) => {
-  const isApiError = err instanceof ApiError;
-  const statusCode = isApiError ? err.statusCode : 500;
-  const message = isApiError ? err.message : "Internal Server Error";
-  const stack = err instanceof Error ? err.stack : undefined;
+app.use(
+  (
+    err: unknown,
+    req: express.Request,
+    res: express.Response,
+    _: express.NextFunction
+  ) => {
+    const isApiError = err instanceof ApiError;
+    const statusCode = isApiError ? err.statusCode : 500;
+    const message = isApiError ? err.message : "Internal Server Error";
+    const stack = err instanceof Error ? err.stack : undefined;
 
-  logger.error("Unhandled request error", {
-    method: req.method,
-    path: req.originalUrl,
-    statusCode,
-    message: err instanceof Error ? err.message : message,
-    stack,
-  });
+    logger.error("Unhandled request error", {
+      method: req.method,
+      path: req.originalUrl,
+      statusCode,
+      message: err instanceof Error ? err.message : message,
+      stack,
+    });
 
-  res.status(statusCode).json({
-    success: false,
-    message,
-    ...(process.env.NODE_ENV !== "production" && { stack }), // Include stack trace in development
-  });
-});
+    res.status(statusCode).json({
+      success: false,
+      message,
+      ...(process.env.NODE_ENV !== "production" && { stack }), // Include stack trace in development
+    });
+  }
+);
 
 export { app };
