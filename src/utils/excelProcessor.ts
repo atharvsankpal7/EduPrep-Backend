@@ -2,7 +2,7 @@ import { ExcelRowSchema } from "../ZodSchema/excelSchema";
 import logger from "./logger";
 import { ApiError } from "./ApiError";
 import { z } from "zod";
-import { findTopicByName } from "../db/helpers/topic.helpers";
+import { findTopicByName, findTopicsByNames } from "../db/helpers/topic.helpers";
 
 interface ProcessedRow {
   questionText: string;
@@ -24,6 +24,26 @@ export async function processExcelData(rows: any[]): Promise<ProcessedRow[]> {
   const processedQuestions: ProcessedRow[] = [];
   const topicCache = new Map<string, { id: number }>();
 
+  // Batch fetch topics to avoid N+1 queries
+  try {
+    const uniqueTopics = new Set<string>();
+    for (const row of rows) {
+      if (row && typeof row === 'object' && 'topics' in row && typeof row.topics === 'string') {
+        uniqueTopics.add(row.topics.toLowerCase().trimStart());
+      }
+    }
+
+    if (uniqueTopics.size > 0) {
+      const foundTopics = await findTopicsByNames(Array.from(uniqueTopics));
+      for (const topic of foundTopics) {
+        // Normalize key to ensure cache hit since lookups use lowercase
+        topicCache.set(topic.topicName.toLowerCase(), { id: topic.id });
+      }
+    }
+  } catch (error) {
+    logger.warn("Failed to batch fetch topics, falling back to individual lookups", error);
+  }
+
   try {
     for (let index = 0; index < rows.length; index++) {
       const row = rows[index];
@@ -40,6 +60,7 @@ export async function processExcelData(rows: any[]): Promise<ProcessedRow[]> {
       let topic = topicCache.get(topicName);
 
       if (!topic) {
+        // Fallback for safety in case of cache miss or race condition
         const foundTopic = await findTopicByName(topicName);
         if (foundTopic) {
           topic = { id: foundTopic.id };
