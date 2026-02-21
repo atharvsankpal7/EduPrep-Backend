@@ -13,6 +13,7 @@ import topicRouter from "./router/topic.routes";
 import adminRouter from "./router/admin.routes";
 import testHistoryRouter from "./router/testHistory.routes";
 import logger from "./utils/logger";
+import { morganErrorHandler, morganSuccessHandler } from "./utils/morgan";
 
 const app = express();
 
@@ -27,7 +28,7 @@ app.use(
     allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
-app.set('trust proxy', 1); // Enables trusting the first proxy
+app.set("trust proxy", 1); // Enables trusting the first proxy
 app.use(express.json({ limit: "5mb" }));
 app.use(express.urlencoded({ extended: true, limit: "16kb" }));
 app.use(express.static("public")); // public folder is available via URL without additional logic
@@ -51,25 +52,32 @@ app.all(/.*/, (req, res) => {
 });
 
 // global error handler
-app.use((err: unknown, req: express.Request, res: express.Response, _: express.NextFunction) => {
-  const isApiError = err instanceof ApiError;
-  const statusCode = isApiError ? err.statusCode : 500;
-  const message = isApiError ? err.message : "Internal Server Error";
-  const stack = err instanceof Error ? err.stack : undefined;
+app.use(
+  (
+    err: unknown,
+    req: express.Request,
+    res: express.Response,
+    _: express.NextFunction
+  ) => {
+    const isApiError = err instanceof ApiError;
+    const statusCode = isApiError ? err.statusCode : 500;
+    const message = isApiError ? err.message : "Internal Server Error";
+    const stack = err instanceof Error ? err.stack : undefined;
 
-  logger.error("Unhandled request error", {
-    method: req.method,
-    path: req.originalUrl,
-    statusCode,
-    message: err instanceof Error ? err.message : message,
-    stack,
-  });
+    logger.error("Unhandled request error", {
+      method: req.method,
+      path: req.originalUrl,
+      statusCode,
+      message: err instanceof Error ? err.message : message,
+      stack,
+    });
 
-  res.status(statusCode).json({
-    success: false,
-    message,
-    ...(process.env.NODE_ENV !== "production" && { stack }), // Include stack trace in development
-  });
-});
+    res.status(statusCode).json({
+      success: false,
+      message,
+      ...(process.env.NODE_ENV !== "production" && { stack }), // Include stack trace in development
+    });
+  }
+);
 
 export { app };

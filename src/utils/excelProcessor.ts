@@ -2,7 +2,7 @@ import { ExcelRowSchema } from "../ZodSchema/excelSchema";
 import logger from "./logger";
 import { ApiError } from "./ApiError";
 import { z } from "zod";
-import { findTopicByName } from "../db/helpers/topic.helpers";
+import { findTopicByName, findTopicsByNames } from "../db/helpers/topic.helpers";
 
 interface ProcessedRow {
   questionText: string;
@@ -25,6 +25,23 @@ export async function processExcelData(rows: any[]): Promise<ProcessedRow[]> {
   const topicCache = new Map<string, { id: number }>();
 
   try {
+    const uniqueTopics = new Set<string>();
+    for (const row of rows) {
+        uniqueTopics.add(row.topics.toLowerCase().trimStart());
+
+    }
+
+    if (uniqueTopics.size > 0) {
+      const foundTopics = await findTopicsByNames(Array.from(uniqueTopics));
+      for (const topic of foundTopics) {
+        topicCache.set(topic.topicName.toLowerCase(), { id: topic.id });
+      }
+    }
+  } catch (error) {
+    logger.warn("Failed to batch fetch topics, falling back to individual lookups", error);
+  }
+
+
     for (let index = 0; index < rows.length; index++) {
       const row = rows[index];
       // Validate row data
@@ -40,6 +57,7 @@ export async function processExcelData(rows: any[]): Promise<ProcessedRow[]> {
       let topic = topicCache.get(topicName);
 
       if (!topic) {
+        // Fallback for safety in case of cache miss or race condition
         const foundTopic = await findTopicByName(topicName);
         if (foundTopic) {
           topic = { id: foundTopic.id };
@@ -77,15 +95,5 @@ export async function processExcelData(rows: any[]): Promise<ProcessedRow[]> {
     }
 
     return processedQuestions;
-  } catch (error) {
-    if (error instanceof z.ZodError) {
-      logger.error("Validation error:", error);
-      throw new ApiError(
-        400,
-        "Invalid data format in Excel file",
-        error.errors.map((e) => e.message)
-      );
-    }
-    throw error;
-  }
+  
 }
