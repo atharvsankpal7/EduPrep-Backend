@@ -13,6 +13,7 @@ import topicRouter from "./router/topic.routes";
 import adminRouter from "./router/admin.routes";
 import testHistoryRouter from "./router/testHistory.routes";
 import logger from "./utils/logger";
+import { morganErrorHandler, morganSuccessHandler } from "./utils/morgan";
 
 const app = express();
 
@@ -33,6 +34,11 @@ app.use(express.urlencoded({ extended: true, limit: "16kb" }));
 app.use(express.static("public")); // public folder is available via URL without additional logic
 app.use(cookieParser()); // parses cookies automatically and puts them in req.cookies
 app.use(passport.initialize({ userProperty: "loggedInUser" }));
+
+if (process.env.NODE_ENV !== "test") {
+  app.use(morganSuccessHandler);
+  app.use(morganErrorHandler);
+}
 
 app.use(rateLimiter);
 // route declarations
