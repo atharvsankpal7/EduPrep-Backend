@@ -27,14 +27,22 @@ export async function processExcelData(rows: any[]): Promise<ProcessedRow[]> {
   try {
     const uniqueTopics = new Set<string>();
     for (const row of rows) {
+      if (row?.topics && typeof row.topics === "string") {
         uniqueTopics.add(row.topics.toLowerCase().trimStart());
-
+      }
     }
 
     if (uniqueTopics.size > 0) {
-      const foundTopics = await findTopicsByNames(Array.from(uniqueTopics));
-      for (const topic of foundTopics) {
-        topicCache.set(topic.topicName.toLowerCase(), { id: topic.id });
+      const allTopics = Array.from(uniqueTopics);
+      // Batch size to prevent DB driver errors with too many parameters
+      const BATCH_SIZE = 1000;
+
+      for (let i = 0; i < allTopics.length; i += BATCH_SIZE) {
+        const batch = allTopics.slice(i, i + BATCH_SIZE);
+        const foundTopics = await findTopicsByNames(batch);
+        for (const topic of foundTopics) {
+          topicCache.set(topic.topicName.toLowerCase(), { id: topic.id });
+        }
       }
     }
   } catch (error) {
