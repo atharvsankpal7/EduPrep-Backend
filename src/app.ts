@@ -36,6 +36,8 @@ app.use(cookieParser()); // parses cookies automatically and puts them in req.co
 app.use(passport.initialize({ userProperty: "loggedInUser" }));
 
 app.use(globalLimiter);
+app.use(morganSuccessHandler);
+app.use(morganErrorHandler);
 // route declarations
 app.use("/api/v1/user", userRouter);
 app.use("/api/v1/test", testRouter);
