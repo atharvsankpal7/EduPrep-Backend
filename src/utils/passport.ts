@@ -1,5 +1,5 @@
 import passport from "passport";
-import { Strategy as LocalStrategy } from "passport-local";
+import { Strategy as LocalStrategy, IVerifyOptions } from "passport-local";
 import { ApiError } from "./ApiError";
 import { findUserByEmail } from "../db/helpers/user.helpers";
 import { comparePassword } from "../db/helpers/auth.helpers";
@@ -14,7 +14,15 @@ passport.use(
       usernameField: "email",
       passwordField: "password",
     },
-    async (email: string, password: string, done: any) => {
+    async (
+      email: string,
+      password: string,
+      done: (
+        error: any,
+        user?: Express.User | false,
+        options?: IVerifyOptions
+      ) => void
+    ) => {
       try {
         if (!email || !password) {
           return done(new ApiError(400, "Email and password are required"));
