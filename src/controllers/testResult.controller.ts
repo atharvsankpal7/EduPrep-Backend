@@ -19,7 +19,6 @@ const submitTest = async (req: Request, res: Response) => {
     if (!studentId) {
         throw new ApiError(401, "Unauthorized access");
     }
-    console.log(req.body)
     const { selectedAnswers, timeTaken, autoSubmission } = validateType(submitTestBodySchema, req.body);
 
     const test = await findTestById(id);
