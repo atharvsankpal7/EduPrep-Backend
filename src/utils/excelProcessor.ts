@@ -22,15 +22,28 @@ function sanitizeForCSV(value: string): string {
 
 export async function processExcelData(rows: any[]): Promise<ProcessedRow[]> {
   const processedQuestions: ProcessedRow[] = [];
-  const topicCache = new Map<string, { id: number }>();
+  const validRows: z.infer<typeof ExcelRowSchema>[] = [];
+  const uniqueTopics = new Set<string>();
 
-  try {
-    const uniqueTopics = new Set<string>();
-    for (const row of rows) {
-        uniqueTopics.add(row.topics.toLowerCase().trimStart());
+  // 1. Single pass: Validate rows and collect unique topics
+  for (let index = 0; index < rows.length; index++) {
+    const row = rows[index];
+    const validation = ExcelRowSchema.safeParse(row);
 
+    if (!validation.success) {
+      logger.error(`Invalid data in Excel row ${index + 2}: ${JSON.stringify(row)}`);
+      continue;
     }
 
+    const validatedRow = validation.data;
+    validRows.push(validatedRow);
+    // Topics are already lowercased and trimmed by the schema
+    uniqueTopics.add(validatedRow.topics);
+  }
+
+  // 2. Batch fetch topics
+  const topicCache = new Map<string, { id: number }>();
+  try {
     if (uniqueTopics.size > 0) {
       const foundTopics = await findTopicsByNames(Array.from(uniqueTopics));
       for (const topic of foundTopics) {
@@ -41,19 +54,9 @@ export async function processExcelData(rows: any[]): Promise<ProcessedRow[]> {
     logger.warn("Failed to batch fetch topics, falling back to individual lookups", error);
   }
 
-
-    for (let index = 0; index < rows.length; index++) {
-      const row = rows[index];
-      // Validate row data
-      const validation = ExcelRowSchema.safeParse(row);
-      if(!validation.success) {
-        logger.error(`Invalid data in Excel row ${index + 2}: ${JSON.stringify(row)}`);
-        continue;
-        // throw new ApiError(400, `Invalid data in Excel row ${index + 2}`);
-      }
-      const validatedRow = validation.data;
-      // Process topic
-      const topicName = validatedRow.topics.toLowerCase().trimStart();
+  // 3. Process valid rows
+  for (const validatedRow of validRows) {
+      const topicName = validatedRow.topics;
       let topic = topicCache.get(topicName);
 
       if (!topic) {
@@ -61,24 +64,13 @@ export async function processExcelData(rows: any[]): Promise<ProcessedRow[]> {
         const foundTopic = await findTopicByName(topicName);
         if (foundTopic) {
           topic = { id: foundTopic.id };
-        }
-
-        if (!topic) {
-          
-          logger.error(
-            `Invalid topic in Excel row ${index + 2}: ${topicName}`
-          );
+          topicCache.set(topicName, topic);
+        } else {
+          logger.error(`Invalid topic: ${topicName}`);
           continue;
-          // throw new ApiError(
-          //   400,
-          //   `Topic "${topicName}" not found in database. Please check row ${
-          //     index + 2
-          //   } in Excel file.`
-          // );
-        } else topicCache.set(topicName, topic);
+        }
       }
 
-      // Prepare question data
       processedQuestions.push({
         questionText: sanitizeForCSV(validatedRow.question),
         options: [
@@ -92,8 +84,7 @@ export async function processExcelData(rows: any[]): Promise<ProcessedRow[]> {
         explanation: sanitizeForCSV(validatedRow.explanation),
         standard: validatedRow.standard,
       });
-    }
+  }
 
-    return processedQuestions;
-  
+  return processedQuestions;
 }
