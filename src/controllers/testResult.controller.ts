@@ -74,6 +74,11 @@ const getTestResult = async (req: Request, res: Response) => {
         throw new ApiError(404, "Test result not found");
     }
 
+    // Check if the user is authorized to view this test result
+    if (testResult.studentId !== req.loggedInUser.id && req.loggedInUser.role !== 'admin') {
+        throw new ApiError(403, "You are not authorized to view this test result");
+    }
+
     const answersWithQuestions = await getTestResultAnswersWithQuestionDetails(id);
 
     // Calculate correct answers and prepare detailed question analysis
