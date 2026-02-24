@@ -6,10 +6,13 @@ import {
   testResults,
   testResultAnswers,
   questions,
+  cetDistributions,
+  topics,
   Test,
   TestResult,
 } from '../schema';
 import { eq, and, desc, sql, inArray, asc } from 'drizzle-orm';
+import { ApiError } from '../../utils/ApiError';
 
 export interface CreateTestSectionInput {
   sectionName: string;
@@ -40,6 +43,204 @@ export interface CreateTestResultInput {
   isAutoSubmitted: boolean;
   tabSwitches: number;
   answers: CreateTestResultAnswerInput[];
+}
+
+
+interface CETTopicAvailabilityRow {
+  subjectName: string;
+  topicId: number | null;
+  topicName: string | null;
+  expectedCount: number;
+  actualCount: number;
+}
+
+interface CETSelectedQuestionRow {
+  subjectName: string;
+  topicId: number;
+  questionId: string;
+}
+
+export interface CreateCETTestResult {
+  test: Test;
+  sections: CreateTestSectionInput[];
+}
+
+export async function createCETTestWithDistribution(createdBy: number): Promise<CreateCETTestResult> {
+  return db.transaction(async (tx) => {
+    const availabilityResult = await tx.execute<CETTopicAvailabilityRow>(sql`
+      with latest_distribution as (
+        select distributions
+        from ${cetDistributions}
+        order by ${cetDistributions.updatedAt} desc, ${cetDistributions.id} desc
+        limit 1
+      ),
+      distribution_topics as (
+        select
+          lower(subject_item->>'subject') as "subjectName",
+          topic_item->>'topicName' as "topicName",
+          nullif(topic_item->>'topicId', '')::int as "topicId",
+          (topic_item->>'questionCount')::int as "expectedCount"
+        from latest_distribution,
+        lateral jsonb_array_elements(distributions) as subject_item,
+        lateral jsonb_array_elements(subject_item->'topics') as topic_item
+      ),
+      resolved_topics as (
+        select
+          dt."subjectName",
+          coalesce(dt."topicId", t.id) as "topicId",
+          dt."topicName",
+          dt."expectedCount"
+        from distribution_topics dt
+        left join ${topics} t
+          on lower(t.topic_name) = lower(dt."topicName")
+      )
+      select
+        rt."subjectName",
+        rt."topicId",
+        rt."topicName",
+        rt."expectedCount",
+        count(q.id)::int as "actualCount"
+      from resolved_topics rt
+      left join ${questions} q
+        on q.topic_id = rt."topicId"
+      group by rt."subjectName", rt."topicId", rt."topicName", rt."expectedCount"
+    `);
+
+    if (availabilityResult.rows.length === 0) {
+      throw new ApiError(404, 'CET distribution configuration not found');
+    }
+
+    const invalidTopics = availabilityResult.rows.filter((row) => !row.topicId);
+    if (invalidTopics.length > 0) {
+      throw new ApiError(404, `Topic not found in CET distribution: ${invalidTopics[0].topicName}`);
+    }
+
+    const insufficientTopics = availabilityResult.rows.filter(
+      (row) => row.actualCount < row.expectedCount
+    );
+
+    if (insufficientTopics.length > 0) {
+      const topic = insufficientTopics[0];
+      throw new ApiError(400, `Insufficient questions for topic ${topic.topicName}. Needed: ${topic.expectedCount}, Found: ${topic.actualCount}`);
+    }
+
+    const selectedResult = await tx.execute<CETSelectedQuestionRow>(sql`
+      with latest_distribution as (
+        select distributions
+        from ${cetDistributions}
+        order by ${cetDistributions.updatedAt} desc, ${cetDistributions.id} desc
+        limit 1
+      ),
+      distribution_topics as (
+        select
+          lower(subject_item->>'subject') as "subjectName",
+          topic_item->>'topicName' as "topicName",
+          nullif(topic_item->>'topicId', '')::int as "topicId",
+          (topic_item->>'questionCount')::int as "questionCount"
+        from latest_distribution,
+        lateral jsonb_array_elements(distributions) as subject_item,
+        lateral jsonb_array_elements(subject_item->'topics') as topic_item
+      ),
+      resolved_topics as (
+        select
+          dt."subjectName",
+          coalesce(dt."topicId", t.id) as "topicId",
+          dt."questionCount"
+        from distribution_topics dt
+        left join ${topics} t
+          on lower(t.topic_name) = lower(dt."topicName")
+      ),
+      ranked_questions as (
+        select
+          rt."subjectName",
+          rt."topicId",
+          rt."questionCount",
+          q.id as "questionId",
+          row_number() over (
+            partition by rt."subjectName", rt."topicId"
+            order by random()
+          ) as rn
+        from resolved_topics rt
+        join ${questions} q
+          on q.topic_id = rt."topicId"
+      )
+      select
+        rq."subjectName",
+        rq."topicId",
+        rq."questionId"
+      from ranked_questions rq
+      where rq.rn <= rq."questionCount"
+    `);
+
+    const subjectQuestionIds: Record<string, string[]> = selectedResult.rows.reduce(
+      (acc, row) => {
+        if (!acc[row.subjectName]) {
+          acc[row.subjectName] = [];
+        }
+        acc[row.subjectName].push(row.questionId);
+        return acc;
+      },
+      {} as Record<string, string[]>
+    );
+
+    const physicsQuestionIds = subjectQuestionIds.physics ?? [];
+    const chemistryQuestionIds = subjectQuestionIds.chemistry ?? [];
+    const mathematicsQuestionIds = subjectQuestionIds.mathematics ?? [];
+
+    if (physicsQuestionIds.length === 0 || chemistryQuestionIds.length === 0 || mathematicsQuestionIds.length === 0) {
+      throw new ApiError(500, 'Insufficient questions available for test creation');
+    }
+
+    const sections: CreateTestSectionInput[] = [
+      {
+        sectionName: 'Physics and Chemistry',
+        sectionDuration: 90,
+        questionIds: [...physicsQuestionIds, ...chemistryQuestionIds],
+      },
+      {
+        sectionName: 'Mathematics',
+        sectionDuration: 90,
+        questionIds: mathematicsQuestionIds,
+      },
+    ];
+
+    const [test] = await tx
+      .insert(tests)
+      .values({
+        testName: `CET Test ${Date.now()}`,
+        totalDuration: 180,
+        totalQuestions: sections[0].questionIds.length + sections[1].questionIds.length,
+        expiryTime: null,
+        createdBy,
+      })
+      .returning();
+
+    const sectionRows = await tx
+      .insert(testSections)
+      .values(
+        sections.map((section) => ({
+          testId: test.id,
+          sectionName: section.sectionName,
+          sectionDuration: section.sectionDuration,
+          totalQuestions: section.questionIds.length,
+        }))
+      )
+      .returning();
+
+    const sectionQuestions = sectionRows.flatMap((section, sectionIndex) =>
+      sections[sectionIndex].questionIds.map((questionId, index) => ({
+        testSectionId: section.id,
+        questionId,
+        questionOrder: index + 1,
+      }))
+    );
+
+    if (sectionQuestions.length > 0) {
+      await tx.insert(testSectionQuestions).values(sectionQuestions);
+    }
+
+    return { test, sections };
+  });
 }
 
 // Create test with sections and questions

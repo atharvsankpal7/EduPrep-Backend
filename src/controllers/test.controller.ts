@@ -4,9 +4,9 @@ import { companyNameParamsSchema, customTestSchema, testIdParamsSchema } from ".
 import ApiResponse from "../utils/ApiResponse";
 import logger from "../utils/logger";
 import { validateType } from "../utils/zodValidator";
-import { getCETQuestions } from "../utils/cetQuestionSelector";
 import {
   createTestWithSections,
+  createCETTestWithDistribution,
   findTestWithQuestions,
 } from "../db/helpers/test.helpers";
 import {
@@ -178,53 +178,8 @@ const getTestWithId = async (req: ExpressRequest, res: Response) => {
 
 const createCETTest = async (req: ExpressRequest, res: Response) => {
     const user = req.loggedInUser;
-    const { subjectQuestionIds } = await getCETQuestions();
 
-    const physicsQuestionIds = subjectQuestionIds.physics ?? [];
-    const chemistryQuestionIds = subjectQuestionIds.chemistry ?? [];
-    const mathsQuestionIds = subjectQuestionIds.mathematics ?? [];
-
-    if (
-      physicsQuestionIds.length === 0 ||
-      chemistryQuestionIds.length === 0 ||
-      mathsQuestionIds.length === 0
-    ) {
-      logger.error("Insufficient questions for CET test sections", {
-        physics: physicsQuestionIds.length,
-        chemistry: chemistryQuestionIds.length,
-        maths: mathsQuestionIds.length,
-      });
-      throw new ApiError(
-        500,
-        "Insufficient questions available for test creation"
-      );
-    }
-
-    const physicsChemQuestions = [
-      ...physicsQuestionIds,
-      ...chemistryQuestionIds,
-    ];
-
-    const sections = [
-      {
-        sectionName: "Physics and Chemistry",
-        sectionDuration: 90,
-        questionIds: physicsChemQuestions,
-      },
-      {
-        sectionName: "Mathematics",
-        sectionDuration: 90,
-        questionIds: mathsQuestionIds,
-      },
-    ];
-
-    const test = await createTestWithSections({
-      testName: "CET Test " + Date.now(),
-      totalDuration: 180,
-      totalQuestions: physicsChemQuestions.length + mathsQuestionIds.length,
-      createdBy: user.id,
-      sections,
-    });
+    const { test, sections } = await createCETTestWithDistribution(user.id);
 
     const testDetails = {
       testId: test.id,
