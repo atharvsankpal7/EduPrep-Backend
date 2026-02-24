@@ -7,6 +7,7 @@ import { findTopicByName } from "../db/helpers/topic.helpers";
 interface QuestionDistribution {
   questionIds: string[];
   totalMarks: number;
+  subjectQuestionIds: Record<string, string[]>;
 }
 
 export async function getCETQuestions(): Promise<QuestionDistribution> {
@@ -18,8 +19,14 @@ export async function getCETQuestions(): Promise<QuestionDistribution> {
 
     let allSelectedQuestions: string[] = [];
     let totalMarks = 0;
+    const subjectQuestionIds: Record<string, string[]> = {};
 
     for (const subjectDist of distribution.distributions) {
+      const normalizedSubject = subjectDist.subject.toLowerCase();
+      if (!subjectQuestionIds[normalizedSubject]) {
+        subjectQuestionIds[normalizedSubject] = [];
+      }
+
       for (const topic of subjectDist.topics) {
         const topicId = topic.topicId ?? (await findTopicByName(topic.topicName))?.id;
 
@@ -28,12 +35,10 @@ export async function getCETQuestions(): Promise<QuestionDistribution> {
           throw new ApiError(404, `Topic not found: ${topic.topicName}`);
         }
 
-        // Get questions for this specific topic
         const topicQuestionIds = await getRandomQuestionIdsFromTopics(
           [topicId],
           topic.questionCount
         );
-
 
         if (topicQuestionIds.length < topic.questionCount) {
           logger.warn(
@@ -45,11 +50,8 @@ export async function getCETQuestions(): Promise<QuestionDistribution> {
           );
         }
 
-        // Add selected questions and calculate marks
-        allSelectedQuestions = [
-          ...allSelectedQuestions,
-          ...topicQuestionIds,
-        ];
+        allSelectedQuestions = [...allSelectedQuestions, ...topicQuestionIds];
+        subjectQuestionIds[normalizedSubject].push(...topicQuestionIds);
         totalMarks += topic.questionCount * topic.marksPerQuestion;
       }
     }
@@ -57,6 +59,7 @@ export async function getCETQuestions(): Promise<QuestionDistribution> {
     return {
       questionIds: allSelectedQuestions,
       totalMarks,
+      subjectQuestionIds,
     };
   } catch (error) {
     logger.error("Error in CET question selection:", error);
