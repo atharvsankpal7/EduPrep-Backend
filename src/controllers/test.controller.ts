@@ -14,7 +14,6 @@ import {
   findTopicsByNames,
 } from "../db/helpers/topic.helpers";
 import {
-  getQuestionsWithDetails,
   getRandomQuestionsFromTopics,
 } from "../db/helpers/question.helpers";
 import { getCompanyTestDetails } from "../db/helpers/distribution.helpers";
@@ -177,42 +176,23 @@ const getTestWithId = async (req: ExpressRequest, res: Response) => {
     );
 };
 
-// Update the createCETTest function
-
 const createCETTest = async (req: ExpressRequest, res: Response) => {
     const user = req.loggedInUser;
-    const { questionIds } = await getCETQuestions();
-    // Fetch all questions with their topics and subjects
-    const questions = await getQuestionsWithDetails(questionIds);
+    const { subjectQuestionIds } = await getCETQuestions();
 
-    // Categorize questions by subject
-    const physicsQuestions = questions
-      .filter((q) =>
-        q.subjectName?.toLowerCase() === "physics"
-      )
-      .slice(0, 50);
+    const physicsQuestionIds = subjectQuestionIds.physics ?? [];
+    const chemistryQuestionIds = subjectQuestionIds.chemistry ?? [];
+    const mathsQuestionIds = subjectQuestionIds.mathematics ?? [];
 
-    const chemistryQuestions = questions
-      .filter((q) =>
-        q.subjectName?.toLowerCase() === "chemistry"
-      )
-      .slice(0, 50);
-
-    const mathsQuestions = questions
-      .filter((q) =>
-        q.subjectName?.toLowerCase() === "mathematics"
-      )
-      .slice(0, 50);
-    // Validate we have enough questions for each section
     if (
-      physicsQuestions.length < 50 ||
-      chemistryQuestions.length < 50 ||
-      mathsQuestions.length < 50
+      physicsQuestionIds.length === 0 ||
+      chemistryQuestionIds.length === 0 ||
+      mathsQuestionIds.length === 0
     ) {
       logger.error("Insufficient questions for CET test sections", {
-        physics: physicsQuestions.length,
-        chemistry: chemistryQuestions.length,
-        maths: mathsQuestions.length,
+        physics: physicsQuestionIds.length,
+        chemistry: chemistryQuestionIds.length,
+        maths: mathsQuestionIds.length,
       });
       throw new ApiError(
         500,
@@ -220,32 +200,28 @@ const createCETTest = async (req: ExpressRequest, res: Response) => {
       );
     }
 
-    // Extract just the question IDs
     const physicsChemQuestions = [
-      ...physicsQuestions.map((q) => q.id),
-      ...chemistryQuestions.map((q) => q.id),
+      ...physicsQuestionIds,
+      ...chemistryQuestionIds,
     ];
 
-    const mathsQuestionIds = mathsQuestions.map((q) => q.id);
-
-    // Create test with sections
     const sections = [
       {
         sectionName: "Physics and Chemistry",
-        sectionDuration: 90, // 90 minutes
+        sectionDuration: 90,
         questionIds: physicsChemQuestions,
       },
       {
         sectionName: "Mathematics",
-        sectionDuration: 90, // 90 minutes
+        sectionDuration: 90,
         questionIds: mathsQuestionIds,
       },
     ];
 
     const test = await createTestWithSections({
       testName: "CET Test " + Date.now(),
-      totalDuration: 180, // Total duration in minutes
-      totalQuestions: 100, // Total questions across all sections
+      totalDuration: 180,
+      totalQuestions: physicsChemQuestions.length + mathsQuestionIds.length,
       createdBy: user.id,
       sections,
     });
