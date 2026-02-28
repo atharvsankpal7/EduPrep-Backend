@@ -61,8 +61,33 @@ const submitTest = async (req: Request, res: Response) => {
         answers: mappedAnswers,
     });
 
+    const answersWithQuestions = await getTestResultAnswersWithQuestionDetails(testResult.id);
+    const questionAnalysis = answersWithQuestions.map((item) => {
+        const isCorrect = item.answer === item.selectedOption;
+        return {
+            questionId: item.questionId,
+            questionText: item.questionText,
+            options: item.options,
+            selectedOption: item.selectedOption - 1,
+            correctOption: item.answer - 1,
+            isCorrect,
+        };
+    });
+
+    const correctAnswers = questionAnalysis.filter((q) => q.isCorrect).length;
+
+    const resultData = {
+        id: testResult.id,
+        totalQuestions: answersWithQuestions.length,
+        correctAnswers,
+        timeSpent: timeTaken,
+        invalid: autoSubmission.isAutoSubmitted,
+        questionAnalysis,
+        testId: id,
+    };
+
     res.status(201).send(
-        new ApiResponse(201, { testResult }, "Test submitted successfully")
+        new ApiResponse(201, { testResult, resultData }, "Test submitted successfully")
     );
 };
 
