@@ -4,11 +4,11 @@ import ApiResponse from "../utils/ApiResponse";
 import { submitTestBodySchema, testIdParamsSchema } from "../ZodSchema/testSchema";
 import { validateType } from "../utils/zodValidator";
 import {
-  createTestResultWithAnswers,
-  findTestById,
-  findTestResultById,
-  getTestQuestionInfo,
-  getTestResultAnswersWithQuestionDetails,
+    createTestResultWithAnswers,
+    findTestById,
+    findTestResultById,
+    getTestQuestionInfo,
+    getTestResultAnswersWithQuestionDetails,
 } from "../db/helpers/test.helpers";
 
 // saving the new test result in the database
@@ -36,11 +36,14 @@ const submitTest = async (req: Request, res: Response) => {
     }
 
     let score = 0;
-    const mappedAnswers = testQuestionInfo.map((question, index) => {
-        const selectedOption = selectedAnswers[index].selectedOption;
-        if (selectedOption === question.answer) {
+    const mappedAnswers = testQuestionInfo.map((question) => {
+        const matchingAnswer = selectedAnswers.find((ans) => ans.questionId === question.questionId);
+        const selectedOption = matchingAnswer ? matchingAnswer.selectedOption : -1;
+
+        if (selectedOption !== -1 && selectedOption === question.answer) {
             score++;
         }
+
         return {
             questionId: question.questionId,
             selectedOption,
@@ -59,7 +62,7 @@ const submitTest = async (req: Request, res: Response) => {
     });
 
     res.status(201).send(
-        new ApiResponse(201, {testResult}, "Test submitted successfully")
+        new ApiResponse(201, { testResult }, "Test submitted successfully")
     );
 };
 
@@ -103,7 +106,7 @@ const getTestResult = async (req: Request, res: Response) => {
         timeSpent: testResult.timeTaken,
         invalid: testResult.isAutoSubmitted,
         questionAnalysis,
-        testId : testResult.testId,
+        testId: testResult.testId,
     };
 
     res.status(200).json(
@@ -111,4 +114,4 @@ const getTestResult = async (req: Request, res: Response) => {
     );
 };
 
-export {submitTest, getTestResult};
+export { submitTest, getTestResult };

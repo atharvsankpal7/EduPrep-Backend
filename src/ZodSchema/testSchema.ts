@@ -39,7 +39,9 @@ export const submitTestBodySchema = z.object({
   selectedAnswers: z
     .array(
       z.object({
+        questionId: z.string().uuid("Invalid question id"),
         selectedOption: z.coerce.number().int().min(-1, "selectedOption must be at least -1").max(4),
+        sectionName: z.string().optional(),
       })
     )
     .min(1, "Answers are required and must be an array"),
