@@ -1,6 +1,6 @@
 import { db } from '../connection';
-import { constants, Constant } from '../schema';
-import { eq } from 'drizzle-orm';
+import { constants, Constant, sessions } from '../schema';
+import { and, eq, gt, isNull, or, sql } from 'drizzle-orm';
 
 export interface ConstantsValue {
   MAX_CONCURRENT_SESSION_COUNT?: number;
@@ -34,4 +34,29 @@ export async function getMaxConcurrentSessions(defaultValue = 1): Promise<number
   const value = (constant?.value ?? {}) as ConstantsValue;
   const limit = value.MAX_CONCURRENT_SESSION_COUNT;
   return typeof limit === 'number' && limit > 0 ? limit : defaultValue;
+}
+
+export async function haveMaxSessionReached(userId: number): Promise<boolean> {
+  const now = new Date();
+
+  const [result] = await db
+    .select({
+      activeCount: sql<number>`count(*)`,
+      maxSessions: sql<number>`COALESCE(
+        (SELECT (value->>'MAX_CONCURRENT_SESSION_COUNT')::int 
+         FROM ${constants} 
+         WHERE ${constants.key} = 'MAX_CONCURRENT_SESSION_COUNT'),
+        1
+      )`,
+    })
+    .from(sessions)
+    .where(
+      and(
+        eq(sessions.userId, userId),
+        isNull(sessions.revokedAt),
+        or(isNull(sessions.expiresAt), gt(sessions.expiresAt, now))
+      )
+    );
+
+  return (result?.activeCount ?? 0) >= (result?.maxSessions ?? 1);
 }
