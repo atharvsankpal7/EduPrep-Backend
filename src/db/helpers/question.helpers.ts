@@ -44,14 +44,30 @@ export async function getRandomQuestionIdsFromTopics(
 ): Promise<string[]> {
   if (topicIds.length === 0) return [];
 
-  const randomIds = await db
+  // Optimization: Instead of using ORDER BY RANDOM() which forces a full table scan and sort,
+  // we fetch all matching IDs and select randomly in memory.
+  // UUIDs are small, and for typical topic sizes, fetching IDs is orders of magnitude
+  // faster than generating a random number for every row and sorting in PostgreSQL.
+  const allIds = await db
     .select({ id: questions.id })
     .from(questions)
-    .where(inArray(questions.topicId, topicIds))
-    .orderBy(sql`RANDOM()`)
-    .limit(limit);
+    .where(inArray(questions.topicId, topicIds));
 
-  return randomIds.map((r) => r.id);
+  if (allIds.length === 0) return [];
+  if (allIds.length <= limit) return allIds.map((r) => r.id);
+
+  // Fisher-Yates shuffle for true randomness without sorting overhead
+  const ids = allIds.map((r) => r.id);
+  const result: string[] = [];
+
+  for (let i = 0; i < limit; i++) {
+    const randomIndex = Math.floor(Math.random() * (ids.length - i));
+    result.push(ids[randomIndex]);
+    // Swap the selected element with the end of the unselected portion
+    ids[randomIndex] = ids[ids.length - 1 - i];
+  }
+
+  return result;
 }
 
 // Get random questions from topics
@@ -61,18 +77,11 @@ export async function getRandomQuestionsFromTopics(
 ): Promise<Question[]> {
   if (topicIds.length === 0) return [];
 
-  // Optimization: Fetch only IDs first to avoid sorting large text fields (like questionText, explanation)
-  // This reduces the data moved during the sort operation significantly.
-  const randomIds = await db
-    .select({ id: questions.id })
-    .from(questions)
-    .where(inArray(questions.topicId, topicIds))
-    .orderBy(sql`RANDOM()`)
-    .limit(limit);
+  // Optimization: Delegate to our fast ID selector to completely eliminate ORDER BY RANDOM()
+  // and full table sorting overhead, while avoiding sorting large text fields.
+  const ids = await getRandomQuestionIdsFromTopics(topicIds, limit);
 
-  if (randomIds.length === 0) return [];
-
-  const ids = randomIds.map((r) => r.id);
+  if (ids.length === 0) return [];
 
   // Fetch full details for the selected IDs
   const questionsData = await db
