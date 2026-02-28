@@ -1,0 +1,4 @@
+## 2024-05-18 - [CRITICAL] Missing Authorization on Question Upload
+**Vulnerability:** The `/api/v1/question/uploadExcel` endpoint only checked if a user was authenticated via `authMiddleware`, but failed to verify if the user had administrative privileges before allowing them to parse and insert arbitrary questions into the database. This allowed any registered student to upload questions.
+**Learning:** Even if an endpoint is conceptually "admin-only" (like bulk data upload), it must explicitly enforce this via Role-Based Access Control (RBAC) like `adminMiddleware`. Relying on UI hiding is insufficient.
+**Prevention:** Always pair `authMiddleware` with `adminMiddleware` for administrative endpoints. Create a checklist for new route creation to verify the required privilege level.
