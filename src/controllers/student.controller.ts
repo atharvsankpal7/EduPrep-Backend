@@ -57,8 +57,10 @@ const registerStudent = async (req: express.Request, res: express.Response) => {
       });
       throw new ApiError(500, "Something went wrong");
     }
-    const maxSessions = await getMaxConcurrentSessions(1);
-    const activeSessions = await countActiveSessionsByUser(newUser.id);
+    const [maxSessions, activeSessions] = await Promise.all([
+      getMaxConcurrentSessions(1),
+      countActiveSessionsByUser(newUser.id)
+    ]);
     if (activeSessions >= maxSessions) {
       throw new ApiError(403, "Concurrent session limit reached");
     }
@@ -92,8 +94,10 @@ const loginUser = async (req: express.Request, res: express.Response) => {
       throw new ApiError(401, "Unauthorized");
     }
 
-    const maxSessions = await getMaxConcurrentSessions(1);
-    const activeSessions = await countActiveSessionsByUser(loggedInUser.id);
+    const [maxSessions, activeSessions] = await Promise.all([
+      getMaxConcurrentSessions(1),
+      countActiveSessionsByUser(loggedInUser.id)
+    ]);
     if (activeSessions >= maxSessions) {
       throw new ApiError(403, "Concurrent session limit reached");
     }
