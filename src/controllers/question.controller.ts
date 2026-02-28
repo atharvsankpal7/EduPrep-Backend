@@ -1,11 +1,32 @@
 import express from "express";
+import path from "path";
+import { Worker } from "worker_threads";
 import logger from "../utils/logger";
 import ApiResponse from "../utils/ApiResponse";
-import {ApiError} from "../utils/ApiError";
-import * as ExcelJS from "exceljs";
+import { ApiError } from "../utils/ApiError";
 import * as fs from "fs";
-import {processExcelData} from "../utils/excelProcessor";
+import { processValidatedRows } from "../utils/excelProcessor";
 import { createQuestions } from "../db/helpers/question.helpers";
+import type { WorkerResult } from "../workers/excelParser.worker";
+
+const WORKER_PATH = path.resolve(__dirname, "../workers/excelParser.worker.ts");
+
+function runExcelWorker(filePath: string): Promise<WorkerResult> {
+    return new Promise((resolve, reject) => {
+        const worker = new Worker(WORKER_PATH, {
+            workerData: { filePath },
+            execArgv: ["--require", "ts-node/register"],
+        });
+
+        worker.on("message", (result: WorkerResult) => resolve(result));
+        worker.on("error", (err) => reject(err));
+        worker.on("exit", (code) => {
+            if (code !== 0) {
+                reject(new Error(`Excel worker exited with code ${code}`));
+            }
+        });
+    });
+}
 
 const safeDeleteUploadedFile = async (filePath: string) => {
     try {
@@ -23,58 +44,22 @@ export const saveExcel = async (req: express.Request, res: express.Response) => 
     }
 
     try {
-        // Read the uploaded Excel file using ExcelJS to avoid vulnerabilities in xlsx
-        const workbook = new ExcelJS.Workbook();
-        await workbook.xlsx.readFile(uploadedFile.path);
-        const worksheet = workbook.worksheets[0];
+        logger.info(`Starting Excel worker for file: ${uploadedFile.originalname}`);
+        const workerResult = await runExcelWorker(uploadedFile.path);
 
-        const sheetData: any[] = [];
-        const headers: {[key: number]: string} = {};
+        for (const err of workerResult.errors) {
+            logger.error(err);
+        }
 
-        // Get headers from first row
-        const headerRow = worksheet.getRow(1);
-        headerRow.eachCell((cell, colNumber) => {
-            headers[colNumber] = cell.text ? cell.text.toString() : "";
-        });
+        if (workerResult.rows.length === 0) {
+            throw new ApiError(400, "No valid questions found in the uploaded file");
+        }
 
-        // Get data
-        worksheet.eachRow((row, rowNumber) => {
-            if (rowNumber === 1) return; // Skip header row
-            const rowData: any = {};
+        const processedQuestions = await processValidatedRows(
+            workerResult.rows,
+            workerResult.uniqueTopics,
+        );
 
-            // Initialize all headers with empty string
-            Object.values(headers).forEach(header => {
-                if(header) rowData[header] = "";
-            });
-
-            row.eachCell((cell, colNumber) => {
-                const header = headers[colNumber];
-                if (header) {
-                    // Extract value safely
-                    let cellValue = "";
-                    if (cell.value !== null && cell.value !== undefined) {
-                        if (typeof cell.value === 'object') {
-                             if ('text' in cell.value) {
-                                 cellValue = (cell.value as any).text;
-                             } else if ('result' in cell.value) {
-                                 cellValue = String((cell.value as any).result);
-                             } else {
-                                 cellValue = String(cell.value);
-                             }
-                        } else {
-                            cellValue = String(cell.value);
-                        }
-                    }
-                    rowData[header] = cellValue;
-                }
-            });
-            sheetData.push(rowData);
-        });
-
-        // Process the Excel data
-        const processedQuestions = await processExcelData(sheetData);
-        
-        // Save questions to database
         const savedQuestions = await createQuestions(processedQuestions);
 
         if (!savedQuestions) {
@@ -82,13 +67,14 @@ export const saveExcel = async (req: express.Request, res: express.Response) => 
             throw new ApiError(400, "Questions not created");
         }
 
-        logger.info(`${savedQuestions.length} questions saved successfully, firstId : ${savedQuestions[0].id}, lastId : ${savedQuestions[savedQuestions.length - 1].id}`);
+        logger.info(
+            `${savedQuestions.length} questions saved successfully, firstId : ${savedQuestions[0].id}, lastId : ${savedQuestions[savedQuestions.length - 1].id}`
+        );
 
         res.status(201).json(
             new ApiResponse(201, true, "Questions saved successfully")
         );
     } finally {
-        // Clean up: Delete the uploaded file
         await safeDeleteUploadedFile(uploadedFile.path);
     }
 };
