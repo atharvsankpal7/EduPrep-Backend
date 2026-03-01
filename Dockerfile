@@ -1,26 +1,43 @@
-# Use Node.js Alpine image for a smaller footprint
-FROM node:20-alpine
+# ---- Stage 1: Build ----
+FROM node:20-alpine AS builder
 
-# Install pnpm correctly without requiring corepack if it's disabled by default
 RUN npm install -g pnpm
 
-# Set the working directory
 WORKDIR /app
 
-# Copy package configurations
+# Copy package configs first (layer caching)
 COPY package.json pnpm-lock.yaml ./
 
-# Install dependencies (including devDependencies required for ts-node)
+# Install ALL dependencies (including dev) for the build step
 RUN pnpm install --frozen-lockfile
 
-# Copy the rest of the application code
+# Copy source code
 COPY . .
 
-# Set environment variable to indicate production build
+# Compile TypeScript to JavaScript
+RUN pnpm exec tsc -p tsconfig.build.json
+
+
+# ---- Stage 2: Production ----
+FROM node:20-alpine
+
+RUN npm install -g pnpm
+
+WORKDIR /app
+
+# Copy package configs
+COPY package.json pnpm-lock.yaml ./
+
+# Install ONLY production dependencies
+RUN pnpm install --frozen-lockfile --prod
+
+# Copy compiled JS from the builder stage
+COPY --from=builder /app/dist ./dist
+
+# Set environment variable
 ENV NODE_ENV=production
 
-# Expose the application port (matching the default port in src/index.ts)
 EXPOSE 5000
 
-# Start the application using ts-node
-CMD ["pnpm", "exec", "ts-node", "src/index.ts"]
+# Run compiled JavaScript directly with Node (no ts-node needed!)
+CMD ["node", "dist/index.js"]

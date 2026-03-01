@@ -8,3 +8,8 @@ docs
 tsc_errors.txt
 .todo
 uploads
+dist
+.pnpm-store
+tsconfig.build.json
+*.bat
+*.md
