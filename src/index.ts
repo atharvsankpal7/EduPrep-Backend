@@ -4,8 +4,9 @@ import dotenv from "dotenv";
 import connectToPostgres, { closeDatabase } from "./db";
 import logger from "./utils/logger";
 
+const envPath = process.env.NODE_ENV === "production" ? "./.env.prod" : "./.env";
 dotenv.config({
-  path: "./.env",
+  path: envPath,
 });
 const port = Number(process.env.PORT || 5000);
 const shutdownTimeoutMs = Number(process.env.SHUTDOWN_TIMEOUT_MS || 10000);

@@ -8,3 +8,5 @@ src/logs
 .vercel
 
 .env.*
+.env
+*.bat
