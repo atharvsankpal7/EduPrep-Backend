@@ -1,0 +1,10 @@
+node_modules
+.git
+.env
+.env.*
+docs
+.idea
+.claude
+tsc_errors.txt
+.todo
+uploads

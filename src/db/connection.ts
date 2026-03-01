@@ -4,12 +4,13 @@ import dotenv from 'dotenv';
 import * as schema from './schema';
 import logger from '../utils/logger';
 
-dotenv.config({ path: './.env' });
+const envPath = process.env.NODE_ENV === "production" ? "./.env.prod" : "./.env";
+dotenv.config({ path: envPath });
 
 // Database connection pool
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL || "postgresql://postgres:postgres@localhost:5432/megaproject",
-  ssl:process.env.DB_SSL ? {rejectUnauthorized:false}: false,
+  ssl: process.env.DB_SSL ? { rejectUnauthorized: false } : false,
   max: 5, // Maximum number of connections
   idleTimeoutMillis: 30000,
   connectionTimeoutMillis: 10000,
