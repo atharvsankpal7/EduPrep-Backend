@@ -189,25 +189,23 @@ const createCETTest = async (req: ExpressRequest, res: Response) => {
     const physicsQuestions = questions
       .filter((q) =>
         q.subjectName?.toLowerCase() === "physics"
-      )
-      .slice(0, 50);
+      );
 
     const chemistryQuestions = questions
       .filter((q) =>
         q.subjectName?.toLowerCase() === "chemistry"
-      )
-      .slice(0, 50);
+      );
 
     const mathsQuestions = questions
       .filter((q) =>
         q.subjectName?.toLowerCase() === "mathematics"
-      )
-      .slice(0, 50);
-    // Validate we have enough questions for each section
+      );
+
+    // Validate we have enough questions for each required section from configured distribution
     if (
-      physicsQuestions.length < 50 ||
-      chemistryQuestions.length < 50 ||
-      mathsQuestions.length < 50
+      physicsQuestions.length === 0 ||
+      chemistryQuestions.length === 0 ||
+      mathsQuestions.length === 0
     ) {
       logger.error("Insufficient questions for CET test sections", {
         physics: physicsQuestions.length,
@@ -245,7 +243,7 @@ const createCETTest = async (req: ExpressRequest, res: Response) => {
     const test = await createTestWithSections({
       testName: "CET Test " + Date.now(),
       totalDuration: 180, // Total duration in minutes
-      totalQuestions: 100, // Total questions across all sections
+      totalQuestions: questionIds.length,
       createdBy: user.id,
       sections,
     });
