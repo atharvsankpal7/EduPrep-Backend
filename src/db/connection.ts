@@ -9,9 +9,10 @@ dotenv.config({ path: './.env' });
 // Database connection pool
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL || "postgresql://postgres:postgres@localhost:5432/megaproject",
-  max: 20, // Maximum number of connections
+  ssl:{rejectUnauthorized:false},
+  max: 5, // Maximum number of connections
   idleTimeoutMillis: 30000,
-  connectionTimeoutMillis: 2000,
+  connectionTimeoutMillis: 10000,
 });
 
 type PoolClientLike = {
