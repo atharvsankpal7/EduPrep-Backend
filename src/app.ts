@@ -21,8 +21,7 @@ const app = express();
 app.use(helmet());
 app.use(
   cors({
-    origin: ["https://edu-prep.vercel.app", "http://localhost:3000"],
-    // origin: "http://localhost:3000",
+    origin: process.env.FRONTEND_ORIGIN?.split(",") || "localhost:3000",
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
     allowedHeaders: ["Content-Type", "Authorization"],
