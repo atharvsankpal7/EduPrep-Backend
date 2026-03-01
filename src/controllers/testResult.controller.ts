@@ -71,7 +71,7 @@ const submitTest = async (req: Request, res: Response) => {
         totalQuestions: questionAnalysis.length,
         correctAnswers,
         timeSpent: timeTaken,
-        invalid: autoSubmission.isAutoSubmitted,
+        invalid: autoSubmission.isAutoSubmitted && autoSubmission.tabSwitches >= 3,
         questionAnalysis,
         testId: id,
     };
@@ -106,7 +106,7 @@ const getTestResult = async (req: Request, res: Response) => {
         totalQuestions: questionAnalysis.length,
         correctAnswers,
         timeSpent: testResult.timeTaken,
-        invalid: testResult.isAutoSubmitted,
+        invalid: testResult.isAutoSubmitted && testResult.tabSwitches >= 3,
         questionAnalysis,
         testId: testResult.testId,
     };
