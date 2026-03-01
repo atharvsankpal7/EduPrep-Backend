@@ -15,6 +15,13 @@
       "when": 1769112396714,
       "tag": "0001_seed_max_concurrent_sessions",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1772375637134,
+      "tag": "0002_jittery_rocket_raccoon",
+      "breakpoints": true
     }
   ]
 }

@@ -59,11 +59,12 @@ export async function createTestWithSections(data: CreateTestInput): Promise<Tes
     const sectionRows = await tx
       .insert(testSections)
       .values(
-        data.sections.map((section) => ({
+        data.sections.map((section, index) => ({
           testId: test.id,
           sectionName: section.sectionName,
           sectionDuration: section.sectionDuration,
           totalQuestions: section.questionIds.length,
+          sectionOrder: index + 1,
         }))
       )
       .returning();
@@ -110,7 +111,7 @@ export async function getTestQuestionInfo(testId: string): Promise<TestQuestionI
     .innerJoin(testSectionQuestions, eq(testSectionQuestions.testSectionId, testSections.id))
     .innerJoin(questions, eq(testSectionQuestions.questionId, questions.id))
     .where(eq(testSections.testId, testId))
-    .orderBy(asc(testSectionQuestions.questionOrder));
+    .orderBy(asc(testSections.sectionOrder), asc(testSections.createdAt), asc(testSectionQuestions.questionOrder));
 }
 
 // Find test with questions populated
@@ -135,7 +136,7 @@ export async function findTestWithQuestions(id: string) {
     .leftJoin(testSectionQuestions, eq(testSectionQuestions.testSectionId, testSections.id))
     .leftJoin(questions, eq(testSectionQuestions.questionId, questions.id))
     .where(eq(testSections.testId, id))
-    .orderBy(asc(testSections.createdAt), asc(testSectionQuestions.questionOrder));
+    .orderBy(asc(testSections.sectionOrder), asc(testSections.createdAt), asc(testSectionQuestions.questionOrder));
 
   const sectionMap = new Map<string, { sectionName: string; sectionDuration: number; totalQuestions: number; questions: any[] }>();
   rows.forEach((row) => {
@@ -287,6 +288,56 @@ export async function getTestResultAnswers(resultId: string) {
     .where(eq(testResultAnswers.testResultId, resultId));
 }
 
+// ── Canonical question-analysis builder ──────────────────────────────────
+// Uses findTestWithQuestions (the same query that builds the test for the student)
+// as the single source of truth for question ordering.
+
+export interface OrderedQuestionAnalysisItem {
+  questionId: string;
+  questionText: string;
+  options: unknown;
+  selectedOption: number;   // 0-based for the frontend (-1 = skipped)
+  correctOption: number;    // 0-based for the frontend
+  isCorrect: boolean;
+}
+
+interface AnswerLookupEntry {
+  questionId: string;
+  selectedOption: number;   // 1-based as stored in DB (-1 = unanswered)
+}
+
+export async function buildOrderedQuestionAnalysis(
+  testId: string,
+  answers: AnswerLookupEntry[],
+): Promise<OrderedQuestionAnalysisItem[]> {
+  const testWithQuestions = await findTestWithQuestions(testId);
+  if (!testWithQuestions) return [];
+
+  const answerMap = new Map(
+    answers.map((a) => [a.questionId, a.selectedOption]),
+  );
+
+  const analysis: OrderedQuestionAnalysisItem[] = [];
+
+  for (const section of testWithQuestions.sections) {
+    for (const question of section.questions) {
+      const selectedOption = answerMap.get(question.id) ?? -1;
+      const isCorrect = selectedOption !== -1 && selectedOption === question.answer;
+
+      analysis.push({
+        questionId: question.id,
+        questionText: question.questionText,
+        options: question.options,
+        selectedOption: selectedOption === -1 ? -1 : selectedOption - 1,
+        correctOption: question.answer - 1,
+        isCorrect,
+      });
+    }
+  }
+
+  return analysis;
+}
+
 // Get test result answers with question details
 export async function getTestResultAnswersWithQuestionDetails(resultId: string) {
   return db
@@ -300,7 +351,16 @@ export async function getTestResultAnswersWithQuestionDetails(resultId: string) 
     })
     .from(testResultAnswers)
     .innerJoin(questions, eq(testResultAnswers.questionId, questions.id))
-    .where(eq(testResultAnswers.testResultId, resultId));
+    .leftJoin(testSections, eq(testResultAnswers.sectionId, testSections.id))
+    .leftJoin(
+      testSectionQuestions,
+      and(
+        eq(testSectionQuestions.questionId, testResultAnswers.questionId),
+        eq(testSectionQuestions.testSectionId, testSections.id),
+      ),
+    )
+    .where(eq(testResultAnswers.testResultId, resultId))
+    .orderBy(asc(testSections.sectionOrder), asc(testSections.createdAt), asc(testSectionQuestions.questionOrder));
 }
 
 // Get recent tests (joined) for student
