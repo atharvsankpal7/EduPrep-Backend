@@ -4,11 +4,12 @@ import ApiResponse from "../utils/ApiResponse";
 import { submitTestBodySchema, testIdParamsSchema } from "../ZodSchema/testSchema";
 import { validateType } from "../utils/zodValidator";
 import {
+    buildOrderedQuestionAnalysis,
     createTestResultWithAnswers,
     findTestById,
     findTestResultById,
     getTestQuestionInfo,
-    getTestResultAnswersWithQuestionDetails,
+    getTestResultAnswers,
 } from "../db/helpers/test.helpers";
 
 // saving the new test result in the database
@@ -61,24 +62,13 @@ const submitTest = async (req: Request, res: Response) => {
         answers: mappedAnswers,
     });
 
-    const answersWithQuestions = await getTestResultAnswersWithQuestionDetails(testResult.id);
-    const questionAnalysis = answersWithQuestions.map((item) => {
-        const isCorrect = item.answer === item.selectedOption;
-        return {
-            questionId: item.questionId,
-            questionText: item.questionText,
-            options: item.options,
-            selectedOption: item.selectedOption - 1,
-            correctOption: item.answer - 1,
-            isCorrect,
-        };
-    });
-
+    // Build questionAnalysis from the canonical test structure (single source of truth)
+    const questionAnalysis = await buildOrderedQuestionAnalysis(id, mappedAnswers);
     const correctAnswers = questionAnalysis.filter((q) => q.isCorrect).length;
 
     const resultData = {
         id: testResult.id,
-        totalQuestions: answersWithQuestions.length,
+        totalQuestions: questionAnalysis.length,
         correctAnswers,
         timeSpent: timeTaken,
         invalid: autoSubmission.isAutoSubmitted,
@@ -94,7 +84,6 @@ const submitTest = async (req: Request, res: Response) => {
 // gathering the existing test results for a student along with the questions asked in the test
 const getTestResult = async (req: Request, res: Response) => {
     const { id } = validateType(testIdParamsSchema, req.params);
-    const studentId = req.loggedInUser.id;
 
     // First, fetch the test result to get the selected answers
     const testResult = await findTestResultById(id);
@@ -107,26 +96,14 @@ const getTestResult = async (req: Request, res: Response) => {
         throw new ApiError(403, "You are not authorized to view this test result");
     }
 
-    const answersWithQuestions = await getTestResultAnswersWithQuestionDetails(id);
-
-    // Calculate correct answers and prepare detailed question analysis
-    const questionAnalysis = answersWithQuestions.map((item) => {
-        const isCorrect = item.answer === item.selectedOption;
-        return {
-            questionId: item.questionId,
-            questionText: item.questionText,
-            options: item.options,
-            selectedOption: item.selectedOption - 1,
-            correctOption: item.answer - 1,
-            isCorrect: isCorrect
-        };
-    });
-
-    const correctAnswers = questionAnalysis.filter((q: { isCorrect: any; }) => q.isCorrect).length;
+    // Get raw answers, then build analysis from the canonical test structure
+    const answers = await getTestResultAnswers(id);
+    const questionAnalysis = await buildOrderedQuestionAnalysis(testResult.testId, answers);
+    const correctAnswers = questionAnalysis.filter((q) => q.isCorrect).length;
 
     const response = {
         id: testResult.id,
-        totalQuestions: answersWithQuestions.length,
+        totalQuestions: questionAnalysis.length,
         correctAnswers,
         timeSpent: testResult.timeTaken,
         invalid: testResult.isAutoSubmitted,

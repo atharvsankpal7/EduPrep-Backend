@@ -39,6 +39,7 @@ export const testSections = pgTable(
     sectionName: varchar('section_name', { length: 255 }).notNull(),
     sectionDuration: integer('section_duration').notNull(),
     totalQuestions: integer('total_questions').notNull(),
+    sectionOrder: integer('section_order').notNull().default(0),
     createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
     updatedAt: timestamp('updated_at', { withTimezone: true }).defaultNow().notNull(),
   },
