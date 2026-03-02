@@ -42,47 +42,196 @@ export interface CreateTestResultInput {
   answers: CreateTestResultAnswerInput[];
 }
 
+type TxClient = Parameters<Parameters<typeof db.transaction>[0]>[0];
+
+async function createTestWithSectionsTx(
+  tx: TxClient,
+  data: CreateTestInput,
+): Promise<Test> {
+  const [test] = await tx
+    .insert(tests)
+    .values({
+      testName: data.testName,
+      totalDuration: data.totalDuration,
+      totalQuestions: data.totalQuestions,
+      expiryTime: data.expiryTime ?? null,
+      createdBy: data.createdBy,
+    })
+    .returning();
+
+  const sectionRows = await tx
+    .insert(testSections)
+    .values(
+      data.sections.map((section, index) => ({
+        testId: test.id,
+        sectionName: section.sectionName,
+        sectionDuration: section.sectionDuration,
+        totalQuestions: section.questionIds.length,
+        sectionOrder: index + 1,
+      }))
+    )
+    .returning();
+
+  const sectionQuestions = sectionRows.flatMap((section, sectionIndex) => {
+    const questionIds = data.sections[sectionIndex].questionIds;
+    return questionIds.map((questionId, index) => ({
+      testSectionId: section.id,
+      questionId,
+      questionOrder: index + 1,
+    }));
+  });
+
+  if (sectionQuestions.length > 0) {
+    await tx.insert(testSectionQuestions).values(sectionQuestions);
+  }
+
+  return test;
+}
+
 // Create test with sections and questions
 export async function createTestWithSections(data: CreateTestInput): Promise<Test> {
+  return db.transaction(async (tx) => createTestWithSectionsTx(tx, data));
+}
+
+export interface CETSectionSummary {
+  name: string;
+  duration: number;
+  questionCount: number;
+}
+
+export interface CETTestDetails {
+  testId: string;
+  name: string;
+  duration: number;
+  totalQuestions: number;
+  sections: CETSectionSummary[];
+}
+
+interface CETSelectedQuestionRow {
+  questionId: string;
+  sectionName: string;
+  sectionOrder: number;
+}
+
+export async function createCETTestFromDistribution(
+  createdBy: number,
+  distributionId = 1,
+): Promise<CETTestDetails | null> {
   return db.transaction(async (tx) => {
-    const [test] = await tx
-      .insert(tests)
-      .values({
-        testName: data.testName,
-        totalDuration: data.totalDuration,
-        totalQuestions: data.totalQuestions,
-        expiryTime: data.expiryTime ?? null,
-        createdBy: data.createdBy,
-      })
-      .returning();
-
-    const sectionRows = await tx
-      .insert(testSections)
-      .values(
-        data.sections.map((section, index) => ({
-          testId: test.id,
-          sectionName: section.sectionName,
-          sectionDuration: section.sectionDuration,
-          totalQuestions: section.questionIds.length,
-          sectionOrder: index + 1,
-        }))
+    const result = await tx.execute(sql`
+      WITH distribution AS (
+        SELECT
+          (topic_elem->>'topicId')::int AS topic_id,
+          (topic_elem->>'questionCount')::int AS question_count
+        FROM cet_distributions cd,
+             jsonb_array_elements(cd.distributions::jsonb) AS elem,
+             LATERAL jsonb_array_elements(
+               CASE
+                 WHEN elem ? 'topics' THEN elem->'topics'
+                 ELSE jsonb_build_array(elem)
+               END
+             ) AS topic_elem
+        WHERE cd.id = ${distributionId}
+          AND topic_elem ? 'topicId'
+          AND topic_elem ? 'questionCount'
+          AND (topic_elem->>'questionCount')::int > 0
+      ),
+      grouped_distribution AS (
+        SELECT
+          topic_id,
+          SUM(question_count)::int AS question_count
+        FROM distribution
+        GROUP BY topic_id
+      ),
+      randomly_selected AS (
+        SELECT
+          q.id AS question_id,
+          s.subject_name
+        FROM grouped_distribution d
+        CROSS JOIN LATERAL (
+          SELECT q.id, q.topic_id
+          FROM questions q
+          WHERE q.topic_id = d.topic_id
+          ORDER BY RANDOM()
+          LIMIT d.question_count
+        ) AS q
+        INNER JOIN topics t ON t.id = q.topic_id
+        INNER JOIN subjects s ON s.id = t.subject_id
+      ),
+      classified_questions AS (
+        SELECT
+          rs.question_id,
+          CASE
+            WHEN lower(rs.subject_name) IN ('mathematics', 'maths') THEN 'Mathematics'
+            ELSE 'Physics and Chemistry'
+          END AS section_name,
+          CASE
+            WHEN lower(rs.subject_name) IN ('mathematics', 'maths') THEN 2
+            ELSE 1
+          END AS section_order
+        FROM randomly_selected rs
+      ),
+      ordered_questions AS (
+        SELECT
+          cq.question_id,
+          cq.section_name,
+          cq.section_order,
+          ROW_NUMBER() OVER (PARTITION BY cq.section_order ORDER BY RANDOM()) AS question_order
+        FROM classified_questions cq
       )
-      .returning();
+      SELECT
+        oq.question_id AS "questionId",
+        oq.section_name AS "sectionName",
+        oq.section_order AS "sectionOrder"
+      FROM ordered_questions oq
+      ORDER BY oq.section_order, oq.question_order;
+    `);
 
-    const sectionQuestions = sectionRows.flatMap((section, sectionIndex) => {
-      const questionIds = data.sections[sectionIndex].questionIds;
-      return questionIds.map((questionId, index) => ({
-        testSectionId: section.id,
-        questionId,
-        questionOrder: index + 1,
-      }));
-    });
+    const selectedQuestions = (result as unknown as {
+      rows: CETSelectedQuestionRow[];
+    }).rows;
 
-    if (sectionQuestions.length > 0) {
-      await tx.insert(testSectionQuestions).values(sectionQuestions);
+    if (selectedQuestions.length === 0) {
+      return null;
     }
 
-    return test;
+    const sectionsMap = new Map<number, CreateTestSectionInput>();
+
+    for (const row of selectedQuestions) {
+      if (!sectionsMap.has(row.sectionOrder)) {
+        sectionsMap.set(row.sectionOrder, {
+          sectionName: row.sectionName,
+          sectionDuration: 90,
+          questionIds: [],
+        });
+      }
+
+      sectionsMap.get(row.sectionOrder)!.questionIds.push(row.questionId);
+    }
+
+    const sections = Array.from(sectionsMap.entries())
+      .sort((a, b) => a[0] - b[0])
+      .map((entry) => entry[1]);
+
+    const test = await createTestWithSectionsTx(tx, {
+      testName: `CET Test ${Date.now()}`,
+      totalDuration: 180,
+      totalQuestions: selectedQuestions.length,
+      createdBy,
+      sections,
+    });
+
+    return {
+      testId: test.id,
+      name: test.testName,
+      duration: test.totalDuration,
+      totalQuestions: test.totalQuestions,
+      sections: sections.map((section) => ({
+        name: section.sectionName,
+        duration: section.sectionDuration,
+        questionCount: section.questionIds.length,
+      })),
+    };
   });
 }
 

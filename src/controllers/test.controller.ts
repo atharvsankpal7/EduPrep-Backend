@@ -4,8 +4,8 @@ import { companyNameParamsSchema, customTestSchema, testIdParamsSchema } from ".
 import ApiResponse from "../utils/ApiResponse";
 import logger from "../utils/logger";
 import { validateType } from "../utils/zodValidator";
-import { getCETQuestions } from "../utils/cetQuestionSelector";
 import {
+  createCETTestFromDistribution,
   createTestWithSections,
   findTestWithQuestions,
 } from "../db/helpers/test.helpers";
@@ -14,7 +14,6 @@ import {
   findTopicsByNames,
 } from "../db/helpers/topic.helpers";
 import {
-  getQuestionsWithDetails,
   getRandomQuestionsFromTopics,
 } from "../db/helpers/question.helpers";
 import { getCompanyTestDetails } from "../db/helpers/distribution.helpers";
@@ -181,86 +180,27 @@ const getTestWithId = async (req: ExpressRequest, res: Response) => {
 
 const createCETTest = async (req: ExpressRequest, res: Response) => {
     const user = req.loggedInUser;
-    const { questionIds } = await getCETQuestions();
-    // Fetch all questions with their topics and subjects
-    const questions = await getQuestionsWithDetails(questionIds);
+    const rawDistributionId = (req.body as { distributionId?: unknown } | undefined)?.distributionId;
+    const distributionId =
+      typeof rawDistributionId === "number" && Number.isInteger(rawDistributionId)
+        ? rawDistributionId
+        : 1;
 
-    // Categorize questions by subject
-    const physicsQuestions = questions
-      .filter((q) =>
-        q.subjectName?.toLowerCase() === "physics"
-      )
-      .slice(0, 50);
+    if (distributionId <= 0) {
+      throw new ApiError(400, "distributionId must be a positive integer");
+    }
 
-    const chemistryQuestions = questions
-      .filter((q) =>
-        q.subjectName?.toLowerCase() === "chemistry"
-      )
-      .slice(0, 50);
+    const testDetails = await createCETTestFromDistribution(user.id, distributionId);
 
-    const mathsQuestions = questions
-      .filter((q) =>
-        q.subjectName?.toLowerCase() === "mathematics"
-      )
-      .slice(0, 50);
-    // Validate we have enough questions for each section
-    if (
-      physicsQuestions.length < 50 ||
-      chemistryQuestions.length < 50 ||
-      mathsQuestions.length < 50
-    ) {
-      logger.error("Insufficient questions for CET test sections", {
-        physics: physicsQuestions.length,
-        chemistry: chemistryQuestions.length,
-        maths: mathsQuestions.length,
+    if (!testDetails) {
+      logger.error("Unable to create CET test from configured distribution", {
+        userId: user.id,
       });
       throw new ApiError(
         500,
-        "Insufficient questions available for test creation"
+        "Unable to create CET test from configured distribution"
       );
     }
-
-    // Extract just the question IDs
-    const physicsChemQuestions = [
-      ...physicsQuestions.map((q) => q.id),
-      ...chemistryQuestions.map((q) => q.id),
-    ];
-
-    const mathsQuestionIds = mathsQuestions.map((q) => q.id);
-
-    // Create test with sections
-    const sections = [
-      {
-        sectionName: "Physics and Chemistry",
-        sectionDuration: 90, // 90 minutes
-        questionIds: physicsChemQuestions,
-      },
-      {
-        sectionName: "Mathematics",
-        sectionDuration: 90, // 90 minutes
-        questionIds: mathsQuestionIds,
-      },
-    ];
-
-    const test = await createTestWithSections({
-      testName: "CET Test " + Date.now(),
-      totalDuration: 180, // Total duration in minutes
-      totalQuestions: 100, // Total questions across all sections
-      createdBy: user.id,
-      sections,
-    });
-
-    const testDetails = {
-      testId: test.id,
-      name: test.testName,
-      duration: test.totalDuration,
-      totalQuestions: test.totalQuestions,
-      sections: sections.map((section) => ({
-        name: section.sectionName,
-        duration: section.sectionDuration,
-        questionCount: section.questionIds.length,
-      })),
-    };
 
     res
       .status(201)
