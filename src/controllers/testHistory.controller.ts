@@ -30,11 +30,11 @@ const getUserTestHistory = async (req: Request, res: Response) => {
     const limit = parseInt(req.query.limit as string) || 10;
     const skip = (page - 1) * limit;
 
-    // Count total test results for pagination
-    const totalResults = await countTestResultsByStudent(userId);
-
-    // Get test results with test details
-    const testResults = await getStudentTestHistoryPaginated(userId, limit, skip);
+    // Optimize: Fetch total count and paginated results concurrently to reduce database wait time
+    const [totalResults, testResults] = await Promise.all([
+      countTestResultsByStudent(userId),
+      getStudentTestHistoryPaginated(userId, limit, skip)
+    ]);
 
     logger.info(`Retrieved test history for user ${userId}`);
 
@@ -189,7 +189,12 @@ const getUserPerformanceAnalytics = async (req: Request, res: Response) => {
       ? (summary.totalScore / summary.totalQuestions) * 100
       : 0;
 
-    const topicPerformanceRows = await getTopicPerformanceForStudent(userId);
+    // Optimize: Fetch topic performance and recent tests concurrently
+    const [topicPerformanceRows, recentTests] = await Promise.all([
+      getTopicPerformanceForStudent(userId),
+      getRecentTestsByStudent(userId, 5)
+    ]);
+
     const topicPerformanceArray = topicPerformanceRows
       .map((topic) => ({
         ...topic,
@@ -198,7 +203,6 @@ const getUserPerformanceAnalytics = async (req: Request, res: Response) => {
       .sort((a, b) => a.percentageCorrect - b.percentageCorrect);
 
     const topicRecommendations = topicPerformanceArray.slice(0, 3);
-    const recentTests = await getRecentTestsByStudent(userId, 5);
     
     logger.info(`Retrieved performance analytics for user ${userId}`);
     
