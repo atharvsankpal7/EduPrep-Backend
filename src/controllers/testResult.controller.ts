@@ -36,10 +36,16 @@ const submitTest = async (req: Request, res: Response) => {
         throw new ApiError(400, "Answers length does not match test questions");
     }
 
+    // ⚡ Bolt: Convert array to map to optimize answer lookup from O(N^2) to O(N)
+    const answersMap = new Map(
+        selectedAnswers.map((ans) => [ans.questionId, ans.selectedOption])
+    );
+
     let score = 0;
     const mappedAnswers = testQuestionInfo.map((question) => {
-        const matchingAnswer = selectedAnswers.find((ans) => ans.questionId === question.questionId);
-        const selectedOption = matchingAnswer ? matchingAnswer.selectedOption : -1;
+        const selectedOption = answersMap.has(question.questionId)
+            ? answersMap.get(question.questionId)!
+            : -1;
 
         if (selectedOption !== -1 && selectedOption === question.answer) {
             score++;
