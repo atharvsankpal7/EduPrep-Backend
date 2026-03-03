@@ -1,0 +1,3 @@
+## 2024-05-24 - [Avoid O(N^2) Lookup in Arrays]
+**Learning:** Found a performance bottleneck where `Array.prototype.find()` was used inside an `Array.prototype.map()` loop over identical sized arrays (`testQuestionInfo` and `selectedAnswers`), causing an `O(N^2)` time complexity for data lookup. This can significantly slow down API endpoints as the size of `N` increases (e.g., tests with many questions).
+**Action:** When correlating data across two arrays, convert the lookup array into a `Map` prior to iteration to achieve `O(1)` access time, transforming the overall complexity to `O(N)`. I refactored `submitTest` in `src/controllers/testResult.controller.ts` to implement this pattern.

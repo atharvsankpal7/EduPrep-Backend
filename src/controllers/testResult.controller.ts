@@ -37,8 +37,15 @@ const submitTest = async (req: Request, res: Response) => {
     }
 
     let score = 0;
+
+    // Performance Optimization: Convert answers to Map to avoid O(N^2) time complexity
+    // caused by calling .find() inside the .map() loop below.
+    const selectedAnswersMap = new Map(
+        selectedAnswers.map((ans) => [ans.questionId, ans])
+    );
+
     const mappedAnswers = testQuestionInfo.map((question) => {
-        const matchingAnswer = selectedAnswers.find((ans) => ans.questionId === question.questionId);
+        const matchingAnswer = selectedAnswersMap.get(question.questionId);
         const selectedOption = matchingAnswer ? matchingAnswer.selectedOption : -1;
 
         if (selectedOption !== -1 && selectedOption === question.answer) {
