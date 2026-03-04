@@ -27,7 +27,8 @@ const getUserTestHistory = async (req: Request, res: Response) => {
 
     // Get pagination parameters
     const page = parseInt(req.query.page as string) || 1;
-    const limit = parseInt(req.query.limit as string) || 10;
+    // Security Fix: Prevent DoS by capping the maximum limit per page
+    const limit = Math.min(parseInt(req.query.limit as string) || 10, 100);
     const skip = (page - 1) * limit;
 
     // Optimize: Fetch total count and paginated results concurrently to reduce database wait time
