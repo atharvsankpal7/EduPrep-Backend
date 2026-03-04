@@ -1,0 +1,4 @@
+## 2024-05-20 - [CRITICAL] Missing Authorization Check in Topic Routes
+**Vulnerability:** The endpoints in `src/router/topic.routes.ts` (`/cet`, `/all`, `/subject/:subjectName`) were entirely unauthenticated, allowing any user (including unauthenticated ones) to access topic-related data. The `authMiddleware` was imported but never actively applied to the router's middleware chain.
+**Learning:** Even if authentication middleware is imported, it must be explicitly applied using `router.use(authMiddleware)` or added to individual route definitions. A missing application of middleware can silently expose endpoints.
+**Prevention:** Always verify that imported security middlewares are actually invoked in the router chain. Implement automated checks or tests to ensure all protected routes enforce authentication.
