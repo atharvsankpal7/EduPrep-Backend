@@ -21,7 +21,8 @@ import {
 const getAllStudents = async (req: express.Request, res: express.Response) => {
     // Get pagination parameters
     const page = parseInt(req.query.page as string) || 1;
-    const limit = parseInt(req.query.limit as string) || 10;
+    // Security Fix: Prevent DoS by capping the maximum limit per page
+    const limit = Math.min(parseInt(req.query.limit as string) || 10, 100);
     const skip = (page - 1) * limit;
 
     const startDate = req.query.startDate
