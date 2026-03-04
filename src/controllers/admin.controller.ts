@@ -44,11 +44,11 @@ const getAllStudents = async (req: express.Request, res: express.Response) => {
       endDate,
     };
 
-    // Get total count for pagination
-    const totalStudents = await countStudents(filters);
-
-    // Get students sorted by creation date in descending order
-    const students = await listStudents(filters, limit, skip);
+    // Optimize: Fetch total count and paginated students concurrently to reduce database wait time
+    const [totalStudents, students] = await Promise.all([
+      countStudents(filters),
+      listStudents(filters, limit, skip)
+    ]);
 
     logger.info("Admin retrieved student list", {
       adminId: req.loggedInUser.id,
