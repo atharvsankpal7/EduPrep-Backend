@@ -44,7 +44,7 @@ const registerStudent = async (req: express.Request, res: express.Response) => {
   } catch (error: any) {
     // 23505 is PostgreSQL error code for unique violation
     if (error.code === "23505") {
-      logger.warn("Registration failed: user already exists", { email });
+      logger.warn("Registration failed: user already exists");
       throw new ApiError(409, "User with this email already exists");
     }
     throw error;
