@@ -10,3 +10,4 @@ src/logs
 .env.*
 .env
 *.bat
+dist

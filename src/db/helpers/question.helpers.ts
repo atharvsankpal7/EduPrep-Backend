@@ -42,7 +42,7 @@ export async function getRandomQuestionIdsFromTopics(
   topicIds: number[],
   limit: number
 ): Promise<string[]> {
-  if (topicIds.length === 0) return [];
+  if (topicIds.length === 0 || limit <= 0) return [];
 
   const randomIds = await db
     .select({ id: questions.id })
@@ -59,7 +59,7 @@ export async function getRandomQuestionsFromTopics(
   topicIds: number[],
   limit: number
 ): Promise<Question[]> {
-  if (topicIds.length === 0) return [];
+  if (topicIds.length === 0 || limit <= 0) return [];
 
   // Optimization: Fetch only IDs first to avoid sorting large text fields (like questionText, explanation)
   // This reduces the data moved during the sort operation significantly.

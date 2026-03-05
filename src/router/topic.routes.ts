@@ -4,6 +4,7 @@ import { getCETTopics, getAllTopics, getTopicsBySubject } from '../controllers/t
 
 const router = express.Router();
 
+// Protect all topic routes with authentication
 router.use(authMiddleware);
 
 router.get('/cet', getCETTopics);
