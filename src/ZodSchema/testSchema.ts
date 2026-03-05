@@ -15,7 +15,7 @@ const customTestSchema = z.object({
     .coerce.number()
     .int("Number of questions must be a whole number")
     .positive("Number of questions must be positive")
-    .max(500, "Maximum 500 questions allowed per test to prevent system overload"), // Security Fix: Prevent DoS
+    .max(200, "Maximum 200 questions allowed per test to prevent system overload"), // Security Fix: Prevent DoS
   topicList: z.array(
     z.string().min(1, "Topic name must be at least 1 character long")
   ),
