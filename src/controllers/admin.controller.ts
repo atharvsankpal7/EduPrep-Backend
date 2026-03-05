@@ -82,7 +82,7 @@ const createAdmin = async (req: express.Request, res: express.Response) => {
     // Check if user already exists
     const existingUser = await findUserByEmail(email);
     if (existingUser) {
-      logger.warn("Admin with email already exists", { email });
+      logger.warn("Admin with email already exists");
       throw new ApiError(409, "User with this email already exists");
     }
 
