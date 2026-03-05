@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import ApiResponse from "../utils/ApiResponse";
 import { ApiError } from "../utils/ApiError";
 import logger from "../utils/logger";
-import { getCETDistribution } from "../db/helpers/distribution.helpers";
+import { getCETDistributionTopicsWithInference } from "../db/helpers/distribution.helpers";
 import { findSubjectByName, getTopicsBySubject as fetchTopicsBySubject, getTopicsWithSubject } from "../db/helpers/topic.helpers";
 import { subjectNameParamsSchema } from "../ZodSchema/topicSchema";
 import { validateType } from "../utils/zodValidator";
@@ -11,26 +11,40 @@ import { validateType } from "../utils/zodValidator";
  * Get all CET topics with their distribution information
  */
 const getCETTopics = async (_req: Request, res: Response) => {
-  // Get the CET distribution configuration
-  const cetDistribution = await getCETDistribution();
+  const rows = await getCETDistributionTopicsWithInference(1);
 
-  if (!cetDistribution) {
+  if (rows.length === 0) {
     logger.error("CET distribution configuration not found");
     throw new ApiError(404, "CET distribution configuration not found");
   }
 
-  // Transform the data to match the required format
-  const topicsBySubject = cetDistribution.distributions.map(dist => {
-    return {
-      subject: dist.subject,
-      standard: dist.standard,
-      topics: dist.topics.map(topic => ({
-        topicName: topic.topicName,
-        questionCount: topic.questionCount,
-        topicId: topic.topicId
-      }))
-    };
-  });
+  const grouped = new Map<
+    string,
+    {
+      subject: string;
+      standard: number;
+      topics: { topicName: string; questionCount: number; topicId: string }[];
+    }
+  >();
+
+  for (const row of rows) {
+    const key = `${row.subject}|${row.standard}`;
+    if (!grouped.has(key)) {
+      grouped.set(key, {
+        subject: row.subject,
+        standard: row.standard,
+        topics: [],
+      });
+    }
+
+    grouped.get(key)!.topics.push({
+      topicName: row.topicName,
+      questionCount: row.questionCount,
+      topicId: String(row.topicId),
+    });
+  }
+
+  const topicsBySubject = Array.from(grouped.values());
 
   res.status(200).json(
     new ApiResponse(200, { topicsBySubject }, "CET topics fetched successfully")
