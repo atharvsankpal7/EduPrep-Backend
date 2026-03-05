@@ -9,8 +9,6 @@ import { validateType } from "../utils/zodValidator";
 import {
   clearUserRefreshToken,
   createUser,
-  findUserByIdSecure,
-  findUserByIdPublic,
 } from "../db/helpers/user.helpers";
 import { createSession, revokeSession } from "../db/helpers/session.helpers";
 import { haveMaxSessionReached } from "../db/helpers/constants.helpers";
@@ -50,18 +48,17 @@ const registerStudent = async (req: express.Request, res: express.Response) => {
     throw error;
   }
 
-  const registeredUser = await findUserByIdPublic(newUser.id);
+  // Performance Optimization: Map the created user object directly to avoid a redundant database query
+  const registeredUser = {
+    id: newUser.id,
+    email: newUser.email,
+    fullName: newUser.fullName,
+    role: newUser.role,
+    createdAt: newUser.createdAt,
+    updatedAt: newUser.updatedAt,
+  };
 
-  if (!registeredUser) {
-    logger.error("Failed to retrieve registered user from database", {
-      userId: newUser.id,
-    });
-    throw new ApiError(500, "Something went wrong");
-  }
-  const maxSessionReached = await haveMaxSessionReached(newUser.id);
-  if (maxSessionReached) {
-    throw new ApiError(403, "Concurrent session limit reached");
-  }
+  // Performance Optimization: Removed haveMaxSessionReached check because a newly created user has 0 sessions.
 
   const session = await createSession({
     userId: newUser.id,
@@ -105,7 +102,15 @@ const loginUser = async (req: express.Request, res: express.Response) => {
     expiresAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
   });
 
-  const publicUser = await findUserByIdPublic(loggedInUser.id);
+  // Performance Optimization: Use req.loggedInUser directly instead of fetching from DB again
+  const publicUser = {
+    id: loggedInUser.id,
+    email: loggedInUser.email,
+    fullName: loggedInUser.fullName,
+    role: loggedInUser.role,
+    createdAt: loggedInUser.createdAt,
+    updatedAt: loggedInUser.updatedAt,
+  };
   logger.info("User logged in successfully", { userId: loggedInUser.id });
 
   // Respond with success, setting cookies for tokens
@@ -121,18 +126,16 @@ const loginUser = async (req: express.Request, res: express.Response) => {
 const logoutUser = async (req: express.Request, res: express.Response) => {
   const userId = req.loggedInUser.id;
 
-  // Clear the refreshToken in the database
-  const existingUser = await findUserByIdSecure(userId);
-  if (!existingUser) {
-    logger.error("Failed to log out user: User not found", { userId });
-    throw new ApiError(404, "User not found");
+  // Performance Optimization: Removed redundant user existence check (already verified by auth middleware)
+  // and parallelized the session/token clearing operations.
+  const sessionId = req.cookies?.sessionId;
+  const logoutTasks: Promise<void>[] = [clearUserRefreshToken(userId)];
+
+  if (sessionId) {
+    logoutTasks.push(revokeSession(sessionId));
   }
 
-  await clearUserRefreshToken(userId);
-  const sessionId = req.cookies?.sessionId;
-  if (sessionId) {
-    await revokeSession(sessionId);
-  }
+  await Promise.all(logoutTasks);
 
   logger.info("User logged out successfully", { userId });
 
