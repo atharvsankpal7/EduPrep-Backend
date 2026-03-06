@@ -563,7 +563,7 @@ export interface TopicPerformanceRow {
   incorrect: number;
 }
 
-// Compute topic performance by joining result answers in SQL
+// Compute topic performance by joining result answers in SQL for a student
 export async function getTopicPerformanceForStudent(
   studentId: number
 ): Promise<TopicPerformanceRow[]> {
@@ -584,6 +584,28 @@ export async function getTopicPerformanceForStudent(
 
   return (result as unknown as { rows: TopicPerformanceRow[] }).rows;
 }
+
+// Compute topic performance by joining result answers in SQL for a single test result
+export async function getTopicPerformanceForResult(
+  resultId: string
+): Promise<TopicPerformanceRow[]> {
+  const result = await db.execute(sql`
+    SELECT
+      q.topic_id AS "topicId",
+      t.topic_name AS "topicName",
+      COUNT(*)::int AS "total",
+      SUM(CASE WHEN tra.selected_option = q.answer THEN 1 ELSE 0 END)::int AS "correct",
+      (COUNT(*)::int - SUM(CASE WHEN tra.selected_option = q.answer THEN 1 ELSE 0 END)::int) AS "incorrect"
+    FROM test_result_answers tra
+    JOIN questions q ON q.id = tra.question_id
+    JOIN topics t ON t.id = q.topic_id
+    WHERE tra.test_result_id = ${resultId}
+    GROUP BY q.topic_id, t.topic_name
+  `);
+
+  return (result as unknown as { rows: TopicPerformanceRow[] }).rows;
+}
+
 // Find test results by test
 export async function findTestResultsByTest(testId: string): Promise<TestResult[]> {
   return db

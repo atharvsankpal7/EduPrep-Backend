@@ -8,9 +8,8 @@ import { resultIdParamsSchema } from "../ZodSchema/testSchema";
 import { getStudentTestHistoryDashboard } from "../db/helpers/testHistory.helpers";
 import {
   findTestResultWithTest,
-  getTestResultAnswers,
+  getTopicPerformanceForResult,
 } from "../db/helpers/test.helpers";
-import { getQuestionsWithDetails } from "../db/helpers/question.helpers";
 
 /**
  * GET /test-history
@@ -57,45 +56,14 @@ const getTestResultWithRecommendations = async (req: Request, res: Response) => 
     throw new ApiError(404, "Test result not found");
   }
 
-  const answers = await getTestResultAnswers(resultId);
-  const questionIds = answers.map((answer) => answer.questionId);
-  const questions = await getQuestionsWithDetails(questionIds);
-  const questionMap = new Map(questions.map((q) => [q.id.toString(), q]));
+  // Optimization: Fetch aggregated topic performance natively via SQL to avoid N+1 queries
+  // and fetching large question payloads into application memory.
+  const topicPerformanceRows = await getTopicPerformanceForResult(resultId);
 
-  const topicPerformance = new Map();
-
-  answers.forEach((answer) => {
-    const question = questionMap.get(answer.questionId.toString());
-    if (!question) return;
-
-    const isCorrect = question.answer === answer.selectedOption;
-    const topicId = question.topicId?.toString();
-    const topicName = question.topicName;
-
-    if (!topicId || !topicName) return;
-
-    if (!topicPerformance.has(topicId)) {
-      topicPerformance.set(topicId, {
-        topicId,
-        topicName,
-        total: 0,
-        correct: 0,
-        incorrect: 0,
-      });
-    }
-
-    const performance = topicPerformance.get(topicId);
-    performance.total += 1;
-    if (isCorrect) {
-      performance.correct += 1;
-    } else {
-      performance.incorrect += 1;
-    }
-  });
-
-  const topicPerformanceArray = Array.from(topicPerformance.values())
+  const topicPerformanceArray = topicPerformanceRows
     .map((topic) => ({
       ...topic,
+      topicId: String(topic.topicId), // Ensure topicId is a string for the frontend
       percentageCorrect:
         topic.total > 0 ? (topic.correct / topic.total) * 100 : 0,
     }))
